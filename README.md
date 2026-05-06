@@ -27,7 +27,7 @@ npm run build      # type-checks then bundles into dist/
 npm run preview    # serve the production build locally
 ```
 
-The Vite build prefixes assets with `/Lpic-trainer/` so the bundle works under the GitHub Pages project URL. For previews on a custom domain or root path, build with `VITE_BASE=/ npm run build`.
+The Vite build prefixes assets with `/lpic-trainer/` so the bundle works under the GitHub Pages project URL. For previews on a custom domain or root path, build with `VITE_BASE=/ npm run build`.
 
 ## Deploy (GitHub Pages)
 
@@ -39,7 +39,9 @@ One-time setup after the repo exists on GitHub:
 2. Repo **Settings → Pages → Build and deployment → Source**: select **GitHub Actions**.
 3. Push any commit (or click **Run workflow** on the *Deploy to GitHub Pages* action). The first run does the initial deploy.
 
-Live URL: <https://alexisayenko.github.io/Lpic-trainer/>
+Live URL: <https://alexisayenko.github.io/lpic-trainer/>
+
+(GitHub stores the repo name lowercased as `lpic-trainer`, so the Pages path is lowercase regardless of how the repo was typed in the New-repository form.)
 
 ## Layout
 
