@@ -1,5 +1,6 @@
 import { useStore } from '../store';
 import { TOPIC_LABELS, type Topic } from '../types';
+import logo from '../assets/logo.webp';
 
 const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
 
@@ -17,9 +18,12 @@ export function TopicPicker({ onStart }: { onStart: () => void }) {
 
   return (
     <div className="max-w-xl mx-auto p-6 space-y-6">
-      <header>
-        <h1 className="text-3xl font-semibold text-slate-100">LPIC-2 (202) Trainer</h1>
-        <p className="text-slate-400 mt-1">Pick the exam objectives to drill, then start.</p>
+      <header className="flex items-center gap-4">
+        <img src={logo} alt="LPIC-2" className="h-16 w-16 rounded-md object-cover" />
+        <div>
+          <h1 className="text-3xl font-semibold text-slate-100">LPIC-2 (202) Trainer</h1>
+          <p className="text-slate-400 mt-1">Pick the exam objectives to drill, then start.</p>
+        </div>
       </header>
       <ul className="space-y-2">
         {ALL_TOPICS.map((t) => (
