@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a072",
+  "tool": "bind9",
+  "prompt": "Sarah has modified the named.conf file and one of the zone files for BIND. She wants to apply these changes without restarting the BIND service. Which command should she use?",
+  "choices": [
+    "rndc flush",
+    "rndc reload",
+    "rndc stop",
+    "rndc querylog"
+  ],
+  "answerIndex": 1,
+  "explanation": "The rndc reload command makes named reread its configuration and changed zone files without restarting the service."
+}

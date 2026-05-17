@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a067",
+  "tool": "bind9",
+  "prompt": "After making changes to a specific zone file in BIND, Alex wants to reload just that specific zone rather than reloading all zones. Which rndc command can he use?",
+  "choices": [
+    "rndc flush example.com",
+    "rndc reload example.com",
+    "rndc refresh example.com",
+    "rndc retransfer example.com"
+  ],
+  "answerIndex": 1,
+  "explanation": "The rndc reload example.com command reloads a specific zone without affecting other zones, an efficient approach when changes are isolated to one zone."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b014",
+  "tool": "apache2",
+  "prompt": "You have set up an Apache server that requires both user and group-based authentication for a particular directory. You've created the necessary user and group password files. Which set of directives would you use in your Apache configuration to specify the location of these files?",
+  "choices": [
+    "AuthUserFile /path/to/user.passwd and AuthName /path/to/group.passwd",
+    "AuthUserFile /path/to/user.passwd and AuthGroupFile /path/to/group.passwd",
+    "AuthBasicProvider /path/to/user.passwd and AuthGroupFile /path/to/group.passwd",
+    "Require /path/to/user.passwd and AuthGroupFile /path/to/group.passwd"
+  ],
+  "answerIndex": 1,
+  "explanation": "AuthUserFile points Apache to the file of usernames and encrypted passwords, while AuthGroupFile points to the file mapping users to groups for group-based authentication."
+}

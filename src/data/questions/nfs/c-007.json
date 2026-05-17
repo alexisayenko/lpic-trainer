@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c007",
+  "tool": "nfs",
+  "prompt": "An administrator is trying to confirm the currently mounted NFS filesystems on a Linux system. Which file should they inspect to find out details about all currently mounted filesystems, including NFS mounts?",
+  "choices": [
+    "/etc/fstab",
+    "/etc/exports",
+    "/proc/mounts",
+    "/etc/hosts.deny"
+  ],
+  "answerIndex": 2,
+  "explanation": "/proc/mounts is a kernel-maintained file listing all currently mounted filesystems, including active NFS mounts."
+}

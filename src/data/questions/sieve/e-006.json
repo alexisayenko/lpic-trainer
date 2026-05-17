@@ -1,0 +1,13 @@
+{
+  "id": "sieve-e006",
+  "tool": "sieve",
+  "prompt": "Sarah is creating a Sieve script to handle her incoming emails. She wants any email that contains the word \"urgent\" in the subject to be flagged as important. Which of the following Sieve scripts would accomplish this?",
+  "choices": [
+    "if header :contains \"subject\" \"urgent\" { fileinto \"\\\\Flagged\"; }",
+    "if header :matches \"subject\" \"urgent\" { setflag \"urgent\"; }",
+    "if header :contains \"subject\" \"urgent\" { addflag \"\\\\Flagged\"; }",
+    "if address :is \"subject\" \"urgent\" { addflag \"\\\\Flagged\"; }"
+  ],
+  "answerIndex": 2,
+  "explanation": "The header :contains \"subject\" \"urgent\" test matches messages with \"urgent\" in the subject, and addflag \"\\\\Flagged\" marks them as important using the imap4flags extension."
+}

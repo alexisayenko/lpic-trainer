@@ -1,0 +1,13 @@
+{
+  "id": "dovecot-e001",
+  "tool": "dovecot",
+  "prompt": "Your colleague, a junior sysadmin, wants to determine the effective value of a particular setting in Dovecot's configuration without looking into the actual configuration file. Which command involving doveconf can assist in fetching the effective value for a specific parameter, say \"mail_location\"?",
+  "choices": [
+    "doveconf mail_location",
+    "doveconf --show mail_location",
+    "doveadm config mail_location",
+    "doveconf --get mail_location"
+  ],
+  "answerIndex": 0,
+  "explanation": "By using doveconf followed by the parameter name, such as doveconf mail_location, you can retrieve the effective value for that specific parameter."
+}

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
-import { QUESTIONS } from '../data/questions';
+import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
-import { TOPIC_LABELS, type Question } from '../types';
+import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -18,7 +18,10 @@ export function Quiz({ onExit }: { onExit: () => void }) {
 
   const deck = useMemo<Question[]>(() => {
     const pool = selectedTopics
-      ? QUESTIONS.filter((q) => selectedTopics.includes(q.topic))
+      ? QUESTIONS.filter((q) => {
+          const t = topicOf(q);
+          return t !== undefined && selectedTopics.includes(t);
+        })
       : QUESTIONS;
     return shuffle(pool);
   }, [selectedTopics]);
@@ -81,7 +84,7 @@ export function Quiz({ onExit }: { onExit: () => void }) {
   return (
     <div className="max-w-xl mx-auto p-6 space-y-5">
       <div className="flex items-center justify-between text-sm text-slate-400">
-        <span>{TOPIC_LABELS[q.topic]}</span>
+        <span>{UTILITIES[q.tool]?.label ?? q.tool}{topicOf(q) ? ` · ${TOPIC_LABELS[topicOf(q)!]}` : ''}</span>
         <span>
           {index + 1} / {deck.length}
         </span>

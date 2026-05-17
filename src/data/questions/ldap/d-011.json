@@ -1,0 +1,13 @@
+{
+  "id": "ldap-d011",
+  "tool": "ldap",
+  "prompt": "Alex, an IT professional, needs to retrieve information about a user named \"john.doe\" from an LDAP directory. Which utility should Alex use to perform this search?",
+  "choices": [
+    "ldapsearch",
+    "ldapadd",
+    "ldapmodify",
+    "ldappasswd"
+  ],
+  "answerIndex": 0,
+  "explanation": "The ldapsearch utility is used to search and retrieve directory entries from an LDAP directory."
+}

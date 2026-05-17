@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a046",
+  "tool": "bind9",
+  "prompt": "Jennifer wants to verify that the named service runs as a non-root user. Which of the following entries should she look for in the /etc/passwd file?",
+  "choices": [
+    "named:x:0:0:DNS BIND User:/var/named:/bin/bash",
+    "named:x:125:129:DNS BIND User:/var/named:/bin/false",
+    "bind:x:125:129:DNS:/home/bind:/bin/sh",
+    "dns:x:1000:1000:DNS Admin:/home/dns:/bin/bash"
+  ],
+  "answerIndex": 1,
+  "explanation": "The entry named:x:125:129:DNS BIND User:/var/named:/bin/false indicates a dedicated non-root user for BIND. Its /bin/false login shell prevents shell access, enhancing security."
+}

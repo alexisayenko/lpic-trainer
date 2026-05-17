@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a062",
+  "tool": "bind9",
+  "prompt": "Kevin is looking for the default directory where zone files are located when using BIND. Which directory typically holds the BIND zone files?",
+  "choices": [
+    "/etc/bind/zones/",
+    "/var/named/",
+    "/usr/share/named/",
+    "/var/lib/bind/"
+  ],
+  "answerIndex": 1,
+  "explanation": "By default BIND stores its zone files under /var/named/."
+}

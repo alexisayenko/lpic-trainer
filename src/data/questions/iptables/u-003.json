@@ -1,0 +1,13 @@
+{
+  "id": "iptables-u003",
+  "tool": "iptables",
+  "prompt": "Your organization's network recently transitioned to IPv6, and you are now required to configure the firewall rules using ip6tables. You need to allow incoming HTTP traffic on port 80 from the IPv6 address 2001:db8::1. Which of the following ip6tables commands should be used?",
+  "choices": [
+    "ip6tables -A OUTPUT -p tcp --dport 80 -d 2001:db8::1 -j ACCEPT",
+    "iptables -A INPUT -p tcp --dport 80 -s 2001:db8::1 -j ACCEPT",
+    "ip6tables -A INPUT -p tcp --dport 80 -s 2001:db8::1 -j ACCEPT",
+    "ip6tables -A INPUT -p udp --sport 80 -s 2001:db8::1 -j ACCEPT"
+  ],
+  "answerIndex": 2,
+  "explanation": "Incoming IPv6 traffic is allowed in the INPUT chain of ip6tables, matching the source address with -s and destination port 80, with the ACCEPT target."
+}

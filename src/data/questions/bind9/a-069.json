@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a069",
+  "tool": "bind9",
+  "prompt": "Lillian wants to specify the working directory for the named process in the BIND configuration. In which file and with which directive can she define this?",
+  "choices": [
+    "In /var/named using the \"workdir\" directive",
+    "In /etc/named.conf using the \"directory\" directive",
+    "In /etc/resolv.conf using the \"search\" directive",
+    "In /etc/named.conf using the \"file\" directive"
+  ],
+  "answerIndex": 1,
+  "explanation": "The working directory for named is set with the \"directory\" directive in the options block of /etc/named.conf."
+}

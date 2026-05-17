@@ -1,0 +1,13 @@
+{
+  "id": "ftp-g008",
+  "tool": "ftp",
+  "prompt": "Michael is setting up an FTP server using vsftpd and he wants to allow anonymous users to upload files. However, he needs these uploads to be readable only by the system administrator for review before they're made publicly accessible. Which directive should Michael configure in the vsftpd.conf?",
+  "choices": [
+    "anon_world_readable_only=YES",
+    "anon_upload_enable=YES",
+    "anonymous_enable=YES",
+    "write_enable=YES"
+  ],
+  "answerIndex": 1,
+  "explanation": "The anon_upload_enable=YES directive in vsftpd.conf allows anonymous users to upload files; uploaded files are owned by the configured upload user and are not world-readable, so they can be reviewed before being made public."
+}

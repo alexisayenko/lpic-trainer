@@ -1,0 +1,13 @@
+{
+  "id": "samba-c017",
+  "tool": "samba",
+  "prompt": "The Samba configuration file contains the following lines:\nhost allow = 192.168.1.100 192.168.2.0/255.255.255.0 localhost\nhost deny = 192.168.2.31\ninterfaces = 192.168.1.0/255.255.255.0 192.168.2.0/255.255.255.0\nA workstation on the wired network with IP 192.168.1.177 cannot access the Samba server, but a wireless laptop with IP 192.168.2.93 can. Which corrected host allow line would let the wired workstation connect?",
+  "choices": [
+    "host allow = 192.168.1.100 localhost",
+    "host allow = 192.168.1.0/255.255.255.0 192.168.2.0/255.255.255.0 localhost",
+    "host deny = 192.168.1.0/255.255.255.0",
+    "interfaces = 192.168.1.177 only"
+  ],
+  "answerIndex": 1,
+  "explanation": "The original host allow only permitted the single host 192.168.1.100 from the wired subnet; allowing the whole 192.168.1.0/255.255.255.0 subnet lets the 192.168.1.177 workstation connect."
+}

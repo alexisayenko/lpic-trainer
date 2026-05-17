@@ -1,0 +1,13 @@
+{
+  "id": "samba-c025",
+  "tool": "samba",
+  "prompt": "In a corporate environment, a Linux server running Samba needs to be integrated with an existing Windows domain for seamless user authentication. Which Samba daemon should be primarily configured to handle domain membership and user authentication with the Windows domain?",
+  "choices": [
+    "nmbd",
+    "smbd",
+    "winbindd",
+    "mountd"
+  ],
+  "answerIndex": 2,
+  "explanation": "winbindd handles domain membership and resolves users and groups from a Windows domain, enabling seamless authentication."
+}

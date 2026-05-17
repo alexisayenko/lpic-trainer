@@ -1,0 +1,13 @@
+{
+  "id": "samba-c023",
+  "tool": "samba",
+  "prompt": "A user requests a \"hidden\" Samba share, named confidential, similar to the Windows Administration Share. How can this be configured?",
+  "choices": [
+    "[confidential] with hidden = yes",
+    "[.confidential]",
+    "[confidential$]",
+    "[#confidential]"
+  ],
+  "answerIndex": 2,
+  "explanation": "Appending a $ to the share name, as in [confidential$], creates a hidden share that does not appear in browse lists, like a Windows administrative share."
+}

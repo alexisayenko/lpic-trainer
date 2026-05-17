@@ -1,0 +1,13 @@
+{
+  "id": "pam-sss-d006",
+  "tool": "pam-sss",
+  "prompt": "A system administrator discovers that the system is not referencing individual PAM configuration files in the /etc/pam.d/ directory, even though they exist. Before escalating the issue, the administrator should first check which file that might override these individual configurations?",
+  "choices": [
+    "/etc/pam.d/passwd",
+    "/etc/security/pam_env.conf",
+    "/etc/pam.conf",
+    "/etc/nsswitch.conf"
+  ],
+  "answerIndex": 2,
+  "explanation": "The /etc/pam.conf file provides PAM configuration for all services and, when present, can override or take precedence over the individual per-service files in /etc/pam.d/."
+}

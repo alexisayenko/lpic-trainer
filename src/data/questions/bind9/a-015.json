@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a015",
+  "tool": "bind9",
+  "prompt": "In which section of the named.conf file is the zone file directory defined?",
+  "choices": [
+    "zone",
+    "options",
+    "controls",
+    "logging"
+  ],
+  "answerIndex": 1,
+  "explanation": "The \"directory\" statement that sets the working directory for zone files is defined in the options section of named.conf."
+}

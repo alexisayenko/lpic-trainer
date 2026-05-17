@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a061",
+  "tool": "bind9",
+  "prompt": "Alex needs to specify the responsible person in the SOA record of a zone file for example.net. Which of the following formats is correct for the email address of the responsible person?",
+  "choices": [
+    "admin@example.net",
+    "admin.example.net",
+    "admin_example_net",
+    "mailto:admin@example.net"
+  ],
+  "answerIndex": 1,
+  "explanation": "In the SOA record the responsible person's email is written with the @ replaced by a dot, so admin@example.net becomes admin.example.net."
+}

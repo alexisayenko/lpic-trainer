@@ -1,0 +1,13 @@
+{
+  "id": "ldap-d003",
+  "tool": "ldap",
+  "prompt": "Richard, an experienced system administrator, is trying to add a new group to the LDAP directory. He has an LDIF file named devgroup.ldif and wants to use simple authentication to perform the addition. Which of the following commands will successfully add the group using simple authentication?",
+  "choices": [
+    "ldapadd -s -f devgroup.ldif",
+    "ldapadd -f devgroup.ldif -D simple",
+    "ldapadd -x -f devgroup.ldif",
+    "ldapadd -W devgroup.ldif"
+  ],
+  "answerIndex": 2,
+  "explanation": "The ldapadd command is used to add entries to the LDAP directory. The -f option specifies the input LDIF file. The -x option is used for simple authentication instead of SASL, which is the default."
+}

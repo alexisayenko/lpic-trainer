@@ -1,0 +1,13 @@
+{
+  "id": "ldap-d009",
+  "tool": "ldap",
+  "prompt": "David, a junior systems administrator, accidentally added an erroneous group entry in the LDAP directory. He now wants to delete it. The DN for the group is \"cn=wronggroup,ou=groups,dc=example,dc=com\". While discussing with a colleague, David was advised not to use SASL authentication for the deletion. Which command should David use?",
+  "choices": [
+    "ldapdelete -Y -D \"cn=admin,dc=example,dc=com\" -W",
+    "ldapdelete -x -D \"cn=admin,dc=example,dc=com\" -W",
+    "ldapmodify -x -D \"cn=admin,dc=example,dc=com\" -W",
+    "ldapdelete -x -b \"cn=admin,dc=example,dc=com\" -S"
+  ],
+  "answerIndex": 1,
+  "explanation": "To delete an entry using ldapdelete, you need to bind to the LDAP directory using the bind DN and then specify the DN of the entry you want to delete. The -x option ensures the use of simple authentication. The -W option prompts David for the password associated with the bind DN."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c010",
+  "tool": "nfs",
+  "prompt": "A Linux administrator needs to verify which file systems are currently being exported on an NFS server. Which exportfs command will show the current list of exported file systems?",
+  "choices": [
+    "exportfs -a",
+    "exportfs -r",
+    "exportfs -l",
+    "exportfs -u"
+  ],
+  "answerIndex": 2,
+  "explanation": "exportfs -l displays the current list of exported file systems on the NFS server."
+}

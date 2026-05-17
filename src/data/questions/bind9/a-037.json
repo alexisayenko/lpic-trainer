@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a037",
+  "tool": "bind9",
+  "prompt": "What is the effect of the line directory \"/home/sam/bind\"; found in the options section of an /etc/named.conf file?",
+  "choices": [
+    "It tells BIND to chroot into /home/sam/bind on startup.",
+    "It tells BIND to look in the /home/sam/bind directory for its zone files.",
+    "It tells BIND to log all queries to /home/sam/bind.",
+    "It restricts queries to clients in /home/sam/bind."
+  ],
+  "answerIndex": 1,
+  "explanation": "The directory option sets the working directory; relative zone-file paths in named.conf are resolved from /home/sam/bind."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "samba-c007",
+  "tool": "samba",
+  "prompt": "Jennifer, a systems administrator, is looking to ensure that a directory shared via Samba is only accessible to a specific group named \"Finance\". Based on the Samba 4 documentation, which of the following smb.conf configuration options should she use?",
+  "choices": [
+    "allowed groups = Finance",
+    "valid users = @Finance",
+    "group access = Finance",
+    "restrict to = +Finance"
+  ],
+  "answerIndex": 1,
+  "explanation": "The valid users parameter restricts access to a share; prefixing a name with @ specifies a group, so @Finance limits access to members of the Finance group."
+}

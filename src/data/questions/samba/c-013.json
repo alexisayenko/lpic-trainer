@@ -1,0 +1,13 @@
+{
+  "id": "samba-c013",
+  "tool": "samba",
+  "prompt": "Michael is setting up a Samba server for his team. He wants each user to authenticate with their unique username and password when accessing the shared folders. Which security mode should Michael set in the smb.conf file to achieve this?",
+  "choices": [
+    "security = share",
+    "security = user",
+    "security = domain",
+    "security = server"
+  ],
+  "answerIndex": 1,
+  "explanation": "The security = user mode in Samba requires users to provide a valid username and password to access the shared folders. Each user will be authenticated against the local password database or another specified backend."
+}

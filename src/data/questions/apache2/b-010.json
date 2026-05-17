@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b010",
+  "tool": "apache2",
+  "prompt": "Patricia, a server administrator, is hardening her Apache SSL configuration. She recently learned that SSLv2 and SSLv3 have significant vulnerabilities. Which directive should she include in her Apache configuration to ensure that these protocols are disabled?",
+  "choices": [
+    "SSLCipherSuite all -SSLv2 -SSLv3",
+    "SSLProtocol all -SSLv2 -SSLv3",
+    "SSLProtocol -SSLv2 -SSLv3",
+    "SSLProtocol TLSv1.2 only"
+  ],
+  "answerIndex": 1,
+  "explanation": "The SSLProtocol directive is used to specify which SSL/TLS protocols are allowed. The correct configuration to allow all protocols except SSLv2 and SSLv3 is SSLProtocol all -SSLv2 -SSLv3."
+}

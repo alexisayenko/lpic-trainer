@@ -1,0 +1,13 @@
+{
+  "id": "procmail-u001",
+  "tool": "procmail",
+  "prompt": "Jane, a systems administrator, is troubleshooting email delivery issues for a user. She suspects that the user's procmail is misconfigured. Which of the following files should Jane examine to check the user's personal procmail configuration?",
+  "choices": [
+    "/etc/procmailrc",
+    "~/.procmailrc",
+    "~/.procmail/config",
+    "/etc/procmail/user.rc"
+  ],
+  "answerIndex": 1,
+  "explanation": "The per-user procmail configuration is stored in the .procmailrc file in the user's home directory."
+}

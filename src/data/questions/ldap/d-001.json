@@ -1,0 +1,13 @@
+{
+  "id": "ldap-d001",
+  "tool": "ldap",
+  "prompt": "As part of a routine cleanup, Mike, the lead systems administrator, wants to delete an LDAP entry for a user named \"alice\" whose DN is \"uid=alice,ou=users,dc=example,dc=com\". Which of the following commands should Mike use to correctly delete this user's entry from the LDAP directory?",
+  "choices": [
+    "ldapdelete \"uid=alice,ou=users,dc=example,dc=com\" -x",
+    "ldapmodify -x \"uid=alice,ou=users,dc=example,dc=com\"",
+    "ldapsearch -x -b \"uid=alice,ou=users,dc=example,dc=com\" -D delete",
+    "ldapremove -x \"uid=alice,ou=users,dc=example,dc=com\""
+  ],
+  "answerIndex": 0,
+  "explanation": "The ldapdelete command is used to remove entries from the LDAP directory. The DN of the entry to be deleted is provided as an argument. The -x option specifies the use of simple authentication instead of SASL."
+}

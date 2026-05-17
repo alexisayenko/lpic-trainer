@@ -1,0 +1,13 @@
+{
+  "id": "pam-sss-d004",
+  "tool": "pam-sss",
+  "prompt": "Jessica, a Linux systems administrator, wants to ensure that the sssd daemon fetches user data and authentication from an LDAP server. Which directive in the sssd.conf file should she verify is set to LDAP?",
+  "choices": [
+    "cache_credentials",
+    "ldap_uri",
+    "id_provider",
+    "services"
+  ],
+  "answerIndex": 2,
+  "explanation": "The id_provider directive ensures that the sssd daemon fetches user data and authentication from the specified source; setting it to ldap directs SSSD to use an LDAP server."
+}

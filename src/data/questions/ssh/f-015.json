@@ -1,0 +1,13 @@
+{
+  "id": "ssh-f015",
+  "tool": "ssh",
+  "prompt": "Jennifer, a systems administrator, wants to allow a developer to access a server without a password using SSH. She has received the developer's public key. Where should Jennifer place this public key to allow password-less authentication for the developer?",
+  "choices": [
+    "In the developer's ~/.ssh/known_hosts file",
+    "In the developer's ~/.ssh/authorized_keys file",
+    "In /etc/ssh/ssh_host_rsa_key.pub",
+    "In the developer's ~/.ssh/id_rsa file"
+  ],
+  "answerIndex": 1,
+  "explanation": "Placing a user's public key in their ~/.ssh/authorized_keys file on the server allows that user to authenticate over SSH without a password."
+}

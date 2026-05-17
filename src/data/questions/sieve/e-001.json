@@ -1,0 +1,13 @@
+{
+  "id": "sieve-e001",
+  "tool": "sieve",
+  "prompt": "An organization wants to ensure that all emails coming from the domain \"trustedpartner.com\" with a size greater than 5MB are directly moved to the \"Large Attachments\" folder. Which Sieve rule will accomplish this?",
+  "choices": [
+    "if anyof address :is \"from\" \"*.trustedpartner.com\", size :over 5120 { fileinto \"Large Attachments\"; }",
+    "if address :is \"from\" \"*.trustedpartner.com\" && size :over 5120 { fileinto \"Large Attachments\"; }",
+    "if address :contains \"from\" \"trustedpartner.com\" { redirect \"Large Attachments\"; }",
+    "if size :under 5120 && address :is \"from\" \"*.trustedpartner.com\" { fileinto \"Large Attachments\"; }"
+  ],
+  "answerIndex": 1,
+  "explanation": "The rule matches messages from the trustedpartner.com domain that are over 5120 KB (5MB) and files them into the \"Large Attachments\" folder using fileinto."
+}

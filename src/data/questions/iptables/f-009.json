@@ -1,0 +1,13 @@
+{
+  "id": "iptables-f009",
+  "tool": "iptables",
+  "prompt": "Sarah, a system administrator, needs to temporarily drop all incoming traffic to the server but still wants to allow outgoing traffic. Which iptables command should she use?",
+  "choices": [
+    "iptables -P INPUT ACCEPT",
+    "iptables -P INPUT DROP",
+    "iptables -P OUTPUT DROP",
+    "iptables -F INPUT"
+  ],
+  "answerIndex": 1,
+  "explanation": "iptables -P INPUT DROP sets the default policy of the INPUT chain to DROP, blocking all incoming traffic while leaving the OUTPUT chain unaffected."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a045",
+  "tool": "bind9",
+  "prompt": "Michelle wishes to ensure that zone transfer requests between her primary and secondary DNS servers are authenticated. Which would be the best method to secure these transfers in BIND?",
+  "choices": [
+    "Enable DNSSEC signing on both servers.",
+    "Implement Transaction Signatures (TSIG) between the two servers.",
+    "Restrict transfers with an allow-query statement.",
+    "Run both servers in a chroot jail."
+  ],
+  "answerIndex": 1,
+  "explanation": "Transaction Signatures (TSIG) are a way to secure DNS updates and zone transfers. TSIG allows for transaction-level authentication using shared secret keys. By using TSIG, Michelle can ensure that zone transfers between her primary and secondary DNS servers are authenticated and secure."
+}

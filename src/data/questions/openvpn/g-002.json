@@ -1,0 +1,13 @@
+{
+  "id": "openvpn-g002",
+  "tool": "openvpn",
+  "prompt": "Mark is setting up OpenVPN for a new branch of his organization. He needs to define a Certificate Authority (CA) in the server configuration file. Which directive should Mark use to specify the CA certificate file?",
+  "choices": [
+    "tls-auth",
+    "cert",
+    "ca",
+    "dh"
+  ],
+  "answerIndex": 2,
+  "explanation": "The ca directive in the OpenVPN configuration file specifies the Certificate Authority (CA) certificate file used to verify peer certificates."
+}

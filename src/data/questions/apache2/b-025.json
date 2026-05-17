@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b025",
+  "tool": "apache2",
+  "prompt": "When adding a new virtual host to your Apache 2.4 configuration, which directive is used to define the document root for this host?",
+  "choices": [
+    "RootDirectory",
+    "DocumentRoot",
+    "ServerRoot",
+    "WebRoot"
+  ],
+  "answerIndex": 1,
+  "explanation": "The DocumentRoot directive sets the directory from which Apache serves files for that virtual host."
+}

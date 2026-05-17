@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b004",
+  "tool": "apache2",
+  "prompt": "As part of security hardening for his Apache web server, Alex wants to ensure that the server doesn't disclose its version number and other unnecessary information in HTTP responses. Which directive should Alex modify to minimize this disclosure?",
+  "choices": [
+    "ServerSignature",
+    "ServerName",
+    "ServerTokens",
+    "TraceEnable"
+  ],
+  "answerIndex": 2,
+  "explanation": "The ServerTokens directive controls how much information about the server is included in the HTTP response header; setting it to Prod sends only the product name."
+}

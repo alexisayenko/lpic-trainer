@@ -1,0 +1,13 @@
+{
+  "id": "ftp-g010",
+  "tool": "ftp",
+  "prompt": "Emily, a system administrator, is configuring an FTP server using vsftpd. She wants to ensure that users can't browse the files above their home directories. Which directive should Emily set in the vsftpd.conf to enforce this behavior?",
+  "choices": [
+    "local_root=YES",
+    "chroot_local_user=YES",
+    "passwd_chroot_enable=YES",
+    "secure_chroot_dir=YES"
+  ],
+  "answerIndex": 1,
+  "explanation": "Setting chroot_local_user=YES in vsftpd.conf places local users in a chroot jail confined to their home directories, preventing them from browsing files above their home directory."
+}

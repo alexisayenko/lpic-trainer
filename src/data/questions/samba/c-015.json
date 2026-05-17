@@ -1,0 +1,13 @@
+{
+  "id": "samba-c015",
+  "tool": "samba",
+  "prompt": "Laura, a systems administrator, is configuring a new Samba 4 server. She wants to ensure the main Samba daemon starts at boot and handles the incoming SMB connections. Which of the following daemons should Laura ensure is enabled and starts at boot?",
+  "choices": [
+    "nmbd",
+    "smbd",
+    "winbindd",
+    "samba-tool"
+  ],
+  "answerIndex": 1,
+  "explanation": "smbd is the Server Message Block daemon that handles file and printer access and serves incoming SMB connections."
+}

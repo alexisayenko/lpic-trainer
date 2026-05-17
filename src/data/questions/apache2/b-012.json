@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b012",
+  "tool": "apache2",
+  "prompt": "Your company has recently set up a test server where certain files should only be accessible to authenticated users. You're tasked to implement basic authentication for a particular directory. Which Apache module would allow you to achieve this?",
+  "choices": [
+    "mod_authz_host",
+    "mod_auth_basic",
+    "mod_access_compat",
+    "mod_ssl"
+  ],
+  "answerIndex": 1,
+  "explanation": "mod_auth_basic provides HTTP Basic authentication, allowing access to a directory to be restricted to authenticated users."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "courier-e001",
+  "tool": "courier",
+  "prompt": "Your organization is looking to deploy a new email server solution. The primary requirement is to have a unified solution that integrates IMAP, POP3, and SMTP under the same server umbrella. One of your colleagues suggests using Courier. Why might the Courier server be a suitable choice?",
+  "choices": [
+    "Courier is a unified mail server that integrates IMAP, POP3, and SMTP services",
+    "Courier is a mail filtering engine that only processes Sieve scripts",
+    "Courier is an SMTP-only relay with no mailbox access support",
+    "Courier is a webmail front end that depends on a separate mail server"
+  ],
+  "answerIndex": 0,
+  "explanation": "Courier is a unified mail server that integrates IMAP, POP3, and SMTP services under a single server, making it suitable when a single integrated solution is required."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c003",
+  "tool": "nfs",
+  "prompt": "Samuel, a system administrator, is setting up an NFS server. To ensure the NFS mounts specified in /etc/exports are honored by the server, he needs to start a specific service. Which service is responsible for this task?",
+  "choices": [
+    "portmapper",
+    "mountd",
+    "nfsd",
+    "statd"
+  ],
+  "answerIndex": 1,
+  "explanation": "The mountd server is responsible for managing mount requests from NFS clients. It checks the requested mount against the list specified in /etc/exports and grants or denies the mount based on this list."
+}

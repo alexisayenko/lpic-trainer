@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b021",
+  "tool": "apache2",
+  "prompt": "You've been tasked with creating a password for a user named \"jdoe\" for client authentication on your Apache server. Which utility would you use to generate the encrypted password and store it in a .htpasswd file?",
+  "choices": [
+    "passwd",
+    "htpasswd",
+    "openssl passwd",
+    "htdigest"
+  ],
+  "answerIndex": 1,
+  "explanation": "The htpasswd utility is provided by Apache to manage user files for basic authentication. This utility can be used to create and update the flat-files used to store usernames and their encrypted passwords, usually stored in a .htpasswd file."
+}

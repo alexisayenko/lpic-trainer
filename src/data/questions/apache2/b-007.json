@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b007",
+  "tool": "apache2",
+  "prompt": "Samantha, an experienced system administrator, is setting up multiple secure websites on a single Apache server using a single IP address. She knows that older methods required separate IP addresses for each SSL certificate but recalls that a modern solution exists to mitigate this. What should Samantha implement to host multiple SSL certificates on a single IP address?",
+  "choices": [
+    "Assign a unique port to each HTTPS virtual host",
+    "Implement Server Name Indication (SNI) in her Apache configuration",
+    "Use a single wildcard certificate for all virtual hosts",
+    "Enable mod_proxy to route SSL requests"
+  ],
+  "answerIndex": 1,
+  "explanation": "Server Name Indication (SNI) is a feature that allows multiple SSL certificates to be served over HTTPS from a single IP address. It works by having the client send the name of the virtual host as part of the initial encrypted handshake, enabling the server to return the correct certificate."
+}

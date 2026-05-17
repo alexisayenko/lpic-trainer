@@ -1,0 +1,13 @@
+{
+  "id": "sieve-e010",
+  "tool": "sieve",
+  "prompt": "Emily, a system administrator, wants to set up a Sieve filter to automatically move any email from the domain \"newsletter.com\" to a folder named \"Newsletters\". Which of the following Sieve scripts would achieve this?",
+  "choices": [
+    "if header :contains \"from\" \"@newsletter.com\" { fileinto \"Newsletters\"; }",
+    "if header :matches \"from\" \"newsletter.com\" { redirect \"Newsletters\"; }",
+    "if address :is \"to\" \"@newsletter.com\" { fileinto \"Newsletters\"; }",
+    "if header :contains \"from\" \"@newsletter.com\" { discard; }"
+  ],
+  "answerIndex": 0,
+  "explanation": "The header :contains \"from\" \"@newsletter.com\" test matches messages from the newsletter.com domain, and fileinto \"Newsletters\" moves them into the Newsletters folder."
+}

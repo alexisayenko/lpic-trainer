@@ -1,0 +1,13 @@
+{
+  "id": "samba-c021",
+  "tool": "samba",
+  "prompt": "Which of the following actions synchronizes UNIX passwords with the Samba passwords when the encrypted Samba password is changed using smbpasswd?",
+  "choices": [
+    "Add unix password sync = yes to smb.conf",
+    "Run smbpasswd -U after every change",
+    "Add encrypt passwords = yes to smb.conf",
+    "Enable the winbindd daemon"
+  ],
+  "answerIndex": 0,
+  "explanation": "Setting unix password sync = yes in smb.conf causes Samba to update the UNIX password whenever the Samba password is changed via smbpasswd."
+}

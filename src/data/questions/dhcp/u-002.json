@@ -1,0 +1,13 @@
+{
+  "id": "dhcp-u002",
+  "tool": "dhcp",
+  "prompt": "Jessica, a network administrator, wants to ensure that a specific machine in her network always receives the same IP address from the DHCP server. In the dhcpd.conf file, which directive should Jessica use to achieve this based on the MAC address of the machine?",
+  "choices": [
+    "range",
+    "fixed-address",
+    "static-route",
+    "host-identifier"
+  ],
+  "answerIndex": 1,
+  "explanation": "The fixed-address directive, used within a host declaration that matches a client's MAC address, assigns a constant IP address to that machine."
+}

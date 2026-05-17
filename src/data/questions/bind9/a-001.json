@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a001",
+  "tool": "bind9",
+  "prompt": "Which of the following is an advantage of running BIND in a chroot prison?",
+  "choices": [
+    "It allows BIND to listen on privileged ports without root.",
+    "If BIND is malfunctioning or compromised, it is less likely to damage other parts of the computer.",
+    "It improves DNS query response times by caching more aggressively.",
+    "It removes the need to configure named.conf."
+  ],
+  "answerIndex": 1,
+  "explanation": "A chroot jail confines BIND to a restricted directory tree, so a compromised or malfunctioning named process cannot reach or harm the rest of the system."
+}

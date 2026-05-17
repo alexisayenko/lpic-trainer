@@ -1,0 +1,13 @@
+{
+  "id": "sieve-e008",
+  "tool": "sieve",
+  "prompt": "Lucy is receiving frequent updates from an automated system at alerts@company.com. However, she no longer wants these notifications and wishes to silently discard them without getting a bounce-back to the sender. Which Sieve action should be implemented to accomplish this?",
+  "choices": [
+    "reject;",
+    "discard;",
+    "stop;",
+    "redirect;"
+  ],
+  "answerIndex": 1,
+  "explanation": "The discard action silently deletes a message without notifying the sender, unlike reject which sends a bounce-back."
+}

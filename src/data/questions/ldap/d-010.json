@@ -1,0 +1,13 @@
+{
+  "id": "ldap-d010",
+  "tool": "ldap",
+  "prompt": "A junior system administrator named Lucy is tasked with changing the password of an LDAP user with the distinguished name \"uid=jdoe,ou=people,dc=example,dc=com\". She wants to use the ldappasswd command for this purpose and ensure she is prompted to provide the new password interactively. Which of the following commands should Lucy use?",
+  "choices": [
+    "ldappasswd -A \"uid=jdoe,ou=people,dc=example,dc=com\"",
+    "ldappasswd -W \"uid=jdoe,ou=people,dc=example,dc=com\"",
+    "ldappasswd -S \"uid=jdoe,ou=people,dc=example,dc=com\"",
+    "ldappasswd -x \"uid=jdoe,ou=people,dc=example,dc=com\""
+  ],
+  "answerIndex": 2,
+  "explanation": "The ldappasswd command is utilized to change the password of an LDAP entry. The -S option prompts the user to enter the new password interactively twice (once for the new password and once for confirmation), which aligns with Lucy's requirement."
+}

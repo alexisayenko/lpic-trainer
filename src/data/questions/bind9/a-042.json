@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a042",
+  "tool": "bind9",
+  "prompt": "Which of the following describes the primary purpose of DNSSEC?",
+  "choices": [
+    "To encrypt DNS queries between resolvers and clients",
+    "To ensure the authenticity and integrity of DNS data",
+    "To balance load across multiple authoritative servers",
+    "To compress zone files for faster transfers"
+  ],
+  "answerIndex": 1,
+  "explanation": "DNSSEC's primary purpose is to ensure the authenticity and integrity of DNS data through cryptographic signatures."
+}

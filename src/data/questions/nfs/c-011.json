@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c011",
+  "tool": "nfs",
+  "prompt": "An administrator notices that certain legitimate requests to the NFS server are getting denied. After some investigation, she realizes that there's a conflicting rule in the TCP Wrappers configuration. Which of the following statements is true regarding how TCP Wrappers processes rules in its configuration files?",
+  "choices": [
+    "TCP Wrappers processes /etc/hosts.deny before /etc/hosts.allow and the last match wins.",
+    "TCP Wrappers processes /etc/hosts.allow before /etc/hosts.deny and the first match wins.",
+    "TCP Wrappers merges both files and applies the most restrictive rule.",
+    "TCP Wrappers only consults /etc/hosts.deny when /etc/hosts.allow is empty."
+  ],
+  "answerIndex": 1,
+  "explanation": "TCP Wrappers checks /etc/hosts.allow first and /etc/hosts.deny second; the first matching rule determines the outcome, and access is granted if no rule matches."
+}

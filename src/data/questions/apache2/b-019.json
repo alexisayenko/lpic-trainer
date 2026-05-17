@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b019",
+  "tool": "apache2",
+  "prompt": "You are responsible for managing multiple Apache servers in your organization. While troubleshooting an issue on one of the servers, you want to check the configuration syntax without actually restarting the server. Which command would allow you to do this?",
+  "choices": [
+    "apachectl -t",
+    "apachectl restart",
+    "apachectl -S",
+    "apachectl -k graceful"
+  ],
+  "answerIndex": 0,
+  "explanation": "apachectl -t (also apachectl configtest) checks the Apache configuration files for syntax errors without restarting the server."
+}

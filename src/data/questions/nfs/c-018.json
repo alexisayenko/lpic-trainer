@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c018",
+  "tool": "nfs",
+  "prompt": "A system administrator wants to ensure that an NFS share named /share is accessible to all hosts within the 192.168.5.0/24 subnet but read-only. Which of the following entries in the /etc/exports file will achieve this?",
+  "choices": [
+    "/share 192.168.5.0/24(rw,sync)",
+    "/share 192.168.5.0/24(ro,sync)",
+    "/share 192.168.5.0/24 ro,sync",
+    "/share 192.168.5.0/24 readonly"
+  ],
+  "answerIndex": 1,
+  "explanation": "To provide read-only access to the /share directory for the 192.168.5.0/24 subnet, the appropriate permissions are (ro,sync). The ro ensures that the share is read-only, and sync confirms that changes are committed to disk before the write request is considered complete."
+}

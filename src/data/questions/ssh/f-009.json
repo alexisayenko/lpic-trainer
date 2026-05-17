@@ -1,0 +1,13 @@
+{
+  "id": "ssh-f009",
+  "tool": "ssh",
+  "prompt": "Amelia wants to initiate an SSH connection to a remote server with the IP address 192.168.1.10 using the username admin. Which of the following commands should Amelia use to achieve this?",
+  "choices": [
+    "ssh 192.168.1.10 -l admin@",
+    "ssh admin@192.168.1.10",
+    "ssh -u admin 192.168.1.10",
+    "ssh 192.168.1.10 admin"
+  ],
+  "answerIndex": 1,
+  "explanation": "The ssh user@host syntax connects to the specified host as the given user, so ssh admin@192.168.1.10 logs in as admin."
+}

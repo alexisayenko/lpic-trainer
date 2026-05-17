@@ -1,0 +1,13 @@
+{
+  "id": "postfix-e003",
+  "tool": "postfix",
+  "prompt": "A system administrator is troubleshooting mail delivery issues on a Postfix server. Which command can the administrator use to process and deliver mail from the queue immediately?",
+  "choices": [
+    "postqueue -f",
+    "postqueue -p",
+    "postsuper -d ALL",
+    "postfix reload"
+  ],
+  "answerIndex": 0,
+  "explanation": "The command postqueue -f is used in Postfix to flush (process and deliver) mail that is queued up. It's useful in scenarios where mail has been stuck or delayed in the queue and needs to be processed immediately."
+}

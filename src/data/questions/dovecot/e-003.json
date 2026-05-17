@@ -1,0 +1,13 @@
+{
+  "id": "dovecot-e003",
+  "tool": "dovecot",
+  "prompt": "As a systems administrator, you want to ensure that your Dovecot configuration files have the right syntax and are not missing any mandatory parameters. Which doveconf command would you use to check the validity of the configuration files?",
+  "choices": [
+    "doveconf -a",
+    "doveconf -c",
+    "doveconf -n",
+    "doveconf --check"
+  ],
+  "answerIndex": 2,
+  "explanation": "Using doveconf -n will print out the configuration settings that have been set to non-default values. If there is an issue with the configuration, this command will likely throw an error, helping administrators identify problematic configurations."
+}

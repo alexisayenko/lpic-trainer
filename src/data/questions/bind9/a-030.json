@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a030",
+  "tool": "bind9",
+  "prompt": "Which of the following is a problem that a caching DNS server can only help solve?",
+  "choices": [
+    "Your ISP's DNS server is reliable, but slow.",
+    "Your domain's MX record is missing.",
+    "Your zone file has a syntax error.",
+    "Your server's clock is out of sync."
+  ],
+  "answerIndex": 0,
+  "explanation": "A local caching DNS server speeds up repeat lookups, so it helps when the upstream ISP server works but is slow; it cannot fix configuration errors."
+}

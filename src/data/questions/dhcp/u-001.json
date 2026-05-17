@@ -1,0 +1,13 @@
+{
+  "id": "dhcp-u001",
+  "tool": "dhcp",
+  "prompt": "Laura, a system administrator, wants to specify a range of IP addresses that the DHCP server should allocate to clients. She is unsure about which directive to use in the DHCP configuration file. Which directive allows her to specify a range of IP addresses to be distributed to clients?",
+  "choices": [
+    "range",
+    "subnet",
+    "pool",
+    "allocate"
+  ],
+  "answerIndex": 0,
+  "explanation": "The range directive in dhcpd.conf defines the pool of IP addresses the DHCP server can dynamically assign to clients."
+}

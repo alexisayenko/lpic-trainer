@@ -1,0 +1,13 @@
+{
+  "id": "postfix-e001",
+  "tool": "postfix",
+  "prompt": "As the new administrator of an existing mail server running Postfix, you are trying to understand the server's configuration. You are particularly interested in the settings that determine which hosts are allowed to relay mail through your server. Which configuration file would you need to inspect to determine the settings for relay control?",
+  "choices": [
+    "/etc/postfix/master.cf",
+    "/etc/postfix/main.cf",
+    "/etc/postfix/transport",
+    "/etc/aliases"
+  ],
+  "answerIndex": 1,
+  "explanation": "The primary configuration file for Postfix is /etc/postfix/main.cf. This file contains most of the global settings for Postfix, including relay control parameters such as mynetworks and relay_domains."
+}

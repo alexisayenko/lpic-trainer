@@ -1,0 +1,13 @@
+{
+  "id": "samba-c027",
+  "tool": "samba",
+  "prompt": "A system administrator is configuring a Samba server. She notices that even though the Samba service is running, the shared directories are not accessible from Windows clients. Which of the following daemons is primarily responsible for handling requests from Windows clients and serving files?",
+  "choices": [
+    "nmbd",
+    "smbd",
+    "winbindd",
+    "rpcbind"
+  ],
+  "answerIndex": 1,
+  "explanation": "smbd is the daemon that handles SMB/CIFS requests from clients and serves files and printers."
+}

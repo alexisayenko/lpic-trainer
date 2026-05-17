@@ -1,0 +1,13 @@
+{
+  "id": "ssh-f012",
+  "tool": "ssh",
+  "prompt": "John, an IT specialist, wants to generate a new SSH key pair for himself. Which command should he use to generate an RSA key pair?",
+  "choices": [
+    "ssh-keygen -t rsa",
+    "ssh-keygen --rsa",
+    "ssh -t rsa keygen",
+    "sshd-keygen -t rsa"
+  ],
+  "answerIndex": 0,
+  "explanation": "ssh-keygen -t rsa generates a new RSA key pair, creating a private key and a matching .pub public key file."
+}

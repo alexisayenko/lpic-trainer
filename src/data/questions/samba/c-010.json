@@ -1,0 +1,13 @@
+{
+  "id": "samba-c010",
+  "tool": "samba",
+  "prompt": "Patrick, a systems administrator, wants to set up logging for his Samba 4 server. He wants each machine to have its own log file, named after the machine's NetBIOS name. Which configuration option in the smb.conf file would he need to use?",
+  "choices": [
+    "log file = /var/log/samba/%U.log",
+    "log file = /var/log/samba/%m.log",
+    "log file = /var/log/samba/%h.log",
+    "log file = /var/log/samba/%I.log"
+  ],
+  "answerIndex": 1,
+  "explanation": "The %m substitution variable expands to the client's NetBIOS machine name, so log file = /var/log/samba/%m.log gives each machine its own log file."
+}

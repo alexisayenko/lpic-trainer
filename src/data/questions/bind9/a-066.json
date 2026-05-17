@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a066",
+  "tool": "bind9",
+  "prompt": "Michael is exploring alternate name servers to BIND for a small local network that requires both DNS and DHCP functionalities. Which would be most suitable?",
+  "choices": [
+    "PowerDNS",
+    "dnsmasq",
+    "Unbound",
+    "Knot DNS"
+  ],
+  "answerIndex": 1,
+  "explanation": "dnsmasq is a lightweight, easy-to-configure DNS forwarder and DHCP server, designed to provide DNS and optionally DHCP to a small network."
+}

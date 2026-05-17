@@ -1,0 +1,13 @@
+{
+  "id": "iptables-u001",
+  "tool": "iptables",
+  "prompt": "Kyle, a security consultant, advises XYZ Corp to block all outgoing HTTPS traffic (port 443) to the IP address 10.0.0.5. Which of the following iptables rules should be implemented?",
+  "choices": [
+    "iptables -A OUTPUT -p tcp --dport 443 -d 10.0.0.5 -j DROP",
+    "iptables -A INPUT -p tcp --dport 443 -s 10.0.0.5 -j DROP",
+    "iptables -A OUTPUT -p tcp --sport 443 -d 10.0.0.5 -j ACCEPT",
+    "iptables -A FORWARD -p udp --dport 443 -d 10.0.0.5 -j DROP"
+  ],
+  "answerIndex": 0,
+  "explanation": "Outgoing traffic is filtered in the OUTPUT chain, matching the destination IP with -d and the destination port 443 with --dport, dropping the packets."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a048",
+  "tool": "bind9",
+  "prompt": "Carl suspects the TSIG shared key might not match on both his master and slave DNS servers. Which file should he check to ensure the key is consistent on both servers?",
+  "choices": [
+    "The zone database file.",
+    "The named.conf file.",
+    "The /etc/resolv.conf file.",
+    "The /etc/hosts file."
+  ],
+  "answerIndex": 1,
+  "explanation": "TSIG keys are defined in key {} blocks in the named.conf file, so Carl should compare the named.conf files on both servers."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c004",
+  "tool": "nfs",
+  "prompt": "A Linux administrator needs to identify which clients have mounted the NFS shares from a specific NFS server. Which showmount command should be used to display this information?",
+  "choices": [
+    "showmount -e",
+    "showmount -a",
+    "showmount -d",
+    "showmount --no-headers"
+  ],
+  "answerIndex": 1,
+  "explanation": "The showmount command is used to query the status of the NFS server. Using the -a option, the administrator can see a list of all clients that have mounted the server's exports, along with the directories they have mounted."
+}

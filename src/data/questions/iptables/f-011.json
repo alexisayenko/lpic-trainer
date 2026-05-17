@@ -1,0 +1,13 @@
+{
+  "id": "iptables-f011",
+  "tool": "iptables",
+  "prompt": "On a Linux router, packet forwarding for IPv4 has been enabled. After a reboot, the machine no longer forwards IP packets from other hosts. The command 'echo 1 > /proc/sys/net/ipv4/ip_forward' temporarily resolves this issue. Which one of the following options is the best way to ensure this setting is saved across system restarts?",
+  "choices": [
+    "Add 'echo 1 > /proc/sys/net/ipv4/ip_forward' to ~/.bashrc",
+    "In /etc/sysctl.conf change net.ipv4.ip_forward to 1",
+    "Run 'iptables -P FORWARD ACCEPT' and save the ruleset",
+    "Set net.ipv4.ip_forward=1 with sysctl -w at each login"
+  ],
+  "answerIndex": 1,
+  "explanation": "Setting net.ipv4.ip_forward to 1 in /etc/sysctl.conf makes the kernel apply the parameter persistently at every boot."
+}

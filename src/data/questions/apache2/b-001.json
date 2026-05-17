@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b001",
+  "tool": "apache2",
+  "prompt": "Samantha is troubleshooting a connectivity issue with her Apache2 HTTPS website. She wants to review the SSL configuration but is unsure where the default SSL configuration file is located. Where can Samantha typically find the default SSL configuration on a Debian-based Apache2 setup?",
+  "choices": [
+    "/etc/apache2/sites-available/default-ssl.conf",
+    "/etc/httpd/conf.d/ssl.conf",
+    "/etc/apache2/sites-enabled/ssl.conf",
+    "/etc/apache2/apache2.conf"
+  ],
+  "answerIndex": 0,
+  "explanation": "On Debian-based systems the default SSL virtual host is shipped as /etc/apache2/sites-available/default-ssl.conf, enabled with a2ensite."
+}

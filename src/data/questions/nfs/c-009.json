@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c009",
+  "tool": "nfs",
+  "prompt": "Maria wants to ensure that an NFS share from the server nfs-server.example.com is automatically mounted on her client machine at boot time. She decides to add an entry in a configuration file to achieve this. Which file should she edit to make sure the NFS share is mounted at boot?",
+  "choices": [
+    "/etc/exports",
+    "/etc/fstab",
+    "/proc/mounts",
+    "/etc/auto.master"
+  ],
+  "answerIndex": 1,
+  "explanation": "/etc/fstab lists filesystems to be mounted at boot, so an NFS entry placed there is mounted automatically when the client starts."
+}

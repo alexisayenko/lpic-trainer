@@ -1,0 +1,13 @@
+{
+  "id": "openssl-g004",
+  "tool": "openssl",
+  "prompt": "Robert, an Apache server administrator, has been asked to generate a private key for the server without a passphrase. Which of the following openssl commands should he use to generate an RSA private key that doesn't require a passphrase?",
+  "choices": [
+    "openssl genrsa -des3 -out server.key 2048",
+    "openssl req -newkey rsa:2048 -keyout server.key",
+    "openssl req -newkey rsa:2048 -nodes -keyout server.key",
+    "openssl rsa -in server.key -des3 -out server.key"
+  ],
+  "answerIndex": 2,
+  "explanation": "The -nodes option (\"No DES\") tells openssl not to encrypt the generated private key, so it is created without a passphrase."
+}

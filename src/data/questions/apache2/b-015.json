@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b015",
+  "tool": "apache2",
+  "prompt": "During a security audit, it's suggested that your Apache server should hide its version number and other detailed server information from clients. Which directive in the httpd.conf file would you modify to achieve this?",
+  "choices": [
+    "ServerSignature",
+    "ServerTokens",
+    "ServerName",
+    "ServerAdmin"
+  ],
+  "answerIndex": 1,
+  "explanation": "The ServerTokens directive determines if the server response header sent back to clients includes a description of the generic OS-type of the server, as well as information about compiled-in modules. By setting it to Prod, only the product name (Apache) is sent."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a060",
+  "tool": "bind9",
+  "prompt": "Hannah is setting up a secondary (slave) DNS server for redundancy. In the BIND 9 configuration, which type designation should she use for the zone on this secondary server?",
+  "choices": [
+    "master",
+    "slave",
+    "hint",
+    "forward"
+  ],
+  "answerIndex": 1,
+  "explanation": "A secondary server hosts a zone with \"type slave;\", which obtains its data from a master via zone transfer."
+}

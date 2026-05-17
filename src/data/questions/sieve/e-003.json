@@ -1,0 +1,13 @@
+{
+  "id": "sieve-e003",
+  "tool": "sieve",
+  "prompt": "As an administrator, you need to set a Sieve filter to automatically reject emails that are sent to \"noreply@mydomain.com\". Which Sieve rule should you use?",
+  "choices": [
+    "if address :is \"to\" \"noreply@mydomain.com\" { discard; }",
+    "if address :is \"from\" \"noreply@mydomain.com\" { reject \"This address does not accept incoming emails.\"; }",
+    "if address :is \"to\" \"noreply@mydomain.com\" { reject \"This address does not accept incoming emails.\"; }",
+    "if header :contains \"to\" \"noreply@mydomain.com\" { fileinto \"Rejected\"; }"
+  ],
+  "answerIndex": 2,
+  "explanation": "The rule tests the \"to\" address against noreply@mydomain.com and uses the reject action to refuse the message and notify the sender."
+}

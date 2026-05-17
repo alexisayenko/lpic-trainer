@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c005",
+  "tool": "nfs",
+  "prompt": "Jeremy, a systems administrator, suspects that some of the RPC services on his NFS server are not responding. He wants to check the status of all registered RPC services on his local server. Which command should he execute?",
+  "choices": [
+    "rpcinfo -p localhost",
+    "nfsstat -s",
+    "showmount -a localhost",
+    "exportfs -l"
+  ],
+  "answerIndex": 0,
+  "explanation": "rpcinfo -p localhost lists all RPC services registered with the portmapper on the local host."
+}

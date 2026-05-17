@@ -1,0 +1,13 @@
+{
+  "id": "samba-c019",
+  "tool": "samba",
+  "prompt": "Select the Samba option below that should be used if the main intention is to set up a guest printer service.",
+  "choices": [
+    "security = user",
+    "security = ads",
+    "security = share",
+    "security = domain"
+  ],
+  "answerIndex": 2,
+  "explanation": "security = share allows access without per-user authentication, which is appropriate for a guest printer service."
+}

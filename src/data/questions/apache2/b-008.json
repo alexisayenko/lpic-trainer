@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b008",
+  "tool": "apache2",
+  "prompt": "While attending a workshop on Apache SSL configurations, Liam, a system administrator, learns about the challenges associated with using SSL in virtual hosting environments. Which of the following statements accurately describes a primary issue when using traditional SSL with name-based virtual hosting?",
+  "choices": [
+    "SSL requires a separate IP address for each virtual host, making it incompatible with name-based virtual hosting.",
+    "SSL certificates cannot be used at all with virtual hosts of any kind.",
+    "Name-based virtual hosting requires a unique port for every SSL certificate.",
+    "SSL disables the Host header, so all virtual hosts share one certificate."
+  ],
+  "answerIndex": 0,
+  "explanation": "Traditional SSL, before the introduction of SNI, necessitated the use of a distinct IP address for each SSL certificate. As a result, it wasn't compatible with name-based virtual hosting, which allows multiple domain names to be hosted on a single IP address."
+}

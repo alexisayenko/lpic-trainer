@@ -1,0 +1,13 @@
+{
+  "id": "samba-c028",
+  "tool": "samba",
+  "prompt": "A system administrator is troubleshooting a Samba server and wants to display the list of shares currently available on the server. Which subcommand of the net tool should they use to accomplish this?",
+  "choices": [
+    "net rpc share",
+    "net ads info",
+    "net rpc file",
+    "net rpc shutdown"
+  ],
+  "answerIndex": 0,
+  "explanation": "net rpc share lists the shares currently available on the Samba server."
+}

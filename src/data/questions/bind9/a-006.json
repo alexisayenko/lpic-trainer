@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a006",
+  "tool": "bind9",
+  "prompt": "To use dynamic DNS updates safely, the use of TSIG is recommended. Which statement about TSIG is true?",
+  "choices": [
+    "TSIG encrypts all DNS query traffic between clients and the server.",
+    "TSIG replaces the need for zone files on the server.",
+    "Servers using TSIG must be in sync (time zone / clock).",
+    "TSIG is configured only on the client resolver."
+  ],
+  "answerIndex": 2,
+  "explanation": "TSIG relies on time-stamped signatures, so servers using TSIG must have synchronized clocks for transaction signatures to validate."
+}

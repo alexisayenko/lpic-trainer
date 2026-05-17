@@ -1,0 +1,13 @@
+{
+  "id": "postfix-e006",
+  "tool": "postfix",
+  "prompt": "Alex, a system administrator, is tasked with enabling and enforcing TLS encryption for incoming SMTP connections on the Postfix mail server. Which directive should Alex set to require TLS for all incoming SMTP connections?",
+  "choices": [
+    "smtpd_use_tls = yes",
+    "smtp_tls_security_level = encrypt",
+    "smtpd_tls_security_level = mandatory",
+    "smtpd_enforce_tls = yes"
+  ],
+  "answerIndex": 2,
+  "explanation": "Setting smtpd_tls_security_level = mandatory forces Postfix to require TLS encryption for all incoming SMTP connections, rejecting any connection that does not use TLS."
+}

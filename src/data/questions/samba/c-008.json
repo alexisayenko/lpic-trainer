@@ -1,0 +1,13 @@
+{
+  "id": "samba-c008",
+  "tool": "samba",
+  "prompt": "Karen, a new systems administrator, is reviewing an existing smb.conf file. She comes across the following line: encrypt passwords = yes. What is the purpose of this configuration line in Samba 4?",
+  "choices": [
+    "It allows Samba to encrypt passwords before sending them over the network",
+    "It encrypts the smb.conf file on disk",
+    "It enables full-disk encryption for all shared directories",
+    "It forces clients to use Kerberos authentication exclusively"
+  ],
+  "answerIndex": 0,
+  "explanation": "The encrypt passwords = yes setting tells Samba to negotiate encrypted password authentication so passwords are not sent in clear text over the network."
+}

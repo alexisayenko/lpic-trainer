@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c008",
+  "tool": "nfs",
+  "prompt": "An administrator is troubleshooting performance issues with an NFS server. To gather detailed statistics about the NFS operations, which command should the administrator use?",
+  "choices": [
+    "nfsstat -s",
+    "rpcinfo -p",
+    "showmount -a",
+    "exportfs -l"
+  ],
+  "answerIndex": 0,
+  "explanation": "nfsstat -s prints server-side NFS statistics, useful for diagnosing NFS server performance issues."
+}

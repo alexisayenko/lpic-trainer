@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c015",
+  "tool": "nfs",
+  "prompt": "A systems administrator is implementing an NFSv4 server. What feature of NFSv4 can be leveraged to allow more granular permission control than traditional UNIX permissions?",
+  "choices": [
+    "TCP Wrappers",
+    "ACLs (Access Control Lists)",
+    "portmapper mappings",
+    "exportfs subtree checking"
+  ],
+  "answerIndex": 1,
+  "explanation": "NFSv4 supports Access Control Lists (ACLs), which allow finer-grained permission control than the traditional owner/group/other UNIX permission model."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "pam-sss-d008",
+  "tool": "pam-sss",
+  "prompt": "A new intern in your IT department is tasked with setting up PAM-based authentication for a specific service. While reviewing his work, you find that he used the following line in the PAM configuration: service_name auth sufficient pam_unix.so What does the \"sufficient\" control flag indicate in this configuration?",
+  "choices": [
+    "If this module succeeds, then the authentication process skips any subsequent modules and grants access",
+    "If this module fails, the entire authentication process fails immediately",
+    "The module result is recorded but does not affect the overall outcome",
+    "The module must succeed for authentication to continue, but later modules are still evaluated"
+  ],
+  "answerIndex": 0,
+  "explanation": "The \"sufficient\" control flag means that if the module succeeds, the authentication process skips any subsequent modules and grants access; if it fails, the result is ignored and processing continues."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "ldap-d002",
+  "tool": "ldap",
+  "prompt": "Daniel, a systems administrator, is trying to search his company's LDAP directory for all users under the \"dc=example,dc=org\" base who have the surname \"Smith\". He wants to retrieve their full names and email addresses. Which of the following ldapsearch commands will accomplish this task?",
+  "choices": [
+    "ldapsearch -x -D \"dc=example,dc=org\" \"(sn=Smith)\" cn mail",
+    "ldapsearch -x -b \"dc=example,dc=org\" \"(sn=Smith)\" cn mail",
+    "ldapsearch -x -b \"dc=example,dc=org\" \"(cn=Smith)\" sn mail",
+    "ldapsearch -b \"dc=example,dc=org\" -f \"(sn=Smith)\" cn mail"
+  ],
+  "answerIndex": 1,
+  "explanation": "The ldapsearch utility is designed to search and retrieve directory entries from an LDAP directory. The -x flag uses simple authentication instead of SASL. The -b option specifies the search base, and the filter (sn=Smith) searches for users with the surname \"Smith\". Specifying cn mail after the filter will retrieve the full name and email address for the matching entries."
+}

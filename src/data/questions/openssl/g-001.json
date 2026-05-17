@@ -1,0 +1,13 @@
+{
+  "id": "openssl-g001",
+  "tool": "openssl",
+  "prompt": "Maria is tasked with creating a new certificate request for her company's Apache server. She wants to use the OpenSSL command-line tools to achieve this. Which command should she use to create a new private key and a certificate signing request (CSR)?",
+  "choices": [
+    "openssl x509 -req -in server.csr -signkey server.key -out server.crt",
+    "openssl req -new -key server.key -out server.csr",
+    "openssl genrsa -out server.key 2048",
+    "openssl rsa -in server.key -pubout -out server.pub"
+  ],
+  "answerIndex": 1,
+  "explanation": "openssl req -new -key server.key -out server.csr creates a new certificate signing request using the specified existing private key."
+}

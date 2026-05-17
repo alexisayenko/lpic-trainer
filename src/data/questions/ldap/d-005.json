@@ -1,0 +1,13 @@
+{
+  "id": "ldap-d005",
+  "tool": "ldap",
+  "prompt": "Emily, a network engineer, wants to search her LDAP directory for all entries that contain a specific email domain \"@techcorp.com\" under the base \"dc=tech,dc=net\". She wants to use simple authentication and ensure that the search results show the user's full name and email address. Which command should she use?",
+  "choices": [
+    "ldapsearch -x -b \"dc=tech,dc=net\" \"(cn=*@techcorp.com)\" cn mail",
+    "ldapsearch -x -D \"dc=tech,dc=net\" \"(mail=*@techcorp.com)\" cn mail",
+    "ldapsearch -x -b \"dc=tech,dc=net\" \"(mail=*@techcorp.com)\" cn mail",
+    "ldapsearch -b \"dc=tech,dc=net\" \"(mail=@techcorp.com)\" cn mail"
+  ],
+  "answerIndex": 2,
+  "explanation": "The ldapsearch command is used to search the LDAP directory. In this scenario, -x enables simple authentication. -b \"dc=tech,dc=net\" specifies the search base. The search filter (mail=*@techcorp.com) will match all entries with the specified email domain. Lastly, cn mail ensures that the results only display the user's full name (cn) and email address (mail)."
+}

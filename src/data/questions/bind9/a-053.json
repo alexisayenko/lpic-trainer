@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a053",
+  "tool": "bind9",
+  "prompt": "Liam decides to configure BIND to run within a chroot jail. Which of the following directories would typically be duplicated within the chroot environment?",
+  "choices": [
+    "/etc/skel",
+    "/var/named",
+    "/proc/sys",
+    "/usr/local/bin"
+  ],
+  "answerIndex": 1,
+  "explanation": "/var/named is a common directory associated with BIND where zone files and related configurations reside, so it is typically duplicated inside the chroot environment to restrict BIND's file access."
+}

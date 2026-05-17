@@ -1,0 +1,13 @@
+{
+  "id": "ftp-g007",
+  "tool": "ftp",
+  "prompt": "Alex, a network administrator, has configured an FTP server behind a firewall. Some external users have reported issues connecting to the FTP server. Alex suspects it might be due to the FTP mode being used. If users are experiencing issues due to the server being in active mode, which of the following statements is correct regarding the active FTP connection process?",
+  "choices": [
+    "The client initiates the data connection to a high-numbered port on the server",
+    "The server initiates the data connection to the client",
+    "Both the control and data connections are initiated by the client",
+    "The data connection uses the same port as the control connection"
+  ],
+  "answerIndex": 1,
+  "explanation": "In active FTP, after the control connection is established (client initiates a connection to server port 21), the server initiates the data connection to the client from its port 20."
+}

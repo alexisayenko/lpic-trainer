@@ -1,0 +1,13 @@
+{
+  "id": "samba-c012",
+  "tool": "samba",
+  "prompt": "Carol, another system administrator, needs to mount a CIFS share from a remote server but wants to ensure the credentials (username and password) are kept secure and not visible in the process list. What is the recommended method for Carol to provide these credentials when mounting the share?",
+  "choices": [
+    "Pass the password directly with -o password= on the command line",
+    "Use -o credentials=/path/to/credfile where credfile contains the username and password",
+    "Export the password in an environment variable before mounting",
+    "Type the password interactively each time, which is mandatory"
+  ],
+  "answerIndex": 1,
+  "explanation": "Using -o credentials=/path/to/credfile keeps the username and password in a protected file rather than exposing them on the command line and in the process list."
+}

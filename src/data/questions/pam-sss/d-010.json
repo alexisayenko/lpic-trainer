@@ -1,0 +1,13 @@
+{
+  "id": "pam-sss-d010",
+  "tool": "pam-sss",
+  "prompt": "An administrator is tasked with enforcing password quality requirements for all Linux accounts. Which file in the /etc/pam.d/ directory should the administrator modify to ensure password policies are enforced when users change their passwords?",
+  "choices": [
+    "/etc/pam.d/login",
+    "/etc/pam.d/sshd",
+    "/etc/pam.d/passwd",
+    "/etc/pam.d/su"
+  ],
+  "answerIndex": 2,
+  "explanation": "The /etc/pam.d/passwd file governs the PAM rules applied when users change their passwords, so password quality requirements should be enforced there."
+}

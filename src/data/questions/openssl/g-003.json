@@ -1,0 +1,13 @@
+{
+  "id": "openssl-g003",
+  "tool": "openssl",
+  "prompt": "Lucas is setting up an Apache server for testing purposes and needs a quick self-signed certificate without generating a separate CSR. Which command would allow him to achieve this directly?",
+  "choices": [
+    "openssl req -new -newkey rsa:2048 -nodes -keyout privateKey.key -out certificate.csr",
+    "openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout privateKey.key -out certificate.crt",
+    "openssl x509 -req -in certificate.csr -signkey privateKey.key -out certificate.crt",
+    "openssl genrsa -des3 -out privateKey.key 2048"
+  ],
+  "answerIndex": 1,
+  "explanation": "The -x509 option makes openssl req output a self-signed certificate instead of a CSR, so a private key and a self-signed certificate are produced in a single command."
+}

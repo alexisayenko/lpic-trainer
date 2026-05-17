@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a049",
+  "tool": "bind9",
+  "prompt": "Jessica has already implemented DNSSEC and now wants to ensure that only valid TLS certificates are used by clients connecting to her web services. Which DNS-based security mechanism should she consider implementing next?",
+  "choices": [
+    "Transaction Signatures (TSIG).",
+    "DNS-based Authentication of Named Entities (DANE).",
+    "A reverse lookup (PTR) zone.",
+    "Split-horizon DNS."
+  ],
+  "answerIndex": 1,
+  "explanation": "DANE (DNS-based Authentication of Named Entities) allows administrators to specify which TLS certificate is valid for a specific service in their domain by using the DNS system, protected by DNSSEC. This ensures clients connect using only valid and specified certificates."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a017",
+  "tool": "bind9",
+  "prompt": "What program should you run to create a key for DNSSEC purposes?",
+  "choices": [
+    "dnssec-signzone",
+    "dnssec-keygen",
+    "named-checkconf",
+    "rndc-confgen"
+  ],
+  "answerIndex": 1,
+  "explanation": "dnssec-keygen generates the cryptographic key pairs (KSK and ZSK) used to sign zones for DNSSEC."
+}

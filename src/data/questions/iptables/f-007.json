@@ -1,0 +1,13 @@
+{
+  "id": "iptables-f007",
+  "tool": "iptables",
+  "prompt": "Alex wants to allow SSH traffic to his server only from a specific IP address 192.168.1.5. Which iptables command should he use?",
+  "choices": [
+    "iptables -A INPUT -p tcp --dport 22 -s 192.168.1.5 -j DROP",
+    "iptables -A INPUT -p tcp --dport 22 -s 192.168.1.5 -j ACCEPT",
+    "iptables -A OUTPUT -p tcp --dport 22 -d 192.168.1.5 -j ACCEPT",
+    "iptables -A INPUT -p tcp --sport 22 -s 192.168.1.5 -j ACCEPT"
+  ],
+  "answerIndex": 1,
+  "explanation": "Appending a rule to the INPUT chain matching TCP destination port 22 from source 192.168.1.5 with the ACCEPT target permits SSH traffic from that host."
+}

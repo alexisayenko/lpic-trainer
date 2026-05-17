@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a028",
+  "tool": "bind9",
+  "prompt": "Which entry in a zone mapping identifies the email server for the domain in question?",
+  "choices": [
+    "NS",
+    "MX",
+    "A",
+    "SOA"
+  ],
+  "answerIndex": 1,
+  "explanation": "The MX (Mail Exchange) record identifies the mail server responsible for accepting email for the domain."
+}

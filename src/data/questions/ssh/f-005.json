@@ -1,0 +1,13 @@
+{
+  "id": "ssh-f005",
+  "tool": "ssh",
+  "prompt": "After a security audit, the security team advised changing the host keys for the SSH server. Thomas is tasked with regenerating these keys. Before he starts, he backs up all existing keys in the /etc/ssh/ directory. Which file should Thomas specifically ensure he has a backup of, as it represents the public part of the server's DSA key?",
+  "choices": [
+    "ssh_host_dsa_key",
+    "ssh_host_dsa_key.pub",
+    "ssh_host_rsa_key.pub",
+    "dsa_host_key.pub"
+  ],
+  "answerIndex": 1,
+  "explanation": "ssh_host_dsa_key.pub holds the public part of the server's DSA host key, while ssh_host_dsa_key holds the corresponding private key."
+}

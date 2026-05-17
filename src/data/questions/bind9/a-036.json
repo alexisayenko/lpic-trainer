@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a036",
+  "tool": "bind9",
+  "prompt": "Which of the following is an advantage of a forward-only DNS server configuration versus a full recursive lookup configuration?",
+  "choices": [
+    "A forward-only configuration is often faster than a complete recursive configuration.",
+    "A forward-only configuration never needs an Internet connection.",
+    "A forward-only configuration is immune to cache poisoning.",
+    "A forward-only configuration can host more authoritative zones."
+  ],
+  "answerIndex": 0,
+  "explanation": "A forward-only server passes queries to a forwarder that likely already has answers cached, so it is often faster than performing full recursion itself."
+}

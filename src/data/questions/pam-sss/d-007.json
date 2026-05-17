@@ -1,0 +1,13 @@
+{
+  "id": "pam-sss-d007",
+  "tool": "pam-sss",
+  "prompt": "After recent system audits, the IT department wants to consolidate all PAM configurations into a single file rather than having multiple files under /etc/pam.d/. Which file can achieve this centralized configuration approach?",
+  "choices": [
+    "/etc/pam.d/passwd",
+    "/etc/pam.conf",
+    "/etc/security/access.conf",
+    "/etc/pam.d/myapp"
+  ],
+  "answerIndex": 1,
+  "explanation": "The /etc/pam.conf file provides PAM configuration for all services in a single centralized file, which can be used instead of the per-service files under /etc/pam.d/."
+}

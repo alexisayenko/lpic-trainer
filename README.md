@@ -27,7 +27,7 @@ npm run build      # type-checks then bundles into dist/
 npm run preview    # serve the production build locally
 ```
 
-The Vite build prefixes assets with `/lpic-trainer/` so the bundle works under the GitHub Pages project URL. For previews on a custom domain or root path, build with `VITE_BASE=/ npm run build`.
+The Vite build serves assets from `/` so the bundle works under the custom domain. To preview under the GitHub Pages project URL instead, build with `VITE_BASE=/lpic-trainer/ npm run build`.
 
 ## Deploy (GitHub Pages)
 
@@ -39,9 +39,9 @@ One-time setup after the repo exists on GitHub:
 2. Repo **Settings → Pages → Build and deployment → Source**: select **GitHub Actions**.
 3. Push any commit (or click **Run workflow** on the *Deploy to GitHub Pages* action). The first run does the initial deploy.
 
-Live URL: <https://alexisayenko.github.io/lpic-trainer/>
+Live URL: <https://lpic.isayenko.org/>
 
-(GitHub stores the repo name lowercased as `lpic-trainer`, so the Pages path is lowercase regardless of how the repo was typed in the New-repository form.)
+The site is served from the custom domain `lpic.isayenko.org`. `public/CNAME` carries the domain into every build; GitHub Pages reads it and serves from the apex path. DNS requires a `CNAME` record: `lpic` → `alexisayenko.github.io`.
 
 ## Layout
 
@@ -51,9 +51,13 @@ src/
 ├── main.tsx                   Vite entry
 ├── index.css                  Tailwind directives + base styles
 ├── store.ts                   Zustand store (selected topics, answer history)
-├── types.ts                   Topic enum + Question type + topic labels
+├── types.ts                   Topic/Utility types, Question type, topicOf() helper
 ├── data/
-│   └── questions.ts           Seed question bank
+│   ├── topics.json            6 exam topics (207–212)
+│   ├── utilities.json         ~24 utilities → {topic, label}
+│   └── questions/
+│       ├── index.ts           globs all question JSON into QUESTIONS[]
+│       └── <utility>/         one folder per utility: q JSON files + notes.md
 └── components/
     ├── TopicPicker.tsx        Topic checkboxes + "Start quiz" button
     └── Quiz.tsx               Question card, scoring, results screen
@@ -72,9 +76,11 @@ The exam 202 objectives, as published by LPI:
 | 211 | E-Mail Services (Postfix, Dovecot) |
 | 212 | System Security (firewall, OpenSSH, OpenVPN) |
 
-Each topic ships with 3 seed questions in `src/data/questions.ts`. Add more by appending to the same array — every entry needs a unique `id`, a `topic` from the enum in `types.ts`, the `prompt`, an array of `choices`, the index of the correct one, and a short `explanation` shown after answering.
+Questions live as individual JSON files under `src/data/questions/<utility>/`, one file per question, grouped by the utility they cover (`bind9`, `apache2`, `samba`, …). `utilities.json` maps each utility to its exam topic. `src/data/questions/index.ts` globs every file into `QUESTIONS[]` at build time. Each file needs a unique `id`, the `tool` (utility slug), the `prompt`, four `choices`, the `answerIndex` of the correct one, and an `explanation`. Per-utility `notes.md` files hold reference/study material.
+
+The bank currently holds ~294 questions derived from LPIC-2 study material.
 
 ## Scope notes
 
 - Only exam 202 is in scope right now. Exam 201 would be a sibling topic group; if added later, extend the `Topic` union in `types.ts`.
-- The seed questions are hand-written for practice — they are **not** reproductions of real LPI exam items.
+- Questions are derived from LPIC-2 study material for practice — they are **not** reproductions of real LPI exam items. Correct answers come from the source docs; the wrong choices are synthesized distractors.

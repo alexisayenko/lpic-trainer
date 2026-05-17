@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a027",
+  "tool": "bind9",
+  "prompt": "Which of the following security issues does DNSSEC address most directly?",
+  "choices": [
+    "Denial-of-service flooding",
+    "Cache poisoning",
+    "Unencrypted zone transfers",
+    "Brute-force password attacks"
+  ],
+  "answerIndex": 1,
+  "explanation": "DNSSEC cryptographically signs DNS data, allowing resolvers to detect forged responses and thus directly addressing cache poisoning (spoofing) attacks."
+}

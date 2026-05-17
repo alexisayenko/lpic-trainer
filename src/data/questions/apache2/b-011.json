@@ -1,0 +1,13 @@
+{
+  "id": "apache2-b011",
+  "tool": "apache2",
+  "prompt": "Robert, a system administrator, has just received a certificate from a commercial Certificate Authority (CA). Along with the server certificate, he has been provided with two intermediate CA certificates. He wants to ensure that the entire certificate chain is presented to clients during the SSL handshake. Which of the following steps should Robert take?",
+  "choices": [
+    "Specify each intermediate certificate in a separate SSLCertificateChainFile directive",
+    "Place the intermediate certificates in SSLCACertificateFile",
+    "Concatenate the server certificate and the intermediate certificates into a single file, then specify this file in the SSLCertificateFile directive",
+    "Add the intermediate certificates to SSLCertificateKeyFile"
+  ],
+  "answerIndex": 2,
+  "explanation": "In Apache version 2.4.8 and later, the SSLCertificateChainFile directive is deprecated. Instead, to specify the server certificate and the certificate chain, the server certificate and all necessary intermediate certificates should be concatenated into a single file and then specified in the SSLCertificateFile directive."
+}

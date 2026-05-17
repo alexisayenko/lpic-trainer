@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a035",
+  "tool": "bind9",
+  "prompt": "What guideline can be used in named.conf to restrict zone transfers to the 192.168.1.0/24 network?",
+  "choices": [
+    "allow-query {192.168.1.0/24;};",
+    "allow-transfer {192.168.1.0/24;};",
+    "blackhole {192.168.1.0/24;};",
+    "forwarders {192.168.1.0/24;};"
+  ],
+  "answerIndex": 1,
+  "explanation": "The allow-transfer statement restricts zone transfers; allow-transfer {192.168.1.0/24;}; limits them to that network."
+}

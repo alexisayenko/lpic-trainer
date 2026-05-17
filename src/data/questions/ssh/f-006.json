@@ -1,0 +1,13 @@
+{
+  "id": "ssh-f006",
+  "tool": "ssh",
+  "prompt": "While reviewing the SSH configuration files in /etc/ssh/, Emma notices a file that contains the private key for the SSH server. This key is critical for maintaining the security of the server. Which file is she observing?",
+  "choices": [
+    "ssh_host_rsa_key.pub",
+    "ssh_host_rsa_key",
+    "sshd_config",
+    "ssh_known_hosts"
+  ],
+  "answerIndex": 1,
+  "explanation": "ssh_host_rsa_key contains the server's private RSA host key; the matching public key is stored in ssh_host_rsa_key.pub."
+}

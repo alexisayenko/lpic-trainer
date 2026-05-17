@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a055",
+  "tool": "bind9",
+  "prompt": "Jeremy sees the directive \"masterfile-format compressed;\" in named.conf and the server fails to start. What could be the potential issue?",
+  "choices": [
+    "The directive must be placed in a zone block, not options.",
+    "masterfile-format does not have a value named 'compressed'.",
+    "Compressed master files require a separate decompression daemon.",
+    "The directive needs an absolute path argument."
+  ],
+  "answerIndex": 1,
+  "explanation": "The masterfile-format directive specifies the format in which master files are written by BIND. Valid values are text or raw. There isn't a value named compressed."
+}

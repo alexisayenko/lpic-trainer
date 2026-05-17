@@ -1,0 +1,13 @@
+{
+  "id": "nfs-c019",
+  "tool": "nfs",
+  "prompt": "After making changes to the /etc/exports file, which command should a system administrator run to apply the changes without restarting the NFS server?",
+  "choices": [
+    "exportfs -u",
+    "exportfs -ar",
+    "systemctl restart nfs-server",
+    "showmount -e"
+  ],
+  "answerIndex": 1,
+  "explanation": "The exportfs command is used to maintain the table of exported file systems. The -a option exports or unexports all directories, and the -r option reexports all directories, allowing the changes in /etc/exports to take effect without a full restart of the NFS server."
+}

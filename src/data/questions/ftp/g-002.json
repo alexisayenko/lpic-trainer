@@ -1,0 +1,13 @@
+{
+  "id": "ftp-g002",
+  "tool": "ftp",
+  "prompt": "Sarah is configuring a Pure-FTPd server and wants to set up a maximum number of simultaneous clients that can connect to her FTP server. Which command line option should she use when starting the Pure-FTPd server to enforce this limitation?",
+  "choices": [
+    "pure-ftpd -p",
+    "pure-ftpd -C",
+    "pure-ftpd -m",
+    "pure-ftpd -L"
+  ],
+  "answerIndex": 1,
+  "explanation": "The -C command line option followed by a number, when starting the Pure-FTPd server, specifies the maximum number of simultaneous clients that can connect to the FTP server."
+}

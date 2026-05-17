@@ -1,0 +1,13 @@
+{
+  "id": "powerdns-u001",
+  "tool": "powerdns",
+  "prompt": "Carla, an IT manager, wants to set up a new DNS infrastructure that can work with various backends like relational databases and LDAP servers. She is looking for an alternate name server to BIND which provides flexibility with different data sources. Which option should she consider?",
+  "choices": [
+    "Unbound",
+    "PowerDNS",
+    "dnsmasq",
+    "djbdns"
+  ],
+  "answerIndex": 1,
+  "explanation": "PowerDNS is renowned for its flexibility and ability to work with various backends, including relational databases and LDAP servers. This versatility makes it a suitable choice for infrastructures that require integration with different data sources."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "samba-c022",
+  "tool": "samba",
+  "prompt": "How must Samba be configured such that it can check CIFS passwords against those found in /etc/passwd and /etc/shadow?",
+  "choices": [
+    "Set passdb backend = unix in smb.conf",
+    "It is not possible for Samba to use /etc/passwd and /etc/shadow directly",
+    "Add unix password sync = yes to smb.conf",
+    "Set security = user and point to /etc/shadow"
+  ],
+  "answerIndex": 1,
+  "explanation": "Samba uses its own encrypted password database; it is not possible for Samba to check CIFS passwords directly against /etc/passwd and /etc/shadow."
+}

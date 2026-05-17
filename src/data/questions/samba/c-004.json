@@ -1,0 +1,13 @@
+{
+  "id": "samba-c004",
+  "tool": "samba",
+  "prompt": "A system administrator wants to mount a Samba share named Backup located on the server smb-server. They also need to provide a username admin and password secretpass during the mount process. Which command should they use to mount the share to the directory /mnt/backup?",
+  "choices": [
+    "mount -t cifs -o username=admin,password=secretpass //smb-server/Backup /mnt/backup",
+    "mount -t nfs -o user=admin,pass=secretpass //smb-server/Backup /mnt/backup",
+    "mount -t smbfs //smb-server/Backup /mnt/backup -u admin -p secretpass",
+    "smbmount //smb-server/Backup /mnt/backup -o admin:secretpass"
+  ],
+  "answerIndex": 0,
+  "explanation": "CIFS shares are mounted with mount -t cifs; credentials are supplied via the -o username= and password= options."
+}

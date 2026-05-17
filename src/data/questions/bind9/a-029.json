@@ -1,0 +1,13 @@
+{
+  "id": "bind9-a029",
+  "tool": "bind9",
+  "prompt": "What is a feature of a split DNS configuration?",
+  "choices": [
+    "All clients always receive identical answers regardless of location.",
+    "Name resolution may be different for computers depending on their location.",
+    "Zone transfers are automatically encrypted.",
+    "The server can only host a single zone."
+  ],
+  "answerIndex": 1,
+  "explanation": "Split DNS (split-horizon) presents different views of a zone to internal versus external clients, so resolution can differ by the requester's location."
+}

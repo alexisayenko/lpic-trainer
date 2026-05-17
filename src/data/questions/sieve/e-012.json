@@ -1,0 +1,13 @@
+{
+  "id": "sieve-e012",
+  "tool": "sieve",
+  "prompt": "Peter, an IT specialist, wishes to create a mail filtering rule that prioritizes messages from his boss, whose email address is \"boss@example.org\". However, he wants to exclude messages that contain the word \"FYI\" in the subject. Which of the following conditions would effectively match this scenario?",
+  "choices": [
+    "* ^From:boss@example.org && ^Subject:.*FYI",
+    "* ^From:boss@example.org ! ^Subject:.*FYI",
+    "* ^From:boss@example.org || ! ^Subject:.*FYI",
+    "* ! ^From:boss@example.org ! ^Subject:.*FYI"
+  ],
+  "answerIndex": 1,
+  "explanation": "Option A correctly sets up the desired conditions. The first condition ^From:boss@example.org checks for emails from Peter's boss, while the second condition prefixed with ! ensures the subject does not contain \"FYI\"."
+}

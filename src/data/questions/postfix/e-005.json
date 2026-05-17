@@ -1,0 +1,13 @@
+{
+  "id": "postfix-e005",
+  "tool": "postfix",
+  "prompt": "Janet wants to set up a fallback relay for her Postfix server, ensuring that if her primary mail relay isn't working, the mail will be forwarded to a backup relay. Which parameter in the Postfix configuration files should she modify to achieve this?",
+  "choices": [
+    "relayhost",
+    "smtp_fallback_relay",
+    "default_transport",
+    "smtp_host_lookup"
+  ],
+  "answerIndex": 1,
+  "explanation": "The smtp_fallback_relay parameter defines an alternate relay host that Postfix uses when delivery through the primary relay or destination fails."
+}
