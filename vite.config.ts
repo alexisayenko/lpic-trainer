@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Served under https://<user>.github.io/lpic-trainer/ in production.
-// Override with VITE_BASE=/ for previews on a custom domain or other host.
-const base = process.env.VITE_BASE ?? '/lpic-trainer/';
+// Served from the root of the custom domain https://lpic.isayenko.org/.
+// Override with VITE_BASE=/lpic-trainer/ to preview under the github.io subpath.
+const base = process.env.VITE_BASE ?? '/';
 
 export default defineConfig({
   base,
