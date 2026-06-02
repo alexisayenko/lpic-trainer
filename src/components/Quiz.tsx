@@ -1,21 +1,15 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
+import { orderByWeakness, pickDeck } from '../lib/select';
 import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
-
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
 
 export function Quiz({ onExit }: { onExit: () => void }) {
   const selectedTopics = useStore((s) => s.selectedTopics);
+  const quizSize = useStore((s) => s.quizSize);
   const recordAnswer = useStore((s) => s.recordAnswer);
 
+  // Snapshot history once, when the deck is built, so answering doesn't re-order it mid-quiz.
   const deck = useMemo<Question[]>(() => {
     const pool = selectedTopics
       ? QUESTIONS.filter((q) => {
@@ -23,8 +17,10 @@ export function Quiz({ onExit }: { onExit: () => void }) {
           return t !== undefined && selectedTopics.includes(t);
         })
       : QUESTIONS;
-    return shuffle(pool);
-  }, [selectedTopics]);
+    const ordered = orderByWeakness(pool, useStore.getState().history);
+    return pickDeck(ordered, quizSize);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedTopics, quizSize]);
 
   const [index, setIndex] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
@@ -72,7 +68,7 @@ export function Quiz({ onExit }: { onExit: () => void }) {
     if (isAnswered) return;
     setPicked(i);
     const correct = i === q.answerIndex;
-    recordAnswer(q.id, correct);
+    recordAnswer(q.id, i, correct);
     setScore((s) => ({ correct: s.correct + (correct ? 1 : 0), total: s.total + 1 }));
   };
 
