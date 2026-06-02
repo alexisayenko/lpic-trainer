@@ -1,5 +1,0 @@
-# Caddy auto-provisions a Let's Encrypt cert for this hostname.
-# Point an A record api.isayenko.org -> your Hetzner IP first.
-api.isayenko.org {
-	reverse_proxy 127.0.0.1:8787
-}

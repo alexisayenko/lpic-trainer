@@ -1,83 +1,65 @@
 # Self-hosted stats sync (Hetzner + MySQL)
 
-The app works fully offline using `localStorage`. To sync stats across devices,
-run the small API in [`server/`](../server) on your Hetzner box in front of MySQL.
-Single-user: a bearer token gates all access — no login/email needed.
+The app works fully offline using `localStorage`. Stats sync across devices via a
+small API ([`server/`](../server)) on the Hetzner box, in front of MySQL.
+Single-user: a bearer token gates all access — no login/email.
 
 ```
-browser ──HTTPS──▶ Caddy (api.isayenko.org) ──▶ Node API (127.0.0.1:8787) ──▶ MySQL
-                         auto Let's Encrypt          checks Bearer token
+browser ──HTTPS──▶ Apache (api.isayenko.org) ──▶ Node API (127.0.0.1:8787) ──▶ MySQL
+                      Let's Encrypt cert            checks Bearer token
 ```
 
-## 1. DNS
+> **Already provisioned** on `alex-hetzner` (178.105.216.210). This doc is the
+> runbook for rebuilding or moving it. The live API token is stored in
+> `C:\Users\alex-claude\.env\alex-hetzner.env`.
 
-Add an **A record** `api.isayenko.org` → your Hetzner server IP. (A TLS cert
-needs a hostname; a bare IP can't get one.) Wait for it to resolve.
+## Layout on the server
 
-## 2. Database
+- App: `/opt/lpic-sync/` (`index.js`, `package.json`, `node_modules`, `.env`)
+- Service: `/etc/systemd/system/lpic-sync.service` (binds `127.0.0.1:8787`)
+- Vhost: `/etc/apache2/sites-available/api.isayenko.org.conf` (+ certbot's `-le-ssl` vhost)
+- DB: MySQL `lpic.answers`, user `lpic@127.0.0.1`
 
-```bash
-mysql -u root -p < server/schema.sql
-# then create the least-privilege user shown (commented) at the bottom of schema.sql
-```
+## Rebuild from scratch
 
-## 3. Deploy the API
+1. **DNS** — A record `api.isayenko.org → <server IP>` (Cloudflare, DNS-only so
+   certbot's HTTP-01 challenge reaches the box directly).
 
-```bash
-# on the server
-sudo mkdir -p /opt/lpic-sync
-sudo cp server/index.js server/package.json /opt/lpic-sync/
-cd /opt/lpic-sync
-npm install --omit=dev            # needs Node 18+ ; install via nodesource if absent
+2. **Node** — `sudo apt-get install -y nodejs npm` (Node 18+).
 
-cp /path/to/repo/server/.env.example /opt/lpic-sync/.env
-openssl rand -hex 32              # paste the result as API_TOKEN in .env
-$EDITOR .env                      # fill DB_PASSWORD, API_TOKEN, ALLOWED_ORIGINS
-```
+3. **Bootstrap** — copy the files and run the idempotent script (creates the DB,
+   user, secrets in `/opt/lpic-sync/.env`, and the systemd service):
 
-Install the service:
+   ```bash
+   scp server/index.js server/package.json server/lpic-sync.service server/setup.sh user@host:/tmp/
+   ssh user@host 'sudo bash /tmp/setup.sh'   # prints the generated API_TOKEN
+   ```
 
-```bash
-sudo cp server/lpic-sync.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable --now lpic-sync
-systemctl status lpic-sync         # should be active (running)
-curl localhost:8787/health         # {"ok":true}
-```
+4. **TLS via Apache** — enable proxy + ssl, install the vhost, get the cert:
 
-## 4. TLS via Caddy
+   ```bash
+   sudo a2enmod proxy proxy_http ssl
+   scp server/apache-api.conf user@host:/tmp/
+   ssh user@host 'sudo cp /tmp/apache-api.conf /etc/apache2/sites-available/api.isayenko.org.conf \
+     && sudo a2ensite api.isayenko.org && sudo systemctl reload apache2'
+   sudo certbot --apache -d api.isayenko.org --non-interactive --agree-tos -m you@example.com --redirect
+   ```
 
-```bash
-# install Caddy: https://caddyserver.com/docs/install
-sudo cp server/Caddyfile /etc/caddy/Caddyfile   # edit the hostname if different
-sudo systemctl reload caddy
-curl https://api.isayenko.org/health             # {"ok":true} over HTTPS
-```
+5. **Point the app at it** — `VITE_API_URL` is baked into the build via
+   [`.env.production`](../.env.production); the Pages deploy picks it up. For
+   local dev, set it in `.env.local`.
 
-Open the firewall for 80/443 only (the Node port stays on localhost):
+## Use it
 
-```bash
-sudo ufw allow 80,443/tcp
-```
-
-## 5. Point the app at it
-
-- **Local dev**: copy `.env.example` to `.env.local`, set
-  `VITE_API_URL=https://api.isayenko.org`.
-- **GitHub Pages**: add a repo **variable** (not secret — the URL isn't secret)
-  `VITE_API_URL` (Settings → Secrets and variables → Actions → Variables). The
-  deploy workflow injects it at build time. Re-run the deploy.
-
-## 6. Connect a device
-
-Open the app → **View statistics** → paste the `API_TOKEN` into the sync box →
-**Connect**. Stats two-way sync immediately and on every new answer. Repeat the
-paste on each device you want synced. **Disconnect** clears the token locally.
+App → **View statistics** → paste the `API_TOKEN` into the sync box → **Connect**.
+Stats two-way sync immediately and on every new answer. Repeat per device.
+**Disconnect** clears the token locally.
 
 ## Security notes
 
 - The token is the only credential; anyone with it has full read/write. Rotate
-  by changing `API_TOKEN` in `.env` and `systemctl restart lpic-sync`.
-- The token is stored in `localStorage` and sent as `Authorization: Bearer`. It
-  is **not** baked into the public bundle, so it isn't exposed by the static site.
-- Keep MySQL bound to `127.0.0.1`; only Caddy (443) faces the internet.
+  via `API_TOKEN` in `/opt/lpic-sync/.env` then `sudo systemctl restart lpic-sync`.
+- Token is stored in `localStorage` and sent as `Authorization: Bearer`; it is
+  **not** in the public bundle.
+- The Node API binds to `127.0.0.1`; only Apache (443) faces the internet.
+- MySQL currently listens on `0.0.0.0:3306` — consider binding it to `127.0.0.1`.
