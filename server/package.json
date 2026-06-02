@@ -1,0 +1,14 @@
+{
+  "name": "lpic-sync",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Self-hosted stats sync API for lpic-trainer (MySQL)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "mysql2": "^3.11.0"
+  }
+}

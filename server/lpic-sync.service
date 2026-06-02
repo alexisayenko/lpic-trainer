@@ -1,0 +1,19 @@
+[Unit]
+Description=lpic-trainer stats sync API
+After=network.target mysql.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/lpic-sync
+EnvironmentFile=/opt/lpic-sync/.env
+ExecStart=/usr/bin/node /opt/lpic-sync/index.js
+Restart=on-failure
+RestartSec=3
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

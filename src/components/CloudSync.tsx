@@ -1,35 +1,35 @@
 import { useEffect, useRef } from 'react';
 import { useStore } from '../store';
-import { useSession } from '../lib/useSession';
-import { fullSync, pushNew } from '../lib/sync';
+import { useAuth } from '../lib/auth';
+import { cloudEnabled, fullSync, pushNew } from '../lib/api';
 
 /**
- * Headless: runs a full two-way sync on sign-in, then pushes new answers as the
- * history grows. Renders nothing.
+ * Headless: runs a full two-way sync when a token is set, then pushes new
+ * answers as the history grows. Renders nothing.
  */
 export function CloudSync() {
-  const session = useSession();
-  const userId = session?.user.id ?? null;
+  const token = useAuth((s) => s.token);
+  const enabled = cloudEnabled && !!token;
   const synced = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!userId) {
+    if (!enabled || !token) {
       synced.current = null;
       return;
     }
-    if (synced.current === userId) return;
-    synced.current = userId;
-    fullSync(userId).catch(() => {
-      // Offline or transient error: keep working locally, retry on next sign-in.
+    if (synced.current === token) return;
+    synced.current = token;
+    fullSync().catch(() => {
+      // Offline / bad token: keep working locally, retry on next change.
     });
-  }, [userId]);
+  }, [enabled, token]);
 
   useEffect(() => {
-    if (!userId) return;
+    if (!enabled) return;
     return useStore.subscribe((state, prev) => {
-      if (state.history !== prev.history) pushNew(userId).catch(() => {});
+      if (state.history !== prev.history) pushNew().catch(() => {});
     });
-  }, [userId]);
+  }, [enabled]);
 
   return null;
 }

@@ -3,6 +3,7 @@ import { QUESTIONS } from '../data/questions/index';
 import { useStore, type AnswerRecord } from '../store';
 import { TOPIC_LABELS, topicOf, type Question, type Topic } from '../types';
 import { Account } from './Account';
+import { deleteAll } from '../lib/api';
 
 const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
 
@@ -213,7 +214,10 @@ export function Stats({ onExit }: { onExit: () => void }) {
           <button
             type="button"
             onClick={() => {
-              if (confirm('Clear all recorded statistics? This cannot be undone.')) reset();
+              if (confirm('Clear all recorded statistics? This cannot be undone.')) {
+                reset();
+                deleteAll().catch(() => {});
+              }
             }}
             className="text-sm text-rose-400 hover:text-rose-300"
           >
