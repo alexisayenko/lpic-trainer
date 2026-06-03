@@ -1,0 +1,118 @@
+[
+  {
+    "id": "gpt-209-001",
+    "tool": "samba",
+    "type": "fill",
+    "objective": "209.1",
+    "difficulty": "recall",
+    "prompt": "Which Samba utility checks smb.conf for internal correctness?",
+    "answer": "testparm",
+    "explanation": "testparm validates Samba configuration for internal correctness before daemon use.",
+    "source": "https://www.samba.org/samba/docs/current/man-html/testparm.1.html"
+  },
+  {
+    "id": "gpt-209-002",
+    "tool": "samba",
+    "type": "single",
+    "objective": "209.1",
+    "difficulty": "recall",
+    "prompt": "Which Samba daemon provides SMB/CIFS file and printer services to clients?",
+    "choices": ["smbd", "nmbd", "winbindd", "rpc.mountd"],
+    "answerIndex": 0,
+    "explanation": "smbd is the Samba daemon that serves SMB/CIFS file and print requests.",
+    "source": "https://www.samba.org/samba/docs/current/man-html/samba.8.html"
+  },
+  {
+    "id": "gpt-209-003",
+    "tool": "samba",
+    "type": "single",
+    "objective": "209.1",
+    "difficulty": "recall",
+    "prompt": "Which command shows current Samba sessions and file locks?",
+    "choices": ["smbstatus", "smbcontrol", "smbclient", "nmblookup"],
+    "answerIndex": 0,
+    "explanation": "smbstatus reports current Samba connections, shares, and lock information.",
+    "source": "https://www.samba.org/samba/docs/current/man-html/smbstatus.1.html"
+  },
+  {
+    "id": "gpt-209-004",
+    "tool": "samba",
+    "type": "single",
+    "objective": "209.1",
+    "difficulty": "applied",
+    "prompt": "Which command is typically used to join a Samba host to an Active Directory domain?",
+    "choices": ["net ads join", "samba-tool domain provision", "smbclient -L //dc", "mount.cifs //dc/sysvol /mnt"],
+    "answerIndex": 0,
+    "explanation": "The net utility performs ADS domain join operations with net ads join.",
+    "source": "https://www.samba.org/samba/docs/current/man-html/net.8.html"
+  },
+  {
+    "id": "gpt-209-005",
+    "tool": "samba",
+    "type": "multi",
+    "objective": "209.1",
+    "difficulty": "applied",
+    "prompt": "Which TWO tools are appropriate on a Linux client that needs to access a Samba share?",
+    "choices": ["smbclient", "mount.cifs", "exportfs", "showmount"],
+    "answerIndices": [0, 1],
+    "explanation": "smbclient provides interactive SMB access and mount.cifs mounts SMB shares into the local filesystem.",
+    "source": "https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html"
+  },
+  {
+    "id": "gpt-209-006",
+    "tool": "samba",
+    "type": "fill",
+    "objective": "209.1",
+    "difficulty": "applied",
+    "prompt": "Give the exact command used to add a Samba password for an existing local user named alice.",
+    "answer": "smbpasswd -a alice",
+    "explanation": "smbpasswd adds or updates Samba passwords for local users, and -a adds the user to Samba.",
+    "source": "https://www.samba.org/samba/docs/current/man-html/smbpasswd.8.html"
+  },
+  {
+    "id": "gpt-209-007",
+    "tool": "nfs",
+    "type": "fill",
+    "objective": "209.2",
+    "difficulty": "recall",
+    "prompt": "Which file defines NFS exports on the server?",
+    "answer": "/etc/exports",
+    "explanation": "/etc/exports contains the list of local filesystems exported by an NFS server.",
+    "source": "https://www.man7.org/linux/man-pages/man5/exports.5.html"
+  },
+  {
+    "id": "gpt-209-008",
+    "tool": "nfs",
+    "type": "fill",
+    "objective": "209.2",
+    "difficulty": "applied",
+    "prompt": "Give the exact command that re-exports all configured NFS shares after editing /etc/exports.",
+    "answer": "exportfs -ra",
+    "explanation": "exportfs reloads exports from /etc/exports and pushes them into the running export tables.",
+    "source": "https://www.man7.org/linux/man-pages/man8/exportfs.8.html"
+  },
+  {
+    "id": "gpt-209-009",
+    "tool": "nfs",
+    "type": "single",
+    "objective": "209.2",
+    "difficulty": "recall",
+    "prompt": "Which command lists the NFS exports offered by a server, for example with the -e option?",
+    "choices": ["showmount", "nfsstat", "rpcinfo", "mountd"],
+    "answerIndex": 0,
+    "explanation": "showmount queries the server's mount service to display exported filesystems.",
+    "source": "https://www.man7.org/linux/man-pages/man8/showmount.8.html"
+  },
+  {
+    "id": "gpt-209-010",
+    "tool": "nfs",
+    "type": "single",
+    "objective": "209.2",
+    "difficulty": "scenario",
+    "prompt": "Which /etc/exports option preserves remote root privileges on an export and is therefore less secure than the default behavior?",
+    "choices": ["no_root_squash", "root_squash", "all_squash", "sync"],
+    "answerIndex": 0,
+    "explanation": "no_root_squash disables the normal root mapping behavior and leaves remote root with elevated access.",
+    "source": "https://www.man7.org/linux/man-pages/man5/exports.5.html"
+  }
+]

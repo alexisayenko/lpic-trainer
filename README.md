@@ -2,7 +2,7 @@
 
 Practice quiz for the **LPIC-2 exam 202** (Linux Network Professional, second of the two LPIC-2 exams).
 
-Web app, single-player, runs entirely in the browser. Pick which exam objectives to drill, answer multiple-choice questions, get an immediate explanation after each one. Progress is kept in `localStorage`.
+Web app, single-player, runs entirely in the browser. Pick which exam objectives to drill, answer questions (single-choice, multiple-response, or fill-in-the-blank), get an immediate explanation after each one. Progress is kept in `localStorage`.
 
 ## Stack
 
@@ -76,9 +76,15 @@ The exam 202 objectives, as published by LPI:
 | 211 | E-Mail Services (Postfix, Dovecot) |
 | 212 | System Security (firewall, OpenSSH, OpenVPN) |
 
-Questions live as individual JSON files under `src/data/questions/<utility>/`, one file per question, grouped by the utility they cover (`bind9`, `apache2`, `samba`, …). `utilities.json` maps each utility to its exam topic. `src/data/questions/index.ts` globs every file into `QUESTIONS[]` at build time. Each file needs a unique `id`, the `tool` (utility slug), the `prompt`, four `choices`, the `answerIndex` of the correct one, and an `explanation`. Per-utility `notes.md` files hold reference/study material.
+Questions live as JSON under `src/data/questions/`, grouped by the utility they cover (`bind9`, `apache2`, `samba`, …). `utilities.json` maps each utility to its exam topic. `src/data/questions/index.ts` globs every file into `QUESTIONS[]` at build time; a file may hold a single question object **or an array** of them (objective-mapped banks live as arrays under `lpic-bank/`). Every question needs a unique `id`, the `tool` (utility slug), a `prompt`, and an `explanation`, plus fields by `type`:
 
-The bank currently holds ~294 questions derived from LPIC-2 study material.
+- `single` (default if `type` omitted): `choices` + `answerIndex`.
+- `multi`: `choices` + `answerIndices` (correct only when the selected set matches exactly).
+- `fill`: `answer` (compared case- and whitespace-insensitively).
+
+Per-utility `notes.md` files hold reference/study material.
+
+The bank holds ~294 hand-written questions plus an objective-mapped `lpic-bank/` set, all derived from LPIC-2 study material.
 
 ## Scope notes
 

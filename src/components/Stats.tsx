@@ -31,7 +31,14 @@ function lastByQuestion(history: AnswerRecord[]): Map<string, AnswerRecord> {
 }
 
 function AnswerLine({ q, rec }: { q: Question; rec: AnswerRecord }) {
-  const yours = rec.pickedIndex != null ? q.choices[rec.pickedIndex] : undefined;
+  const type = q.type ?? 'single';
+  const correctText =
+    type === 'fill'
+      ? q.answer
+      : type === 'multi'
+        ? (q.answerIndices ?? []).map((i) => q.choices?.[i]).join(', ')
+        : q.choices?.[q.answerIndex ?? -1];
+  const yours = type === 'single' && rec.pickedIndex != null ? q.choices?.[rec.pickedIndex] : undefined;
   return (
     <div
       className={`p-3 rounded-md border ${
@@ -45,7 +52,7 @@ function AnswerLine({ q, rec }: { q: Question; rec: AnswerRecord }) {
       {!rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
       )}
-      <p className="mt-1 text-xs text-emerald-300">Correct: {q.choices[q.answerIndex]}</p>
+      {correctText && <p className="mt-1 text-xs text-emerald-300">Correct: {correctText}</p>}
     </div>
   );
 }

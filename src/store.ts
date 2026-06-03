@@ -24,7 +24,7 @@ interface State {
   history: AnswerRecord[];
   setTopics: (topics: Topic[] | null) => void;
   setQuizSize: (size: number | null) => void;
-  recordAnswer: (questionId: string, pickedIndex: number, correct: boolean) => void;
+  recordAnswer: (questionId: string, pickedIndex: number | undefined, correct: boolean) => void;
   /** Replace the whole answer log (used after a cloud sync/merge). */
   setHistory: (history: AnswerRecord[]) => void;
   reset: () => void;

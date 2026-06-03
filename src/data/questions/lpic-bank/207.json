@@ -1,0 +1,141 @@
+[
+  {
+    "id": "gpt-207-001",
+    "tool": "bind9",
+    "type": "fill",
+    "objective": "207.1",
+    "difficulty": "recall",
+    "prompt": "Which BIND utility checks named.conf syntax before you reload named?",
+    "answer": "named-checkconf",
+    "explanation": "named-checkconf validates named.conf syntax before the daemon loads the configuration.",
+    "source": "https://bind9.readthedocs.io/en/latest/chapter4.html"
+  },
+  {
+    "id": "gpt-207-002",
+    "tool": "bind9",
+    "type": "single",
+    "objective": "207.1",
+    "difficulty": "applied",
+    "prompt": "Which named.conf option sets the base directory used to resolve relative file paths such as zone files and log files?",
+    "choices": ["directory", "rootdir", "working-directory", "basepath"],
+    "answerIndex": 0,
+    "explanation": "The directory statement defines the base directory for relative paths in BIND configuration.",
+    "source": "https://bind9.readthedocs.io/en/latest/chapter3.html"
+  },
+  {
+    "id": "gpt-207-003",
+    "tool": "bind9",
+    "type": "single",
+    "objective": "207.1",
+    "difficulty": "applied",
+    "prompt": "You edited a zone file on a running BIND server and want the daemon to reread changed zones without stopping it. Which command should you use?",
+    "choices": ["rndc reload", "kill -9 $(pidof named)", "host -r localhost", "dig @localhost reload"],
+    "answerIndex": 0,
+    "explanation": "rndc is the runtime control utility for named, and reload requests the server to reload changed data.",
+    "source": "https://bind9.readthedocs.io/en/v9.20.7/"
+  },
+  {
+    "id": "gpt-207-004",
+    "tool": "bind9",
+    "type": "single",
+    "objective": "207.1",
+    "difficulty": "applied",
+    "prompt": "Which top-level clause in named.conf defines channels and categories for BIND logging?",
+    "choices": ["logging", "controls", "statistics", "server"],
+    "answerIndex": 0,
+    "explanation": "BIND logging is configured in the logging clause with channel and category statements.",
+    "source": "https://bind9.readthedocs.io/en/latest/chapter3.html"
+  },
+  {
+    "id": "gpt-207-005",
+    "tool": "bind9",
+    "type": "single",
+    "objective": "207.2",
+    "difficulty": "recall",
+    "prompt": "Which record type is used in a reverse zone to map an IP address back to a hostname?",
+    "choices": ["PTR", "CNAME", "MX", "SRV"],
+    "answerIndex": 0,
+    "explanation": "Reverse DNS zones map addresses to names with PTR records.",
+    "source": "https://bind9.readthedocs.io/en/latest/chapter3.html"
+  },
+  {
+    "id": "gpt-207-006",
+    "tool": "bind9",
+    "type": "fill",
+    "objective": "207.2",
+    "difficulty": "recall",
+    "prompt": "Which BIND utility validates a zone file's syntax and consistency?",
+    "answer": "named-checkzone",
+    "explanation": "named-checkzone checks a zone file for syntax and consistency problems.",
+    "source": "https://bind9.readthedocs.io/en/latest/chapter4.html"
+  },
+  {
+    "id": "gpt-207-007",
+    "tool": "bind9",
+    "type": "single",
+    "objective": "207.2",
+    "difficulty": "applied",
+    "prompt": "After manually editing a primary zone file, which SOA field must be increased so secondaries treat the zone as newer?",
+    "choices": ["serial", "refresh", "retry", "expire"],
+    "answerIndex": 0,
+    "explanation": "The SOA serial is the version counter secondaries compare when deciding whether to transfer a newer zone.",
+    "source": "https://bind9.readthedocs.io/en/latest/chapter3.html"
+  },
+  {
+    "id": "gpt-207-008",
+    "tool": "bind9",
+    "type": "multi",
+    "objective": "207.2",
+    "difficulty": "scenario",
+    "prompt": "Delegating sub.example.com to another nameserver normally requires which TWO record types in the parent zone?",
+    "choices": [
+      "NS records for the child zone",
+      "A or AAAA glue records for in-bailiwick child nameservers",
+      "TXT records describing the delegation",
+      "SRV records for the child service endpoints"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Delegation uses NS records, and in-bailiwick child nameservers also need glue address records in the parent zone.",
+    "source": "https://bind9.readthedocs.io/en/latest/chapter3.html"
+  },
+  {
+    "id": "gpt-207-009",
+    "tool": "bind9",
+    "type": "single",
+    "objective": "207.3",
+    "difficulty": "scenario",
+    "prompt": "What is the main security benefit of running named in a chroot jail?",
+    "choices": [
+      "It limits filesystem damage if named is compromised",
+      "It enables DNSSEC validation automatically",
+      "It removes the need for zone transfers",
+      "It forces all queries to be recursive"
+    ],
+    "answerIndex": 0,
+    "explanation": "A chroot jail restricts the process view of the filesystem and reduces the impact of compromise.",
+    "source": "https://bind9.readthedocs.io/en/latest/"
+  },
+  {
+    "id": "gpt-207-010",
+    "tool": "bind9",
+    "type": "fill",
+    "objective": "207.3",
+    "difficulty": "recall",
+    "prompt": "Which BIND utility signs a zone after keys exist?",
+    "answer": "dnssec-signzone",
+    "explanation": "dnssec-signzone signs a zone using DNSSEC keys produced for that zone.",
+    "source": "https://bind9.readthedocs.io/en/latest/dnssec-guide.html"
+  },
+  {
+    "id": "gpt-207-011",
+    "tool": "bind9",
+    "type": "single",
+    "objective": "207.3",
+    "difficulty": "applied",
+    "prompt": "Which mechanism is commonly used to authenticate zone transfers and other server-to-server DNS messages between BIND servers?",
+    "choices": ["TSIG", "DANE", "CAA", "SPF"],
+    "answerIndex": 0,
+    "explanation": "TSIG provides transaction signatures for authenticating DNS message exchange between servers.",
+    "source": "https://bind9.readthedocs.io/en/stable/chapter6.html"
+  }
+]

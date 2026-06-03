@@ -1,0 +1,182 @@
+[
+  {
+    "id": "gpt-208-001",
+    "tool": "apache2",
+    "type": "fill",
+    "objective": "208.1",
+    "difficulty": "recall",
+    "prompt": "Which filename is commonly used for per-directory Apache overrides when AllowOverride permits them?",
+    "answer": ".htaccess",
+    "explanation": ".htaccess is Apache's per-directory distributed configuration file.",
+    "source": "https://httpd.apache.org/docs/2.4/configuring.html"
+  },
+  {
+    "id": "gpt-208-002",
+    "tool": "apache2",
+    "type": "single",
+    "objective": "208.1",
+    "difficulty": "applied",
+    "prompt": "Which Apache directive points Basic authentication at the password file created with htpasswd?",
+    "choices": ["AuthName", "AuthUserFile", "AuthGroupFile", "RequireUser"],
+    "answerIndex": 1,
+    "explanation": "AuthUserFile points Apache Basic authentication at the password file created with htpasswd.",
+    "source": "https://httpd.apache.org/docs/2.4/howto/auth.html"
+  },
+  {
+    "id": "gpt-208-003",
+    "tool": "apache2",
+    "type": "fill",
+    "objective": "208.1",
+    "difficulty": "applied",
+    "prompt": "Complete the apachectl subcommand that checks Apache configuration syntax without starting the server: apachectl ____",
+    "answer": "configtest",
+    "explanation": "apachectl configtest performs a syntax check of Apache configuration files.",
+    "source": "https://httpd.apache.org/docs/2.4/configuring.html"
+  },
+  {
+    "id": "gpt-208-004",
+    "tool": "apache2",
+    "type": "single",
+    "objective": "208.1",
+    "difficulty": "applied",
+    "prompt": "Which Apache directive limits the number of simultaneous requests that can be served?",
+    "choices": ["MaxRequestWorkers", "ServerTokens", "DirectoryIndex", "TimeoutLimit"],
+    "answerIndex": 0,
+    "explanation": "MaxRequestWorkers sets the limit on simultaneous requests Apache will serve.",
+    "source": "https://httpd.apache.org/docs/2.4/mod/mpm_common.html"
+  },
+  {
+    "id": "gpt-208-005",
+    "tool": "apache2",
+    "type": "single",
+    "objective": "208.1",
+    "difficulty": "scenario",
+    "prompt": "In a name-based Apache virtual host on port 80, which directive identifies the hostname that must match the HTTP Host header?",
+    "choices": ["ServerName", "ServerAliasPath", "ListenName", "DocumentRoot"],
+    "answerIndex": 0,
+    "explanation": "Apache uses ServerName and related virtual-host matching rules to select the correct vhost for a request hostname.",
+    "source": "https://httpd.apache.org/docs/2.4/"
+  },
+  {
+    "id": "gpt-208-006",
+    "tool": "apache2",
+    "type": "single",
+    "objective": "208.2",
+    "difficulty": "recall",
+    "prompt": "Which directive must be set to on inside an Apache HTTPS virtual host to enable TLS processing?",
+    "choices": ["SSLEngine", "SSLProtocol", "TLSEngine", "SSLStart"],
+    "answerIndex": 0,
+    "explanation": "mod_ssl enables HTTPS processing in a vhost with SSLEngine on.",
+    "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
+  },
+  {
+    "id": "gpt-208-007",
+    "tool": "apache2",
+    "type": "fill",
+    "objective": "208.2",
+    "difficulty": "recall",
+    "prompt": "Which Apache directive points to the server's private key file in an HTTPS virtual host?",
+    "answer": "SSLCertificateKeyFile",
+    "explanation": "SSLCertificateKeyFile identifies the private key file used by an HTTPS virtual host.",
+    "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
+  },
+  {
+    "id": "gpt-208-008",
+    "tool": "apache2",
+    "type": "multi",
+    "objective": "208.2",
+    "difficulty": "applied",
+    "prompt": "Which TWO Apache directives are used specifically to disable weak protocol versions and weak cipher suites?",
+    "choices": ["SSLProtocol", "ServerSignature", "SSLCipherSuite", "TraceEnable"],
+    "answerIndices": [0, 2],
+    "explanation": "SSLProtocol controls allowed protocol versions and SSLCipherSuite controls allowed ciphers.",
+    "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
+  },
+  {
+    "id": "gpt-208-009",
+    "tool": "apache2",
+    "type": "single",
+    "objective": "208.2",
+    "difficulty": "scenario",
+    "prompt": "Which TLS feature allows multiple HTTPS virtual hosts with different certificates to share one IP address?",
+    "choices": ["SNI", "ALPN", "OCSP stapling", "HSTS"],
+    "answerIndex": 0,
+    "explanation": "Server Name Indication lets the client send the requested hostname during TLS setup so the server can choose the correct certificate.",
+    "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
+  },
+  {
+    "id": "gpt-208-010",
+    "tool": "squid",
+    "type": "fill",
+    "objective": "208.3",
+    "difficulty": "recall",
+    "prompt": "Which Squid directive evaluates access rules after ACLs are defined?",
+    "answer": "http_access",
+    "explanation": "Squid access decisions are made with http_access rules that reference named ACLs.",
+    "source": "https://www.squid-cache.org/Doc/config/acl/"
+  },
+  {
+    "id": "gpt-208-011",
+    "tool": "squid",
+    "type": "single",
+    "objective": "208.3",
+    "difficulty": "recall",
+    "prompt": "Which Squid directive defines a named access-list element such as a source network or destination domain?",
+    "choices": ["acl", "cache_peer", "http_port", "forwarded_for"],
+    "answerIndex": 0,
+    "explanation": "Squid creates named ACLs with the acl directive, then reuses those names in access rules.",
+    "source": "https://www.squid-cache.org/Doc/config/acl/"
+  },
+  {
+    "id": "gpt-208-012",
+    "tool": "squid",
+    "type": "single",
+    "objective": "208.3",
+    "difficulty": "scenario",
+    "prompt": "How does Squid evaluate http_access rules?",
+    "choices": [
+      "Top to bottom; the first matching rule decides",
+      "Bottom to top; the last matching rule decides",
+      "All matching rules are merged and the most specific wins",
+      "Rules are ignored unless auth_param is defined"
+    ],
+    "answerIndex": 0,
+    "explanation": "Squid checks access-list rules in written order and stops at the first match.",
+    "source": "https://wiki.squid-cache.org/SquidFaq/SquidAcl"
+  },
+  {
+    "id": "gpt-208-013",
+    "tool": "nginx",
+    "type": "single",
+    "objective": "208.4",
+    "difficulty": "applied",
+    "prompt": "Which Nginx directive inside a location block forwards requests to an upstream backend server?",
+    "choices": ["proxy_pass", "rewrite_pass", "fastcgi_root", "upstream_pass"],
+    "answerIndex": 0,
+    "explanation": "nginx acts as a reverse proxy by sending requests onward with proxy_pass.",
+    "source": "https://nginx.org/en/docs/beginners_guide.html"
+  },
+  {
+    "id": "gpt-208-014",
+    "tool": "nginx",
+    "type": "fill",
+    "objective": "208.4",
+    "difficulty": "applied",
+    "prompt": "Complete the Nginx switch that tests configuration syntax: nginx ____",
+    "answer": "-t",
+    "explanation": "nginx -t checks configuration syntax before reload or restart.",
+    "source": "https://nginx.org/en/docs/beginners_guide.html"
+  },
+  {
+    "id": "gpt-208-015",
+    "tool": "nginx",
+    "type": "single",
+    "objective": "208.4",
+    "difficulty": "scenario",
+    "prompt": "Which Nginx directive is used to select the virtual server by requested hostname?",
+    "choices": ["server_name", "listen_name", "host_name", "name_server"],
+    "answerIndex": 0,
+    "explanation": "Nginx chooses the matching virtual server primarily from the server_name value and request host.",
+    "source": "https://nginx.org/en/docs/beginners_guide.html"
+  }
+]

@@ -3,13 +3,27 @@ import utilities from './data/utilities.json';
 
 export type Topic = '207' | '208' | '209' | '210' | '211' | '212';
 
+export type QuestionType = 'single' | 'multi' | 'fill';
+
 export interface Question {
   id: string;
   tool: string;
+  /** Defaults to 'single' when absent (older question files). */
+  type?: QuestionType;
   prompt: string;
-  choices: string[];
-  answerIndex: number;
+  /** Present for 'single' and 'multi'. */
+  choices?: string[];
+  /** Correct index for 'single'. */
+  answerIndex?: number;
+  /** Correct indices for 'multi'. */
+  answerIndices?: number[];
+  /** Accepted answer text for 'fill'. */
+  answer?: string;
   explanation: string;
+  /** Optional metadata carried from generated banks. */
+  objective?: string;
+  difficulty?: string;
+  source?: string;
 }
 
 export interface UtilityInfo {
