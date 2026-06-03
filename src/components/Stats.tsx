@@ -198,11 +198,11 @@ export function Stats({ onExit }: { onExit: () => void }) {
                       <div className="bg-rose-500" style={{ width: `${s.wrongPct}%` }} />
                     </div>
                     <div className="flex items-center gap-3 text-xs text-slate-400">
-                      <span className="text-emerald-400">✓ {s.correctNow} correct</span>
                       <span className="text-rose-400">✗ {s.wrongNow} wrong</span>
-                      {s.askedAccuracy !== null && (
-                        <span className="ml-auto">{s.askedAccuracy}% of asked</span>
-                      )}
+                      <span className="text-emerald-400">
+                        ✓ {s.correctNow} correct
+                        {s.askedAccuracy !== null && ` (${s.askedAccuracy}%)`}
+                      </span>
                     </div>
                   </button>
                   {isOpen && (
