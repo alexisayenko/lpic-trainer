@@ -3,7 +3,6 @@ import { QUESTIONS } from '../data/questions/index';
 import { useStore, type AnswerRecord } from '../store';
 import { TOPIC_LABELS, topicOf, type Question, type Topic } from '../types';
 import { Account } from './Account';
-import { deleteAll } from '../lib/api';
 
 const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
 
@@ -53,7 +52,6 @@ function AnswerLine({ q, rec }: { q: Question; rec: AnswerRecord }) {
 
 export function Stats({ onExit }: { onExit: () => void }) {
   const history = useStore((s) => s.history);
-  const reset = useStore((s) => s.reset);
 
   const [mode, setMode] = useState<Mode>('question');
   const [filter, setFilter] = useState<Filter>('all');
@@ -78,14 +76,17 @@ export function Stats({ onExit }: { onExit: () => void }) {
         const q = byId.get(r.questionId);
         return q && topicOf(q) === t && r.correct;
       }).length;
-      const correctAttempts = attempts.filter((r) => r.correct).length;
+      const total = totals.get(t) ?? 0;
+      const wrongNow = seen - correctNow;
       return {
         topic: t,
-        total: totals.get(t) ?? 0,
+        total,
         seen,
         correctNow,
-        attempts: attempts.length,
-        accuracy: attempts.length ? Math.round((correctAttempts / attempts.length) * 100) : null,
+        wrongNow,
+        askedAccuracy: seen ? Math.round((correctNow / seen) * 100) : null,
+        correctPct: total ? (correctNow / total) * 100 : 0,
+        wrongPct: total ? (wrongNow / total) * 100 : 0,
       };
     });
   }, [history, last]);
@@ -181,16 +182,28 @@ export function Stats({ onExit }: { onExit: () => void }) {
                   <button
                     type="button"
                     onClick={() => setOpen(isOpen ? null : s.topic)}
-                    className="w-full flex items-center justify-between gap-3 p-3 bg-slate-800/60 hover:bg-slate-800 text-left"
+                    className="w-full p-3 bg-slate-800/60 hover:bg-slate-800 text-left space-y-2"
                   >
-                    <span className="text-slate-200">
-                      <span className="text-slate-500 mr-2">{s.topic}</span>
-                      {TOPIC_LABELS[s.topic]}
-                    </span>
-                    <span className="shrink-0 text-sm text-slate-400">
-                      {s.seen}/{s.total} seen
-                      {s.accuracy !== null && ` · ${s.accuracy}%`}
-                    </span>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-slate-200">
+                        <span className="text-slate-500 mr-2">{s.topic}</span>
+                        {TOPIC_LABELS[s.topic]}
+                      </span>
+                      <span className="shrink-0 text-sm text-slate-400">
+                        asked {s.seen}/{s.total}
+                      </span>
+                    </div>
+                    <div className="flex h-2 rounded-full overflow-hidden bg-slate-700">
+                      <div className="bg-emerald-500" style={{ width: `${s.correctPct}%` }} />
+                      <div className="bg-rose-500" style={{ width: `${s.wrongPct}%` }} />
+                    </div>
+                    <div className="flex items-center gap-3 text-xs text-slate-400">
+                      <span className="text-emerald-400">✓ {s.correctNow} correct</span>
+                      <span className="text-rose-400">✗ {s.wrongNow} wrong</span>
+                      {s.askedAccuracy !== null && (
+                        <span className="ml-auto">{s.askedAccuracy}% of asked</span>
+                      )}
+                    </div>
                   </button>
                   {isOpen && (
                     <div className="p-3 space-y-2 bg-slate-900/40">
@@ -211,18 +224,6 @@ export function Stats({ onExit }: { onExit: () => void }) {
             })}
           </ul>
 
-          <button
-            type="button"
-            onClick={() => {
-              if (confirm('Clear all recorded statistics? This cannot be undone.')) {
-                reset();
-                deleteAll().catch(() => {});
-              }
-            }}
-            className="text-sm text-rose-400 hover:text-rose-300"
-          >
-            Reset statistics
-          </button>
         </>
       )}
     </div>
