@@ -47,12 +47,16 @@ function authed(req) {
   return timingSafeEqual(a, b);
 }
 
+// Lengths match the schema columns (id CHAR(36), question_id VARCHAR(64)) so
+// nothing is silently truncated; picked_index stays within MySQL INT range.
 function validRow(r) {
   return (
     r &&
-    typeof r.id === 'string' && r.id.length >= 1 && r.id.length <= 128 &&
-    typeof r.question_id === 'string' && r.question_id.length >= 1 && r.question_id.length <= 128 &&
-    (r.picked_index == null || (Number.isInteger(r.picked_index) && r.picked_index >= 0)) &&
+    typeof r.id === 'string' && r.id.length >= 1 && r.id.length <= 36 &&
+    typeof r.question_id === 'string' && r.question_id.length >= 1 && r.question_id.length <= 64 &&
+    typeof r.correct === 'boolean' &&
+    (r.picked_index == null ||
+      (Number.isInteger(r.picked_index) && r.picked_index >= 0 && r.picked_index <= 2147483647)) &&
     Number.isInteger(r.ts) && r.ts > 0
   );
 }
@@ -63,14 +67,28 @@ function send(res, status, body) {
   res.end(body === undefined ? '' : JSON.stringify(body));
 }
 
+const MAX_BODY = 2_000_000; // bytes; a 5000-row answer batch is well under this
+
 function readJson(req) {
   return new Promise((resolve, reject) => {
-    let data = '';
+    const declared = Number(req.headers['content-length']);
+    if (Number.isFinite(declared) && declared > MAX_BODY) {
+      reject(new Error('payload too large'));
+      return;
+    }
+    const chunks = [];
+    let size = 0;
     req.on('data', (c) => {
-      data += c;
-      if (data.length > 5_000_000) reject(new Error('payload too large'));
+      size += c.length;
+      if (size > MAX_BODY) {
+        reject(new Error('payload too large'));
+        req.destroy();
+        return;
+      }
+      chunks.push(c);
     });
     req.on('end', () => {
+      const data = Buffer.concat(chunks).toString('utf8');
       try {
         resolve(data ? JSON.parse(data) : null);
       } catch {
@@ -84,20 +102,22 @@ function readJson(req) {
 const server = http.createServer(async (req, res) => {
   applyCors(req, res);
 
+  const path = (req.url || '').split('?')[0];
+
   if (req.method === 'OPTIONS') return send(res, 204);
-  if (req.url === '/health') return send(res, 200, { ok: true });
+  if (path === '/health') return send(res, 200, { ok: true });
 
   if (!authed(req)) return send(res, 401, { error: 'unauthorized' });
 
   try {
-    if (req.url === '/answers' && req.method === 'GET') {
+    if (path === '/answers' && req.method === 'GET') {
       const [rows] = await pool.query(
         'SELECT id, question_id, picked_index, correct, ts FROM answers',
       );
       return send(res, 200, rows);
     }
 
-    if (req.url === '/answers' && req.method === 'POST') {
+    if (path === '/answers' && req.method === 'POST') {
       const body = await readJson(req);
       if (!Array.isArray(body)) return send(res, 400, { error: 'expected an array' });
       if (body.length > 5000) return send(res, 413, { error: 'too many records' });
@@ -122,7 +142,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { inserted: body.length });
     }
 
-    if (req.url === '/answers' && req.method === 'DELETE') {
+    if (path === '/answers' && req.method === 'DELETE') {
       await pool.query('DELETE FROM answers');
       return send(res, 200, { ok: true });
     }

@@ -59,4 +59,4 @@ systemctl enable --now lpic-sync
 sleep 1
 echo "service: $(systemctl is-active lpic-sync)"
 echo "health: $(curl -s localhost:${PORT}/health || echo unreachable)"
-echo "API_TOKEN=${API_TOKEN}"
+echo "API_TOKEN written to ${APP_DIR}/.env — read it there to copy (not printed to avoid logging the secret)."
