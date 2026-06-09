@@ -241,11 +241,10 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
               : 'No answers yet — tick topics and start a quiz.'}
           </p>
         </div>
+        <div className="shrink-0">
+          <Account />
+        </div>
       </header>
-
-      <div className="p-3 rounded-md bg-slate-800/40 border border-slate-700">
-        <Account />
-      </div>
 
       {/* Quiz launcher */}
       <div className="space-y-3 p-4 rounded-md bg-slate-800/60 border border-slate-700">
