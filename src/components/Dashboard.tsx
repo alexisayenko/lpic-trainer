@@ -3,7 +3,7 @@ import { QUESTIONS } from '../data/questions/index';
 import { useStore, type AnswerRecord } from '../store';
 import { TOPIC_LABELS, topicOf, type Question, type Topic } from '../types';
 import { Account } from './Account';
-import logo from '../assets/logo.webp';
+import logo from '../assets/logo.png';
 
 const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
 
