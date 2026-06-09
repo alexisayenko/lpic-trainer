@@ -47,21 +47,36 @@ The site is served from the custom domain `lpic.isayenko.org`. `public/CNAME` ca
 
 ```
 src/
-├── App.tsx                    Top-level screen switcher (pick → quiz)
+├── App.tsx                    Screen switch (login gate → dashboard → quiz)
 ├── main.tsx                   Vite entry
 ├── index.css                  Tailwind directives + base styles
-├── store.ts                   Zustand store (selected topics, answer history)
-├── types.ts                   Topic/Utility types, Question type, topicOf() helper
+├── store.ts                   Zustand store (topics, filters, quizSize, answer history)
+├── types.ts                   Question union, AnswerRecord, Topic/Origin, shared constants
 ├── data/
 │   ├── topics.json            6 exam topics (207–212)
-│   ├── utilities.json         ~24 utilities → {topic, label}
+│   ├── utilities.json         26 utilities → {topic, label}
 │   └── questions/
-│       ├── index.ts           globs all question JSON into QUESTIONS[]
+│       ├── index.ts           globs/normalises/dedupes question JSON into QUESTIONS[]
 │       └── <utility>/         one folder per utility: q JSON files + notes.md
+├── lib/
+│   ├── select.ts              deck pipeline: filterPool / orderByWeakness / pickDeck
+│   ├── rating.ts              mastery score (display-only)
+│   ├── api.ts                 sync transport + mergeHistories
+│   ├── auth.ts                token store
+│   └── useTokenConnect.ts     shared token entry/validation hook
 └── components/
-    ├── TopicPicker.tsx        Topic checkboxes + "Start quiz" button
-    └── Quiz.tsx               Question card, scoring, results screen
+    ├── Dashboard.tsx          home: filters, per-topic progress, launcher, reset
+    ├── useDashboardStats.ts   memoized last/attempts/perTopic/rating maps
+    ├── FilterBar.tsx          result + source filters
+    ├── Quiz.tsx               question card, scoring, results screen
+    ├── QuestionStats.tsx      source tag · mastery chip · attempt history
+    ├── LogoZoom.tsx           accessible image lightbox
+    ├── Account.tsx            connect/disconnect panel
+    ├── Login.tsx              full-screen token gate
+    └── CloudSync.tsx          headless two-way sync
 ```
+
+See [docs/architecture.md](docs/architecture.md) for how these fit together.
 
 ## Coverage
 
