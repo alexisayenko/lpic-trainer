@@ -246,60 +246,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         </div>
       </header>
 
-      {/* Quiz launcher */}
-      <div className="space-y-3 p-4 rounded-md bg-slate-800/60 border border-slate-700">
-        <div className="flex items-center justify-between">
-          <span className="text-slate-300">Questions per quiz</span>
-          <span className="text-sm text-slate-500">{available} available</span>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          {presets.map((n) => (
-            <button
-              key={n}
-              type="button"
-              onClick={() => setQuizSize(n)}
-              className={`px-4 py-2 rounded-md border text-sm transition-colors ${
-                quizSize === n
-                  ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
-                  : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
-              }`}
-            >
-              {n}
-            </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => setQuizSize(null)}
-            className={`px-4 py-2 rounded-md border text-sm transition-colors ${
-              quizSize === null
-                ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
-                : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
-            }`}
-          >
-            All
-          </button>
-          <input
-            type="text"
-            inputMode="numeric"
-            value={quizSize ?? ''}
-            placeholder="#"
-            onChange={(e) => {
-              const v = parseInt(e.target.value, 10);
-              setQuizSize(Number.isFinite(v) && v > 0 ? v : null);
-            }}
-            className="w-14 px-3 py-2 rounded-md border border-slate-700 bg-slate-800/60 text-slate-200 placeholder-slate-500"
-          />
-          <button
-            type="button"
-            onClick={onStart}
-            disabled={available === 0}
-            className="ml-auto px-6 py-2 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-medium transition-colors disabled:opacity-50"
-          >
-            Start quiz
-          </button>
-        </div>
-      </div>
-
       <div className="space-y-2 text-sm">
         <div className="flex rounded-md overflow-hidden border border-slate-700 w-fit">
           {(['all', 'correct', 'wrong', 'unseen'] as Filter[]).map((f) => (
@@ -394,6 +340,60 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           );
         })}
       </ul>
+
+      {/* Quiz launcher */}
+      <div className="space-y-3 p-4 rounded-md bg-slate-800/60 border border-slate-700">
+        <div className="flex items-center justify-between">
+          <span className="text-slate-300">Questions per quiz</span>
+          <span className="text-sm text-slate-500">{available} available</span>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          {presets.map((n) => (
+            <button
+              key={n}
+              type="button"
+              onClick={() => setQuizSize(n)}
+              className={`px-4 py-2 rounded-md border text-sm transition-colors ${
+                quizSize === n
+                  ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
+                  : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
+              }`}
+            >
+              {n}
+            </button>
+          ))}
+          <button
+            type="button"
+            onClick={() => setQuizSize(null)}
+            className={`px-4 py-2 rounded-md border text-sm transition-colors ${
+              quizSize === null
+                ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
+                : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
+            }`}
+          >
+            All
+          </button>
+          <input
+            type="text"
+            inputMode="numeric"
+            value={quizSize ?? ''}
+            placeholder="#"
+            onChange={(e) => {
+              const v = parseInt(e.target.value, 10);
+              setQuizSize(Number.isFinite(v) && v > 0 ? v : null);
+            }}
+            className="w-14 px-3 py-2 rounded-md border border-slate-700 bg-slate-800/60 text-slate-200 placeholder-slate-500"
+          />
+          <button
+            type="button"
+            onClick={onStart}
+            disabled={available === 0}
+            className="ml-auto px-6 py-2 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-medium transition-colors disabled:opacity-50"
+          >
+            Start quiz
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
