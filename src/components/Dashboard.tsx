@@ -150,6 +150,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const setSource = useStore((s) => s.setSourceFilter);
 
   const [open, setOpen] = useState<Topic | null>(null);
+  const [zoom, setZoom] = useState(false);
 
   const isOn = (t: Topic) => selected === null || selected.includes(t);
   const toggleTopic = (t: Topic) => {
@@ -238,12 +239,18 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
       <header className="flex items-center gap-4">
-        <img src={logo} alt="LPIC-2" className="h-14 w-14 rounded-md object-cover" />
+        <button type="button" onClick={() => setZoom(true)} className="shrink-0">
+          <img
+            src={logo}
+            alt="LPIC-2"
+            className="h-14 w-14 rounded-md object-cover cursor-zoom-in"
+          />
+        </button>
         <div className="flex-1">
           <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (202) Trainer</h1>
           <p className="text-sm text-slate-400">
             {totalAttempts > 0
-              ? `${totalCorrect}/${totalAttempts} answers correct (${overallPct}%)`
+              ? `Overall score: ${totalCorrect}/${totalAttempts} correct (${overallPct}%)`
               : 'No answers yet — tick topics and start a quiz.'}
           </p>
         </div>
@@ -378,6 +385,19 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           </button>
         </div>
       </div>
+
+      {zoom && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-6 cursor-zoom-out"
+          onClick={() => setZoom(false)}
+        >
+          <img
+            src={logo}
+            alt="LPIC-2"
+            className="max-h-full max-w-full rounded-lg object-contain"
+          />
+        </div>
+      )}
     </div>
   );
 }
