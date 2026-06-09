@@ -15,7 +15,9 @@ export default function App() {
       {screen === 'pick' && (
         <TopicPicker onStart={() => setScreen('quiz')} onStats={() => setScreen('stats')} />
       )}
-      {screen === 'quiz' && <Quiz onExit={() => setScreen('pick')} />}
+      {screen === 'quiz' && (
+        <Quiz onExit={() => setScreen('pick')} onFinish={() => setScreen('stats')} />
+      )}
       {screen === 'stats' && <Stats onExit={() => setScreen('pick')} />}
     </div>
   );
