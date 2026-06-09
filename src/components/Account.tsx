@@ -19,16 +19,13 @@ export function Account() {
 
   if (token) {
     return (
-      <div className="flex items-center justify-between gap-3 text-sm">
-        <span className="text-slate-400">Syncing to your server</span>
-        <button
-          type="button"
-          onClick={() => setToken(null)}
-          className="text-slate-400 hover:text-slate-200"
-        >
-          Disconnect
-        </button>
-      </div>
+      <button
+        type="button"
+        onClick={() => setToken(null)}
+        className="text-sm text-slate-400 hover:text-slate-200"
+      >
+        Disconnect
+      </button>
     );
   }
 
