@@ -253,7 +253,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           <span className="text-slate-300">Questions per quiz</span>
           <span className="text-sm text-slate-500">{available} available</span>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {presets.map((n) => (
             <button
               key={n}
@@ -280,25 +280,25 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
             All
           </button>
           <input
-            type="number"
-            min={1}
+            type="text"
+            inputMode="numeric"
             value={quizSize ?? ''}
-            placeholder="custom"
+            placeholder="#"
             onChange={(e) => {
               const v = parseInt(e.target.value, 10);
               setQuizSize(Number.isFinite(v) && v > 0 ? v : null);
             }}
-            className="w-24 px-3 py-2 rounded-md border border-slate-700 bg-slate-800/60 text-slate-200 placeholder-slate-500"
+            className="w-14 px-3 py-2 rounded-md border border-slate-700 bg-slate-800/60 text-slate-200 placeholder-slate-500"
           />
+          <button
+            type="button"
+            onClick={onStart}
+            disabled={available === 0}
+            className="ml-auto px-6 py-2 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-medium transition-colors disabled:opacity-50"
+          >
+            Start quiz
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={onStart}
-          disabled={available === 0}
-          className="w-full py-3 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-medium transition-colors disabled:opacity-50"
-        >
-          Start quiz
-        </button>
       </div>
 
       <div className="space-y-2 text-sm">
