@@ -20,6 +20,29 @@ function fmtDate(ts: number): string {
   });
 }
 
+/** Relative time, e.g. "today", "3 days ago", "2 mo ago". */
+function fmtRel(ts: number): string {
+  const days = Math.floor((Date.now() - ts) / 86_400_000);
+  if (days <= 0) return 'today';
+  if (days === 1) return 'yesterday';
+  if (days < 30) return `${days} days ago`;
+  if (days < 365) return `${Math.floor(days / 30)} mo ago`;
+  return `${Math.floor(days / 365)} yr ago`;
+}
+
+function ResultBadge({ correct, ts }: { correct: boolean; ts: number }) {
+  return (
+    <span
+      title={fmtDate(ts)}
+      className={`inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded px-1 text-[11px] font-bold text-white ${
+        correct ? 'bg-emerald-600' : 'bg-rose-600'
+      }`}
+    >
+      {correct ? '✓' : '✗'}
+    </span>
+  );
+}
+
 /** Latest record per question id. */
 function lastByQuestion(history: AnswerRecord[]): Map<string, AnswerRecord> {
   const m = new Map<string, AnswerRecord>();
@@ -30,7 +53,15 @@ function lastByQuestion(history: AnswerRecord[]): Map<string, AnswerRecord> {
   return m;
 }
 
-function AnswerLine({ q, rec }: { q: Question; rec: AnswerRecord }) {
+function AnswerLine({
+  q,
+  rec,
+  attempts,
+}: {
+  q: Question;
+  rec: AnswerRecord;
+  attempts?: AnswerRecord[];
+}) {
   const type = q.type ?? 'single';
   const correctText =
     type === 'fill'
@@ -39,6 +70,9 @@ function AnswerLine({ q, rec }: { q: Question; rec: AnswerRecord }) {
         ? (q.answerIndices ?? []).map((i) => q.choices?.[i]).join(', ')
         : q.choices?.[q.answerIndex ?? -1];
   const yours = type === 'single' && rec.pickedIndex != null ? q.choices?.[rec.pickedIndex] : undefined;
+  // In by-question mode `attempts` holds the full history (oldest→newest); in
+  // timeline mode it's absent and we show just this single attempt's result.
+  const badges = attempts && attempts.length ? attempts : [rec];
   return (
     <div
       className={`p-3 rounded-md border ${
@@ -47,7 +81,14 @@ function AnswerLine({ q, rec }: { q: Question; rec: AnswerRecord }) {
     >
       <div className="flex items-start justify-between gap-3">
         <p className="text-sm text-slate-200 leading-snug">{q.prompt}</p>
-        <span className="shrink-0 text-xs text-slate-500">{fmtDate(rec.ts)}</span>
+        <span className="shrink-0 text-xs text-slate-500" title={fmtDate(rec.ts)}>
+          {fmtRel(rec.ts)}
+        </span>
+      </div>
+      <div className="mt-2 flex flex-wrap items-center gap-1">
+        {badges.map((a, i) => (
+          <ResultBadge key={`${a.ts}-${i}`} correct={a.correct} ts={a.ts} />
+        ))}
       </div>
       {!rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
@@ -65,6 +106,17 @@ export function Stats({ onExit }: { onExit: () => void }) {
   const [open, setOpen] = useState<Topic | null>(null);
 
   const last = useMemo(() => lastByQuestion(history), [history]);
+
+  // All attempts per question, oldest→newest, for the by-question history strip.
+  const attemptsByQ = useMemo(() => {
+    const m = new Map<string, AnswerRecord[]>();
+    for (const r of [...history].sort((a, b) => a.ts - b.ts)) {
+      const arr = m.get(r.questionId) ?? [];
+      arr.push(r);
+      m.set(r.questionId, arr);
+    }
+    return m;
+  }, [history]);
 
   // Per-topic aggregates.
   const perTopic = useMemo(() => {
@@ -220,7 +272,12 @@ export function Stats({ onExit }: { onExit: () => void }) {
                         rows.map((r, i) => {
                           const q = byId.get(r.questionId);
                           return q ? (
-                            <AnswerLine key={`${r.questionId}-${r.ts}-${i}`} q={q} rec={r} />
+                            <AnswerLine
+                              key={`${r.questionId}-${r.ts}-${i}`}
+                              q={q}
+                              rec={r}
+                              attempts={mode === 'question' ? attemptsByQ.get(r.questionId) : undefined}
+                            />
                           ) : null;
                         })
                       )}
