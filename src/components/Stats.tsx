@@ -7,7 +7,7 @@ import { Account } from './Account';
 const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
 
 type Mode = 'question' | 'timeline';
-type Filter = 'all' | 'correct' | 'wrong';
+type Filter = 'all' | 'correct' | 'wrong' | 'unseen';
 
 const byId = new Map(QUESTIONS.map((q) => [q.id, q]));
 
@@ -170,7 +170,15 @@ export function Stats({ onExit }: { onExit: () => void }) {
         const q = byId.get(r.questionId);
         return q && topicOf(q) === open;
       })
-      .filter((r) => (filter === 'all' ? true : filter === 'correct' ? r.correct : !r.correct))
+      .filter((r) =>
+        filter === 'all'
+          ? true
+          : filter === 'correct'
+            ? r.correct
+            : filter === 'wrong'
+              ? !r.correct
+              : false,
+      )
       .sort((a, b) => b.ts - a.ts);
   }, [open, mode, filter, history]);
 
@@ -182,6 +190,7 @@ export function Stats({ onExit }: { onExit: () => void }) {
       .filter((q) => {
         const r = last.get(q.id);
         if (filter === 'all') return true;
+        if (filter === 'unseen') return !r;
         if (!r) return false;
         return filter === 'correct' ? r.correct : !r.correct;
       })
@@ -246,7 +255,7 @@ export function Stats({ onExit }: { onExit: () => void }) {
               ))}
             </div>
             <div className="flex rounded-md overflow-hidden border border-slate-700">
-              {(['all', 'correct', 'wrong'] as Filter[]).map((f) => (
+              {(['all', 'correct', 'wrong', 'unseen'] as Filter[]).map((f) => (
                 <button
                   key={f}
                   type="button"
