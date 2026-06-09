@@ -94,9 +94,9 @@ function AnswerLine({
   const yours =
     type === 'single' && rec?.pickedIndex != null ? q.choices?.[rec.pickedIndex] : undefined;
   const badges = attempts && attempts.length ? attempts : rec ? [rec] : [];
-  const pct = badges.length
-    ? Math.round((badges.filter((a) => a.correct).length / badges.length) * 100)
-    : null;
+  const right = badges.filter((a) => a.correct).length;
+  const wrong = badges.length - right;
+  const pct = badges.length ? Math.round((right / badges.length) * 100) : null;
   const border = !rec
     ? 'border-slate-700 bg-slate-800/20'
     : rec.correct
@@ -112,7 +112,12 @@ function AnswerLine({
               {badges.map((a, i) => (
                 <ResultBadge key={`${a.ts}-${i}`} correct={a.correct} ts={a.ts} />
               ))}
-              {pct !== null && <span className="text-xs text-slate-400">({pct}%)</span>}
+              {pct !== null && (
+                <span className="text-xs text-slate-400">
+                  <span className="text-rose-400">✗{wrong}</span>{' '}
+                  <span className="text-emerald-400">✓{right}</span> ({pct}%)
+                </span>
+              )}
             </span>
           )}
           {rec ? (
