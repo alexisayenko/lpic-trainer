@@ -2,7 +2,7 @@
 
 Practice quiz for the **LPIC-2 exam 202** (Linux Network Professional, second of the two LPIC-2 exams).
 
-Web app, single-player, runs entirely in the browser. Pick which exam objectives to drill, answer questions (single-choice, multiple-response, or fill-in-the-blank), get an immediate explanation after each one. Progress is kept in `localStorage`.
+Web app, single-player, runs entirely in the browser. Pick which exam objectives to drill, answer questions (single-choice, multiple-response, or fill-in-the-blank), get an immediate explanation after each one. Progress is kept in `localStorage`. When cloud sync is configured, a valid sync token is required to enter (a login gate); without it, the app is not usable.
 
 ## Stack
 
