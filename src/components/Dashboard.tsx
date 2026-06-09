@@ -232,7 +232,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const presets = [5, 6, 12, 24, 48, 60];
 
   return (
-    <div className="max-w-xl mx-auto p-6 space-y-6">
+    <div className="max-w-3xl mx-auto p-6 space-y-6">
       <header className="flex items-center gap-4">
         <img src={logo} alt="LPIC-2" className="h-14 w-14 rounded-md object-cover" />
         <div className="flex-1">
@@ -248,7 +248,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         </div>
       </header>
 
-      <div className="space-y-2 text-sm">
+      <div className="flex flex-wrap items-center gap-3 text-sm">
         <div className="flex rounded-md overflow-hidden border border-slate-700 w-fit">
           {(['all', 'correct', 'wrong', 'unseen'] as Filter[]).map((f) => (
             <button
