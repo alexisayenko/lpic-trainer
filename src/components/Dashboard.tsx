@@ -1,23 +1,14 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
-import { filterPool, lastByQuestion } from '../lib/select';
-import {
-  TOPIC_LABELS,
-  topicOf,
-  type AnswerRecord,
-  type Question,
-  type ResultFilter,
-  type SourceFilter,
-  type Topic,
-} from '../types';
+import { filterPool } from '../lib/select';
+import { ALL_TOPICS, TOPIC_LABELS, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
-import { ORIGIN_LABELS, QuestionStats } from './QuestionStats';
+import { QuestionStats } from './QuestionStats';
+import { FilterBar } from './FilterBar';
+import { LogoZoom } from './LogoZoom';
+import { useDashboardStats } from './useDashboardStats';
 import logo from '../assets/logo.png';
-
-const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
-
-const byId = new Map(QUESTIONS.map((q) => [q.id, q]));
 
 function AnswerLine({
   q,
@@ -68,12 +59,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
 
-  useEffect(() => {
-    if (!zoom) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setZoom(false);
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [zoom]);
+  const { last, attemptsByQ, perTopic } = useDashboardStats(history);
 
   const isOn = (t: Topic) => selected === null || selected.includes(t);
   const toggleTopic = (t: Topic) => {
@@ -81,8 +67,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
     const next = current.includes(t) ? current.filter((x) => x !== t) : [...current, t];
     setTopics(next.length === ALL_TOPICS.length ? null : next);
   };
-
-  const last = useMemo(() => lastByQuestion(history), [history]);
 
   const available = useMemo(() => {
     const topicPool = QUESTIONS.filter((q) => {
@@ -92,57 +76,17 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
     return filterPool(topicPool, last, resultFilter, sourceFilter).length;
   }, [selected, resultFilter, sourceFilter, last]);
 
-  const attemptsByQ = useMemo(() => {
-    const m = new Map<string, AnswerRecord[]>();
-    for (const r of [...history].sort((a, b) => a.ts - b.ts)) {
-      const arr = m.get(r.questionId) ?? [];
-      arr.push(r);
-      m.set(r.questionId, arr);
-    }
-    return m;
-  }, [history]);
-
-  const perTopic = useMemo(() => {
-    const totals = new Map<Topic, number>();
-    for (const q of QUESTIONS) {
-      const t = topicOf(q);
-      if (t) totals.set(t, (totals.get(t) ?? 0) + 1);
-    }
-    return ALL_TOPICS.map((t) => {
-      const seen = new Set(
-        history.filter((r) => topicOf(byId.get(r.questionId) as Question) === t).map((r) => r.questionId),
-      ).size;
-      const correctNow = [...last.values()].filter((r) => {
-        const q = byId.get(r.questionId);
-        return q && topicOf(q) === t && r.correct;
-      }).length;
-      const total = totals.get(t) ?? 0;
-      const wrongNow = seen - correctNow;
-      return {
-        topic: t,
-        total,
-        seen,
-        correctNow,
-        wrongNow,
-        askedAccuracy: seen ? Math.round((correctNow / seen) * 100) : null,
-        correctPct: total ? (correctNow / total) * 100 : 0,
-        wrongPct: total ? (wrongNow / total) * 100 : 0,
-      };
-    });
-  }, [history, last]);
-
   const questionRows = useMemo(() => {
     if (!open) return [];
     const pool = QUESTIONS.filter((q) => topicOf(q) === open);
-    return filterPool(pool, last, resultFilter, sourceFilter)
-      .sort((a, b) => {
-        const ra = last.get(a.id);
-        const rb = last.get(b.id);
-        if (ra && rb) return rb.ts - ra.ts;
-        if (ra) return -1;
-        if (rb) return 1;
-        return a.id.localeCompare(b.id);
-      });
+    return filterPool(pool, last, resultFilter, sourceFilter).sort((a, b) => {
+      const ra = last.get(a.id);
+      const rb = last.get(b.id);
+      if (ra && rb) return rb.ts - ra.ts;
+      if (ra) return -1;
+      if (rb) return 1;
+      return a.id.localeCompare(b.id);
+    });
   }, [open, resultFilter, sourceFilter, last]);
 
   const totalAttempts = history.length;
@@ -155,11 +99,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
     <div className="max-w-2xl mx-auto p-6 space-y-6">
       <header className="flex items-center gap-4">
         <button type="button" onClick={() => setZoom(true)} className="shrink-0">
-          <img
-            src={logo}
-            alt="LPIC-2"
-            className="h-14 w-14 rounded-md object-cover cursor-zoom-in"
-          />
+          <img src={logo} alt="LPIC-2" className="h-14 w-14 rounded-md object-cover cursor-zoom-in" />
         </button>
         <div className="flex-1">
           <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (202) Trainer</h1>
@@ -174,38 +114,12 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         </div>
       </header>
 
-      <div className="flex flex-wrap items-center gap-3 text-sm">
-        <div className="flex rounded-md overflow-hidden border border-slate-700 w-fit">
-          {(['all', 'correct', 'wrong', 'unseen'] as ResultFilter[]).map((f) => (
-            <button
-              key={f}
-              type="button"
-              onClick={() => setResultFilter(f)}
-              className={`px-3 py-1.5 capitalize ${
-                resultFilter === f ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-        <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit sm:ml-auto">
-          {(['all', 'linux-direct', 'ken-adams', 'gpt-deep-research', 'claude-lpic2book'] as SourceFilter[]).map(
-            (sKey) => (
-              <button
-                key={sKey}
-                type="button"
-                onClick={() => setSourceFilter(sKey)}
-                className={`px-3 py-1.5 ${
-                  sourceFilter === sKey ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
-                }`}
-              >
-                {sKey === 'all' ? 'All' : ORIGIN_LABELS[sKey]}
-              </button>
-            ),
-          )}
-        </div>
-      </div>
+      <FilterBar
+        resultFilter={resultFilter}
+        setResultFilter={setResultFilter}
+        sourceFilter={sourceFilter}
+        setSourceFilter={setSourceFilter}
+      />
 
       <ul className="space-y-2">
         {perTopic.map((s) => {
@@ -301,18 +215,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         </div>
       </div>
 
-      {zoom && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-6 cursor-zoom-out"
-          onClick={() => setZoom(false)}
-        >
-          <img
-            src={logo}
-            alt="LPIC-2"
-            className="max-h-full max-w-full rounded-lg object-contain"
-          />
-        </div>
-      )}
+      {zoom && <LogoZoom src={logo} alt="LPIC-2" onClose={() => setZoom(false)} />}
     </div>
   );
 }

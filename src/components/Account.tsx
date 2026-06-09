@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import { useAuth } from '../lib/auth';
-import { cloudEnabled, checkToken } from '../lib/api';
+import { cloudEnabled } from '../lib/api';
+import { useTokenConnect } from '../lib/useTokenConnect';
 
 export function Account() {
   const token = useAuth((s) => s.token);
   const setToken = useAuth((s) => s.setToken);
-  const [value, setValue] = useState('');
-  const [status, setStatus] = useState<'idle' | 'checking' | 'error'>('idle');
-  const [error, setError] = useState('');
+  const { value, setValue, status, error, connect } = useTokenConnect();
 
   if (!cloudEnabled) {
     return (
@@ -28,21 +26,6 @@ export function Account() {
       </button>
     );
   }
-
-  const connect = async () => {
-    const t = value.trim();
-    if (!t) return;
-    setStatus('checking');
-    setToken(t);
-    try {
-      await checkToken();
-      setStatus('idle');
-    } catch (e) {
-      setToken(null);
-      setError(e instanceof Error ? e.message : 'Could not connect.');
-      setStatus('error');
-    }
-  };
 
   return (
     <div className="space-y-2">

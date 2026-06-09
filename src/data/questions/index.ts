@@ -1,4 +1,4 @@
-import type { Question } from '../../types';
+import type { Origin, Question } from '../../types';
 import { UTILITIES } from '../../types';
 
 // Each JSON file is either a single question object or an array of them.
@@ -27,7 +27,7 @@ function isQuestion(value: unknown): value is Question {
  * questions are split by id series: the comprehensive a–g clusters come from
  * Linux Direct, the scattered "u" series from Ken Adams.
  */
-function inferOrigin(path: string, id: string): string {
+function inferOrigin(path: string, id: string): Origin {
   if (path.includes('/lpic-bank/')) return 'gpt-deep-research';
   if (path.includes('/lpic2book/')) return 'claude-lpic2book';
   const series = id.match(/-([a-z]+)\d+$/)?.[1];

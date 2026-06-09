@@ -26,15 +26,21 @@ export interface Question {
   /** Authoritative reference URL for the answer. */
   source?: string;
   /** Provenance of the question set (auto-tagged at load from the file path). */
-  origin?: string;
+  origin?: Origin;
 }
 
 /** Provenance of a question set (auto-tagged at load from the file path). */
 export type Origin = 'linux-direct' | 'ken-adams' | 'gpt-deep-research' | 'claude-lpic2book';
 
+/** All origins, in display order — the single source for filter lists and migrations. */
+export const ORIGINS: Origin[] = ['linux-direct', 'ken-adams', 'gpt-deep-research', 'claude-lpic2book'];
+
 /** Quiz pool / dashboard filters. */
 export type ResultFilter = 'all' | 'correct' | 'wrong' | 'unseen';
 export type SourceFilter = 'all' | Origin;
+
+export const RESULT_FILTERS: ResultFilter[] = ['all', 'correct', 'wrong', 'unseen'];
+export const SOURCE_FILTERS: SourceFilter[] = ['all', ...ORIGINS];
 
 export interface AnswerRecord {
   /** Stable client-generated id; used to dedupe when syncing across devices. */
@@ -52,6 +58,8 @@ export interface UtilityInfo {
 }
 
 export const TOPIC_LABELS: Record<Topic, string> = topics as Record<Topic, string>;
+
+export const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
 
 export const UTILITIES: Record<string, UtilityInfo> = utilities as Record<string, UtilityInfo>;
 

@@ -39,6 +39,7 @@ export function filterPool(
 export function orderByWeakness(
   pool: Question[],
   last: Map<string, AnswerRecord>,
+  rng: () => number = Math.random,
 ): Question[] {
   const weight = (q: Question): number => {
     const rec = last.get(q.id);
@@ -47,7 +48,7 @@ export function orderByWeakness(
   };
 
   return [...pool]
-    .map((q) => ({ q, score: weight(q) + Math.random() }))
+    .map((q) => ({ q, score: weight(q) + rng() }))
     .sort((a, b) => b.score - a.score)
     .map((x) => x.q);
 }

@@ -1,28 +1,8 @@
-import { useState } from 'react';
-import { useAuth } from '../lib/auth';
-import { checkToken } from '../lib/api';
+import { useTokenConnect } from '../lib/useTokenConnect';
 
 /** Full-screen gate: a valid sync token is required before using the app. */
 export function Login() {
-  const setToken = useAuth((s) => s.setToken);
-  const [value, setValue] = useState('');
-  const [status, setStatus] = useState<'idle' | 'checking' | 'error'>('idle');
-  const [error, setError] = useState('');
-
-  const connect = async () => {
-    const t = value.trim();
-    if (!t) return;
-    setStatus('checking');
-    setToken(t);
-    try {
-      await checkToken();
-      setStatus('idle'); // token is valid and stored → App stops gating
-    } catch (e) {
-      setToken(null);
-      setError(e instanceof Error ? e.message : 'Could not connect.');
-      setStatus('error');
-    }
-  };
+  const { value, setValue, status, error, connect } = useTokenConnect();
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">

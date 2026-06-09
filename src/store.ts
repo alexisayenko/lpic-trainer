@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { RESULT_FILTERS, SOURCE_FILTERS } from './types';
 import type { AnswerRecord, ResultFilter, SourceFilter, Topic } from './types';
 
 function newId(): string {
@@ -48,17 +49,19 @@ export const useStore = create<State>()(
     {
       name: 'lpic-trainer-state',
       version: 2,
-      migrate: (state: unknown) => {
+      // Runs only for persisted versions < 2 (v0/v1): answer records gained a
+      // stable `id`, and the result/source filters were added.
+      migrate: (state: unknown, version: number) => {
         const s = (state ?? {}) as Partial<State>;
-        // Backfill ids on answer records persisted before id existed.
         s.history = Array.isArray(s.history)
-          ? s.history.map((r) => (r.id ? r : { ...r, id: `${r.questionId}-${r.ts}` }))
+          ? s.history.map((r) =>
+              r.id ? r : { ...r, id: r.questionId && r.ts ? `${r.questionId}-${r.ts}` : newId() },
+            )
           : [];
-        // Filters were added in v2; default older state and reset stray values.
-        const results: ResultFilter[] = ['all', 'correct', 'wrong', 'unseen'];
-        if (!results.includes(s.resultFilter as ResultFilter)) s.resultFilter = 'all';
-        const sources: SourceFilter[] = ['all', 'linux-direct', 'ken-adams', 'gpt-deep-research', 'claude-lpic2book'];
-        if (!sources.includes(s.sourceFilter as SourceFilter)) s.sourceFilter = 'all';
+        if (version < 2) {
+          if (!RESULT_FILTERS.includes(s.resultFilter as ResultFilter)) s.resultFilter = 'all';
+          if (!SOURCE_FILTERS.includes(s.sourceFilter as SourceFilter)) s.sourceFilter = 'all';
+        }
         return s as State;
       },
     },
