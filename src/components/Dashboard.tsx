@@ -7,7 +7,6 @@ import logo from '../assets/logo.webp';
 
 const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
 
-type Mode = 'question' | 'timeline';
 type Filter = 'all' | 'correct' | 'wrong' | 'unseen';
 
 const byId = new Map(QUESTIONS.map((q) => [q.id, q]));
@@ -145,8 +144,8 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const quizSize = useStore((s) => s.quizSize);
   const setQuizSize = useStore((s) => s.setQuizSize);
 
-  const [mode, setMode] = useState<Mode>('question');
   const [filter, setFilter] = useState<Filter>('all');
+  const [source, setSource] = useState<string>('all');
   const [open, setOpen] = useState<Topic | null>(null);
 
   const isOn = (t: Topic) => selected === null || selected.includes(t);
@@ -203,22 +202,10 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
     });
   }, [history, last]);
 
-  const timelineRows = useMemo(() => {
-    if (!open || mode !== 'timeline') return [];
-    return history
-      .filter((r) => {
-        const q = byId.get(r.questionId);
-        return q && topicOf(q) === open;
-      })
-      .filter((r) =>
-        filter === 'all' ? true : filter === 'correct' ? r.correct : filter === 'wrong' ? !r.correct : false,
-      )
-      .sort((a, b) => b.ts - a.ts);
-  }, [open, mode, filter, history]);
-
   const questionRows = useMemo(() => {
-    if (!open || mode !== 'question') return [];
+    if (!open) return [];
     return QUESTIONS.filter((q) => topicOf(q) === open)
+      .filter((q) => source === 'all' || q.origin === source)
       .filter((q) => {
         const r = last.get(q.id);
         if (filter === 'all') return true;
@@ -234,9 +221,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         if (rb) return 1;
         return a.id.localeCompare(b.id);
       });
-  }, [open, mode, filter, last]);
-
-  const rowCount = mode === 'question' ? questionRows.length : timelineRows.length;
+  }, [open, filter, source, last]);
 
   const totalAttempts = history.length;
   const totalCorrect = history.filter((r) => r.correct).length;
@@ -316,22 +301,8 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         </button>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 text-sm">
-        <div className="flex rounded-md overflow-hidden border border-slate-700">
-          {(['question', 'timeline'] as Mode[]).map((m) => (
-            <button
-              key={m}
-              type="button"
-              onClick={() => setMode(m)}
-              className={`px-3 py-1.5 ${
-                mode === m ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
-              }`}
-            >
-              {m === 'question' ? 'By question' : 'Timeline'}
-            </button>
-          ))}
-        </div>
-        <div className="flex rounded-md overflow-hidden border border-slate-700">
+      <div className="space-y-2 text-sm">
+        <div className="flex rounded-md overflow-hidden border border-slate-700 w-fit">
           {(['all', 'correct', 'wrong', 'unseen'] as Filter[]).map((f) => (
             <button
               key={f}
@@ -344,6 +315,22 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
               {f}
             </button>
           ))}
+        </div>
+        <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit">
+          {(['all', 'linux-direct', 'ken-adams', 'gpt-deep-research', 'claude-lpic2book'] as const).map(
+            (sKey) => (
+              <button
+                key={sKey}
+                type="button"
+                onClick={() => setSource(sKey)}
+                className={`px-3 py-1.5 ${
+                  source === sKey ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
+                }`}
+              >
+                {sKey === 'all' ? 'All sources' : ORIGIN_LABELS[sKey]}
+              </button>
+            ),
+          )}
         </div>
       </div>
       <p className="-mt-3 text-xs text-slate-500">Tick a topic to include it in the quiz; click it to see details.</p>
@@ -391,9 +378,9 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
               </div>
               {isOpen && (
                 <div className="p-3 space-y-2 bg-slate-900/40">
-                  {rowCount === 0 ? (
+                  {questionRows.length === 0 ? (
                     <p className="text-sm text-slate-500">No matching questions.</p>
-                  ) : mode === 'question' ? (
+                  ) : (
                     questionRows.map((q) => (
                       <AnswerLine
                         key={q.id}
@@ -402,13 +389,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                         attempts={attemptsByQ.get(q.id)}
                       />
                     ))
-                  ) : (
-                    timelineRows.map((r, i) => {
-                      const q = byId.get(r.questionId);
-                      return q ? (
-                        <AnswerLine key={`${r.questionId}-${r.ts}-${i}`} q={q} rec={r} />
-                      ) : null;
-                    })
                   )}
                 </div>
               )}
