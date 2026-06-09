@@ -36,14 +36,27 @@ function inferOrigin(path: string, id: string): Origin {
 
 const all = Object.entries(modules).flatMap(([path, m]) => {
   const items = Array.isArray(m) ? m : [m];
-  return items.map((q) =>
-    q && typeof q === 'object' && !('origin' in q)
-      ? { ...(q as object), origin: inferOrigin(path, (q as { id?: string }).id ?? '') }
-      : q,
-  );
+  return items.map((raw) => {
+    if (!raw || typeof raw !== 'object') return raw;
+    const q = raw as Record<string, unknown>;
+    return {
+      ...q,
+      type: q.type ?? 'single',
+      origin: 'origin' in q ? q.origin : inferOrigin(path, (q.id as string) ?? ''),
+    };
+  });
 });
 
+const seen = new Set<string>();
 export const QUESTIONS: Question[] = all
   .filter(isQuestion)
   .filter((q) => q.tool in UTILITIES)
+  .filter((q) => {
+    if (seen.has(q.id)) {
+      console.warn(`Duplicate question id skipped: ${q.id}`);
+      return false;
+    }
+    seen.add(q.id);
+    return true;
+  })
   .sort((a, b) => a.id.localeCompare(b.id));

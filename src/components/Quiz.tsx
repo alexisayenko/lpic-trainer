@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
 import { filterPool, lastByQuestion, orderByWeakness, pickDeck } from '../lib/select';
+import { rateQuestion } from '../lib/rating';
 import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
 import { QuestionStats } from './QuestionStats';
 
@@ -88,10 +89,10 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
   }
 
   const q = deck[index];
-  const type = q.type ?? 'single';
-  const choices = q.choices ?? [];
+  const choices = q.type === 'fill' ? [] : q.choices;
   const attempts = history.filter((r) => r.questionId === q.id).sort((a, b) => a.ts - b.ts);
   const lastRec = attempts[attempts.length - 1];
+  const rating = rateQuestion(attempts, Date.now());
 
   const commit = (correct: boolean, pickedIndex?: number) => {
     setAnswered(true);
@@ -101,7 +102,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
   };
 
   const chooseSingle = (i: number) => {
-    if (answered) return;
+    if (answered || q.type !== 'single') return;
     setPicked(i);
     commit(i === q.answerIndex, i);
   };
@@ -112,13 +113,13 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
   };
 
   const submitMulti = () => {
-    if (answered || selected.length === 0) return;
-    commit(sameSet(selected, q.answerIndices ?? []));
+    if (answered || q.type !== 'multi' || selected.length === 0) return;
+    commit(sameSet(selected, q.answerIndices));
   };
 
   const submitFill = () => {
-    if (answered || typed.trim() === '') return;
-    commit(norm(typed) === norm(q.answer ?? ''));
+    if (answered || q.type !== 'fill' || typed.trim() === '') return;
+    commit(norm(typed) === norm(q.answer));
   };
 
   const next = () => {
@@ -130,8 +131,9 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
   };
 
   const choiceClass = (i: number) => {
-    const isAnswer = type === 'multi' ? (q.answerIndices ?? []).includes(i) : q.answerIndex === i;
-    const isPick = type === 'multi' ? selected.includes(i) : picked === i;
+    const isAnswer =
+      q.type === 'multi' ? q.answerIndices.includes(i) : q.type === 'single' ? q.answerIndex === i : false;
+    const isPick = q.type === 'multi' ? selected.includes(i) : picked === i;
     if (answered) {
       if (isAnswer) return 'border-emerald-500 bg-emerald-900/40';
       if (isPick) return 'border-rose-500 bg-rose-900/40';
@@ -152,13 +154,13 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
           {index + 1} / {deck.length}
         </span>
       </div>
-      <QuestionStats q={q} rec={lastRec} attempts={attempts} />
+      <QuestionStats q={q} rec={lastRec} attempts={attempts} rating={rating} />
       <h2 className="text-xl text-slate-100 leading-snug">{q.prompt}</h2>
-      {type === 'multi' && !answered && (
+      {q.type === 'multi' && !answered && (
         <p className="text-xs text-slate-500 -mt-2">Select all that apply, then submit.</p>
       )}
 
-      {type === 'fill' ? (
+      {q.type === 'fill' ? (
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -185,7 +187,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
               <button
                 type="button"
                 disabled={answered}
-                onClick={() => (type === 'multi' ? toggleMulti(i) : chooseSingle(i))}
+                onClick={() => (q.type === 'multi' ? toggleMulti(i) : chooseSingle(i))}
                 className={`w-full text-left p-3 rounded-md border transition-colors ${choiceClass(i)}`}
               >
                 <span className="text-slate-200">{choice}</span>
@@ -195,7 +197,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
         </ul>
       )}
 
-      {!answered && type === 'multi' && (
+      {!answered && q.type === 'multi' && (
         <button
           type="button"
           onClick={submitMulti}
@@ -205,7 +207,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
           Submit answer
         </button>
       )}
-      {!answered && type === 'fill' && (
+      {!answered && q.type === 'fill' && (
         <button
           type="button"
           onClick={submitFill}
@@ -224,7 +226,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
             }`}
           >
             <p className="font-medium text-slate-100">{lastCorrect ? 'Correct' : 'Incorrect'}</p>
-            {type === 'fill' && (
+            {q.type === 'fill' && (
               <p className="text-sm text-emerald-300 mt-1">Answer: {q.answer}</p>
             )}
             <p className="text-sm text-slate-300 mt-1">{q.explanation}</p>

@@ -1,5 +1,5 @@
-import type { AnswerRecord, Question } from '../types';
-import { rateQuestion } from '../lib/rating';
+import { ORIGIN_LABELS, type AnswerRecord, type Origin, type Question } from '../types';
+import type { Rating } from '../lib/rating';
 
 export function fmtDate(ts: number): string {
   return new Date(ts).toLocaleString(undefined, {
@@ -20,13 +20,6 @@ export function fmtRel(ts: number): string {
   return `${Math.floor(days / 365)} yr ago`;
 }
 
-export const ORIGIN_LABELS: Record<string, string> = {
-  'linux-direct': 'Linux Direct',
-  'ken-adams': 'Ken Adams',
-  'gpt-deep-research': 'GPT',
-  'claude-lpic2book': 'Claude',
-};
-
 const ORIGIN_STYLES: Record<string, string> = {
   'linux-direct': 'bg-sky-500/15 text-sky-300 border-sky-500/30',
   'ken-adams': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
@@ -34,7 +27,7 @@ const ORIGIN_STYLES: Record<string, string> = {
   'claude-lpic2book': 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
 };
 
-export function SourceTag({ origin }: { origin?: string }) {
+export function SourceTag({ origin }: { origin?: Origin }) {
   if (!origin) return null;
   const label = ORIGIN_LABELS[origin] ?? origin;
   const style = ORIGIN_STYLES[origin] ?? 'bg-slate-700/40 text-slate-400 border-slate-600';
@@ -43,19 +36,22 @@ export function SourceTag({ origin }: { origin?: string }) {
   );
 }
 
+const MASTERED = 80;
+const LEARNING = 50;
+
 function MasteryChip({ score }: { score: number }) {
   const tone =
-    score >= 80
+    score >= MASTERED
       ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-      : score >= 50
+      : score >= LEARNING
         ? 'bg-amber-500/15 text-amber-300 border-amber-500/30'
         : 'bg-rose-500/15 text-rose-300 border-rose-500/30';
   return (
     <span
-      title="Mastery (recency-weighted accuracy, exposure, freshness, streak)"
+      aria-label={`Mastery ${score} of 100`}
       className={`rounded border px-1.5 py-0.5 text-[10px] ${tone}`}
     >
-      ★ {score}
+      <span aria-hidden="true">★ {score}</span>
     </span>
   );
 }
@@ -71,21 +67,22 @@ function ResultBadge({ correct, ts }: { correct: boolean; ts: number }) {
   );
 }
 
-/** Compact attempt history for one question: source tag · ✓/✗ badges · wrong/right(%) · when. */
+/** Compact attempt history for one question: source · mastery · ✓/✗ badges · wrong/right(%) · when. */
 export function QuestionStats({
   q,
   rec,
   attempts,
+  rating,
 }: {
   q: Question;
   rec?: AnswerRecord;
   attempts?: AnswerRecord[];
+  rating?: Rating | null;
 }) {
   const badges = attempts && attempts.length ? attempts : rec ? [rec] : [];
   const right = badges.filter((a) => a.correct).length;
   const wrong = badges.length - right;
   const pct = badges.length ? Math.round((right / badges.length) * 100) : null;
-  const rating = rateQuestion(badges, Date.now());
   return (
     <div className="flex items-center gap-2 cursor-default">
       {q.origin && <SourceTag origin={q.origin} />}

@@ -1,4 +1,3 @@
-import { useStore } from '../store';
 import type { AnswerRecord } from '../types';
 import { useAuth } from './auth';
 
@@ -56,24 +55,34 @@ export async function checkToken(): Promise<void> {
   await req('/answers');
 }
 
-async function fetchAll(): Promise<AnswerRecord[]> {
+/** Fetch all remote records. */
+export async function fetchAll(): Promise<AnswerRecord[]> {
   const res = await req('/answers');
   const rows = (await res.json()) as Row[];
   return rows.map(fromRow);
 }
 
 /** Upload is idempotent: the server upserts by id and keeps the record with the newer `ts`. */
-async function upload(records: AnswerRecord[]): Promise<void> {
+export async function pushRecords(records: AnswerRecord[]): Promise<void> {
   if (!records.length) return;
   await req('/answers', { method: 'POST', body: JSON.stringify(records.map(toRow)) });
 }
 
-/** Pull remote, merge with local by id keeping the newer record, write back, then push the delta. */
-export async function fullSync(): Promise<void> {
-  const local = useStore.getState().history;
-  const remote = await fetchAll();
-  const remoteById = new Map(remote.map((r) => [r.id, r]));
+/** Wipe remote stats (paired with the local reset). */
+export async function deleteAll(): Promise<void> {
+  await req('/answers', { method: 'DELETE' });
+}
 
+/**
+ * Pure merge of two record sets by id, keeping the newer `ts` on collision.
+ * Returns the merged list (sorted by ts) plus the delta the remote lacks or
+ * holds an older copy of. Orchestration (store reads/writes) lives in CloudSync.
+ */
+export function mergeHistories(
+  local: AnswerRecord[],
+  remote: AnswerRecord[],
+): { merged: AnswerRecord[]; delta: AnswerRecord[] } {
+  const remoteById = new Map(remote.map((r) => [r.id, r]));
   const merged = new Map<string, AnswerRecord>();
   for (const r of remote) merged.set(r.id, r);
   for (const r of local) {
@@ -81,22 +90,9 @@ export async function fullSync(): Promise<void> {
     if (!prev || r.ts >= prev.ts) merged.set(r.id, r);
   }
   const mergedList = [...merged.values()].sort((a, b) => a.ts - b.ts);
-  useStore.getState().setHistory(mergedList);
-
-  await upload(
-    mergedList.filter((r) => {
-      const rem = remoteById.get(r.id);
-      return !rem || r.ts > rem.ts;
-    }),
-  );
-}
-
-/** Best-effort push of the records just added locally. */
-export async function pushRecords(records: AnswerRecord[]): Promise<void> {
-  await upload(records);
-}
-
-/** Wipe remote stats (paired with the local reset). */
-export async function deleteAll(): Promise<void> {
-  await req('/answers', { method: 'DELETE' });
+  const delta = mergedList.filter((r) => {
+    const rem = remoteById.get(r.id);
+    return !rem || r.ts > rem.ts;
+  });
+  return { merged: mergedList, delta };
 }

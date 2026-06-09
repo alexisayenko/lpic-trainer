@@ -1,5 +1,10 @@
-import { RESULT_FILTERS, SOURCE_FILTERS, type ResultFilter, type SourceFilter } from '../types';
-import { ORIGIN_LABELS } from './QuestionStats';
+import {
+  ORIGIN_LABELS,
+  RESULT_FILTERS,
+  SOURCE_FILTERS,
+  type ResultFilter,
+  type SourceFilter,
+} from '../types';
 
 export function FilterBar({
   resultFilter,

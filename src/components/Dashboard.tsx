@@ -1,7 +1,10 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
+import { useAuth } from '../lib/auth';
+import { cloudEnabled, deleteAll } from '../lib/api';
 import { filterPool } from '../lib/select';
+import type { Rating } from '../lib/rating';
 import { ALL_TOPICS, TOPIC_LABELS, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
 import { QuestionStats } from './QuestionStats';
@@ -10,24 +13,27 @@ import { LogoZoom } from './LogoZoom';
 import { useDashboardStats } from './useDashboardStats';
 import logo from '../assets/logo.png';
 
+const PRESETS = [5, 6, 12, 24, 48, 60];
+
 function AnswerLine({
   q,
   rec,
   attempts,
+  rating,
 }: {
   q: Question;
   rec?: AnswerRecord;
   attempts?: AnswerRecord[];
+  rating?: Rating | null;
 }) {
-  const type = q.type ?? 'single';
   const correctText =
-    type === 'fill'
+    q.type === 'fill'
       ? q.answer
-      : type === 'multi'
-        ? (q.answerIndices ?? []).map((i) => q.choices?.[i]).join(', ')
-        : q.choices?.[q.answerIndex ?? -1];
+      : q.type === 'multi'
+        ? q.answerIndices.map((i) => q.choices[i]).join(', ')
+        : q.choices[q.answerIndex];
   const yours =
-    type === 'single' && rec?.pickedIndex != null ? q.choices?.[rec.pickedIndex] : undefined;
+    q.type === 'single' && rec?.pickedIndex != null ? q.choices[rec.pickedIndex] : undefined;
   const border = !rec
     ? 'border-slate-700 bg-slate-800/20'
     : rec.correct
@@ -35,7 +41,7 @@ function AnswerLine({
       : 'border-rose-700 bg-rose-900/20';
   return (
     <div className={`p-3 rounded-md border ${border}`}>
-      <QuestionStats q={q} rec={rec} attempts={attempts} />
+      <QuestionStats q={q} rec={rec} attempts={attempts} rating={rating} />
       <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
       {rec && !rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
@@ -56,10 +62,13 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const sourceFilter = useStore((s) => s.sourceFilter);
   const setSourceFilter = useStore((s) => s.setSourceFilter);
 
+  const reset = useStore((s) => s.reset);
+  const token = useAuth((s) => s.token);
+
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
 
-  const { last, attemptsByQ, perTopic } = useDashboardStats(history);
+  const { last, attemptsByQ, perTopic, ratingByQ } = useDashboardStats(history);
 
   const isOn = (t: Topic) => selected === null || selected.includes(t);
   const toggleTopic = (t: Topic) => {
@@ -93,7 +102,12 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const totalCorrect = history.filter((r) => r.correct).length;
   const overallPct = totalAttempts ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
 
-  const presets = [5, 6, 12, 24, 48, 60];
+  const resetStats = () => {
+    const where = cloudEnabled && token ? ' on this device and in the cloud' : ' on this device';
+    if (!window.confirm(`Erase all your stats${where}? This cannot be undone.`)) return;
+    reset();
+    if (cloudEnabled && token) deleteAll().catch(() => {});
+  };
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
@@ -173,6 +187,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                         q={q}
                         rec={last.get(q.id)}
                         attempts={attemptsByQ.get(q.id)}
+                        rating={ratingByQ.get(q.id)}
                       />
                     ))
                   )}
@@ -190,7 +205,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           <span className="text-sm text-slate-500">{available} available</span>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          {presets.map((n) => (
+          {PRESETS.map((n) => (
             <button
               key={n}
               type="button"
@@ -214,6 +229,18 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           </button>
         </div>
       </div>
+
+      {totalAttempts > 0 && (
+        <div className="text-right">
+          <button
+            type="button"
+            onClick={resetStats}
+            className="text-xs text-slate-500 hover:text-rose-400"
+          >
+            Reset all stats
+          </button>
+        </div>
+      )}
 
       {zoom && <LogoZoom src={logo} alt="LPIC-2" onClose={() => setZoom(false)} />}
     </div>

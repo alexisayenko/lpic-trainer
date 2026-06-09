@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { lastByQuestion } from '../lib/select';
+import { rateQuestion, type Rating } from '../lib/rating';
 import { ALL_TOPICS, topicOf, type AnswerRecord, type Topic } from '../types';
 
 const byId = new Map(QUESTIONS.map((q) => [q.id, q]));
@@ -70,5 +71,17 @@ export function useDashboardStats(history: AnswerRecord[]) {
     });
   }, [last]);
 
-  return { last, attemptsByQ, perTopic };
+  // One rating per question from its full attempt history, with a single `now`
+  // snapshot so every row is consistent and it recomputes only when history changes.
+  const ratingByQ = useMemo(() => {
+    const now = Date.now();
+    const m = new Map<string, Rating>();
+    for (const [qid, atts] of attemptsByQ) {
+      const r = rateQuestion(atts, now);
+      if (r) m.set(qid, r);
+    }
+    return m;
+  }, [attemptsByQ]);
+
+  return { last, attemptsByQ, perTopic, ratingByQ };
 }
