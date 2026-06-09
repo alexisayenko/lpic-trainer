@@ -1,28 +1,33 @@
-import type { Question } from '../types';
-import type { AnswerRecord, ResultFilter } from '../store';
+import type { AnswerRecord, Question, ResultFilter, SourceFilter } from '../types';
+
+/** Latest answer record per question id (last write wins on ties). */
+export function lastByQuestion(history: AnswerRecord[]): Map<string, AnswerRecord> {
+  const m = new Map<string, AnswerRecord>();
+  for (const rec of history) {
+    const prev = m.get(rec.questionId);
+    if (!prev || rec.ts >= prev.ts) m.set(rec.questionId, rec);
+  }
+  return m;
+}
 
 /**
  * Narrow a pool by source origin and by last-answer result.
- * Used for both the dashboard's "available" count and the quiz deck so they agree.
+ * Used for the dashboard's "available" count, its per-question list, and the
+ * quiz deck so all three agree on one predicate.
  */
 export function filterPool(
   pool: Question[],
-  history: AnswerRecord[],
+  last: Map<string, AnswerRecord>,
   result: ResultFilter,
-  source: string,
+  source: SourceFilter,
 ): Question[] {
-  const lastById = new Map<string, AnswerRecord>();
-  for (const rec of history) {
-    const prev = lastById.get(rec.questionId);
-    if (!prev || rec.ts >= prev.ts) lastById.set(rec.questionId, rec);
-  }
   return pool.filter((q) => {
     if (source !== 'all' && q.origin !== source) return false;
     if (result === 'all') return true;
-    const last = lastById.get(q.id);
-    if (result === 'unseen') return !last;
-    if (!last) return false;
-    return result === 'correct' ? last.correct : !last.correct;
+    const rec = last.get(q.id);
+    if (result === 'unseen') return !rec;
+    if (!rec) return false;
+    return result === 'correct' ? rec.correct : !rec.correct;
   });
 }
 
@@ -31,17 +36,14 @@ export function filterPool(
  *   unseen  >  last answer was wrong  >  previously answered correctly.
  * Ties are broken randomly so repeated quizzes vary.
  */
-export function orderByWeakness(pool: Question[], history: AnswerRecord[]): Question[] {
-  const lastById = new Map<string, AnswerRecord>();
-  for (const rec of history) {
-    const prev = lastById.get(rec.questionId);
-    if (!prev || rec.ts >= prev.ts) lastById.set(rec.questionId, rec);
-  }
-
+export function orderByWeakness(
+  pool: Question[],
+  last: Map<string, AnswerRecord>,
+): Question[] {
   const weight = (q: Question): number => {
-    const last = lastById.get(q.id);
-    if (!last) return 3; // unseen
-    return last.correct ? 1 : 2; // known correct vs. got it wrong last time
+    const rec = last.get(q.id);
+    if (!rec) return 3; // unseen
+    return rec.correct ? 1 : 2; // known correct vs. got it wrong last time
   };
 
   return [...pool]

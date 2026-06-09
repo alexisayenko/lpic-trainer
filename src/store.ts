@@ -1,23 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Topic } from './types';
-
-export interface AnswerRecord {
-  /** Stable client-generated id; used to dedupe when syncing across devices. */
-  id: string;
-  questionId: string;
-  /** Index of the choice the user picked. Optional for records saved before this was tracked. */
-  pickedIndex?: number;
-  correct: boolean;
-  ts: number;
-}
+import type { AnswerRecord, ResultFilter, SourceFilter, Topic } from './types';
 
 function newId(): string {
   if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID();
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
-
-export type ResultFilter = 'all' | 'correct' | 'wrong' | 'unseen';
 
 interface State {
   selectedTopics: Topic[] | null;
@@ -26,12 +14,12 @@ interface State {
   /** Restrict the quiz pool (and dashboard view) by last-answer result. */
   resultFilter: ResultFilter;
   /** Restrict the quiz pool (and dashboard view) by question origin; 'all' = no filter. */
-  sourceFilter: string;
+  sourceFilter: SourceFilter;
   history: AnswerRecord[];
   setTopics: (topics: Topic[] | null) => void;
   setQuizSize: (size: number | null) => void;
   setResultFilter: (f: ResultFilter) => void;
-  setSourceFilter: (s: string) => void;
+  setSourceFilter: (s: SourceFilter) => void;
   recordAnswer: (questionId: string, pickedIndex: number | undefined, correct: boolean) => void;
   /** Replace the whole answer log (used after a cloud sync/merge). */
   setHistory: (history: AnswerRecord[]) => void;
@@ -59,16 +47,19 @@ export const useStore = create<State>()(
     }),
     {
       name: 'lpic-trainer-state',
-      version: 1,
-      // Backfill ids on answer records persisted before id existed.
+      version: 2,
       migrate: (state: unknown) => {
-        const s = state as State;
-        if (s?.history) {
-          s.history = s.history.map((r) =>
-            r.id ? r : { ...r, id: `${r.questionId}-${r.ts}` },
-          );
-        }
-        return s;
+        const s = (state ?? {}) as Partial<State>;
+        // Backfill ids on answer records persisted before id existed.
+        s.history = Array.isArray(s.history)
+          ? s.history.map((r) => (r.id ? r : { ...r, id: `${r.questionId}-${r.ts}` }))
+          : [];
+        // Filters were added in v2; default older state and reset stray values.
+        const results: ResultFilter[] = ['all', 'correct', 'wrong', 'unseen'];
+        if (!results.includes(s.resultFilter as ResultFilter)) s.resultFilter = 'all';
+        const sources: SourceFilter[] = ['all', 'linux-direct', 'ken-adams', 'gpt-deep-research', 'claude-lpic2book'];
+        if (!sources.includes(s.sourceFilter as SourceFilter)) s.sourceFilter = 'all';
+        return s as State;
       },
     },
   ),

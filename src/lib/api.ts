@@ -1,4 +1,5 @@
-import { useStore, type AnswerRecord } from '../store';
+import { useStore } from '../store';
+import type { AnswerRecord } from '../types';
 import { useAuth } from './auth';
 
 const API_URL = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '');

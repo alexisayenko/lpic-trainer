@@ -29,6 +29,23 @@ export interface Question {
   origin?: string;
 }
 
+/** Provenance of a question set (auto-tagged at load from the file path). */
+export type Origin = 'linux-direct' | 'ken-adams' | 'gpt-deep-research' | 'claude-lpic2book';
+
+/** Quiz pool / dashboard filters. */
+export type ResultFilter = 'all' | 'correct' | 'wrong' | 'unseen';
+export type SourceFilter = 'all' | Origin;
+
+export interface AnswerRecord {
+  /** Stable client-generated id; used to dedupe when syncing across devices. */
+  id: string;
+  questionId: string;
+  /** Index of the choice the user picked. Optional for records saved before this was tracked. */
+  pickedIndex?: number;
+  correct: boolean;
+  ts: number;
+}
+
 export interface UtilityInfo {
   topic: Topic;
   label: string;
