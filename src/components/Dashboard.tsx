@@ -1,13 +1,12 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
-import { useStore, type AnswerRecord } from '../store';
+import { useStore, type AnswerRecord, type ResultFilter } from '../store';
+import { filterPool } from '../lib/select';
 import { TOPIC_LABELS, topicOf, type Question, type Topic } from '../types';
 import { Account } from './Account';
 import logo from '../assets/logo.png';
 
 const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
-
-type Filter = 'all' | 'correct' | 'wrong' | 'unseen';
 
 const byId = new Map(QUESTIONS.map((q) => [q.id, q]));
 
@@ -145,9 +144,11 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const setTopics = useStore((s) => s.setTopics);
   const quizSize = useStore((s) => s.quizSize);
   const setQuizSize = useStore((s) => s.setQuizSize);
+  const filter = useStore((s) => s.resultFilter);
+  const setFilter = useStore((s) => s.setResultFilter);
+  const source = useStore((s) => s.sourceFilter);
+  const setSource = useStore((s) => s.setSourceFilter);
 
-  const [filter, setFilter] = useState<Filter>('all');
-  const [source, setSource] = useState<string>('all');
   const [open, setOpen] = useState<Topic | null>(null);
 
   const isOn = (t: Topic) => selected === null || selected.includes(t);
@@ -157,11 +158,14 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
     setTopics(next.length === ALL_TOPICS.length ? null : next);
   };
 
-  const available = useMemo(
-    () => QUESTIONS.filter((q) => { const t = topicOf(q); return t !== undefined && isOn(t); }).length,
+  const available = useMemo(() => {
+    const topicPool = QUESTIONS.filter((q) => {
+      const t = topicOf(q);
+      return t !== undefined && isOn(t);
+    });
+    return filterPool(topicPool, history, filter, source).length;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [selected],
-  );
+  }, [selected, filter, source, history]);
 
   const last = useMemo(() => lastByQuestion(history), [history]);
 
@@ -250,7 +254,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
 
       <div className="flex flex-wrap items-center gap-3 text-sm">
         <div className="flex rounded-md overflow-hidden border border-slate-700 w-fit">
-          {(['all', 'correct', 'wrong', 'unseen'] as Filter[]).map((f) => (
+          {(['all', 'correct', 'wrong', 'unseen'] as ResultFilter[]).map((f) => (
             <button
               key={f}
               type="button"
@@ -263,7 +267,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
             </button>
           ))}
         </div>
-        <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit">
+        <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit ml-auto">
           {(['all', 'linux-direct', 'ken-adams', 'gpt-deep-research', 'claude-lpic2book'] as const).map(
             (sKey) => (
               <button

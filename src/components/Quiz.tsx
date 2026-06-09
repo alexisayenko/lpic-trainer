@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
-import { orderByWeakness, pickDeck } from '../lib/select';
+import { filterPool, orderByWeakness, pickDeck } from '../lib/select';
 import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
 
 const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
@@ -15,20 +15,24 @@ function sameSet(a: number[], b: number[]): boolean {
 export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () => void }) {
   const selectedTopics = useStore((s) => s.selectedTopics);
   const quizSize = useStore((s) => s.quizSize);
+  const resultFilter = useStore((s) => s.resultFilter);
+  const sourceFilter = useStore((s) => s.sourceFilter);
   const recordAnswer = useStore((s) => s.recordAnswer);
 
   // Snapshot history once, when the deck is built, so answering doesn't re-order it mid-quiz.
   const deck = useMemo<Question[]>(() => {
-    const pool = selectedTopics
+    const topicPool = selectedTopics
       ? QUESTIONS.filter((q) => {
           const t = topicOf(q);
           return t !== undefined && selectedTopics.includes(t);
         })
       : QUESTIONS;
-    const ordered = orderByWeakness(pool, useStore.getState().history);
+    const history = useStore.getState().history;
+    const pool = filterPool(topicPool, history, resultFilter, sourceFilter);
+    const ordered = orderByWeakness(pool, history);
     return pickDeck(ordered, quizSize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTopics, quizSize]);
+  }, [selectedTopics, quizSize, resultFilter, sourceFilter]);
 
   const [index, setIndex] = useState(0);
   const [answered, setAnswered] = useState(false);
@@ -41,7 +45,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
   if (deck.length === 0) {
     return (
       <div className="max-w-xl mx-auto p-6 text-center space-y-4">
-        <p className="text-slate-300">No questions match the selected topics.</p>
+        <p className="text-slate-300">No questions match the selected topics and filters.</p>
         <button
           type="button"
           onClick={onExit}

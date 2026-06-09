@@ -1,5 +1,30 @@
 import type { Question } from '../types';
-import type { AnswerRecord } from '../store';
+import type { AnswerRecord, ResultFilter } from '../store';
+
+/**
+ * Narrow a pool by source origin and by last-answer result.
+ * Used for both the dashboard's "available" count and the quiz deck so they agree.
+ */
+export function filterPool(
+  pool: Question[],
+  history: AnswerRecord[],
+  result: ResultFilter,
+  source: string,
+): Question[] {
+  const lastById = new Map<string, AnswerRecord>();
+  for (const rec of history) {
+    const prev = lastById.get(rec.questionId);
+    if (!prev || rec.ts >= prev.ts) lastById.set(rec.questionId, rec);
+  }
+  return pool.filter((q) => {
+    if (source !== 'all' && q.origin !== source) return false;
+    if (result === 'all') return true;
+    const last = lastById.get(q.id);
+    if (result === 'unseen') return !last;
+    if (!last) return false;
+    return result === 'correct' ? last.correct : !last.correct;
+  });
+}
 
 /**
  * Order questions so studying targets weak spots first:

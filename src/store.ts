@@ -17,13 +17,21 @@ function newId(): string {
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
+export type ResultFilter = 'all' | 'correct' | 'wrong' | 'unseen';
+
 interface State {
   selectedTopics: Topic[] | null;
   /** Number of questions per quiz; null means "all matching questions". */
   quizSize: number | null;
+  /** Restrict the quiz pool (and dashboard view) by last-answer result. */
+  resultFilter: ResultFilter;
+  /** Restrict the quiz pool (and dashboard view) by question origin; 'all' = no filter. */
+  sourceFilter: string;
   history: AnswerRecord[];
   setTopics: (topics: Topic[] | null) => void;
   setQuizSize: (size: number | null) => void;
+  setResultFilter: (f: ResultFilter) => void;
+  setSourceFilter: (s: string) => void;
   recordAnswer: (questionId: string, pickedIndex: number | undefined, correct: boolean) => void;
   /** Replace the whole answer log (used after a cloud sync/merge). */
   setHistory: (history: AnswerRecord[]) => void;
@@ -35,9 +43,13 @@ export const useStore = create<State>()(
     (set) => ({
       selectedTopics: null,
       quizSize: null,
+      resultFilter: 'all',
+      sourceFilter: 'all',
       history: [],
       setTopics: (selectedTopics) => set({ selectedTopics }),
       setQuizSize: (quizSize) => set({ quizSize }),
+      setResultFilter: (resultFilter) => set({ resultFilter }),
+      setSourceFilter: (sourceFilter) => set({ sourceFilter }),
       recordAnswer: (questionId, pickedIndex, correct) =>
         set((s) => ({
           history: [...s.history, { id: newId(), questionId, pickedIndex, correct, ts: Date.now() }],
