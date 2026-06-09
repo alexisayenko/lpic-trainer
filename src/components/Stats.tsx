@@ -41,6 +41,29 @@ function ResultBadge({ correct, ts }: { correct: boolean; ts: number }) {
   );
 }
 
+const ORIGIN_LABELS: Record<string, string> = {
+  'linux-direct': 'Linux Direct',
+  'ken-adams': 'Ken Adams',
+  'gpt-deep-research': 'GPT',
+  'claude-lpic2book': 'lpic2book',
+};
+
+const ORIGIN_STYLES: Record<string, string> = {
+  'linux-direct': 'bg-sky-500/15 text-sky-300 border-sky-500/30',
+  'ken-adams': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+  'gpt-deep-research': 'bg-violet-500/15 text-violet-300 border-violet-500/30',
+  'claude-lpic2book': 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
+};
+
+function SourceTag({ origin }: { origin?: string }) {
+  if (!origin) return null;
+  const label = ORIGIN_LABELS[origin] ?? origin;
+  const style = ORIGIN_STYLES[origin] ?? 'bg-slate-700/40 text-slate-400 border-slate-600';
+  return (
+    <span className={`inline-block rounded border px-1.5 py-0.5 text-[10px] ${style}`}>{label}</span>
+  );
+}
+
 /** Latest record per question id. */
 function lastByQuestion(history: AnswerRecord[]): Map<string, AnswerRecord> {
   const m = new Map<string, AnswerRecord>();
@@ -82,6 +105,11 @@ function AnswerLine({
       : 'border-rose-700 bg-rose-900/20';
   return (
     <div className={`p-3 rounded-md border ${border}`}>
+      {q.origin && (
+        <div className="mb-2">
+          <SourceTag origin={q.origin} />
+        </div>
+      )}
       <div className="flex items-start justify-between gap-3">
         <p className="text-sm text-slate-200 leading-snug">{q.prompt}</p>
         <div className="shrink-0 flex items-center gap-2">
