@@ -57,7 +57,9 @@ function validRow(r) {
     typeof r.correct === 'boolean' &&
     (r.picked_index == null ||
       (Number.isInteger(r.picked_index) && r.picked_index >= 0 && r.picked_index <= 2147483647)) &&
-    Number.isInteger(r.ts) && r.ts > 0
+    // ts is a client clock; reject 0/negative and anything beyond a day of skew
+    // so a runaway timestamp can't permanently win the upsert's ts guard.
+    Number.isInteger(r.ts) && r.ts > 0 && r.ts <= Date.now() + 86_400_000
   );
 }
 
@@ -153,6 +155,11 @@ const server = http.createServer(async (req, res) => {
     return send(res, 500, { error: 'server error' });
   }
 });
+
+// mysql2 can emit pool errors (e.g. the server going away) outside any request
+// scope; log them instead of letting an unhandled rejection kill the process.
+pool.on('error', (err) => console.error('mysql pool error:', err));
+process.on('unhandledRejection', (err) => console.error('unhandledRejection:', err));
 
 server.listen(Number(PORT), '127.0.0.1', () => {
   console.log(`lpic-sync listening on 127.0.0.1:${PORT}`);
