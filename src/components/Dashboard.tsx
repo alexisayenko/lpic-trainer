@@ -35,7 +35,7 @@ function ResultBadge({ correct, ts }: { correct: boolean; ts: number }) {
   return (
     <span
       title={fmtDate(ts)}
-      className={`text-sm leading-none ${correct ? 'text-emerald-400' : 'text-rose-400'}`}
+      className={`cursor-default text-sm leading-none ${correct ? 'text-emerald-400' : 'text-rose-400'}`}
     >
       {correct ? '✓' : '✗'}
     </span>
@@ -104,14 +104,9 @@ function AnswerLine({
       : 'border-rose-700 bg-rose-900/20';
   return (
     <div className={`p-3 rounded-md border ${border}`}>
-      {q.origin && (
-        <div className="mb-2">
-          <SourceTag origin={q.origin} />
-        </div>
-      )}
-      <div className="flex items-start justify-between gap-3">
-        <p className="text-sm text-slate-200 leading-snug">{q.prompt}</p>
-        <div className="shrink-0 flex items-center gap-2">
+      <div className="flex items-center gap-2 cursor-default">
+        {q.origin && <SourceTag origin={q.origin} />}
+        <div className="ml-auto flex items-center gap-2">
           {badges.length > 0 && (
             <span className="flex items-center gap-1">
               {badges.map((a, i) => (
@@ -129,6 +124,7 @@ function AnswerLine({
           )}
         </div>
       </div>
+      <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
       {rec && !rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
       )}
