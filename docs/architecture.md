@@ -95,8 +95,9 @@ three stages and by the dashboard.
 
 ## Mastery rating ([`lib/rating.ts`](../src/lib/rating.ts))
 
-`rateQuestion(attempts, now)` returns a 0–100 mastery score (recency-weighted
-accuracy 50% + freshness 30% + exposure 20% + capped streak bonus). Full spec and
+`rateQuestion(attempts, now)` returns a 0–100 mastery score: each day scores
+`20·sign(v−x)·max(v,x)/(v+x)`, summed over 20h-bucketed days within a rolling
+21-day forgetting window, clamped 0–100. Full spec and
 constants: [rating-formula.md](rating-formula.md). **Display-only** — shown as a
 star chip in [`QuestionStats`](../src/components/QuestionStats.tsx); it does **not**
 yet affect deck ordering or eligibility. The dashboard computes one rating per

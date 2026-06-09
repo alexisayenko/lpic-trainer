@@ -1,61 +1,51 @@
 import type { AnswerRecord } from '../types';
 
 export interface Rating {
-  /** 0–100 mastery; high = well known. */
+  /** 0–100 mastery; high = known and recently confirmed. */
   score: number;
-  /** Sub-scores, each 0–1, for display/tuning. */
-  accuracy: number;
-  exposure: number;
-  recency: number;
-  streak: number;
+  /** Day-buckets within the window that had activity (for display/tuning). */
+  days: number;
+  /** Signed sum of day contributions before clamping to 0–100. */
+  raw: number;
 }
 
 // See docs/rating-formula.md for rationale.
-const DECAY = 0.7; // each older attempt counts this fraction of the next-newer one
-const ENOUGH = 5; // attempts beyond this add no further exposure confidence
-const FRESH_DAYS = 30; // recency decays linearly to 0 over this many days
-const STREAK_CAP = 5; // consecutive corrects past this give no extra bonus
-const STREAK_BONUS = 0.1; // max additive bonus from a full streak
-
-const W_ACCURACY = 0.5;
-const W_RECENCY = 0.3;
-const W_EXPOSURE = 0.2;
+const DAY_GAP = 20 * 3_600_000; // attempts ≥ this far apart are different "days"
+const WINDOW_MS = 21 * 86_400_000; // forgetting window, measured from now
+const DAY_VALUE = 20; // full value of one clean day ⇒ 5 clean days = 100
 
 /** Mastery rating for one question from its attempt history. null when never asked. */
 export function rateQuestion(attempts: AnswerRecord[], now: number): Rating | null {
-  const n = attempts.length;
-  if (n === 0) return null;
+  if (attempts.length === 0) return null;
 
-  const recent = [...attempts].sort((a, b) => b.ts - a.ts); // newest first
+  const recent = attempts
+    .filter((a) => now - a.ts <= WINDOW_MS)
+    .sort((a, b) => a.ts - b.ts); // oldest first
 
-  // Recency-weighted accuracy: recent attempts dominate via geometric decay.
-  let wSum = 0;
-  let wHit = 0;
-  let w = 1;
+  let raw = 0;
+  let days = 0;
+  let v = 0; // correct in the current day-bucket
+  let x = 0; // wrong in the current day-bucket
+  let prevTs = -Infinity;
+
+  // One day's signed share of the majority side: 20·sign(v−x)·max(v,x)/(v+x).
+  const flush = () => {
+    const n = v + x;
+    if (n === 0) return;
+    raw += DAY_VALUE * Math.sign(v - x) * (Math.max(v, x) / n);
+    days++;
+    v = 0;
+    x = 0;
+  };
+
   for (const a of recent) {
-    wSum += w;
-    if (a.correct) wHit += w;
-    w *= DECAY;
+    if (a.ts - prevTs >= DAY_GAP) flush(); // ≥20h gap starts a new day
+    if (a.correct) v++;
+    else x++;
+    prevTs = a.ts;
   }
-  const accuracy = wHit / wSum;
+  flush();
 
-  const exposure = Math.min(n, ENOUGH) / ENOUGH;
-
-  const days = (now - recent[0].ts) / 86_400_000;
-  const recency = Math.max(0, 1 - days / FRESH_DAYS);
-
-  let run = 0;
-  for (const a of recent) {
-    if (!a.correct) break;
-    run++;
-  }
-  const streak = Math.min(run, STREAK_CAP) / STREAK_CAP;
-
-  const raw =
-    W_ACCURACY * accuracy +
-    W_RECENCY * recency +
-    W_EXPOSURE * exposure +
-    STREAK_BONUS * streak;
-
-  return { score: Math.round(100 * Math.min(1, raw)), accuracy, exposure, recency, streak };
+  const score = Math.round(Math.max(0, Math.min(100, raw)));
+  return { score, days, raw };
 }

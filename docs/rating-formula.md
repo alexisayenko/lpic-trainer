@@ -1,50 +1,88 @@
 # Question mastery rating
 
-A 0–100 **mastery** score per question — high means "you know it well." Computed
-from your attempt history in [`src/lib/rating.ts`](../src/lib/rating.ts) and shown
-as a `★ NN` chip in the per-question stats line (dashboard rows and the quiz).
+A 0–100 **mastery** score per question — high means "you know it well, and recently."
+Computed from your attempt history in [`src/lib/rating.ts`](../src/lib/rating.ts) and
+shown as a `★ NN` chip in the per-question stats line (dashboard rows and the quiz).
 
-> **Status: display-only.** The rating does **not** yet affect quiz ordering or
-> the question pool. Those are deferred (see *Not wired in yet* below).
+> **Status: display-only.** The rating does **not** yet affect quiz ordering or the
+> question pool. The 4/day time-block (below) is also not yet wired in. See
+> *Not wired in yet*.
 
-## Inputs
+## Model
+
+Mastery is built **per day**, then summed over a rolling window. The idea is
+spaced repetition: getting a question right on five separate days earns full
+mastery; cramming, wrong answers, and letting it go stale all pull it back down.
+
+### Inputs
 
 Only the local answer log is used (`AnswerRecord[]` per question): each attempt's
 `correct` flag and timestamp `ts`. Never-asked questions are **unrated** (no chip).
 
-## Factors
+### Day buckets
 
-Each factor is normalised to `0..1`.
+Attempts are grouped into "days." Two attempts **less than 20h apart** belong to
+the same day; a gap of ≥20h starts a new day. So several attempts in one study
+session count as a single day, even across a late-night/early-morning boundary.
 
-| Factor | Meaning | Definition |
-|---|---|---|
-| **Accuracy** (recency-weighted) | How consistently correct, recent attempts counting most | geometric decay: newest attempt weight `1`, each older `×0.7`. `accuracy = Σ wᵢ·correctᵢ / Σ wᵢ` |
-| **Recency** | How fresh the knowledge is (forgetting) | `max(0, 1 − daysSinceLast / 30)` — full at today, `0` after 30 days |
-| **Exposure** | How well-tested the result is | `min(attempts, 5) / 5` — low counts are less trustworthy |
-| **Streak** (bonus) | Consecutive recent corrects | `min(currentStreak, 5) / 5`, applied as a capped bonus |
+### Per-day contribution
 
-## Formula
+For one day with `v` correct and `x` wrong attempts:
 
 ```
-raw    = 0.5·accuracy + 0.3·recency + 0.2·exposure + 0.1·streak
-score  = round(100 · min(1, raw))
+contribution = 20 · sign(v − x) · max(v, x) / (v + x)
 ```
 
-Weights: accuracy **50%**, recency **30%**, exposure **20%**, plus up to **+10%**
-streak bonus (clamped so `score ≤ 100`).
+It's the **majority side's share of the day, signed**, scaled to ±20:
 
-### Constants (tunable, top of `rating.ts`)
+- All correct → **+20** (regardless of how many)
+- Majority correct → positive, toward +20 as it gets cleaner
+- Exact tie (`v == x`) → **0**
+- Majority wrong → negative, toward −20
+- All wrong → **−20**
 
-- `DECAY = 0.7` — older-attempt weighting
-- `ENOUGH = 5` — attempts for full exposure
-- `FRESH_DAYS = 30` — recency decay window
-- `STREAK_CAP = 5`, `STREAK_BONUS = 0.1`
+| Day (✓ / ✗) | Contribution |
+|---|---|
+| 1+ / 0 | **+20** |
+| 3 / 1 | **+15** |
+| 2 / 1 | **+13.3** |
+| 1 / 1, 2 / 2 | **0** |
+| 1 / 2 | **−13.3** |
+| 1 / 3 | **−15** |
+| 0 / 1+ | **−20** |
 
-## Examples
+A day contributes a clean ±20 only when it's all-right or all-wrong; a single
+answer flipping the majority moves the day across 0 (e.g. 1✓1✗ = 0 → 2✓1✗ = +13.3).
 
-- **Answered right once, today:** acc 1, recency 1, exposure 0.2, streak 0.2 → `raw 0.86` → **86**.
-- **5× correct but last attempt 40 days ago:** acc ~1, recency 0, exposure 1, streak 1 → `raw 0.80` → **80** (decayed by staleness).
-- **Recently flipped to correct after misses:** recency-weighted accuracy rewards the recent corrects, so the score climbs as you improve.
+### Forgetting window
+
+Only days **within the last 21 days from today** are counted. Older days drop out,
+so mastery **decays on its own** — a question you aced weeks ago slides back toward
+0 unless you revisit it. The window is measured from *now*, so the score can fall
+with no new activity.
+
+### Score
+
+```
+score = clamp(0, 100, Σ day contributions within window)
+```
+
+Five clean days = `5 × 20 = 100`. Bad days subtract and can erase earned mastery,
+but the total never drops below 0.
+
+## Constants (tunable, top of `rating.ts`)
+
+- `DAY_GAP = 20h` — minimum spacing for two attempts to count as different days
+- `WINDOW_DAYS = 21` — forgetting window
+- `DAY_VALUE = 20` — full value of one clean day (⇒ 5 clean days = 100)
+
+## Quiz selection (separate layer)
+
+These shape which questions appear; they are **not** part of the score above.
+
+- **Time-block** — once a question has been answered **4 times in a calendar day**,
+  it's removed from the pool until the next day. (All 4 attempts still count toward
+  that day's contribution.) This caps `v + x ≤ 4` per day, so e.g. `3✓2✗` can't occur.
 
 ## Chip colours
 
@@ -54,9 +92,7 @@ streak bonus (clamped so `score ≤ 100`).
 
 - **Ordering** — the quiz still uses the 3-bucket `orderByWeakness` (unseen > wrong
   > correct, random tiebreak). The plan is to drive ordering by `100 − score`.
-- **Skip recently asked** — a "skip questions asked within the last N days" pool
-  filter (days, presets `0/1/3/7/14`) is planned but not built.
-- **Difficulty** — `Question.difficulty` (`recall`/`applied`/`scenario`) is only
-  on ~⅔ of questions; held until coverage is complete and the ordinal weighting
-  (recall < applied < scenario) is confirmed.
-- **Answer latency** — not tracked; explicitly out of scope for now.
+- **Time-block** — the 4/day cap is specified above but not yet enforced in the pool.
+- **Difficulty** — `Question.difficulty` (`recall`/`applied`/`scenario`) is only on
+  ~⅔ of questions; held until coverage is complete.
+- **Answer latency** — not tracked; explicitly out of scope.
