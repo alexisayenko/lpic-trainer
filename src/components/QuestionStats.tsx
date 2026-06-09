@@ -1,4 +1,5 @@
 import type { AnswerRecord, Question } from '../types';
+import { rateQuestion } from '../lib/rating';
 
 export function fmtDate(ts: number): string {
   return new Date(ts).toLocaleString(undefined, {
@@ -42,6 +43,23 @@ export function SourceTag({ origin }: { origin?: string }) {
   );
 }
 
+function MasteryChip({ score }: { score: number }) {
+  const tone =
+    score >= 80
+      ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+      : score >= 50
+        ? 'bg-amber-500/15 text-amber-300 border-amber-500/30'
+        : 'bg-rose-500/15 text-rose-300 border-rose-500/30';
+  return (
+    <span
+      title="Mastery (recency-weighted accuracy, exposure, freshness, streak)"
+      className={`rounded border px-1.5 py-0.5 text-[10px] ${tone}`}
+    >
+      ★ {score}
+    </span>
+  );
+}
+
 function ResultBadge({ correct, ts }: { correct: boolean; ts: number }) {
   return (
     <span
@@ -67,10 +85,12 @@ export function QuestionStats({
   const right = badges.filter((a) => a.correct).length;
   const wrong = badges.length - right;
   const pct = badges.length ? Math.round((right / badges.length) * 100) : null;
+  const rating = rateQuestion(badges, Date.now());
   return (
     <div className="flex items-center gap-2 cursor-default">
       {q.origin && <SourceTag origin={q.origin} />}
       <div className="ml-auto flex items-center gap-2">
+        {rating && <MasteryChip score={rating.score} />}
         {badges.length > 0 && (
           <span className="flex items-center gap-1">
             <span className="text-slate-500">[</span>
