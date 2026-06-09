@@ -229,7 +229,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const totalCorrect = history.filter((r) => r.correct).length;
   const overallPct = totalAttempts ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
 
-  const presets = [5, 10, 20];
+  const presets = [5, 6, 12, 24, 48, 60];
 
   return (
     <div className="max-w-xl mx-auto p-6 space-y-6">
@@ -364,28 +364,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
               {n}
             </button>
           ))}
-          <button
-            type="button"
-            onClick={() => setQuizSize(null)}
-            className={`px-4 py-2 rounded-md border text-sm transition-colors ${
-              quizSize === null
-                ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
-                : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
-            }`}
-          >
-            All
-          </button>
-          <input
-            type="text"
-            inputMode="numeric"
-            value={quizSize ?? ''}
-            placeholder="#"
-            onChange={(e) => {
-              const v = parseInt(e.target.value, 10);
-              setQuizSize(Number.isFinite(v) && v > 0 ? v : null);
-            }}
-            className="w-14 px-3 py-2 rounded-md border border-slate-700 bg-slate-800/60 text-slate-200 placeholder-slate-500"
-          />
           <button
             type="button"
             onClick={onStart}
