@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
-import { filterPool, orderByWeakness, pickDeck } from '../lib/select';
+import { filterPool, lastByQuestion, orderByWeakness, pickDeck } from '../lib/select';
 import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
+import { QuestionStats } from './QuestionStats';
 
 const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
 
@@ -18,6 +19,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
   const resultFilter = useStore((s) => s.resultFilter);
   const sourceFilter = useStore((s) => s.sourceFilter);
   const recordAnswer = useStore((s) => s.recordAnswer);
+  const history = useStore((s) => s.history);
 
   // Snapshot history once, when the deck is built, so answering doesn't re-order it mid-quiz.
   const deck = useMemo<Question[]>(() => {
@@ -27,9 +29,9 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
           return t !== undefined && selectedTopics.includes(t);
         })
       : QUESTIONS;
-    const history = useStore.getState().history;
-    const pool = filterPool(topicPool, history, resultFilter, sourceFilter);
-    const ordered = orderByWeakness(pool, history);
+    const last = lastByQuestion(useStore.getState().history);
+    const pool = filterPool(topicPool, last, resultFilter, sourceFilter);
+    const ordered = orderByWeakness(pool, last);
     return pickDeck(ordered, quizSize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTopics, quizSize, resultFilter, sourceFilter]);
@@ -88,6 +90,8 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
   const q = deck[index];
   const type = q.type ?? 'single';
   const choices = q.choices ?? [];
+  const attempts = history.filter((r) => r.questionId === q.id).sort((a, b) => a.ts - b.ts);
+  const lastRec = attempts[attempts.length - 1];
 
   const commit = (correct: boolean, pickedIndex?: number) => {
     setAnswered(true);
@@ -148,6 +152,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
           {index + 1} / {deck.length}
         </span>
       </div>
+      <QuestionStats q={q} rec={lastRec} attempts={attempts} />
       <h2 className="text-xl text-slate-100 leading-snug">{q.prompt}</h2>
       {type === 'multi' && !answered && (
         <p className="text-xs text-slate-500 -mt-2">Select all that apply, then submit.</p>

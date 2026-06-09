@@ -1,77 +1,23 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
-import { useStore, type AnswerRecord, type ResultFilter } from '../store';
-import { filterPool } from '../lib/select';
-import { TOPIC_LABELS, topicOf, type Question, type Topic } from '../types';
+import { useStore } from '../store';
+import { filterPool, lastByQuestion } from '../lib/select';
+import {
+  TOPIC_LABELS,
+  topicOf,
+  type AnswerRecord,
+  type Question,
+  type ResultFilter,
+  type SourceFilter,
+  type Topic,
+} from '../types';
 import { Account } from './Account';
+import { ORIGIN_LABELS, QuestionStats } from './QuestionStats';
 import logo from '../assets/logo.png';
 
 const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
 
 const byId = new Map(QUESTIONS.map((q) => [q.id, q]));
-
-function fmtDate(ts: number): string {
-  return new Date(ts).toLocaleString(undefined, {
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
-
-/** Relative time, e.g. "today", "3 days ago", "2 mo ago". */
-function fmtRel(ts: number): string {
-  const days = Math.floor((Date.now() - ts) / 86_400_000);
-  if (days <= 0) return 'today';
-  if (days === 1) return 'yesterday';
-  if (days < 30) return `${days} days ago`;
-  if (days < 365) return `${Math.floor(days / 30)} mo ago`;
-  return `${Math.floor(days / 365)} yr ago`;
-}
-
-function ResultBadge({ correct, ts }: { correct: boolean; ts: number }) {
-  return (
-    <span
-      title={fmtDate(ts)}
-      className={`cursor-default text-sm leading-none ${correct ? 'text-emerald-400' : 'text-rose-400'}`}
-    >
-      {correct ? '✓' : '✗'}
-    </span>
-  );
-}
-
-const ORIGIN_LABELS: Record<string, string> = {
-  'linux-direct': 'Linux Direct',
-  'ken-adams': 'Ken Adams',
-  'gpt-deep-research': 'GPT',
-  'claude-lpic2book': 'Claude',
-};
-
-const ORIGIN_STYLES: Record<string, string> = {
-  'linux-direct': 'bg-sky-500/15 text-sky-300 border-sky-500/30',
-  'ken-adams': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
-  'gpt-deep-research': 'bg-violet-500/15 text-violet-300 border-violet-500/30',
-  'claude-lpic2book': 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
-};
-
-function SourceTag({ origin }: { origin?: string }) {
-  if (!origin) return null;
-  const label = ORIGIN_LABELS[origin] ?? origin;
-  const style = ORIGIN_STYLES[origin] ?? 'bg-slate-700/40 text-slate-400 border-slate-600';
-  return (
-    <span className={`inline-block rounded border px-1.5 py-0.5 text-[10px] ${style}`}>{label}</span>
-  );
-}
-
-/** Latest record per question id. */
-function lastByQuestion(history: AnswerRecord[]): Map<string, AnswerRecord> {
-  const m = new Map<string, AnswerRecord>();
-  for (const r of history) {
-    const prev = m.get(r.questionId);
-    if (!prev || r.ts >= prev.ts) m.set(r.questionId, r);
-  }
-  return m;
-}
 
 function AnswerLine({
   q,
@@ -91,10 +37,6 @@ function AnswerLine({
         : q.choices?.[q.answerIndex ?? -1];
   const yours =
     type === 'single' && rec?.pickedIndex != null ? q.choices?.[rec.pickedIndex] : undefined;
-  const badges = attempts && attempts.length ? attempts : rec ? [rec] : [];
-  const right = badges.filter((a) => a.correct).length;
-  const wrong = badges.length - right;
-  const pct = badges.length ? Math.round((right / badges.length) * 100) : null;
   const border = !rec
     ? 'border-slate-700 bg-slate-800/20'
     : rec.correct
@@ -102,33 +44,7 @@ function AnswerLine({
       : 'border-rose-700 bg-rose-900/20';
   return (
     <div className={`p-3 rounded-md border ${border}`}>
-      <div className="flex items-center gap-2 cursor-default">
-        {q.origin && <SourceTag origin={q.origin} />}
-        <div className="ml-auto flex items-center gap-2">
-          {badges.length > 0 && (
-            <span className="flex items-center gap-1">
-              {badges.map((a, i) => (
-                <ResultBadge key={`${a.ts}-${i}`} correct={a.correct} ts={a.ts} />
-              ))}
-              {pct !== null && (
-                <span className="text-xs">
-                  <span className="text-slate-500"> | </span>
-                  <span className="text-rose-400">{wrong}</span>
-                  <span className="text-slate-500">/</span>
-                  <span className="text-emerald-400">{right} ({pct}%)</span>
-                </span>
-              )}
-            </span>
-          )}
-          {rec ? (
-            <span className="text-xs text-slate-500" title={fmtDate(rec.ts)}>
-              {fmtRel(rec.ts)}
-            </span>
-          ) : (
-            <span className="text-xs text-slate-600 italic">not asked yet</span>
-          )}
-        </div>
-      </div>
+      <QuestionStats q={q} rec={rec} attempts={attempts} />
       <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
       {rec && !rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
@@ -144,13 +60,20 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const setTopics = useStore((s) => s.setTopics);
   const quizSize = useStore((s) => s.quizSize);
   const setQuizSize = useStore((s) => s.setQuizSize);
-  const filter = useStore((s) => s.resultFilter);
-  const setFilter = useStore((s) => s.setResultFilter);
-  const source = useStore((s) => s.sourceFilter);
-  const setSource = useStore((s) => s.setSourceFilter);
+  const resultFilter = useStore((s) => s.resultFilter);
+  const setResultFilter = useStore((s) => s.setResultFilter);
+  const sourceFilter = useStore((s) => s.sourceFilter);
+  const setSourceFilter = useStore((s) => s.setSourceFilter);
 
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
+
+  useEffect(() => {
+    if (!zoom) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setZoom(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [zoom]);
 
   const isOn = (t: Topic) => selected === null || selected.includes(t);
   const toggleTopic = (t: Topic) => {
@@ -159,16 +82,15 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
     setTopics(next.length === ALL_TOPICS.length ? null : next);
   };
 
+  const last = useMemo(() => lastByQuestion(history), [history]);
+
   const available = useMemo(() => {
     const topicPool = QUESTIONS.filter((q) => {
       const t = topicOf(q);
-      return t !== undefined && isOn(t);
+      return t !== undefined && (selected === null || selected.includes(t));
     });
-    return filterPool(topicPool, history, filter, source).length;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected, filter, source, history]);
-
-  const last = useMemo(() => lastByQuestion(history), [history]);
+    return filterPool(topicPool, last, resultFilter, sourceFilter).length;
+  }, [selected, resultFilter, sourceFilter, last]);
 
   const attemptsByQ = useMemo(() => {
     const m = new Map<string, AnswerRecord[]>();
@@ -211,15 +133,8 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
 
   const questionRows = useMemo(() => {
     if (!open) return [];
-    return QUESTIONS.filter((q) => topicOf(q) === open)
-      .filter((q) => source === 'all' || q.origin === source)
-      .filter((q) => {
-        const r = last.get(q.id);
-        if (filter === 'all') return true;
-        if (filter === 'unseen') return !r;
-        if (!r) return false;
-        return filter === 'correct' ? r.correct : !r.correct;
-      })
+    const pool = QUESTIONS.filter((q) => topicOf(q) === open);
+    return filterPool(pool, last, resultFilter, sourceFilter)
       .sort((a, b) => {
         const ra = last.get(a.id);
         const rb = last.get(b.id);
@@ -228,7 +143,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         if (rb) return 1;
         return a.id.localeCompare(b.id);
       });
-  }, [open, filter, source, last]);
+  }, [open, resultFilter, sourceFilter, last]);
 
   const totalAttempts = history.length;
   const totalCorrect = history.filter((r) => r.correct).length;
@@ -265,24 +180,24 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
             <button
               key={f}
               type="button"
-              onClick={() => setFilter(f)}
+              onClick={() => setResultFilter(f)}
               className={`px-3 py-1.5 capitalize ${
-                filter === f ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
+                resultFilter === f ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
               }`}
             >
               {f}
             </button>
           ))}
         </div>
-        <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit ml-auto">
-          {(['all', 'linux-direct', 'ken-adams', 'gpt-deep-research', 'claude-lpic2book'] as const).map(
+        <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit sm:ml-auto">
+          {(['all', 'linux-direct', 'ken-adams', 'gpt-deep-research', 'claude-lpic2book'] as SourceFilter[]).map(
             (sKey) => (
               <button
                 key={sKey}
                 type="button"
-                onClick={() => setSource(sKey)}
+                onClick={() => setSourceFilter(sKey)}
                 className={`px-3 py-1.5 ${
-                  source === sKey ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
+                  sourceFilter === sKey ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
                 }`}
               >
                 {sKey === 'all' ? 'All' : ORIGIN_LABELS[sKey]}
