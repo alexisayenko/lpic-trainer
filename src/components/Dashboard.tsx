@@ -333,7 +333,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           )}
         </div>
       </div>
-      <p className="-mt-3 text-xs text-slate-500">Tick a topic to include it in the quiz; click it to see details.</p>
 
       <ul className="space-y-2">
         {perTopic.map((s) => {
