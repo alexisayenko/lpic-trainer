@@ -72,6 +72,9 @@ function AnswerLine({
   // In by-question mode `attempts` holds the full history (oldest→newest); in
   // timeline mode it's a single attempt; an unseen question has neither.
   const badges = attempts && attempts.length ? attempts : rec ? [rec] : [];
+  const pct = badges.length
+    ? Math.round((badges.filter((a) => a.correct).length / badges.length) * 100)
+    : null;
   const border = !rec
     ? 'border-slate-700 bg-slate-800/20'
     : rec.correct
@@ -81,21 +84,24 @@ function AnswerLine({
     <div className={`p-3 rounded-md border ${border}`}>
       <div className="flex items-start justify-between gap-3">
         <p className="text-sm text-slate-200 leading-snug">{q.prompt}</p>
-        {rec ? (
-          <span className="shrink-0 text-xs text-slate-500" title={fmtDate(rec.ts)}>
-            {fmtRel(rec.ts)}
-          </span>
-        ) : (
-          <span className="shrink-0 text-xs text-slate-600 italic">not asked yet</span>
-        )}
-      </div>
-      {badges.length > 0 && (
-        <div className="mt-2 flex flex-wrap items-center gap-1">
-          {badges.map((a, i) => (
-            <ResultBadge key={`${a.ts}-${i}`} correct={a.correct} ts={a.ts} />
-          ))}
+        <div className="shrink-0 flex items-center gap-2">
+          {badges.length > 0 && (
+            <span className="flex items-center gap-1">
+              {badges.map((a, i) => (
+                <ResultBadge key={`${a.ts}-${i}`} correct={a.correct} ts={a.ts} />
+              ))}
+              {pct !== null && <span className="text-xs text-slate-400">({pct}%)</span>}
+            </span>
+          )}
+          {rec ? (
+            <span className="text-xs text-slate-500" title={fmtDate(rec.ts)}>
+              {fmtRel(rec.ts)}
+            </span>
+          ) : (
+            <span className="text-xs text-slate-600 italic">not asked yet</span>
+          )}
         </div>
-      )}
+      </div>
       {rec && !rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
       )}
