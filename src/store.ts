@@ -54,9 +54,7 @@ export const useStore = create<State>()(
       migrate: (state: unknown, version: number) => {
         const s = (state ?? {}) as Partial<State>;
         s.history = Array.isArray(s.history)
-          ? s.history.map((r) =>
-              r.id ? r : { ...r, id: r.questionId && r.ts ? `${r.questionId}-${r.ts}` : newId() },
-            )
+          ? s.history.map((r) => (r.id ? r : { ...r, id: newId() }))
           : [];
         if (version < 2) {
           if (!RESULT_FILTERS.includes(s.resultFilter as ResultFilter)) s.resultFilter = 'all';

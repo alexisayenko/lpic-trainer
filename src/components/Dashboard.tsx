@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
 import { useAuth } from '../lib/auth';
-import { cloudEnabled, deleteAll } from '../lib/api';
+import { cloudEnabled } from '../lib/api';
 import { filterPool } from '../lib/select';
 import type { Rating } from '../lib/rating';
 import { ALL_TOPICS, TOPIC_LABELS, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
@@ -10,6 +10,7 @@ import { Account } from './Account';
 import { QuestionStats } from './QuestionStats';
 import { FilterBar } from './FilterBar';
 import { LogoZoom } from './LogoZoom';
+import { clearAllStats } from './CloudSync';
 import { useDashboardStats } from './useDashboardStats';
 import logo from '../assets/logo.png';
 
@@ -62,7 +63,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const sourceFilter = useStore((s) => s.sourceFilter);
   const setSourceFilter = useStore((s) => s.setSourceFilter);
 
-  const reset = useStore((s) => s.reset);
   const token = useAuth((s) => s.token);
 
   const [open, setOpen] = useState<Topic | null>(null);
@@ -105,8 +105,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const resetStats = () => {
     const where = cloudEnabled && token ? ' on this device and in the cloud' : ' on this device';
     if (!window.confirm(`Erase all your stats${where}? This cannot be undone.`)) return;
-    reset();
-    if (cloudEnabled && token) deleteAll().catch(() => {});
+    clearAllStats().catch(() => {});
   };
 
   return (

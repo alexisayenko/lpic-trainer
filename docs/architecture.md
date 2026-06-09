@@ -76,8 +76,8 @@ Zustand store persisted to `localStorage` key `lpic-trainer-state`:
 | `history` | `AnswerRecord[]` — the full answer log |
 
 `recordAnswer` appends; `setHistory` replaces (after a sync merge); `reset` clears.
-Persist is **version 2**: `migrate` backfills a stable `id` on legacy records
-(falling back to a fresh uuid) and defaults/sanitises the filter fields for v0/v1.
+Persist is **version 2**: `migrate` backfills a fresh `id` on legacy records that
+lack one and defaults/sanitises the filter fields for v0/v1.
 
 ## Deck pipeline ([`lib/select.ts`](../src/lib/select.ts))
 
@@ -114,8 +114,8 @@ with a single clock snapshot for consistency.
   chip, attempt history (`[ ✗✓ ]`), accuracy, your answer, and the correct answer.
 - **Quiz launcher** — size presets + an "available" count; **Start** is disabled when
   the pool is empty.
-- **Reset all stats** — confirms, then clears local history and (when connected) wipes
-  the remote table via `deleteAll`.
+- **Reset all stats** — confirms, then `clearAllStats` clears local history and (when
+  connected) wipes the remote table, coordinated so a concurrent sync can't restore it.
 - **Logo lightbox** ([`LogoZoom`](../src/components/LogoZoom.tsx)) — accessible modal
   (`role="dialog"`, focus trap/restore, Escape).
 
@@ -143,7 +143,10 @@ sent as `Authorization: Bearer`). Setup/ops: [self-hosted-sync.md](self-hosted-s
 - `CloudSync` orchestrates: on token set (and on the `online` event) it pulls, merges,
   writes back, and pushes the delta; an in-flight guard prevents overlap and an
   apply-guard stops the programmatic write from echoing back as a push. New answers
-  push incrementally (the appended slice only).
+  push incrementally — the subscription diffs by record `id`, so it pushes exactly the
+  records not previously present (survives reorders/inserts, ignores a reset's shrink).
+  `clearAllStats` resets local and the remote table as one coordinated step under a
+  suppression flag, so a concurrent/reconnect sync can't merge the old rows back in.
 - Token entry/validation is the shared [`useTokenConnect`](../src/lib/useTokenConnect.ts)
   hook used by both Login and [`Account`](../src/components/Account.tsx).
 
