@@ -45,7 +45,7 @@ const ORIGIN_LABELS: Record<string, string> = {
   'linux-direct': 'Linux Direct',
   'ken-adams': 'Ken Adams',
   'gpt-deep-research': 'GPT',
-  'claude-lpic2book': 'lpic2book',
+  'claude-lpic2book': 'Claude',
 };
 
 const ORIGIN_STYLES: Record<string, string> = {
@@ -274,7 +274,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                   source === sKey ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
                 }`}
               >
-                {sKey === 'all' ? 'All sources' : ORIGIN_LABELS[sKey]}
+                {sKey === 'all' ? 'All' : ORIGIN_LABELS[sKey]}
               </button>
             ),
           )}
