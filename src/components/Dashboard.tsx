@@ -112,9 +112,11 @@ function AnswerLine({
                 <ResultBadge key={`${a.ts}-${i}`} correct={a.correct} ts={a.ts} />
               ))}
               {pct !== null && (
-                <span className="text-xs text-slate-400">
-                  <span className="text-rose-400">✗{wrong}</span>{' '}
-                  <span className="text-emerald-400">✓{right}</span> ({pct}%)
+                <span className="text-xs">
+                  <span className="text-slate-500"> | </span>
+                  <span className="text-rose-400">{wrong}</span>
+                  <span className="text-slate-500">/</span>
+                  <span className="text-emerald-400">{right} ({pct}%)</span>
                 </span>
               )}
             </span>
