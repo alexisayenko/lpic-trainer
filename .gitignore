@@ -11,3 +11,6 @@ yarn-error.log*
 pnpm-debug.log*
 .env
 .env.local
+
+# Reference/source material (copyrighted course PDFs, screenshots, book PDF) — kept local, never published
+docs/refs/

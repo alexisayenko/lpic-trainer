@@ -21,7 +21,27 @@ function isQuestion(value: unknown): value is Question {
   return Array.isArray(q.choices) && typeof q.answerIndex === 'number';
 }
 
-const all = Object.values(modules).flatMap((m) => (Array.isArray(m) ? m : [m]));
+/**
+ * Provenance of a question, inferred from its file path and id series.
+ * Generated banks live in their own folders; the original Udemy-sourced
+ * questions are split by id series: the comprehensive a–g clusters come from
+ * Linux Direct, the scattered "u" series from Ken Adams.
+ */
+function inferOrigin(path: string, id: string): string {
+  if (path.includes('/lpic-bank/')) return 'gpt-deep-research';
+  if (path.includes('/lpic2book/')) return 'claude-lpic2book';
+  const series = id.match(/-([a-z]+)\d+$/)?.[1];
+  return series === 'u' ? 'ken-adams' : 'linux-direct';
+}
+
+const all = Object.entries(modules).flatMap(([path, m]) => {
+  const items = Array.isArray(m) ? m : [m];
+  return items.map((q) =>
+    q && typeof q === 'object' && !('origin' in q)
+      ? { ...(q as object), origin: inferOrigin(path, (q as { id?: string }).id ?? '') }
+      : q,
+  );
+});
 
 export const QUESTIONS: Question[] = all
   .filter(isQuestion)

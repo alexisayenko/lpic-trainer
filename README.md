@@ -76,15 +76,17 @@ The exam 202 objectives, as published by LPI:
 | 211 | E-Mail Services (Postfix, Dovecot) |
 | 212 | System Security (firewall, OpenSSH, OpenVPN) |
 
-Questions live as JSON under `src/data/questions/`, grouped by the utility they cover (`bind9`, `apache2`, `samba`, …). `utilities.json` maps each utility to its exam topic. `src/data/questions/index.ts` globs every file into `QUESTIONS[]` at build time; a file may hold a single question object **or an array** of them (objective-mapped banks live as arrays under `lpic-bank/`). Every question needs a unique `id`, the `tool` (utility slug), a `prompt`, and an `explanation`, plus fields by `type`:
+Questions live as JSON under `src/data/questions/`, grouped by the utility they cover (`bind9`, `apache2`, `samba`, …). `utilities.json` maps each utility to its exam topic. `src/data/questions/index.ts` globs every file into `QUESTIONS[]` at build time; a file may hold a single question object **or an array** of them (objective-mapped banks live as arrays under `lpic-bank/` and `lpic2book/`). Every question needs a unique `id`, the `tool` (utility slug), a `prompt`, and an `explanation`, plus fields by `type`:
 
 - `single` (default if `type` omitted): `choices` + `answerIndex`.
 - `multi`: `choices` + `answerIndices` (correct only when the selected set matches exactly).
 - `fill`: `answer` (compared case- and whitespace-insensitively).
 
+Each question also gets an `origin` (auto-tagged at load from its path/id): `linux-direct` and `ken-adams` for the original by-topic and `u`-series sets, `gpt-deep-research` for `lpic-bank/`, and `claude-lpic2book` for `lpic2book/` (original questions distilled from the CC-licensed lpic2book).
+
 Per-utility `notes.md` files hold reference/study material.
 
-The bank holds ~294 hand-written questions plus an objective-mapped `lpic-bank/` set, all derived from LPIC-2 study material.
+The bank holds ~500 questions: the original two sets plus the objective-mapped `lpic-bank/` (GPT) and `lpic2book/` (original, from the open book) sets. Source/reference material under `docs/refs/` is git-ignored — copyrighted course PDFs are kept local, not published.
 
 ## Scope notes
 

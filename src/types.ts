@@ -23,7 +23,10 @@ export interface Question {
   /** Optional metadata carried from generated banks. */
   objective?: string;
   difficulty?: string;
+  /** Authoritative reference URL for the answer. */
   source?: string;
+  /** Provenance of the question set (auto-tagged at load from the file path). */
+  origin?: string;
 }
 
 export interface UtilityInfo {
