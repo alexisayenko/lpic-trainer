@@ -1,5 +1,5 @@
 import http from 'node:http';
-import { timingSafeEqual } from 'node:crypto';
+import { createHash, timingSafeEqual } from 'node:crypto';
 import mysql from 'mysql2/promise';
 
 const {
@@ -41,9 +41,20 @@ function applyCors(req, res) {
 function authed(req) {
   const header = req.headers.authorization || '';
   const token = header.startsWith('Bearer ') ? header.slice(7) : '';
-  const a = Buffer.from(token);
-  const b = Buffer.from(API_TOKEN);
-  return a.length === b.length && timingSafeEqual(a, b);
+  // Hash both to fixed-width digests so the compare can't leak token length via timing.
+  const a = createHash('sha256').update(token).digest();
+  const b = createHash('sha256').update(API_TOKEN).digest();
+  return timingSafeEqual(a, b);
+}
+
+function validRow(r) {
+  return (
+    r &&
+    typeof r.id === 'string' && r.id.length >= 1 && r.id.length <= 128 &&
+    typeof r.question_id === 'string' && r.question_id.length >= 1 && r.question_id.length <= 128 &&
+    (r.picked_index == null || (Number.isInteger(r.picked_index) && r.picked_index >= 0)) &&
+    Number.isInteger(r.ts) && r.ts > 0
+  );
 }
 
 function send(res, status, body) {
@@ -89,6 +100,8 @@ const server = http.createServer(async (req, res) => {
     if (req.url === '/answers' && req.method === 'POST') {
       const body = await readJson(req);
       if (!Array.isArray(body)) return send(res, 400, { error: 'expected an array' });
+      if (body.length > 5000) return send(res, 413, { error: 'too many records' });
+      if (!body.every(validRow)) return send(res, 400, { error: 'invalid record' });
       if (body.length) {
         const values = body.map((r) => [
           r.id,
@@ -99,7 +112,10 @@ const server = http.createServer(async (req, res) => {
         ]);
         await pool.query(
           `INSERT INTO answers (id, question_id, picked_index, correct, ts) VALUES ?
-           ON DUPLICATE KEY UPDATE picked_index = VALUES(picked_index), correct = VALUES(correct)`,
+           ON DUPLICATE KEY UPDATE
+             picked_index = IF(VALUES(ts) > ts, VALUES(picked_index), picked_index),
+             correct = IF(VALUES(ts) > ts, VALUES(correct), correct),
+             ts = IF(VALUES(ts) > ts, VALUES(ts), ts)`,
           [values],
         );
       }

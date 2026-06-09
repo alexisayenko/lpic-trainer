@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useStore } from '../store';
 import { useAuth } from '../lib/auth';
-import { cloudEnabled, fullSync, pushNew } from '../lib/api';
+import { cloudEnabled, fullSync, pushRecords } from '../lib/api';
 
 /**
  * Headless: runs a full two-way sync when a token is set, then pushes new
@@ -20,14 +20,25 @@ export function CloudSync() {
     if (synced.current === token) return;
     synced.current = token;
     fullSync().catch(() => {
-      // Offline / bad token: keep working locally, retry on next change.
+      // Offline / bad token: keep working locally, retry on reconnect or next change.
     });
   }, [enabled, token]);
+
+  // Reconcile when connectivity returns, recovering any pushes dropped while offline.
+  useEffect(() => {
+    if (!enabled) return;
+    const onOnline = () => fullSync().catch(() => {});
+    window.addEventListener('online', onOnline);
+    return () => window.removeEventListener('online', onOnline);
+  }, [enabled]);
 
   useEffect(() => {
     if (!enabled) return;
     return useStore.subscribe((state, prev) => {
-      if (state.history !== prev.history) pushNew().catch(() => {});
+      if (state.history === prev.history) return;
+      const prevIds = new Set(prev.history.map((r) => r.id));
+      const added = state.history.filter((r) => !prevIds.has(r.id));
+      if (added.length) pushRecords(added).catch(() => {});
     });
   }, [enabled]);
 
