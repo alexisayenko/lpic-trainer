@@ -34,9 +34,7 @@ function ResultBadge({ correct, ts }: { correct: boolean; ts: number }) {
   return (
     <span
       title={fmtDate(ts)}
-      className={`inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded px-1 text-[11px] font-bold text-white ${
-        correct ? 'bg-emerald-600' : 'bg-rose-600'
-      }`}
+      className={`text-sm leading-none ${correct ? 'text-emerald-400' : 'text-rose-400'}`}
     >
       {correct ? '✓' : '✗'}
     </span>
@@ -59,7 +57,7 @@ function AnswerLine({
   attempts,
 }: {
   q: Question;
-  rec: AnswerRecord;
+  rec?: AnswerRecord;
   attempts?: AnswerRecord[];
 }) {
   const type = q.type ?? 'single';
@@ -69,28 +67,36 @@ function AnswerLine({
       : type === 'multi'
         ? (q.answerIndices ?? []).map((i) => q.choices?.[i]).join(', ')
         : q.choices?.[q.answerIndex ?? -1];
-  const yours = type === 'single' && rec.pickedIndex != null ? q.choices?.[rec.pickedIndex] : undefined;
+  const yours =
+    type === 'single' && rec?.pickedIndex != null ? q.choices?.[rec.pickedIndex] : undefined;
   // In by-question mode `attempts` holds the full history (oldest→newest); in
-  // timeline mode it's absent and we show just this single attempt's result.
-  const badges = attempts && attempts.length ? attempts : [rec];
+  // timeline mode it's a single attempt; an unseen question has neither.
+  const badges = attempts && attempts.length ? attempts : rec ? [rec] : [];
+  const border = !rec
+    ? 'border-slate-700 bg-slate-800/20'
+    : rec.correct
+      ? 'border-emerald-700 bg-emerald-900/20'
+      : 'border-rose-700 bg-rose-900/20';
   return (
-    <div
-      className={`p-3 rounded-md border ${
-        rec.correct ? 'border-emerald-700 bg-emerald-900/20' : 'border-rose-700 bg-rose-900/20'
-      }`}
-    >
+    <div className={`p-3 rounded-md border ${border}`}>
       <div className="flex items-start justify-between gap-3">
         <p className="text-sm text-slate-200 leading-snug">{q.prompt}</p>
-        <span className="shrink-0 text-xs text-slate-500" title={fmtDate(rec.ts)}>
-          {fmtRel(rec.ts)}
-        </span>
+        {rec ? (
+          <span className="shrink-0 text-xs text-slate-500" title={fmtDate(rec.ts)}>
+            {fmtRel(rec.ts)}
+          </span>
+        ) : (
+          <span className="shrink-0 text-xs text-slate-600 italic">not asked yet</span>
+        )}
       </div>
-      <div className="mt-2 flex flex-wrap items-center gap-1">
-        {badges.map((a, i) => (
-          <ResultBadge key={`${a.ts}-${i}`} correct={a.correct} ts={a.ts} />
-        ))}
-      </div>
-      {!rec.correct && yours !== undefined && (
+      {badges.length > 0 && (
+        <div className="mt-2 flex flex-wrap items-center gap-1">
+          {badges.map((a, i) => (
+            <ResultBadge key={`${a.ts}-${i}`} correct={a.correct} ts={a.ts} />
+          ))}
+        </div>
+      )}
+      {rec && !rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
       )}
       {correctText && <p className="mt-1 text-xs text-emerald-300">Correct: {correctText}</p>}
@@ -150,24 +156,40 @@ export function Stats({ onExit }: { onExit: () => void }) {
     });
   }, [history, last]);
 
-  // Rows for the currently-open topic, respecting mode + filter.
-  const rows = useMemo(() => {
-    if (!open) return [];
-    const inTopic = (qid: string) => {
-      const q = byId.get(qid);
-      return q && topicOf(q) === open;
-    };
-    if (mode === 'question') {
-      return [...last.values()]
-        .filter((r) => inTopic(r.questionId))
-        .filter((r) => (filter === 'all' ? true : filter === 'correct' ? r.correct : !r.correct))
-        .sort((a, b) => b.ts - a.ts);
-    }
+  // Timeline rows: one entry per attempt in the open topic.
+  const timelineRows = useMemo(() => {
+    if (!open || mode !== 'timeline') return [];
     return history
-      .filter((r) => inTopic(r.questionId))
+      .filter((r) => {
+        const q = byId.get(r.questionId);
+        return q && topicOf(q) === open;
+      })
       .filter((r) => (filter === 'all' ? true : filter === 'correct' ? r.correct : !r.correct))
       .sort((a, b) => b.ts - a.ts);
-  }, [open, mode, filter, last, history]);
+  }, [open, mode, filter, history]);
+
+  // By-question rows: every question in the open topic, unseen ones included,
+  // attempted ones first (most recent), then the rest by id.
+  const questionRows = useMemo(() => {
+    if (!open || mode !== 'question') return [];
+    return QUESTIONS.filter((q) => topicOf(q) === open)
+      .filter((q) => {
+        const r = last.get(q.id);
+        if (filter === 'all') return true;
+        if (!r) return false;
+        return filter === 'correct' ? r.correct : !r.correct;
+      })
+      .sort((a, b) => {
+        const ra = last.get(a.id);
+        const rb = last.get(b.id);
+        if (ra && rb) return rb.ts - ra.ts;
+        if (ra) return -1;
+        if (rb) return 1;
+        return a.id.localeCompare(b.id);
+      });
+  }, [open, mode, filter, last]);
+
+  const rowCount = mode === 'question' ? questionRows.length : timelineRows.length;
 
   const totalAttempts = history.length;
   const totalCorrect = history.filter((r) => r.correct).length;
@@ -266,18 +288,22 @@ export function Stats({ onExit }: { onExit: () => void }) {
                   </button>
                   {isOpen && (
                     <div className="p-3 space-y-2 bg-slate-900/40">
-                      {rows.length === 0 ? (
-                        <p className="text-sm text-slate-500">No matching answers.</p>
+                      {rowCount === 0 ? (
+                        <p className="text-sm text-slate-500">No matching questions.</p>
+                      ) : mode === 'question' ? (
+                        questionRows.map((q) => (
+                          <AnswerLine
+                            key={q.id}
+                            q={q}
+                            rec={last.get(q.id)}
+                            attempts={attemptsByQ.get(q.id)}
+                          />
+                        ))
                       ) : (
-                        rows.map((r, i) => {
+                        timelineRows.map((r, i) => {
                           const q = byId.get(r.questionId);
                           return q ? (
-                            <AnswerLine
-                              key={`${r.questionId}-${r.ts}-${i}`}
-                              q={q}
-                              rec={r}
-                              attempts={mode === 'question' ? attemptsByQ.get(r.questionId) : undefined}
-                            />
+                            <AnswerLine key={`${r.questionId}-${r.ts}-${i}`} q={q} rec={r} />
                           ) : null;
                         })
                       )}
