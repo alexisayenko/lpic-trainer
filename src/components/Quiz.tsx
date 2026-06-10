@@ -3,7 +3,7 @@ import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
 import { attemptsByQuestion, attemptsFor, filterPool, lastByQuestion, orderByWeakness, pickDeck, shuffledIndices } from '../lib/select';
 import { masteryOf } from '../lib/mastery';
-import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
+import { OBJECTIVE_LABELS, TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
 import { QuestionStats } from './QuestionStats';
 
 const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
@@ -156,7 +156,10 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
       <div className="flex items-center justify-between text-sm text-slate-400">
         <span>
           {UTILITIES[q.tool]?.label ?? q.tool}
-          {topicOf(q) ? ` · ${TOPIC_LABELS[topicOf(q)!]}` : ''}
+          {topicOf(q) ? ` · ${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]}` : ''}
+          {q.objective && OBJECTIVE_LABELS[q.objective]
+            ? ` · ${q.objective} ${OBJECTIVE_LABELS[q.objective]}`
+            : ''}
         </span>
       </div>
       <QuestionStats q={q} attempts={attempts} mastery={mastery} />

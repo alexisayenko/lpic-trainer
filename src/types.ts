@@ -1,4 +1,5 @@
 import topics from './data/topics.json';
+import objectives from './data/objectives.json';
 import utilities from './data/utilities.json';
 
 export type Topic = '207' | '208' | '209' | '210' | '211' | '212';
@@ -79,6 +80,8 @@ export interface UtilityInfo {
 export const TOPIC_LABELS: Record<Topic, string> = topics as Record<Topic, string>;
 
 export const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
+
+export const OBJECTIVE_LABELS: Record<string, string> = objectives;
 
 export const UTILITIES: Record<string, UtilityInfo> = utilities as Record<string, UtilityInfo>;
 

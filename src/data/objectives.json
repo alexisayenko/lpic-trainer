@@ -1,0 +1,23 @@
+{
+  "207.1": "Basic DNS server configuration",
+  "207.2": "Create and maintain DNS zones",
+  "207.3": "Securing a DNS server",
+  "208.1": "Basic Apache configuration",
+  "208.2": "Apache configuration for HTTPS",
+  "208.3": "Implementing Squid as a caching proxy",
+  "208.4": "Implementing Nginx as a web server and reverse proxy",
+  "209.1": "Samba server configuration",
+  "209.2": "NFS server configuration",
+  "210.1": "DHCP configuration",
+  "210.2": "PAM authentication",
+  "210.3": "LDAP client usage",
+  "210.4": "Configuring an OpenLDAP server",
+  "211.1": "Using e-mail servers",
+  "211.2": "Managing e-mail delivery",
+  "211.3": "Managing mailbox access",
+  "212.1": "Configuring a router",
+  "212.2": "Managing FTP servers",
+  "212.3": "Secure shell (SSH)",
+  "212.4": "Security tasks",
+  "212.5": "OpenVPN"
+}
