@@ -75,7 +75,7 @@ Zustand store persisted to `localStorage` key `lpic-trainer-state`:
 | `sourceFilter` | `all` or an `Origin` |
 | `history` | `AnswerRecord[]` — the full answer log |
 
-`recordAnswer` appends; `setHistory` replaces (after a sync merge); `reset` clears.
+`recordAnswer` appends; `setHistory` replaces (after a sync merge).
 Persist is **version 2**: `migrate` backfills a fresh `id` on legacy records that
 lack one and defaults/sanitises the filter fields for v0/v1.
 
@@ -96,8 +96,8 @@ three stages and by the dashboard.
 ## Mastery ([`lib/mastery.ts`](../src/lib/mastery.ts))
 
 `masteryOf(attempts, now)` returns a 0–100 score: attempts are collapsed into
-**QuizDays** (gap ≥20h starts a new day; any wrong attempt makes the whole day
-wrong); the last 5 QuizDays in a rolling 21-day window are scored, with missing
+**QuizDays** (a new day starts when the gap is ≥21h *and* the local calendar
+date changes; any wrong attempt makes the whole day wrong); the last 5 QuizDays in a rolling 21-day window are scored, with missing
 slots counted as wrong. Full spec and constants:
 [mastery-formula.md](mastery-formula.md). **Display-only** — shown as a star chip
 in [`QuestionStats`](../src/components/QuestionStats.tsx); it does **not** yet
@@ -116,8 +116,6 @@ with a single clock snapshot for consistency.
   chip, attempt history (`[ ✗✓ ]`), accuracy, your answer, and the correct answer.
 - **Quiz launcher** — size presets + an "available" count; **Start** is disabled when
   the pool is empty.
-- **Reset all stats** — confirms, then `clearAllStats` clears local history and (when
-  connected) wipes the remote table, coordinated so a concurrent sync can't restore it.
 - **Logo lightbox** ([`LogoZoom`](../src/components/LogoZoom.tsx)) — accessible modal
   (`role="dialog"`, focus trap/restore, Escape).
 
@@ -139,16 +137,14 @@ mastery · history) mirrors the dashboard.
 Optional, single-user, gated by one shared bearer token (stored in `localStorage`,
 sent as `Authorization: Bearer`). Setup/ops: [self-hosted-sync.md](self-hosted-sync.md).
 
-- `api.ts` is pure transport (`fetchAll`, `pushRecords`, `deleteAll`, `checkToken`)
+- `api.ts` is pure transport (`fetchAll`, `pushRecords`, `checkToken`)
   plus a pure `mergeHistories(local, remote)` that merges by `id` keeping the newer
   `ts` and returns `{merged, delta}`.
 - `CloudSync` orchestrates: on token set (and on the `online` event) it pulls, merges,
   writes back, and pushes the delta; an in-flight guard prevents overlap and an
   apply-guard stops the programmatic write from echoing back as a push. New answers
   push incrementally — the subscription diffs by record `id`, so it pushes exactly the
-  records not previously present (survives reorders/inserts, ignores a reset's shrink).
-  `clearAllStats` resets local and the remote table as one coordinated step under a
-  suppression flag, so a concurrent/reconnect sync can't merge the old rows back in.
+  records not previously present (survives reorders/inserts).
 - Token entry/validation is the shared [`useTokenConnect`](../src/lib/useTokenConnect.ts)
   hook used by both Login and [`Account`](../src/components/Account.tsx).
 
@@ -177,7 +173,7 @@ src/
 │   ├── auth.ts                  token store
 │   └── useTokenConnect.ts       shared token entry/validation hook
 └── components/
-    ├── Dashboard.tsx            home: filters, per-topic progress, launcher, reset
+    ├── Dashboard.tsx            home: filters, per-topic progress, launcher
     ├── useDashboardStats.ts     memoized last/attempts/perTopic/mastery maps
     ├── FilterBar.tsx            result + source filters
     ├── Quiz.tsx                 question card, scoring, results

@@ -65,7 +65,7 @@ src/
 │   ├── auth.ts                token store
 │   └── useTokenConnect.ts     shared token entry/validation hook
 └── components/
-    ├── Dashboard.tsx          home: filters, per-topic progress, launcher, reset
+    ├── Dashboard.tsx          home: filters, per-topic progress, launcher
     ├── useDashboardStats.ts   memoized last/attempts/perTopic/mastery maps
     ├── FilterBar.tsx          result + source filters
     ├── Quiz.tsx               question card, scoring, results screen

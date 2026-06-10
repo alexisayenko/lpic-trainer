@@ -1,15 +1,12 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
-import { useAuth } from '../lib/auth';
-import { cloudEnabled } from '../lib/api';
 import { filterPool } from '../lib/select';
 import { ALL_TOPICS, TOPIC_LABELS, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
 import { QuestionStats } from './QuestionStats';
 import { FilterBar } from './FilterBar';
 import { LogoZoom } from './LogoZoom';
-import { clearAllStats } from './CloudSync';
 import { useDashboardStats } from './useDashboardStats';
 import logo from '../assets/logo.png';
 
@@ -62,8 +59,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const sourceFilter = useStore((s) => s.sourceFilter);
   const setSourceFilter = useStore((s) => s.setSourceFilter);
 
-  const token = useAuth((s) => s.token);
-
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
 
@@ -100,12 +95,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const totalAttempts = history.length;
   const totalCorrect = history.filter((r) => r.correct).length;
   const overallPct = totalAttempts ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
-
-  const resetStats = () => {
-    const where = cloudEnabled && token ? ' on this device and in the cloud' : ' on this device';
-    if (!window.confirm(`Erase all your stats${where}? This cannot be undone.`)) return;
-    clearAllStats().catch(() => {});
-  };
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
@@ -227,18 +216,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           </button>
         </div>
       </div>
-
-      {totalAttempts > 0 && (
-        <div className="text-right">
-          <button
-            type="button"
-            onClick={resetStats}
-            className="text-xs text-slate-500 hover:text-rose-400"
-          >
-            Reset all stats
-          </button>
-        </div>
-      )}
 
       {zoom && <LogoZoom src={logo} alt="LPIC-2" onClose={() => setZoom(false)} />}
     </div>

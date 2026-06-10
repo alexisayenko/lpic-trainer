@@ -68,11 +68,6 @@ export async function pushRecords(records: AnswerRecord[]): Promise<void> {
   await req('/answers', { method: 'POST', body: JSON.stringify(records.map(toRow)) });
 }
 
-/** Wipe remote stats (paired with the local reset). */
-export async function deleteAll(): Promise<void> {
-  await req('/answers', { method: 'DELETE' });
-}
-
 /**
  * Pure merge of two record sets by id, keeping the newer `ts` on collision.
  * Returns the merged list (sorted by ts) plus the delta the remote lacks or
@@ -83,8 +78,7 @@ export function mergeHistories(
   remote: AnswerRecord[],
 ): { merged: AnswerRecord[]; delta: AnswerRecord[] } {
   const remoteById = new Map(remote.map((r) => [r.id, r]));
-  const merged = new Map<string, AnswerRecord>();
-  for (const r of remote) merged.set(r.id, r);
+  const merged = new Map(remoteById);
   for (const r of local) {
     const prev = merged.get(r.id);
     if (!prev || r.ts >= prev.ts) merged.set(r.id, r);

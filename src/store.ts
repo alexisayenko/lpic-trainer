@@ -24,7 +24,6 @@ interface State {
   recordAnswer: (questionId: string, pickedIndex: number | undefined, correct: boolean) => void;
   /** Replace the whole answer log (used after a cloud sync/merge). */
   setHistory: (history: AnswerRecord[]) => void;
-  reset: () => void;
 }
 
 export const useStore = create<State>()(
@@ -44,7 +43,6 @@ export const useStore = create<State>()(
           history: [...s.history, { id: newId(), questionId, pickedIndex, correct, ts: Date.now() }],
         })),
       setHistory: (history) => set({ history }),
-      reset: () => set({ history: [] }),
     }),
     {
       name: 'lpic-trainer-state',
