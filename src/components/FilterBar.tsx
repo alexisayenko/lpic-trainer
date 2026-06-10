@@ -26,8 +26,8 @@ export function FilterBar({
             key={String(f)}
             type="button"
             onClick={() => setResultFilter(f)}
-            className={`px-2 py-1.5 ${
-              resultFilter === f ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
+            className={`px-2 py-1.5 bg-slate-800 ${
+              resultFilter === f ? 'text-white ring-1 ring-inset ring-emerald-500' : 'text-slate-300'
             }`}
           >
             {f === 'all' ? (
@@ -48,8 +48,8 @@ export function FilterBar({
             key={sKey}
             type="button"
             onClick={() => setSourceFilter(sKey)}
-            className={`px-3 py-1.5 ${
-              sourceFilter === sKey ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
+            className={`px-3 py-1.5 bg-slate-800 ${
+              sourceFilter === sKey ? 'text-white ring-1 ring-inset ring-emerald-500' : 'text-slate-300'
             }`}
           >
             {sKey === 'all' ? 'All' : ORIGIN_LABELS[sKey]}
