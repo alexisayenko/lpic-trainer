@@ -4,7 +4,8 @@ Current-state reference for the LPIC-2 (exam 202) trainer. For setup/build/deplo
 see [README.md](../README.md); for the sync backend see
 [self-hosted-sync.md](self-hosted-sync.md); for the mastery score see
 [mastery-formula.md](mastery-formula.md); for the product rationale see
-[quizzer-concept.md](quizzer-concept.md).
+[quizzer-concept.md](quizzer-concept.md); for a glossary of the domain terms see
+[terminology.md](terminology.md).
 
 ## What it is
 

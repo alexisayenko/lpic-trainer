@@ -76,7 +76,8 @@ src/
     └── CloudSync.tsx          headless two-way sync
 ```
 
-See [docs/architecture.md](docs/architecture.md) for how these fit together.
+See [docs/architecture.md](docs/architecture.md) for how these fit together and
+[docs/terminology.md](docs/terminology.md) for a glossary of the domain terms.
 
 ## Coverage
 
