@@ -20,8 +20,9 @@ Only the local answer log is used (`AnswerRecord[]` per question): each attempt'
 
 ### QuizDay buckets
 
-Attempts are grouped into **QuizDays**. Two attempts **less than 20h apart**
-belong to the same QuizDay; a gap of ≥20h starts a new one. A QuizDay is **clean**
+Attempts are grouped into **QuizDays**. A new QuizDay starts only when **both**
+hold: the gap since the previous attempt is **≥21h** *and* the attempt falls on a
+**different local calendar date** than the previous one. A QuizDay is **clean**
 if every attempt in it was correct, **wrong** if *any* attempt in it was wrong.
 
 Questions are not blocked from being re-asked within a QuizDay — you can drill
@@ -42,13 +43,14 @@ missing slots as wrong.
 score = (clean QuizDays in last 5) / 5 × 100
 ```
 
-So 1 clean QuizDay and nothing else = 20. Five clean QuizDays (≥20h apart, no
-wrong answers in any of them) = 100. A wrong QuizDay only drops out of the
-score when five newer QuizDays push it past the 5-slot window.
+So 1 clean QuizDay and nothing else = 20. Five clean QuizDays (≥21h apart on
+different dates, no wrong answers in any of them) = 100. A wrong QuizDay only
+drops out of the score when five newer QuizDays push it past the 5-slot window.
 
 ## Constants (tunable, top of `mastery.ts`)
 
-- `DAY_GAP = 20h` — minimum spacing for two attempts to count as different QuizDays
+- `DAY_GAP = 21h` — minimum spacing for two attempts to count as different
+  QuizDays (the attempts must also fall on different local calendar dates)
 - `WINDOW_MS = 21 days` — forgetting window
 - `SLOTS = 5` — QuizDays scored; missing slots count as wrong
 

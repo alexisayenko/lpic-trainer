@@ -1,7 +1,7 @@
 import type { AnswerRecord } from '../types';
 
 // See docs/mastery-formula.md for rationale.
-const DAY_GAP = 20 * 3_600_000; // attempts ≥ this far apart are different QuizDays
+const DAY_GAP = 21 * 3_600_000; // attempts ≥ this far apart AND on different local dates are different QuizDays
 const WINDOW_MS = 21 * 86_400_000; // forgetting window, measured from now
 const SLOTS = 5; // last N QuizDays scored; missing slots count as wrong
 
@@ -44,7 +44,8 @@ export function masteryOf(attempts: AnswerRecord[], now: number): number | null 
   const quizDays: boolean[] = [];
   let prevTs = -Infinity;
   for (const a of recent) {
-    if (a.ts - prevTs >= DAY_GAP) quizDays.push(true);
+    const newDate = new Date(a.ts).setHours(0, 0, 0, 0) !== new Date(prevTs).setHours(0, 0, 0, 0);
+    if (quizDays.length === 0 || (a.ts - prevTs >= DAY_GAP && newDate)) quizDays.push(true);
     if (!a.correct) quizDays[quizDays.length - 1] = false;
     prevTs = a.ts;
   }
