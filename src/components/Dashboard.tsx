@@ -168,17 +168,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                       asked {s.seen}/{s.total}
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 text-xs text-slate-400">
-                    <span className="text-rose-400">✗ {s.wrongNow} wrong</span>
-                    <span className="text-emerald-400">
-                      ✓ {s.correctNow} correct
-                      {s.askedAccuracy !== null && ` (${s.askedAccuracy}%)`}
-                    </span>
-                  </div>
-                  <div className="flex h-2 rounded-full overflow-hidden bg-slate-700">
-                    <div className="bg-emerald-500" style={{ width: `${s.correctPct}%` }} />
-                    <div className="bg-rose-500" style={{ width: `${s.wrongPct}%` }} />
-                  </div>
                   <div className="flex h-1.5 rounded-full overflow-hidden bg-slate-700">
                     {segments.map((seg) => (
                       <div
