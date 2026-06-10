@@ -4,7 +4,7 @@ import { useStore } from '../store';
 import { filterPool } from '../lib/select';
 import { ALL_TOPICS, TOPIC_LABELS, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
-import { QuestionStats } from './QuestionStats';
+import { MasteryChip, QuestionStats } from './QuestionStats';
 import { FilterBar } from './FilterBar';
 import { LogoZoom } from './LogoZoom';
 import { useDashboardStats } from './useDashboardStats';
@@ -12,13 +12,13 @@ import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
 
-const MASTERY_COLORS: [number, string, string][] = [
-  [100, 'bg-emerald-500', 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'],
-  [80, 'bg-lime-400', 'bg-lime-400/15 text-lime-300 border-lime-400/30'],
-  [60, 'bg-yellow-300', 'bg-yellow-300/15 text-yellow-300 border-yellow-300/30'],
-  [40, 'bg-amber-400', 'bg-amber-400/15 text-amber-300 border-amber-400/30'],
-  [20, 'bg-orange-500', 'bg-orange-500/15 text-orange-300 border-orange-500/30'],
-  [0, 'bg-red-500', 'bg-red-500/15 text-red-300 border-red-500/30'],
+const MASTERY_COLORS: [number, string][] = [
+  [0, 'bg-red-500'],
+  [20, 'bg-orange-500'],
+  [40, 'bg-amber-400'],
+  [60, 'bg-yellow-300'],
+  [80, 'bg-lime-400'],
+  [100, 'bg-emerald-500'],
 ];
 
 function AnswerLine({
@@ -135,19 +135,14 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         {perTopic.map((s) => {
           const isOpen = open === s.topic;
           const buckets = bucketsByTopic.get(s.topic);
-          const segments = MASTERY_COLORS.flatMap(([score, cls, badge]) => {
-            const n = buckets?.get(score) ?? 0;
-            return n > 0 ? [{ key: `m${score}`, n, cls, badge, title: `${n} × ${score}%` }] : [];
-          });
+          const segments: { key: string; n: number; cls: string; score: number | null; title: string }[] =
+            MASTERY_COLORS.flatMap(([score, cls]) => {
+              const n = buckets?.get(score) ?? 0;
+              return n > 0 ? [{ key: `m${score}`, n, cls, score, title: `${n} × ${score}%` }] : [];
+            });
           const unseen = s.total - segments.reduce((acc, seg) => acc + seg.n, 0);
           if (unseen > 0)
-            segments.push({
-              key: 'unseen',
-              n: unseen,
-              cls: 'bg-slate-700',
-              badge: 'bg-slate-700/40 text-slate-500 border-slate-600',
-              title: `${unseen} unseen`,
-            });
+            segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-700', score: null, title: `${unseen} unseen` });
           return (
             <li key={s.topic} className="rounded-md border border-slate-700 overflow-hidden">
               <div className="flex items-stretch bg-slate-800/60">
@@ -194,13 +189,17 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                       />
                     ))}
                   </div>
-                  <div className="flex flex-wrap items-center gap-1.5">
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
                     {segments.map((seg) => (
-                      <span
-                        key={seg.key}
-                        className={`rounded border px-1.5 py-0.5 text-[10px] ${seg.badge}`}
-                      >
-                        {seg.title}
+                      <span key={seg.key} className="flex items-center gap-1">
+                        {seg.n} ×
+                        {seg.score !== null ? (
+                          <MasteryChip score={seg.score} />
+                        ) : (
+                          <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-700/40 text-slate-500 border-slate-600">
+                            unseen
+                          </span>
+                        )}
                       </span>
                     ))}
                   </div>

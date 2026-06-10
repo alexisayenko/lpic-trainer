@@ -26,7 +26,7 @@ const MASTERY_RAMP: [number, string][] = [
   [100, 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'],
 ];
 
-function MasteryChip({ score }: { score: number }) {
+export function MasteryChip({ score }: { score: number }) {
   const tone = (MASTERY_RAMP.find(([max]) => score <= max) ?? MASTERY_RAMP[5])[1];
   return (
     <span
