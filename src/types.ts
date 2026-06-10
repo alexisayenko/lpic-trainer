@@ -56,10 +56,10 @@ export const MASTERY_BUCKETS = [0, 20, 40, 60, 80, 100] as const;
 export type MasteryBucket = (typeof MASTERY_BUCKETS)[number];
 
 /** Quiz pool / dashboard filters. */
-export type ResultFilter = 'all' | 'unseen' | MasteryBucket;
+export type ResultFilter = 'all' | 'unseen' | 'unseen-today' | MasteryBucket;
 export type SourceFilter = 'all' | Origin;
 
-export const RESULT_FILTERS: ResultFilter[] = ['all', 'unseen', ...MASTERY_BUCKETS];
+export const RESULT_FILTERS: ResultFilter[] = ['all', 'unseen', 'unseen-today', ...MASTERY_BUCKETS];
 export const SOURCE_FILTERS: SourceFilter[] = ['all', ...ORIGINS];
 
 export interface AnswerRecord {

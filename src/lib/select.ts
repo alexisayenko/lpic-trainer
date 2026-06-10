@@ -41,11 +41,13 @@ export function filterPool(
   source: SourceFilter,
   now: number,
 ): Question[] {
+  const todayStart = new Date(now).setHours(0, 0, 0, 0);
   return pool.filter((q) => {
     if (source !== 'all' && q.origin !== source) return false;
     if (result === 'all') return true;
     const atts = attempts.get(q.id);
     if (result === 'unseen') return !atts || atts.length === 0;
+    if (result === 'unseen-today') return !atts || atts.every((a) => a.ts < todayStart);
     if (!atts) return false;
     return masteryOf(atts, now) === result;
   });

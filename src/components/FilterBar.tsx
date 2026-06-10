@@ -32,9 +32,9 @@ export function FilterBar({
           >
             {f === 'all' ? (
               <span className="px-1">All</span>
-            ) : f === 'unseen' ? (
+            ) : f === 'unseen' || f === 'unseen-today' ? (
               <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-700/40 text-slate-400 border-slate-600">
-                unseen
+                {f === 'unseen' ? 'unseen' : 'unseen today'}
               </span>
             ) : (
               <MasteryChip score={f} />
