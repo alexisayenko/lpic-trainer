@@ -15,7 +15,8 @@ an explanation after each. All progress lives in `localStorage`; an optional
 self-hosted backend syncs that progress across devices.
 
 Stack: React 18 + TypeScript, Vite 5, Tailwind 3, Zustand (`persist`). No router —
-a one-field state switch picks between two screens.
+a one-field state switch picks between two screens. An iOS wrapper exists via
+Capacitor (`capacitor.config.ts` + `ios/`); see [mobile/README.md](../mobile/README.md).
 
 ## Screens & flow
 
@@ -105,8 +106,8 @@ three stages and by the dashboard.
 **QuizDays** (a new day starts when the gap is ≥21h *and* the local calendar
 date changes; any wrong attempt makes the whole day wrong); the last 5 QuizDays in a rolling 21-day window are scored, with missing
 slots counted as wrong. Full spec and constants:
-[mastery-formula.md](mastery-formula.md). Shown as a star chip
-in [`QuestionStats`](../src/components/QuestionStats.tsx) and used by the result
+[mastery-formula.md](mastery-formula.md). Shown as a medal chip (monochrome SVG
+medal + score) in [`QuestionStats`](../src/components/QuestionStats.tsx) and used by the result
 filter for pool eligibility; it does **not** yet affect deck ordering. The
 dashboard computes one entry per
 question in a memoized map ([`useDashboardStats`](../src/components/useDashboardStats.ts))
@@ -114,14 +115,19 @@ with a single clock snapshot for consistency.
 
 ## Dashboard
 
+- **Header** — logo, the cumulative overall-score line, and a 21-cell strip showing
+  the number of *unique* questions answered on each of the last 21 days.
 - **Filters** ([`FilterBar`](../src/components/FilterBar.tsx)) — result + source toggles.
   The result filter is All / unseen / the six mastery buckets, rendered as medal
   chips. They both filter the displayed rows **and form the quiz pool**.
-- **Per-topic progress** — a stacked correct/wrong/unseen bar and counts per topic,
-  derived in `useDashboardStats` (one pass over the latest-record map; orphaned ids
-  for removed questions are skipped).
-- **Expandable rows** — open a topic to see its questions with source tag, mastery
-  chip, attempt history (`[ ✗✓ ]`), accuracy, your answer, and the correct answer.
+- **Per-topic progress** — an "asked N/total" count and a stacked mastery bar per
+  topic (unseen + the six bucket colours), with portion badges (mastery chip
+  `× N`) underneath; derived in `useDashboardStats` (one pass over the
+  latest-record map; orphaned ids for removed questions are skipped).
+- **Expandable rows** — open a topic to see its questions: stats line (21-day
+  strip · mastery chip · source tag · id), a `tool · Topic Label (207)` line, the
+  prompt, your answer when the last attempt was wrong, and the correct answer —
+  on neutral slate cards.
 - **Quiz launcher** — size presets + an "available" count; **Start** is disabled when
   the pool is empty.
 - **Logo lightbox** ([`LogoZoom`](../src/components/LogoZoom.tsx)) — accessible modal
@@ -129,16 +135,19 @@ with a single clock snapshot for consistency.
 
 ## Quiz
 
-Builds its deck once (snapshotting history so answering mid-quiz doesn't reorder it),
-then walks it one question at a time:
+Builds its deck once (snapshotting history so answering mid-quiz doesn't reorder it)
+and shuffles each question's choice order per session (`shuffledIndices`; stored
+answers stay in original indices), then walks the deck one question at a time:
 
 - **single** — click a choice; scored immediately against `answerIndex`.
 - **multi** — select all that apply, then submit; correct only on an exact set match.
 - **fill** — type an answer; compared case- and whitespace-insensitively.
 
 Each answer is recorded, an explanation is shown, and a running score leads to a
-results screen (→ dashboard or restart). The current question's stats line (source ·
-mastery · history) mirrors the dashboard.
+results screen with a single "Back to dashboard" button. The header shows
+`tool · Topic Label (207)`; the stats line (21-day strip · mastery · source)
+mirrors the dashboard. A footer row holds **Skip question** (unanswered only),
+the `1 / N` counter, and **End quiz**.
 
 ## Cloud sync ([`lib/api.ts`](../src/lib/api.ts), [`lib/auth.ts`](../src/lib/auth.ts), [`CloudSync`](../src/components/CloudSync.tsx))
 
@@ -175,7 +184,7 @@ src/
 │       ├── index.ts             globs/normalises/dedupes → QUESTIONS[]
 │       └── <utility>/           question JSON + notes.md per utility
 ├── lib/
-│   ├── select.ts                filterPool / orderByWeakness / pickDeck / lastByQuestion
+│   ├── select.ts                filterPool / orderByWeakness / pickDeck / shuffledIndices / lastByQuestion
 │   ├── mastery.ts               masteryOf (0–100 score)
 │   ├── api.ts                   sync transport + mergeHistories
 │   ├── auth.ts                  token store

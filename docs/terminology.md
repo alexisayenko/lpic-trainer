@@ -63,8 +63,9 @@ reflects the current source; deeper detail lives in
   ([`useDashboardStats`](../src/components/useDashboardStats.ts)).
 - **Correct / wrong "now"** — last-attempt semantics: `correctNow` / `wrongNow`
   classify each seen question by its *latest* record only
-  (`lastByQuestion`), not by cumulative attempts. The per-topic bars and counts
-  use this.
+  (`lastByQuestion`), not by cumulative attempts. Still computed in
+  `useDashboardStats` but no longer rendered — the per-topic bar shows mastery
+  buckets instead.
 - **Result filter** — the dashboard/quiz-pool toggle: **All**, **unseen**
   (zero attempts), or one of the six mastery buckets — a bucket matches
   questions whose current `masteryOf` score equals it, computed at one shared
@@ -72,8 +73,8 @@ reflects the current source; deeper detail lives in
 - **Overall score** — the dashboard header line; *cumulative* over every record
   in history (`totalCorrect/totalAttempts`), unlike the per-topic "now" numbers.
 - **Accuracy** — per-topic `askedAccuracy`: `correctNow / seen`, i.e. the share
-  of seen questions whose latest answer was correct. The quiz results view shows
-  the session's own correct/total instead.
+  of seen questions whose latest answer was correct (also computed but no longer
+  rendered). The quiz results view shows the session's own correct/total instead.
 
 ## Mastery
 
@@ -105,13 +106,17 @@ reflects the current source; deeper detail lives in
   per local calendar day, oldest → newest, from `dayCells`. A day with any wrong
   attempt shows `✗`; only-correct shows `✓`; no attempts `·`. Note: cells are
   plain calendar days, not QuizDays.
-- **Mastery chip** — the coloured `★ NN` badge next to the strip, showing the
-  question's mastery score.
+- **Daily-count strip** — the 21-cell row in the dashboard header: per calendar
+  day, the number of *unique* questions answered (`·` for none); not to be
+  confused with the per-question 21-day strip.
+- **Mastery chip** — the coloured badge next to the strip (`MasteryChip`): a
+  monochrome SVG medal glyph plus the question's mastery score.
 - **Source chip** — the small origin badge (`SourceTag`) on each question row and
   on the quiz card.
 - **Portion badges** — the per-topic badges under the mastery bar on the
-  dashboard, one per non-empty bucket (`3 × 80%`, `12 unseen`); they mirror the
-  bar's segments.
+  dashboard, one per non-empty bucket: a mastery chip (or an `unseen` chip)
+  followed by `× N`, ordered unseen → 0 → … → 100; they mirror the bar's
+  segments.
 
 ## Sync
 
