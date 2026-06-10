@@ -120,7 +120,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
-      <header className="flex items-center gap-4">
+      <header className="flex flex-wrap items-center gap-4">
         <button type="button" onClick={() => setZoom(true)} className="shrink-0">
           <img src={logo} alt="LPIC-2" className="h-14 w-14 rounded-md object-cover cursor-zoom-in" />
         </button>
@@ -139,7 +139,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
               <span
                 key={i}
                 title={`${d.date}: ${d.n} unique`}
-                className={`min-w-4 text-center rounded px-0.5 ${
+                className={`text-center rounded px-0.5 ${
                   d.n ? 'bg-slate-700/60 text-slate-200' : 'text-slate-600'
                 }`}
               >
