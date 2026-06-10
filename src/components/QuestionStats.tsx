@@ -1,5 +1,5 @@
 import { ORIGIN_LABELS, type AnswerRecord, type Origin, type Question } from '../types';
-import { LEARNING, MASTERED, STRIP_DAYS, dayCells, type DayStatus } from '../lib/mastery';
+import { STRIP_DAYS, dayCells, type DayStatus } from '../lib/mastery';
 
 const ORIGIN_STYLES: Record<string, string> = {
   'linux-direct': 'bg-purple-500/15 text-purple-300 border-purple-500/30',
@@ -17,19 +17,22 @@ export function SourceTag({ origin }: { origin?: Origin }) {
   );
 }
 
+const MASTERY_RAMP: [number, string][] = [
+  [20, 'bg-red-500/15 text-red-300 border-red-500/30'],
+  [40, 'bg-orange-500/15 text-orange-300 border-orange-500/30'],
+  [60, 'bg-amber-400/15 text-amber-300 border-amber-400/30'],
+  [80, 'bg-lime-400/15 text-lime-300 border-lime-400/30'],
+  [100, 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'],
+];
+
 function MasteryChip({ score }: { score: number }) {
-  const tone =
-    score >= MASTERED
-      ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-      : score >= LEARNING
-        ? 'bg-amber-500/15 text-amber-300 border-amber-500/30'
-        : 'bg-rose-500/15 text-rose-300 border-rose-500/30';
+  const tone = (MASTERY_RAMP.find(([max]) => score <= max) ?? MASTERY_RAMP[4])[1];
   return (
     <span
       aria-label={`Mastery ${score} of 100`}
       className={`rounded border px-1.5 py-0.5 text-[10px] ${tone}`}
     >
-      <span aria-hidden="true">★ {score}</span>
+      <span aria-hidden="true">🏅 {score}</span>
     </span>
   );
 }

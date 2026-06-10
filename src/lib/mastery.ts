@@ -5,9 +5,6 @@ const DAY_GAP = 21 * 3_600_000; // attempts ≥ this far apart AND on different 
 const WINDOW_MS = 21 * 86_400_000; // forgetting window, measured from now
 const SLOTS = 5; // last N QuizDays scored; missing slots count as wrong
 
-export const MASTERED = 80;
-export const LEARNING = 50;
-
 /** Days shown in the per-question strip (matches the mastery WINDOW_MS). */
 export const STRIP_DAYS = 21;
 
