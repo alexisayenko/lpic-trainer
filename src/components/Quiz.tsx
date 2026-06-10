@@ -68,7 +68,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
   }
 
   if (index >= deck.length) {
-    const pct = Math.round((score.correct / score.total) * 100);
+    const pct = score.total ? Math.round((score.correct / score.total) * 100) : 0;
     return (
       <div className="max-w-xl mx-auto p-6 space-y-4 text-center">
         <h2 className="text-2xl font-semibold text-slate-100">Done</h2>
