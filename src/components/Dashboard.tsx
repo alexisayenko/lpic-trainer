@@ -192,6 +192,17 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           <span className="text-sm text-slate-500">{available} available</span>
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setQuizSize(null)}
+            className={`px-4 py-2 rounded-md border text-sm transition-colors ${
+              quizSize === null
+                ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
+                : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
+            }`}
+          >
+            All
+          </button>
           {PRESETS.map((n) => (
             <button
               key={n}

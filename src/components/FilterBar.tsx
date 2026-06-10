@@ -33,7 +33,7 @@ export function FilterBar({
           </button>
         ))}
       </div>
-      <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit sm:ml-auto">
+      <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit">
         {SOURCE_FILTERS.map((sKey) => (
           <button
             key={sKey}

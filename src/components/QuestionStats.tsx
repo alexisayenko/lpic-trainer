@@ -2,10 +2,10 @@ import { ORIGIN_LABELS, type AnswerRecord, type Origin, type Question } from '..
 import { LEARNING, MASTERED, STRIP_DAYS, dayCells, type DayStatus } from '../lib/mastery';
 
 const ORIGIN_STYLES: Record<string, string> = {
-  'linux-direct': 'bg-sky-500/15 text-sky-300 border-sky-500/30',
-  'ken-adams': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
-  'gpt-deep-research': 'bg-violet-500/15 text-violet-300 border-violet-500/30',
-  'claude-lpic2book': 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
+  'linux-direct': 'bg-purple-500/15 text-purple-300 border-purple-500/30',
+  'ken-adams': 'bg-black/40 text-white border-purple-500/40',
+  'gpt-deep-research': 'bg-white/15 text-white border-white/30',
+  'claude-lpic2book': 'bg-orange-500/15 text-orange-300 border-orange-500/30',
 };
 
 export function SourceTag({ origin }: { origin?: Origin }) {
@@ -70,10 +70,12 @@ export function QuestionStats({
   return (
     <div className="flex items-center gap-2 cursor-default">
       <DayStrip cells={cells} />
-      <div className="ml-auto flex items-center gap-2">
-        {mastery != null && <MasteryChip score={mastery} />}
-        {q.origin && <SourceTag origin={q.origin} />}
-      </div>
+      {mastery != null && <MasteryChip score={mastery} />}
+      {q.origin && (
+        <div className="ml-auto">
+          <SourceTag origin={q.origin} />
+        </div>
+      )}
     </div>
   );
 }
