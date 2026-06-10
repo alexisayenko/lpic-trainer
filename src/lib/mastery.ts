@@ -1,4 +1,5 @@
 import type { AnswerRecord } from '../types';
+import { daysBack, startOfLocalDay } from './dates';
 
 // See docs/mastery-formula.md for rationale.
 const DAY_GAP = 21 * 3_600_000; // attempts ≥ this far apart AND on different local dates are different QuizDays
@@ -15,12 +16,9 @@ export type DayStatus = 'none' | 'correct' | 'wrong';
  * A day with any wrong attempt is 'wrong'; only-correct is 'correct'; otherwise 'none'.
  */
 export function dayCells(attempts: AnswerRecord[], now: number): DayStatus[] {
-  const startOfToday = new Date(now);
-  startOfToday.setHours(0, 0, 0, 0);
-  const todayMs = startOfToday.getTime();
   const cells: DayStatus[] = Array(STRIP_DAYS).fill('none');
   for (const a of attempts) {
-    const offset = Math.floor((todayMs - new Date(a.ts).setHours(0, 0, 0, 0)) / 86_400_000);
+    const offset = daysBack(a.ts, now);
     if (offset < 0 || offset >= STRIP_DAYS) continue;
     const i = STRIP_DAYS - 1 - offset;
     if (cells[i] === 'wrong') continue;
@@ -41,7 +39,7 @@ export function masteryOf(attempts: AnswerRecord[], now: number): number | null 
   const quizDays: boolean[] = [];
   let prevTs = -Infinity;
   for (const a of recent) {
-    const newDate = new Date(a.ts).setHours(0, 0, 0, 0) !== new Date(prevTs).setHours(0, 0, 0, 0);
+    const newDate = startOfLocalDay(a.ts) !== startOfLocalDay(prevTs);
     if (quizDays.length === 0 || (a.ts - prevTs >= DAY_GAP && newDate)) quizDays.push(true);
     if (!a.correct) quizDays[quizDays.length - 1] = false;
     prevTs = a.ts;

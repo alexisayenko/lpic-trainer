@@ -1,5 +1,4 @@
 import topics from './data/topics.json';
-import objectives from './data/objectives.json';
 import utilities from './data/utilities.json';
 
 export type Topic = '207' | '208' | '209' | '210' | '211' | '212';
@@ -55,6 +54,16 @@ export const ORIGIN_LABELS: Record<Origin, string> = {
 export const MASTERY_BUCKETS = [0, 20, 40, 60, 80, 100] as const;
 export type MasteryBucket = (typeof MASTERY_BUCKETS)[number];
 
+/** One red→green ramp per bucket: solid bar segment + tinted chip classes. */
+export const MASTERY_TINTS: Record<MasteryBucket, { bar: string; chip: string }> = {
+  0: { bar: 'bg-red-500/60', chip: 'bg-red-500/15 text-red-300 border-red-500/30' },
+  20: { bar: 'bg-orange-500/60', chip: 'bg-orange-500/15 text-orange-300 border-orange-500/30' },
+  40: { bar: 'bg-amber-400/60', chip: 'bg-amber-400/15 text-amber-300 border-amber-400/30' },
+  60: { bar: 'bg-yellow-300/60', chip: 'bg-yellow-300/15 text-yellow-300 border-yellow-300/30' },
+  80: { bar: 'bg-lime-400/60', chip: 'bg-lime-400/15 text-lime-300 border-lime-400/30' },
+  100: { bar: 'bg-emerald-500/60', chip: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30' },
+};
+
 /** Quiz pool / dashboard filters. */
 export type ResultOption = 'unseen' | MasteryBucket;
 /** Selected result options; empty array matches nothing. */
@@ -83,8 +92,6 @@ export interface UtilityInfo {
 export const TOPIC_LABELS: Record<Topic, string> = topics as Record<Topic, string>;
 
 export const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
-
-export const OBJECTIVE_LABELS: Record<string, string> = objectives;
 
 export const UTILITIES: Record<string, UtilityInfo> = utilities as Record<string, UtilityInfo>;
 

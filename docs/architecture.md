@@ -171,8 +171,9 @@ sent as `Authorization: Bearer`). Setup/ops: [self-hosted-sync.md](self-hosted-s
   apply-guard stops the programmatic write from echoing back as a push. New answers
   push incrementally — the subscription diffs by record `id`, so it pushes exactly the
   records not previously present (survives reorders/inserts).
-- Token entry/validation is the shared [`useTokenConnect`](../src/lib/useTokenConnect.ts)
-  hook used by both Login and [`Account`](../src/components/Account.tsx).
+- Token entry/validation is the [`useTokenConnect`](../src/lib/useTokenConnect.ts)
+  hook used by Login; [`Account`](../src/components/Account.tsx) only offers
+  disconnect (the login gate guarantees a token once inside).
 
 Server ([`server/index.js`](../server/index.js)): Node + MySQL behind Apache, binds
 `127.0.0.1`. Constant-time token compare, parameterised + `ts`-guarded upsert,
@@ -195,6 +196,7 @@ src/
 ├── lib/
 │   ├── select.ts                filterPool / orderByWeakness / pickDeck / shuffledIndices / lastByQuestion
 │   ├── mastery.ts               masteryOf (0–100 score)
+│   ├── dates.ts                 startOfLocalDay / daysBack day-math helpers
 │   ├── api.ts                   sync transport + mergeHistories
 │   ├── auth.ts                  token store
 │   └── useTokenConnect.ts       shared token entry/validation hook
@@ -202,10 +204,11 @@ src/
     ├── Dashboard.tsx            home: filters, per-topic progress, launcher
     ├── useDashboardStats.ts     memoized last/attempts/perTopic/mastery maps
     ├── FilterBar.tsx            result + source filters
+    ├── ToggleChip.tsx           shared on/off filter chip button
     ├── Quiz.tsx                 question card, scoring, results
     ├── QuestionStats.tsx        source tag · mastery chip · history line
     ├── LogoZoom.tsx             accessible image lightbox
-    ├── Account.tsx              connect/disconnect panel
+    ├── Account.tsx              disconnect button / local-only notice
     ├── Login.tsx                full-screen token gate
     └── CloudSync.tsx            headless two-way sync
 ```

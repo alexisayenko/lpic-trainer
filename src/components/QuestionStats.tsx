@@ -1,4 +1,4 @@
-import { ORIGIN_LABELS, type AnswerRecord, type Origin, type Question } from '../types';
+import { MASTERY_BUCKETS, MASTERY_TINTS, ORIGIN_LABELS, type AnswerRecord, type Origin, type Question } from '../types';
 import { STRIP_DAYS, dayCells, type DayStatus } from '../lib/mastery';
 
 const ORIGIN_STYLES: Record<string, string> = {
@@ -17,17 +17,8 @@ export function SourceTag({ origin }: { origin?: Origin }) {
   );
 }
 
-const MASTERY_RAMP: [number, string][] = [
-  [0, 'bg-red-500/15 text-red-300 border-red-500/30'],
-  [20, 'bg-orange-500/15 text-orange-300 border-orange-500/30'],
-  [40, 'bg-amber-400/15 text-amber-300 border-amber-400/30'],
-  [60, 'bg-yellow-300/15 text-yellow-300 border-yellow-300/30'],
-  [80, 'bg-lime-400/15 text-lime-300 border-lime-400/30'],
-  [100, 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'],
-];
-
 export function MasteryChip({ score, count }: { score: number; count?: number }) {
-  const tone = (MASTERY_RAMP.find(([max]) => score <= max) ?? MASTERY_RAMP[5])[1];
+  const tone = MASTERY_TINTS[MASTERY_BUCKETS.find((max) => score <= max) ?? 100].chip;
   return (
     <span
       aria-label={count != null ? `Mastery ${score} of 100, ${count} questions` : `Mastery ${score} of 100`}

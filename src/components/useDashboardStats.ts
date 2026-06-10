@@ -20,11 +20,6 @@ export interface TopicStats {
   topic: Topic;
   total: number;
   seen: number;
-  correctNow: number;
-  wrongNow: number;
-  askedAccuracy: number | null;
-  correctPct: number;
-  wrongPct: number;
 }
 
 /** Derived dashboard aggregates: last record per question, full attempt log, and per-topic progress. */
@@ -36,30 +31,17 @@ export function useDashboardStats(history: AnswerRecord[]) {
     // One pass over the latest record per question; orphaned ids (removed
     // questions) are skipped so they can't skew the bars.
     const seen = new Map<Topic, number>();
-    const correct = new Map<Topic, number>();
     for (const rec of last.values()) {
       const q = byId.get(rec.questionId);
       const t = q && topicOf(q);
       if (!t) continue;
       seen.set(t, (seen.get(t) ?? 0) + 1);
-      if (rec.correct) correct.set(t, (correct.get(t) ?? 0) + 1);
     }
-    return ALL_TOPICS.map((t) => {
-      const total = TOTALS.get(t) ?? 0;
-      const seenN = seen.get(t) ?? 0;
-      const correctNow = correct.get(t) ?? 0;
-      const wrongNow = seenN - correctNow;
-      return {
-        topic: t,
-        total,
-        seen: seenN,
-        correctNow,
-        wrongNow,
-        askedAccuracy: seenN ? Math.round((correctNow / seenN) * 100) : null,
-        correctPct: total ? (correctNow / total) * 100 : 0,
-        wrongPct: total ? (wrongNow / total) * 100 : 0,
-      };
-    });
+    return ALL_TOPICS.map((t) => ({
+      topic: t,
+      total: TOTALS.get(t) ?? 0,
+      seen: seen.get(t) ?? 0,
+    }));
   }, [last]);
 
   // One mastery per question from its full attempt history, with a single `now`

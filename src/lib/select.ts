@@ -1,4 +1,5 @@
 import type { AnswerRecord, MasteryBucket, Question, ResultSelection, SourceSelection } from '../types';
+import { startOfLocalDay } from './dates';
 import { masteryOf } from './mastery';
 
 /** Latest answer record per question id (last write wins on ties). */
@@ -45,7 +46,7 @@ export function filterPool(
   unseenToday: boolean,
   now: number,
 ): Question[] {
-  const todayStart = new Date(now).setHours(0, 0, 0, 0);
+  const todayStart = startOfLocalDay(now);
   return pool.filter((q) => {
     if (!q.origin || !source.includes(q.origin)) return false;
     const atts = attempts.get(q.id);

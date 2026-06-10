@@ -1,26 +1,19 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
+import { daysBack, startOfLocalDay } from '../lib/dates';
 import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
-import { ALL_TOPICS, TOPIC_LABELS, UTILITIES, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
+import { ALL_TOPICS, MASTERY_BUCKETS, MASTERY_TINTS, TOPIC_LABELS, UTILITIES, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
 import { MasteryChip, QuestionStats, SourceTag } from './QuestionStats';
 import { FilterBar } from './FilterBar';
+import { ToggleChip } from './ToggleChip';
 import { LogoZoom } from './LogoZoom';
 import { useDashboardStats } from './useDashboardStats';
 import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
-
-const MASTERY_COLORS: [number, string][] = [
-  [0, 'bg-red-500/60'],
-  [20, 'bg-orange-500/60'],
-  [40, 'bg-amber-400/60'],
-  [60, 'bg-yellow-300/60'],
-  [80, 'bg-lime-400/60'],
-  [100, 'bg-emerald-500/60'],
-];
 
 function AnswerLine({
   q,
@@ -116,10 +109,11 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const overallPct = totalAttempts ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
 
   const dayCounts = useMemo(() => {
-    const todayStart = new Date().setHours(0, 0, 0, 0);
+    const now = Date.now();
+    const todayStart = startOfLocalDay(now);
     const sets = Array.from({ length: STRIP_DAYS }, () => new Set<string>());
     for (const r of history) {
-      const back = Math.round((todayStart - new Date(r.ts).setHours(0, 0, 0, 0)) / 86_400_000);
+      const back = daysBack(r.ts, now);
       if (back >= 0 && back < STRIP_DAYS) sets[STRIP_DAYS - 1 - back].add(r.questionId);
     }
     return sets.map((s, i) => ({
@@ -177,9 +171,9 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           const isOpen = open === s.topic;
           const buckets = bucketsByTopic.get(s.topic);
           const segments: { key: string; n: number; cls: string; score: number | null; title: string }[] =
-            MASTERY_COLORS.map(([score, cls]) => {
+            MASTERY_BUCKETS.map((score) => {
               const n = buckets?.get(score) ?? 0;
-              return { key: `m${score}`, n, cls, score, title: `${n} × ${score}%` };
+              return { key: `m${score}`, n, cls: MASTERY_TINTS[score].bar, score, title: `${n} × ${score}%` };
             });
           const unseen = s.total - segments.reduce((acc, seg) => acc + seg.n, 0);
           segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-700', score: null, title: `${unseen} unseen` });
@@ -285,20 +279,16 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       <div className="flex flex-wrap items-center gap-2">
         <span className="w-20 text-slate-300">Quiz size</span>
         {[null, ...PRESETS].map((n) => (
-          <button
+          <ToggleChip
             key={n ?? 'all'}
-            type="button"
+            on={quizSize === n}
             onClick={() => setQuizSize(n)}
-            className={`px-3 py-1.5 rounded-md border text-xs transition-colors ${
-              quizSize === n
-                ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
-                : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
-            }`}
+            disabled={n !== null && n > available}
+            className={n === null ? 'min-w-[4.75rem] text-center tabular-nums' : ''}
           >
-            {n ?? 'All'}
-          </button>
+            {n ?? `All (${available})`}
+          </ToggleChip>
         ))}
-        <span className="ml-auto text-sm text-slate-500">{available} available</span>
       </div>
 
       <button

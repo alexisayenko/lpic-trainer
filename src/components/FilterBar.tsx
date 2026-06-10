@@ -1,3 +1,4 @@
+import { ToggleChip } from './ToggleChip';
 import {
   ORIGIN_LABELS,
   RESULT_FILTERS,
@@ -23,39 +24,22 @@ export function FilterBar({
   unseenToday: boolean;
   setUnseenToday: (on: boolean) => void;
 }) {
-  const btnClass = (on: boolean) =>
-    `px-3 py-1.5 rounded-md border text-xs transition-colors ${
-      on
-        ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
-        : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
-    }`;
-
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-2">
         <span className="w-20 text-slate-300">Mastery</span>
         {RESULT_FILTERS.map((f) => (
-          <button
-            key={String(f)}
-            type="button"
-            onClick={() => toggleResultFilter(f)}
-            className={btnClass(resultFilter.includes(f))}
-          >
+          <ToggleChip key={String(f)} on={resultFilter.includes(f)} onClick={() => toggleResultFilter(f)}>
             {f === 'unseen' ? 'unrated' : f}
-          </button>
+          </ToggleChip>
         ))}
       </div>
       <div className="flex flex-wrap items-center gap-2">
         <span className="w-20 text-slate-300">Source</span>
         {SOURCE_FILTERS.map((o) => (
-          <button
-            key={o}
-            type="button"
-            onClick={() => toggleSourceFilter(o)}
-            className={btnClass(sourceFilter.includes(o))}
-          >
+          <ToggleChip key={o} on={sourceFilter.includes(o)} onClick={() => toggleSourceFilter(o)}>
             {ORIGIN_LABELS[o]}
-          </button>
+          </ToggleChip>
         ))}
       </div>
       <label className="flex w-fit cursor-pointer items-center gap-2 text-sm text-slate-300">
