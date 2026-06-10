@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { QUESTIONS } from '../data/questions/index';
-import { lastByQuestion } from '../lib/select';
-import { rateQuestion, type Rating } from '../lib/rating';
+import { attemptsByQuestion, lastByQuestion } from '../lib/select';
+import { masteryOf } from '../lib/mastery';
 import { ALL_TOPICS, topicOf, type AnswerRecord, type Topic } from '../types';
 
 const byId = new Map(QUESTIONS.map((q) => [q.id, q]));
@@ -30,16 +30,7 @@ export interface TopicStats {
 /** Derived dashboard aggregates: last record per question, full attempt log, and per-topic progress. */
 export function useDashboardStats(history: AnswerRecord[]) {
   const last = useMemo(() => lastByQuestion(history), [history]);
-
-  const attemptsByQ = useMemo(() => {
-    const m = new Map<string, AnswerRecord[]>();
-    for (const r of [...history].sort((a, b) => a.ts - b.ts)) {
-      const arr = m.get(r.questionId) ?? [];
-      arr.push(r);
-      m.set(r.questionId, arr);
-    }
-    return m;
-  }, [history]);
+  const attemptsByQ = useMemo(() => attemptsByQuestion(history), [history]);
 
   const perTopic = useMemo<TopicStats[]>(() => {
     // One pass over the latest record per question; orphaned ids (removed
@@ -71,17 +62,17 @@ export function useDashboardStats(history: AnswerRecord[]) {
     });
   }, [last]);
 
-  // One rating per question from its full attempt history, with a single `now`
+  // One mastery per question from its full attempt history, with a single `now`
   // snapshot so every row is consistent and it recomputes only when history changes.
-  const ratingByQ = useMemo(() => {
+  const masteryByQ = useMemo(() => {
     const now = Date.now();
-    const m = new Map<string, Rating>();
+    const m = new Map<string, number>();
     for (const [qid, atts] of attemptsByQ) {
-      const r = rateQuestion(atts, now);
-      if (r) m.set(qid, r);
+      const r = masteryOf(atts, now);
+      if (r != null) m.set(qid, r);
     }
     return m;
   }, [attemptsByQ]);
 
-  return { last, attemptsByQ, perTopic, ratingByQ };
+  return { last, attemptsByQ, perTopic, masteryByQ };
 }

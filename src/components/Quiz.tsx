@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
-import { filterPool, lastByQuestion, orderByWeakness, pickDeck } from '../lib/select';
-import { rateQuestion } from '../lib/rating';
+import { attemptsFor, filterPool, lastByQuestion, orderByWeakness, pickDeck } from '../lib/select';
+import { masteryOf } from '../lib/mastery';
 import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
 import { QuestionStats } from './QuestionStats';
 
@@ -90,9 +90,8 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
 
   const q = deck[index];
   const choices = q.type === 'fill' ? [] : q.choices;
-  const attempts = history.filter((r) => r.questionId === q.id).sort((a, b) => a.ts - b.ts);
-  const lastRec = attempts[attempts.length - 1];
-  const rating = rateQuestion(attempts, Date.now());
+  const attempts = attemptsFor(history, q.id);
+  const mastery = masteryOf(attempts, Date.now());
 
   const commit = (correct: boolean, pickedIndex?: number) => {
     setAnswered(true);
@@ -154,7 +153,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
           {index + 1} / {deck.length}
         </span>
       </div>
-      <QuestionStats q={q} rec={lastRec} attempts={attempts} rating={rating} />
+      <QuestionStats q={q} attempts={attempts} mastery={mastery} />
       <h2 className="text-xl text-slate-100 leading-snug">{q.prompt}</h2>
       {q.type === 'multi' && !answered && (
         <p className="text-xs text-slate-500 -mt-2">Select all that apply, then submit.</p>

@@ -4,7 +4,6 @@ import { useStore } from '../store';
 import { useAuth } from '../lib/auth';
 import { cloudEnabled } from '../lib/api';
 import { filterPool } from '../lib/select';
-import type { Rating } from '../lib/rating';
 import { ALL_TOPICS, TOPIC_LABELS, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
 import { QuestionStats } from './QuestionStats';
@@ -20,12 +19,12 @@ function AnswerLine({
   q,
   rec,
   attempts,
-  rating,
+  mastery,
 }: {
   q: Question;
   rec?: AnswerRecord;
   attempts?: AnswerRecord[];
-  rating?: Rating | null;
+  mastery?: number | null;
 }) {
   const correctText =
     q.type === 'fill'
@@ -42,7 +41,7 @@ function AnswerLine({
       : 'border-rose-700 bg-rose-900/20';
   return (
     <div className={`p-3 rounded-md border ${border}`}>
-      <QuestionStats q={q} rec={rec} attempts={attempts} rating={rating} />
+      <QuestionStats q={q} attempts={attempts} mastery={mastery} />
       <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
       {rec && !rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
@@ -68,7 +67,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
 
-  const { last, attemptsByQ, perTopic, ratingByQ } = useDashboardStats(history);
+  const { last, attemptsByQ, perTopic, masteryByQ } = useDashboardStats(history);
 
   const isOn = (t: Topic) => selected === null || selected.includes(t);
   const toggleTopic = (t: Topic) => {
@@ -186,7 +185,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                         q={q}
                         rec={last.get(q.id)}
                         attempts={attemptsByQ.get(q.id)}
-                        rating={ratingByQ.get(q.id)}
+                        mastery={masteryByQ.get(q.id)}
                       />
                     ))
                   )}

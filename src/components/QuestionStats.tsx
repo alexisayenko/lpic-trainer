@@ -1,24 +1,5 @@
 import { ORIGIN_LABELS, type AnswerRecord, type Origin, type Question } from '../types';
-import type { Rating } from '../lib/rating';
-
-export function fmtDate(ts: number): string {
-  return new Date(ts).toLocaleString(undefined, {
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
-
-/** Relative time, e.g. "today", "3 days ago", "2 mo ago". */
-export function fmtRel(ts: number): string {
-  const days = Math.floor((Date.now() - ts) / 86_400_000);
-  if (days <= 0) return 'today';
-  if (days === 1) return 'yesterday';
-  if (days < 30) return `${days} days ago`;
-  if (days < 365) return `${Math.floor(days / 30)} mo ago`;
-  return `${Math.floor(days / 365)} yr ago`;
-}
+import { LEARNING, MASTERED, STRIP_DAYS, dayCells, type DayStatus } from '../lib/mastery';
 
 const ORIGIN_STYLES: Record<string, string> = {
   'linux-direct': 'bg-sky-500/15 text-sky-300 border-sky-500/30',
@@ -35,9 +16,6 @@ export function SourceTag({ origin }: { origin?: Origin }) {
     <span className={`inline-block rounded border px-1.5 py-0.5 text-[10px] ${style}`}>{label}</span>
   );
 }
-
-const MASTERED = 80;
-const LEARNING = 50;
 
 function MasteryChip({ score }: { score: number }) {
   const tone =
@@ -56,63 +34,45 @@ function MasteryChip({ score }: { score: number }) {
   );
 }
 
-function ResultBadge({ correct, ts }: { correct: boolean; ts: number }) {
+const CELL_GLYPH: Record<DayStatus, string> = { none: '·', correct: '✓', wrong: '✗' };
+const CELL_TONE: Record<DayStatus, string> = {
+  none: 'text-slate-600',
+  correct: 'text-emerald-400',
+  wrong: 'text-rose-400',
+};
+
+function DayStrip({ cells }: { cells: DayStatus[] }) {
   return (
     <span
-      title={fmtDate(ts)}
-      className={`cursor-default text-sm leading-none ${correct ? 'text-emerald-400' : 'text-rose-400'}`}
+      aria-label={`Last ${STRIP_DAYS} days`}
+      className="font-mono text-xs leading-none tracking-tight"
     >
-      {correct ? '✓' : '✗'}
+      {cells.map((c, i) => (
+        <span key={i} className={CELL_TONE[c]}>
+          {CELL_GLYPH[c]}
+        </span>
+      ))}
     </span>
   );
 }
 
-/** Compact attempt history for one question: source · mastery · ✓/✗ badges · wrong/right(%) · when. */
+/** Compact attempt history for one question: 21-day strip · mastery · source. */
 export function QuestionStats({
   q,
-  rec,
   attempts,
-  rating,
+  mastery,
 }: {
   q: Question;
-  rec?: AnswerRecord;
   attempts?: AnswerRecord[];
-  rating?: Rating | null;
+  mastery?: number | null;
 }) {
-  const badges = attempts && attempts.length ? attempts : rec ? [rec] : [];
-  const right = badges.filter((a) => a.correct).length;
-  const wrong = badges.length - right;
-  const pct = badges.length ? Math.round((right / badges.length) * 100) : null;
+  const cells = dayCells(attempts ?? [], Date.now());
   return (
     <div className="flex items-center gap-2 cursor-default">
-      {q.origin && <SourceTag origin={q.origin} />}
+      <DayStrip cells={cells} />
       <div className="ml-auto flex items-center gap-2">
-        {rating && <MasteryChip score={rating.score} />}
-        {badges.length > 0 && (
-          <span className="flex items-center gap-1">
-            <span className="text-slate-500">[</span>
-            {badges.map((a, i) => (
-              <ResultBadge key={`${a.ts}-${i}`} correct={a.correct} ts={a.ts} />
-            ))}
-            <span className="text-slate-500">]</span>
-            {pct !== null && (
-              <span className="text-xs">
-                <span className="text-rose-400">{wrong}</span>
-                <span className="text-slate-500">/</span>
-                <span className="text-emerald-400">
-                  {right} ({pct}%)
-                </span>
-              </span>
-            )}
-          </span>
-        )}
-        {rec ? (
-          <span className="text-xs text-slate-500" title={fmtDate(rec.ts)}>
-            {fmtRel(rec.ts)}
-          </span>
-        ) : (
-          <span className="text-xs text-slate-600 italic">not asked yet</span>
-        )}
+        {mastery != null && <MasteryChip score={mastery} />}
+        {q.origin && <SourceTag origin={q.origin} />}
       </div>
     </div>
   );

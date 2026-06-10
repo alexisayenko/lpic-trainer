@@ -10,6 +10,23 @@ export function lastByQuestion(history: AnswerRecord[]): Map<string, AnswerRecor
   return m;
 }
 
+/** All attempts grouped by question id, each bucket sorted oldest → newest. */
+export function attemptsByQuestion(history: AnswerRecord[]): Map<string, AnswerRecord[]> {
+  const m = new Map<string, AnswerRecord[]>();
+  for (const r of history) {
+    const arr = m.get(r.questionId);
+    if (arr) arr.push(r);
+    else m.set(r.questionId, [r]);
+  }
+  for (const arr of m.values()) arr.sort((a, b) => a.ts - b.ts);
+  return m;
+}
+
+/** Attempts for a single question, sorted oldest → newest. */
+export function attemptsFor(history: AnswerRecord[], questionId: string): AnswerRecord[] {
+  return history.filter((r) => r.questionId === questionId).sort((a, b) => a.ts - b.ts);
+}
+
 /**
  * Narrow a pool by source origin and by last-answer result.
  * Used for the dashboard's "available" count, its per-question list, and the
