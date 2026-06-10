@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
+import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
 import { ALL_TOPICS, TOPIC_LABELS, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
@@ -100,6 +101,19 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const totalCorrect = history.filter((r) => r.correct).length;
   const overallPct = totalAttempts ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
 
+  const dayCounts = useMemo(() => {
+    const todayStart = new Date().setHours(0, 0, 0, 0);
+    const sets = Array.from({ length: STRIP_DAYS }, () => new Set<string>());
+    for (const r of history) {
+      const back = Math.round((todayStart - new Date(r.ts).setHours(0, 0, 0, 0)) / 86_400_000);
+      if (back >= 0 && back < STRIP_DAYS) sets[STRIP_DAYS - 1 - back].add(r.questionId);
+    }
+    return sets.map((s, i) => ({
+      n: s.size,
+      date: new Date(todayStart - (STRIP_DAYS - 1 - i) * 86_400_000).toLocaleDateString(),
+    }));
+  }, [history]);
+
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
       <header className="flex items-center gap-4">
@@ -113,6 +127,22 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
               ? `Overall score: ${totalCorrect}/${totalAttempts} correct (${overallPct}%)`
               : 'No answers yet — tick topics and start a quiz.'}
           </p>
+          <div
+            className="mt-1 flex items-center gap-0.5 font-mono text-[10px]"
+            aria-label={`Unique questions answered per day, last ${STRIP_DAYS} days`}
+          >
+            {dayCounts.map((d, i) => (
+              <span
+                key={i}
+                title={`${d.date}: ${d.n} unique`}
+                className={`min-w-4 text-center rounded px-0.5 ${
+                  d.n ? 'bg-slate-700/60 text-slate-200' : 'text-slate-600'
+                }`}
+              >
+                {d.n || '·'}
+              </span>
+            ))}
+          </div>
         </div>
         <div className="shrink-0">
           <Account />
