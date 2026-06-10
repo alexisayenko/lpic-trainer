@@ -3,7 +3,7 @@ import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
 import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
-import { ALL_TOPICS, TOPIC_LABELS, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
+import { ALL_TOPICS, TOPIC_LABELS, UTILITIES, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
 import { MasteryChip, QuestionStats } from './QuestionStats';
 import { FilterBar } from './FilterBar';
@@ -44,7 +44,11 @@ function AnswerLine({
   return (
     <div className="p-3 rounded-md border border-slate-700 bg-slate-800/20">
       <QuestionStats q={q} attempts={attempts} mastery={mastery} />
-      <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
+      <p className="mt-2 text-xs text-slate-500">
+        {UTILITIES[q.tool]?.label ?? q.tool}
+        {topicOf(q) ? ` · ${TOPIC_LABELS[topicOf(q)!]} (${topicOf(q)})` : ''}
+      </p>
+      <p className="mt-1 text-sm text-slate-200 leading-snug">{q.prompt}</p>
       {rec && !rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
       )}
