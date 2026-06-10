@@ -3,7 +3,7 @@
 Current-state reference for the LPIC-2 (exam 202) trainer. For setup/build/deploy
 see [README.md](../README.md); for the sync backend see
 [self-hosted-sync.md](self-hosted-sync.md); for the mastery score see
-[rating-formula.md](rating-formula.md); for the product rationale see
+[mastery-formula.md](mastery-formula.md); for the product rationale see
 [quizzer-concept.md](quizzer-concept.md).
 
 ## What it is
@@ -93,14 +93,15 @@ Building a quiz deck is three independent stages:
 `lastByQuestion(history)` builds the latest-record-per-question map shared by all
 three stages and by the dashboard.
 
-## Mastery rating ([`lib/rating.ts`](../src/lib/rating.ts))
+## Mastery ([`lib/mastery.ts`](../src/lib/mastery.ts))
 
-`rateQuestion(attempts, now)` returns a 0–100 mastery score: each day scores
-`20·sign(v−x)·max(v,x)/(v+x)`, summed over 20h-bucketed days within a rolling
-21-day forgetting window, clamped 0–100. Full spec and
-constants: [rating-formula.md](rating-formula.md). **Display-only** — shown as a
-star chip in [`QuestionStats`](../src/components/QuestionStats.tsx); it does **not**
-yet affect deck ordering or eligibility. The dashboard computes one rating per
+`masteryOf(attempts, now)` returns a 0–100 score: attempts are collapsed into
+**QuizDays** (gap ≥20h starts a new day; any wrong attempt makes the whole day
+wrong); the last 5 QuizDays in a rolling 21-day window are scored, with missing
+slots counted as wrong. Full spec and constants:
+[mastery-formula.md](mastery-formula.md). **Display-only** — shown as a star chip
+in [`QuestionStats`](../src/components/QuestionStats.tsx); it does **not** yet
+affect deck ordering or eligibility. The dashboard computes one entry per
 question in a memoized map ([`useDashboardStats`](../src/components/useDashboardStats.ts))
 with a single clock snapshot for consistency.
 
@@ -171,13 +172,13 @@ src/
 │       └── <utility>/           question JSON + notes.md per utility
 ├── lib/
 │   ├── select.ts                filterPool / orderByWeakness / pickDeck / lastByQuestion
-│   ├── rating.ts                rateQuestion (mastery score)
+│   ├── mastery.ts               masteryOf (0–100 score)
 │   ├── api.ts                   sync transport + mergeHistories
 │   ├── auth.ts                  token store
 │   └── useTokenConnect.ts       shared token entry/validation hook
 └── components/
     ├── Dashboard.tsx            home: filters, per-topic progress, launcher, reset
-    ├── useDashboardStats.ts     memoized last/attempts/perTopic/rating maps
+    ├── useDashboardStats.ts     memoized last/attempts/perTopic/mastery maps
     ├── FilterBar.tsx            result + source filters
     ├── Quiz.tsx                 question card, scoring, results
     ├── QuestionStats.tsx        source tag · mastery chip · history line
@@ -189,8 +190,8 @@ src/
 
 ## Not wired in yet
 
-- **Rating-driven ordering** — `orderByWeakness` still uses the 3-bucket weight;
+- **Mastery-driven ordering** — `orderByWeakness` still uses the 3-bucket weight;
   the plan is to order by mastery once confirmed.
 - **"Skip questions asked within the last N days"** — a planned pool filter.
-- **Difficulty in the rating** — `difficulty` exists on ~⅔ of questions
+- **Difficulty in mastery** — `difficulty` exists on ~⅔ of questions
   (`recall`/`applied`/`scenario`); held until coverage and ordering are confirmed.

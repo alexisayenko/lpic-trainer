@@ -60,13 +60,13 @@ src/
 │       └── <utility>/         one folder per utility: q JSON files + notes.md
 ├── lib/
 │   ├── select.ts              deck pipeline: filterPool / orderByWeakness / pickDeck
-│   ├── rating.ts              mastery score (display-only)
+│   ├── mastery.ts             mastery score (display-only)
 │   ├── api.ts                 sync transport + mergeHistories
 │   ├── auth.ts                token store
 │   └── useTokenConnect.ts     shared token entry/validation hook
 └── components/
     ├── Dashboard.tsx          home: filters, per-topic progress, launcher, reset
-    ├── useDashboardStats.ts   memoized last/attempts/perTopic/rating maps
+    ├── useDashboardStats.ts   memoized last/attempts/perTopic/mastery maps
     ├── FilterBar.tsx          result + source filters
     ├── Quiz.tsx               question card, scoring, results screen
     ├── QuestionStats.tsx      source tag · mastery chip · attempt history
