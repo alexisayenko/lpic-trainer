@@ -56,11 +56,14 @@ export const MASTERY_BUCKETS = [0, 20, 40, 60, 80, 100] as const;
 export type MasteryBucket = (typeof MASTERY_BUCKETS)[number];
 
 /** Quiz pool / dashboard filters. */
-export type ResultFilter = 'all' | 'unseen' | MasteryBucket;
-export type SourceFilter = 'all' | Origin;
+export type ResultOption = 'unseen' | MasteryBucket;
+/** Selected result options; empty array matches nothing. */
+export type ResultSelection = ResultOption[];
+/** Selected origins; empty array matches nothing. */
+export type SourceSelection = Origin[];
 
-export const RESULT_FILTERS: ResultFilter[] = ['all', 'unseen', ...MASTERY_BUCKETS];
-export const SOURCE_FILTERS: SourceFilter[] = ['all', ...ORIGINS];
+export const RESULT_FILTERS: ResultOption[] = ['unseen', ...MASTERY_BUCKETS];
+export const SOURCE_FILTERS: Origin[] = ORIGINS;
 
 export interface AnswerRecord {
   /** Stable client-generated id; used to dedupe when syncing across devices. */

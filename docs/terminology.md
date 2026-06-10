@@ -37,8 +37,10 @@ reflects the current source; deeper detail lives in
   own; `topicOf(q)` resolves it through the question's `tool`.
 - **Origin** — provenance of a question set (`linux-direct`, `ken-adams`,
   `gpt-deep-research`, `claude-lpic2book`), auto-tagged at load from the file
-  path/id. This is what the **source filter** and **source chip** show. Distinct
-  from `Question.source`, which is an authoritative reference *URL* for the answer.
+  path/id. This is what the **source filter** (a multi-select over origins — a
+  question matches if its origin is selected; an empty selection matches
+  nothing) and **source chip** show. Distinct from `Question.source`, which is
+  an authoritative reference *URL* for the answer.
 
 ## Sessions & history
 
@@ -66,10 +68,12 @@ reflects the current source; deeper detail lives in
   (`lastByQuestion`), not by cumulative attempts. Still computed in
   `useDashboardStats` but no longer rendered — the per-topic bar shows mastery
   buckets instead.
-- **Result filter** — the dashboard/quiz-pool toggle: **All**, **unseen**
-  (zero attempts), or one of the six mastery buckets — a bucket matches
-  questions whose current `masteryOf` score equals it, computed at one shared
-  `now` per filtering pass (`filterPool` in [`select.ts`](../src/lib/select.ts)).
+- **Result filter** — the dashboard/quiz-pool multi-select over **unseen**
+  (zero attempts) and the six mastery buckets — a question matches if it falls
+  in *any* selected option; an empty selection matches nothing. A bucket
+  matches questions whose current `masteryOf` score equals it, computed at one
+  shared `now` per filtering pass (`filterPool` in
+  [`select.ts`](../src/lib/select.ts)).
   **Unseen today** (no attempts on the current local calendar day — the
   daily-drill view) is a separate standalone toggle ANDed with the result
   filter, so e.g. "mastery 40 AND not practiced today" is expressible.

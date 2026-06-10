@@ -73,26 +73,33 @@ Zustand store persisted to `localStorage` key `lpic-trainer-state`:
 |---|---|
 | `selectedTopics` | ticked topics, or `null` = all |
 | `quizSize` | questions per quiz, or `null` = all matching |
-| `resultFilter` | `all` / `unseen` / a mastery bucket (`0`/`20`/`40`/`60`/`80`/`100`) |
-| `sourceFilter` | `all` or an `Origin` |
+| `resultFilter` | multi-select of `unseen` and/or mastery buckets (`0`/`20`/`40`/`60`/`80`/`100`); empty = matches nothing; default = all selected |
+| `sourceFilter` | multi-select of `Origin`s; empty = matches nothing; default = all selected |
 | `history` | `AnswerRecord[]` — the full answer log |
 
 `recordAnswer` appends; `setHistory` replaces (after a sync merge).
-Persist is **version 3**: `migrate` backfills a fresh `id` on legacy records that
-lack one, sanitises the source filter for v0/v1, and maps the old result filter
-(v<3) to the bucket model — `unseen` carries over, `correct`/`wrong`/anything
-else falls back to `all`.
+Persist is **version 6**: `migrate` backfills a fresh `id` on legacy records that
+lack one, maps the old result filter (v<3) to the bucket model, splits
+`unseen-today` into its own toggle (v<4), converts the single-value result
+filter to a multi-selection (v<5), and (v<6) re-bases both filters on the
+"empty matches nothing" model — an empty/missing result selection and an
+`all`/missing source filter become everything-selected, a single origin
+becomes a one-element selection, and existing selections are kept with
+invalid entries dropped.
 
 ## Deck pipeline ([`lib/select.ts`](../src/lib/select.ts))
 
 Building a quiz deck is three independent stages:
 
 1. **Eligibility** — `filterPool(pool, attempts, resultFilter, sourceFilter, unseenToday, now)`
-   decides which questions qualify: by origin, by current mastery bucket
-   (`unseen` = zero attempts; a numeric bucket matches questions whose
-   `masteryOf` score equals it, computed against the single `now` snapshot),
-   and — when the `unseenToday` toggle is on — only questions with no attempt
-   on the current local calendar day (ANDed with the result filter).
+   decides which questions qualify: by the source multi-selection (the
+   question's origin must be selected), by the result multi-selection
+   (a question matches any selected option — `unseen` = zero attempts; a
+   numeric bucket matches questions whose `masteryOf` score equals it, computed
+   against the single `now` snapshot), and — when the `unseenToday` toggle is
+   on — only questions with no attempt on the current local calendar day
+   (ANDed with the result filter). An empty selection in either row matches
+   nothing.
    The dashboard's "available" count, its per-topic question list, and the quiz
    deck all run the *same* predicate, so they can't diverge.
 2. **Order** — `orderByWeakness(pool, last, rng?)` sorts unseen > last-wrong >

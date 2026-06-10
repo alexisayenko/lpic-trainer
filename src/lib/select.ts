@@ -1,4 +1,4 @@
-import type { AnswerRecord, Question, ResultFilter, SourceFilter } from '../types';
+import type { AnswerRecord, MasteryBucket, Question, ResultSelection, SourceSelection } from '../types';
 import { masteryOf } from './mastery';
 
 /** Latest answer record per question id (last write wins on ties). */
@@ -29,29 +29,30 @@ export function attemptsFor(history: AnswerRecord[], questionId: string): Answer
 }
 
 /**
- * Narrow a pool by source origin, by current mastery bucket, and optionally
- * to questions not yet attempted today (`unseenToday`, ANDed with the rest).
- * Used for the dashboard's "available" count, its per-question list, and the
- * quiz deck so all three agree on one predicate. `now` is one shared snapshot
- * so every question's mastery is computed against the same clock.
+ * Narrow a pool by source origin and by current mastery bucket (both are
+ * multi-selections — a question matches any selected option; an empty
+ * selection matches nothing), and optionally to questions not yet attempted
+ * today (`unseenToday`, ANDed with the rest). Used for the dashboard's
+ * "available" count, its per-question list, and the quiz deck so all three
+ * agree on one predicate. `now` is one shared snapshot so every question's
+ * mastery is computed against the same clock.
  */
 export function filterPool(
   pool: Question[],
   attempts: Map<string, AnswerRecord[]>,
-  result: ResultFilter,
-  source: SourceFilter,
+  result: ResultSelection,
+  source: SourceSelection,
   unseenToday: boolean,
   now: number,
 ): Question[] {
   const todayStart = new Date(now).setHours(0, 0, 0, 0);
   return pool.filter((q) => {
-    if (source !== 'all' && q.origin !== source) return false;
+    if (!q.origin || !source.includes(q.origin)) return false;
     const atts = attempts.get(q.id);
     if (unseenToday && atts && atts.some((a) => a.ts >= todayStart)) return false;
-    if (result === 'all') return true;
-    if (result === 'unseen') return !atts || atts.length === 0;
-    if (!atts) return false;
-    return masteryOf(atts, now) === result;
+    if (!atts || atts.length === 0) return result.includes('unseen');
+    const mastery = masteryOf(atts, now);
+    return mastery !== null && result.includes(mastery as MasteryBucket);
   });
 }
 
