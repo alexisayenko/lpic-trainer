@@ -15,8 +15,8 @@ reflects the current source; deeper detail lives in
   one question at a time. `App.tsx` holds a single `'home' | 'quiz'` state field;
   there is no router.
 - **Results view** — the "Done" screen rendered *inside* `Quiz.tsx` once the deck
-  index runs past the last question. Shows the session score and leads back to the
-  dashboard ("View statistics" or "Back to topics").
+  index runs past the last question. Shows the session score and a single
+  "Back to dashboard" button.
 
 ## Questions & content
 

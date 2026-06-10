@@ -14,7 +14,7 @@ function sameSet(a: number[], b: number[]): boolean {
   return a.every((x) => bs.has(x));
 }
 
-export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () => void }) {
+export function Quiz({ onExit }: { onExit: () => void }) {
   const selectedTopics = useStore((s) => s.selectedTopics);
   const quizSize = useStore((s) => s.quizSize);
   const resultFilter = useStore((s) => s.resultFilter);
@@ -76,22 +76,13 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
         <p className="text-slate-300 text-lg">
           {score.correct} / {score.total} correct ({pct}%)
         </p>
-        <div className="flex flex-col items-center gap-3">
-          <button
-            type="button"
-            onClick={onFinish}
-            className="px-4 py-2 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white"
-          >
-            View statistics
-          </button>
-          <button
-            type="button"
-            onClick={onExit}
-            className="text-sm text-slate-400 hover:text-slate-200"
-          >
-            Back to topics
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={onExit}
+          className="px-4 py-2 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white"
+        >
+          Back to dashboard
+        </button>
       </div>
     );
   }

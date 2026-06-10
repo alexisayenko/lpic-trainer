@@ -20,7 +20,7 @@ export default function App() {
       {gated ? (
         <Login />
       ) : screen === 'quiz' ? (
-        <Quiz onExit={() => setScreen('home')} onFinish={() => setScreen('home')} />
+        <Quiz onExit={() => setScreen('home')} />
       ) : (
         <Dashboard onStart={() => setScreen('quiz')} />
       )}

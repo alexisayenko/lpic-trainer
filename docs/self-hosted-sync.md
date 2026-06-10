@@ -56,7 +56,7 @@ browser ──HTTPS──▶ Apache (api.isayenko.org) ──▶ Node API (127.0
 
 ## Use it
 
-App → **View statistics** → paste the `API_TOKEN` into the sync box → **Connect**.
+App → dashboard → paste the `API_TOKEN` into the sync box → **Connect**.
 Stats two-way sync immediately and on every new answer. Repeat per device.
 **Disconnect** clears the token locally.
 
