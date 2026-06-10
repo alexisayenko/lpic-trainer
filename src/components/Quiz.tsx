@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
-import { attemptsFor, filterPool, lastByQuestion, orderByWeakness, pickDeck } from '../lib/select';
+import { attemptsFor, filterPool, lastByQuestion, orderByWeakness, pickDeck, shuffledIndices } from '../lib/select';
 import { masteryOf } from '../lib/mastery';
 import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
 import { QuestionStats } from './QuestionStats';
@@ -36,6 +36,13 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
     return pickDeck(ordered, quizSize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTopics, quizSize, resultFilter, sourceFilter]);
+
+  // Display order of choices per question, in original-index space. Built once
+  // per deck so stored pickedIndex/answerIndices stay in original indices.
+  const choiceOrders = useMemo<number[][]>(
+    () => deck.map((q) => (q.type === 'fill' ? [] : shuffledIndices(q.choices.length))),
+    [deck],
+  );
 
   const [index, setIndex] = useState(0);
   const [answered, setAnswered] = useState(false);
@@ -90,6 +97,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
 
   const q = deck[index];
   const choices = q.type === 'fill' ? [] : q.choices;
+  const order = choiceOrders[index];
   const attempts = attemptsFor(history, q.id);
   const mastery = masteryOf(attempts, Date.now());
 
@@ -149,9 +157,6 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
           {UTILITIES[q.tool]?.label ?? q.tool}
           {topicOf(q) ? ` · ${TOPIC_LABELS[topicOf(q)!]}` : ''}
         </span>
-        <span>
-          {index + 1} / {deck.length}
-        </span>
       </div>
       <QuestionStats q={q} attempts={attempts} mastery={mastery} />
       <h2 className="text-xl text-slate-100 leading-snug">{q.prompt}</h2>
@@ -181,7 +186,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
         </form>
       ) : (
         <ul className="space-y-2">
-          {choices.map((choice, i) => (
+          {order.map((i) => (
             <li key={i}>
               <button
                 type="button"
@@ -189,7 +194,7 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
                 onClick={() => (q.type === 'multi' ? toggleMulti(i) : chooseSingle(i))}
                 className={`w-full text-left p-3 rounded-md border transition-colors ${choiceClass(i)}`}
               >
-                <span className="text-slate-200">{choice}</span>
+                <span className="text-slate-200">{choices[i]}</span>
               </button>
             </li>
           ))}
@@ -239,13 +244,19 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
           </button>
         </div>
       )}
-      <button
-        type="button"
-        onClick={onExit}
-        className="block mx-auto text-sm text-slate-500 hover:text-slate-300"
-      >
-        End quiz
-      </button>
+      <div className="flex items-center justify-center gap-4 text-sm text-slate-500">
+        {!answered && (
+          <button type="button" onClick={next} className="hover:text-slate-300">
+            Skip question
+          </button>
+        )}
+        <span>
+          {index + 1} / {deck.length}
+        </span>
+        <button type="button" onClick={onExit} className="hover:text-slate-300">
+          End quiz
+        </button>
+      </div>
     </div>
   );
 }

@@ -70,6 +70,16 @@ export function orderByWeakness(
     .map((x) => x.q);
 }
 
+/** Fisher–Yates shuffled copy of `0..n-1`, used to randomise choice display order. */
+export function shuffledIndices(n: number, rng: () => number = Math.random): number[] {
+  const order = Array.from({ length: n }, (_, i) => i);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}
+
 /** Take the first `size` questions, or all when `size` is null/too large. */
 export function pickDeck(ordered: Question[], size: number | null): Question[] {
   if (size === null || size >= ordered.length) return ordered;
