@@ -17,7 +17,8 @@ browser ──HTTPS──▶ Apache (api.isayenko.org) ──▶ Node API (127.0
 
 - App: `/opt/lpic-sync/` (`index.js`, `package.json`, `node_modules`, `.env`)
 - Service: `/etc/systemd/system/lpic-sync.service` (binds `127.0.0.1:8787`)
-- Vhost: `/etc/apache2/sites-available/api.isayenko.org.conf` (+ certbot's `-le-ssl` vhost)
+- Vhost: `/etc/apache2/sites-available/api.isayenko.org.conf` (:80 redirect-only,
+  plus the :443 proxy that activates once the Let's Encrypt cert exists)
 - DB: MySQL `lpic.answers`, user `lpic@127.0.0.1`
 
 ## Rebuild from scratch
@@ -35,14 +36,18 @@ browser ──HTTPS──▶ Apache (api.isayenko.org) ──▶ Node API (127.0
    ssh user@host 'sudo bash /tmp/setup.sh'   # prints the generated API_TOKEN
    ```
 
-4. **TLS via Apache** — enable proxy + ssl, install the vhost, get the cert:
+4. **TLS via Apache** — enable proxy + ssl, install the vhost, get the cert.
+   The :80 vhost only answers the ACME challenge and redirects everything else
+   to https; the :443 proxy vhost activates on the second reload, once the
+   cert files exist:
 
    ```bash
    sudo a2enmod proxy proxy_http ssl
    scp server/apache-api.conf user@host:/tmp/
    ssh user@host 'sudo cp /tmp/apache-api.conf /etc/apache2/sites-available/api.isayenko.org.conf \
      && sudo a2ensite api.isayenko.org && sudo systemctl reload apache2'
-   sudo certbot --apache -d api.isayenko.org --non-interactive --agree-tos -m you@example.com --redirect
+   sudo certbot certonly --apache -d api.isayenko.org --non-interactive --agree-tos -m you@example.com
+   sudo systemctl reload apache2
    ```
 
 5. **Point the app at it** — `VITE_API_URL` is baked into the build via
@@ -53,8 +58,7 @@ browser ──HTTPS──▶ Apache (api.isayenko.org) ──▶ Node API (127.0
 
 App → **View statistics** → paste the `API_TOKEN` into the sync box → **Connect**.
 Stats two-way sync immediately and on every new answer. Repeat per device.
-**Disconnect** clears the token locally. **Reset all stats** (on the dashboard)
-erases your answer history on this device and, when connected, in the cloud.
+**Disconnect** clears the token locally.
 
 ## Security notes
 

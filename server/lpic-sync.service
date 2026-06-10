@@ -10,6 +10,9 @@ ExecStart=/usr/bin/node /opt/lpic-sync/index.js
 Restart=on-failure
 RestartSec=3
 # Hardening
+# Runs as a transient non-root user; the app never opens .env itself
+# (systemd reads EnvironmentFile as root) and writes nothing to disk.
+DynamicUser=yes
 NoNewPrivileges=true
 ProtectSystem=strict
 ProtectHome=true

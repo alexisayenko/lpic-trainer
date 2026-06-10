@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One-time bootstrap for the lpic-sync API. Run as root on the server after
-# copying index.js, package.json, and lpic-sync.service to /tmp:
+# copying index.js, package.json, and lpic-sync.service next to this script:
 #   sudo bash /tmp/setup.sh
 # Idempotent: re-running keeps existing secrets in /opt/lpic-sync/.env.
 set -euo pipefail
@@ -11,8 +11,15 @@ DB_USER=lpic
 ORIGINS="https://lpic.isayenko.org,http://localhost:5173"
 PORT=8787
 
+# Snapshot the inputs into a root-owned 0700 dir up front so nothing installed
+# below is read from world-writable /tmp after this point (TOCTOU).
+SRC_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+STAGE=$(mktemp -d /root/lpic-sync-stage.XXXXXX)
+trap 'rm -rf "$STAGE"' EXIT
+cp "$SRC_DIR/index.js" "$SRC_DIR/package.json" "$SRC_DIR/lpic-sync.service" "$STAGE/"
+
 mkdir -p "$APP_DIR"
-cp /tmp/index.js /tmp/package.json "$APP_DIR/"
+cp "$STAGE/index.js" "$STAGE/package.json" "$APP_DIR/"
 ( cd "$APP_DIR" && npm install --omit=dev --no-audit --no-fund >/dev/null 2>&1 )
 
 if [ -f "$APP_DIR/.env" ]; then
@@ -53,7 +60,7 @@ ALLOWED_ORIGINS=${ORIGINS}
 ENV
 fi
 
-cp /tmp/lpic-sync.service /etc/systemd/system/
+cp "$STAGE/lpic-sync.service" /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable --now lpic-sync
 sleep 1
