@@ -26,11 +26,11 @@ const MASTERY_RAMP: [number, string][] = [
   [100, 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'],
 ];
 
-export function MasteryChip({ score }: { score: number }) {
+export function MasteryChip({ score, count }: { score: number; count?: number }) {
   const tone = (MASTERY_RAMP.find(([max]) => score <= max) ?? MASTERY_RAMP[5])[1];
   return (
     <span
-      aria-label={`Mastery ${score} of 100`}
+      aria-label={count != null ? `Mastery ${score} of 100, ${count} questions` : `Mastery ${score} of 100`}
       className={`rounded border px-1.5 py-0.5 text-[10px] ${tone}`}
     >
       <span aria-hidden="true" className="inline-flex items-center gap-1">
@@ -39,7 +39,7 @@ export function MasteryChip({ score }: { score: number }) {
           <path d="M15 2l2 6-3 2-2-8h3z" opacity=".8" />
           <circle cx="12" cy="15" r="5" />
         </svg>
-        {score}
+        {count != null ? `${score} · ${count}` : score}
       </span>
     </span>
   );
@@ -72,20 +72,24 @@ export function QuestionStats({
   q,
   attempts,
   mastery,
+  showSource = true,
 }: {
   q: Question;
   attempts?: AnswerRecord[];
   mastery?: number | null;
+  showSource?: boolean;
 }) {
   const cells = dayCells(attempts ?? [], Date.now());
   return (
     <div className="flex items-center gap-2 cursor-default">
       <DayStrip cells={cells} />
       {mastery != null && <MasteryChip score={mastery} />}
-      <div className="ml-auto flex items-center gap-2">
-        {q.origin && <SourceTag origin={q.origin} />}
-        <span className="text-[10px] text-slate-500">[{q.id}]</span>
-      </div>
+      {showSource && (
+        <div className="ml-auto flex items-center gap-2">
+          {q.origin && <SourceTag origin={q.origin} />}
+          <span className="text-[10px] text-slate-500">[{q.id}]</span>
+        </div>
+      )}
     </div>
   );
 }

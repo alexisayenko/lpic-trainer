@@ -5,7 +5,7 @@ import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
 import { ALL_TOPICS, TOPIC_LABELS, UTILITIES, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
-import { MasteryChip, QuestionStats } from './QuestionStats';
+import { MasteryChip, QuestionStats, SourceTag } from './QuestionStats';
 import { FilterBar } from './FilterBar';
 import { LogoZoom } from './LogoZoom';
 import { useDashboardStats } from './useDashboardStats';
@@ -43,12 +43,20 @@ function AnswerLine({
     q.type === 'single' && rec?.pickedIndex != null ? q.choices[rec.pickedIndex] : undefined;
   return (
     <div className="p-3 rounded-md border border-slate-700 bg-slate-800/20">
-      <QuestionStats q={q} attempts={attempts} mastery={mastery} />
-      <p className="mt-2 text-xs text-slate-500">
-        {UTILITIES[q.tool]?.label ?? q.tool}
-        {topicOf(q) ? ` · ${TOPIC_LABELS[topicOf(q)!]} (${topicOf(q)})` : ''}
-      </p>
-      <p className="mt-1 text-sm text-slate-200 leading-snug">{q.prompt}</p>
+      <div className="flex items-center gap-2 text-xs text-slate-500">
+        <span>
+          {UTILITIES[q.tool]?.label ?? q.tool}
+          {topicOf(q) ? ` · ${TOPIC_LABELS[topicOf(q)!]} (${topicOf(q)})` : ''}
+        </span>
+        <span className="ml-auto flex items-center gap-2">
+          {q.origin && <SourceTag origin={q.origin} />}
+          <span className="text-[10px]">[{q.id}]</span>
+        </span>
+      </div>
+      <div className="mt-2">
+        <QuestionStats q={q} attempts={attempts} mastery={mastery} showSource={false} />
+      </div>
+      <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
       {rec && !rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
       )}
@@ -176,58 +184,81 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           const unseen = s.total - segments.reduce((acc, seg) => acc + seg.n, 0);
           segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-700', score: null, title: `${unseen} unseen` });
           return (
-            <li key={s.topic} className="rounded-md border border-slate-700 overflow-hidden">
-              <div className="flex items-stretch bg-slate-800/60">
-                <label className="flex items-center px-3 cursor-pointer hover:bg-slate-800">
-                  <input
-                    type="checkbox"
-                    checked={isOn(s.topic)}
-                    onChange={() => toggleTopic(s.topic)}
-                    className="h-4 w-4 accent-emerald-500"
-                  />
-                </label>
-                <button
-                  type="button"
-                  onClick={() => setOpen(isOpen ? null : s.topic)}
-                  className="flex-1 p-3 hover:bg-slate-800 text-left space-y-2"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="text-slate-200">
-                      <span className="text-slate-500 mr-2">{s.topic}</span>
-                      {TOPIC_LABELS[s.topic]}
-                    </span>
-                    <span className="shrink-0 text-sm text-slate-400">
+            <li
+              key={s.topic}
+              className={`rounded-md border overflow-hidden ${
+                isOn(s.topic) ? 'border-emerald-500 bg-emerald-900/10' : 'border-slate-700'
+              }`}
+            >
+              <div
+                role="button"
+                tabIndex={0}
+                aria-pressed={isOn(s.topic)}
+                onClick={() => toggleTopic(s.topic)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleTopic(s.topic);
+                  }
+                }}
+                className="p-3 bg-slate-800/60 hover:bg-slate-800 cursor-pointer space-y-2"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-slate-200">
+                    <span className="text-slate-500 mr-2">{s.topic}</span>
+                    {TOPIC_LABELS[s.topic]}
+                  </span>
+                  <span className="flex shrink-0 items-center gap-2">
+                    <span className="text-sm text-slate-400">
                       asked {s.seen}/{s.total}
                     </span>
-                  </div>
-                  <div className="flex h-1.5 rounded-full overflow-hidden bg-slate-700">
-                    {segments.map((seg) => (
-                      <div
-                        key={seg.key}
-                        className={seg.cls}
-                        title={seg.title}
-                        style={{ width: `${s.total ? (seg.n / s.total) * 100 : 0}%` }}
-                      />
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
-                    {segments.map((seg) => (
-                      <span
-                        key={seg.key}
-                        className={`flex items-center gap-1 ${seg.n === 0 ? 'opacity-40 saturate-50' : ''}`}
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-label={isOpen ? 'Hide questions' : 'Show questions'}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOpen(isOpen ? null : s.topic);
+                      }}
+                      className="p-2 -m-2 text-slate-400 hover:text-slate-200"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
-                        {seg.score !== null ? (
-                          <MasteryChip score={seg.score} />
-                        ) : (
-                          <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-700/40 text-slate-500 border-slate-600">
-                            unseen
-                          </span>
-                        )}
-                        × {seg.n}
-                      </span>
-                    ))}
-                  </div>
-                </button>
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </button>
+                  </span>
+                </div>
+                <div className="flex h-1.5 rounded-full overflow-hidden bg-slate-700">
+                  {segments.map((seg) => (
+                    <div
+                      key={seg.key}
+                      className={seg.cls}
+                      title={seg.title}
+                      style={{ width: `${s.total ? (seg.n / s.total) * 100 : 0}%` }}
+                    />
+                  ))}
+                </div>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+                  {segments.map((seg) => (
+                    <span key={seg.key} className={seg.n === 0 ? 'opacity-40 saturate-50' : ''}>
+                      {seg.score !== null ? (
+                        <MasteryChip score={seg.score} count={seg.n} />
+                      ) : (
+                        <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-700/40 text-slate-500 border-slate-600">
+                          unseen · {seg.n}
+                        </span>
+                      )}
+                    </span>
+                  ))}
+                </div>
               </div>
               {isOpen && (
                 <div className="p-3 space-y-2 bg-slate-900/40">
