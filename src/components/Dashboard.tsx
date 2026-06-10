@@ -13,12 +13,12 @@ import logo from '../assets/logo.png';
 const PRESETS = [5, 6, 12, 24, 48, 60];
 
 const MASTERY_COLORS: [number, string][] = [
-  [0, 'bg-red-500'],
-  [20, 'bg-orange-500'],
-  [40, 'bg-amber-400'],
-  [60, 'bg-yellow-300'],
-  [80, 'bg-lime-400'],
-  [100, 'bg-emerald-500'],
+  [0, 'bg-red-500/60'],
+  [20, 'bg-orange-500/60'],
+  [40, 'bg-amber-400/60'],
+  [60, 'bg-yellow-300/60'],
+  [80, 'bg-lime-400/60'],
+  [100, 'bg-emerald-500/60'],
 ];
 
 function AnswerLine({
