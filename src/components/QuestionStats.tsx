@@ -18,6 +18,7 @@ export function SourceTag({ origin }: { origin?: Origin }) {
 }
 
 const MASTERY_RAMP: [number, string][] = [
+  [0, 'bg-slate-700/40 text-slate-400 border-slate-600'],
   [20, 'bg-red-500/15 text-red-300 border-red-500/30'],
   [40, 'bg-orange-500/15 text-orange-300 border-orange-500/30'],
   [60, 'bg-amber-400/15 text-amber-300 border-amber-400/30'],
@@ -26,13 +27,20 @@ const MASTERY_RAMP: [number, string][] = [
 ];
 
 function MasteryChip({ score }: { score: number }) {
-  const tone = (MASTERY_RAMP.find(([max]) => score <= max) ?? MASTERY_RAMP[4])[1];
+  const tone = (MASTERY_RAMP.find(([max]) => score <= max) ?? MASTERY_RAMP[5])[1];
   return (
     <span
       aria-label={`Mastery ${score} of 100`}
       className={`rounded border px-1.5 py-0.5 text-[10px] ${tone}`}
     >
-      <span aria-hidden="true">🏅 {score}</span>
+      <span aria-hidden="true" className="inline-flex items-center gap-1">
+        <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor">
+          <path d="M9 2 7 8l3 2 2-8H9z" opacity=".6" />
+          <path d="M15 2l2 6-3 2-2-8h3z" opacity=".8" />
+          <circle cx="12" cy="15" r="5" />
+        </svg>
+        {score}
+      </span>
     </span>
   );
 }

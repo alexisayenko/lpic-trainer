@@ -12,6 +12,15 @@ import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
 
+const MASTERY_COLORS: [number, string][] = [
+  [100, 'bg-emerald-500'],
+  [80, 'bg-lime-400'],
+  [60, 'bg-amber-400'],
+  [40, 'bg-orange-500'],
+  [20, 'bg-red-500'],
+  [0, 'bg-slate-700'],
+];
+
 function AnswerLine({
   q,
   rec,
@@ -62,7 +71,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
 
-  const { last, attemptsByQ, perTopic, masteryByQ } = useDashboardStats(history);
+  const { last, attemptsByQ, perTopic, masteryByQ, bucketsByTopic } = useDashboardStats(history);
 
   const isOn = (t: Topic) => selected === null || selected.includes(t);
   const toggleTopic = (t: Topic) => {
@@ -125,6 +134,14 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       <ul className="space-y-2">
         {perTopic.map((s) => {
           const isOpen = open === s.topic;
+          const buckets = bucketsByTopic.get(s.topic);
+          const segments = MASTERY_COLORS.flatMap(([score, cls]) => {
+            const n = buckets?.get(score) ?? 0;
+            return n > 0 ? [{ key: `m${score}`, n, cls, title: `${n} × ${score}%` }] : [];
+          });
+          const unseen = s.total - segments.reduce((acc, seg) => acc + seg.n, 0);
+          if (unseen > 0)
+            segments.push({ key: 'unseen', n: unseen, cls: 'bg-slate-700', title: `${unseen} unseen` });
           return (
             <li key={s.topic} className="rounded-md border border-slate-700 overflow-hidden">
               <div className="flex items-stretch bg-slate-800/60">
@@ -153,6 +170,16 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                   <div className="flex h-2 rounded-full overflow-hidden bg-slate-700">
                     <div className="bg-emerald-500" style={{ width: `${s.correctPct}%` }} />
                     <div className="bg-rose-500" style={{ width: `${s.wrongPct}%` }} />
+                  </div>
+                  <div className="flex h-1.5 rounded-full overflow-hidden bg-slate-700">
+                    {segments.map((seg) => (
+                      <div
+                        key={seg.key}
+                        className={seg.cls}
+                        title={seg.title}
+                        style={{ width: `${s.total ? (seg.n / s.total) * 100 : 0}%` }}
+                      />
+                    ))}
                   </div>
                   <div className="flex items-center gap-3 text-xs text-slate-400">
                     <span className="text-rose-400">✗ {s.wrongNow} wrong</span>

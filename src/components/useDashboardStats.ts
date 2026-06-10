@@ -74,5 +74,21 @@ export function useDashboardStats(history: AnswerRecord[]) {
     return m;
   }, [attemptsByQ]);
 
-  return { last, attemptsByQ, perTopic, masteryByQ };
+  const bucketsByTopic = useMemo(() => {
+    const m = new Map<Topic, Map<number, number>>();
+    for (const [qid, score] of masteryByQ) {
+      const q = byId.get(qid);
+      const t = q && topicOf(q);
+      if (!t) continue;
+      let b = m.get(t);
+      if (!b) {
+        b = new Map();
+        m.set(t, b);
+      }
+      b.set(score, (b.get(score) ?? 0) + 1);
+    }
+    return m;
+  }, [masteryByQ]);
+
+  return { last, attemptsByQ, perTopic, masteryByQ, bucketsByTopic };
 }
