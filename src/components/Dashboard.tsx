@@ -128,8 +128,8 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (202) Trainer</h1>
           <p className="text-sm text-slate-400">
             {totalAttempts > 0
-              ? `Overall score: ${totalCorrect}/${totalAttempts} correct (${overallPct}%)`
-              : 'No answers yet — tick topics and start a quiz.'}
+              ? `Overall score: ${totalCorrect}/${totalAttempts} correct (${overallPct}%) · ${QUESTIONS.length} questions`
+              : `No answers yet — tick topics and start a quiz. ${QUESTIONS.length} questions`}
           </p>
           <div
             className="mt-1 flex items-center gap-0.5 font-mono text-[10px]"
@@ -165,13 +165,12 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           const isOpen = open === s.topic;
           const buckets = bucketsByTopic.get(s.topic);
           const segments: { key: string; n: number; cls: string; score: number | null; title: string }[] =
-            MASTERY_COLORS.flatMap(([score, cls]) => {
+            MASTERY_COLORS.map(([score, cls]) => {
               const n = buckets?.get(score) ?? 0;
-              return n > 0 ? [{ key: `m${score}`, n, cls, score, title: `${n} × ${score}%` }] : [];
+              return { key: `m${score}`, n, cls, score, title: `${n} × ${score}%` };
             });
           const unseen = s.total - segments.reduce((acc, seg) => acc + seg.n, 0);
-          if (unseen > 0)
-            segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-700', score: null, title: `${unseen} unseen` });
+          segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-700', score: null, title: `${unseen} unseen` });
           return (
             <li key={s.topic} className="rounded-md border border-slate-700 overflow-hidden">
               <div className="flex items-stretch bg-slate-800/60">
@@ -209,7 +208,10 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                   </div>
                   <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
                     {segments.map((seg) => (
-                      <span key={seg.key} className="flex items-center gap-1">
+                      <span
+                        key={seg.key}
+                        className={`flex items-center gap-1 ${seg.n === 0 ? 'opacity-40 saturate-50' : ''}`}
+                      >
                         {seg.score !== null ? (
                           <MasteryChip score={seg.score} />
                         ) : (
