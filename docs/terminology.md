@@ -63,8 +63,12 @@ reflects the current source; deeper detail lives in
   ([`useDashboardStats`](../src/components/useDashboardStats.ts)).
 - **Correct / wrong "now"** — last-attempt semantics: `correctNow` / `wrongNow`
   classify each seen question by its *latest* record only
-  (`lastByQuestion`), not by cumulative attempts. The per-topic bars, counts, and
-  the result filter all use this.
+  (`lastByQuestion`), not by cumulative attempts. The per-topic bars and counts
+  use this.
+- **Result filter** — the dashboard/quiz-pool toggle: **All**, **unseen**
+  (zero attempts), or one of the six mastery buckets — a bucket matches
+  questions whose current `masteryOf` score equals it, computed at one shared
+  `now` per filtering pass (`filterPool` in [`select.ts`](../src/lib/select.ts)).
 - **Overall score** — the dashboard header line; *cumulative* over every record
   in history (`totalCorrect/totalAttempts`), unlike the per-topic "now" numbers.
 - **Accuracy** — per-topic `askedAccuracy`: `correctNow / seen`, i.e. the share
@@ -74,9 +78,9 @@ reflects the current source; deeper detail lives in
 ## Mastery
 
 - **Mastery** — a 0–100 per-question score ("you know it well, and recently"),
-  computed by `masteryOf` in [`mastery.ts`](../src/lib/mastery.ts). Display-only:
-  it does not yet affect deck ordering or eligibility. Full spec:
-  [mastery-formula.md](mastery-formula.md).
+  computed by `masteryOf` in [`mastery.ts`](../src/lib/mastery.ts). Drives the
+  result filter's bucket matching; it does not yet affect deck ordering. Full
+  spec: [mastery-formula.md](mastery-formula.md).
 - **QuizDay** — a bucket of attempts treated as one study day. A new QuizDay
   starts only when the gap since the previous attempt is **≥21h** *and* the
   attempt falls on a different local calendar date. *Clean* if every attempt in it

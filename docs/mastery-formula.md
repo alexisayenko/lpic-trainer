@@ -4,8 +4,9 @@ A 0–100 **mastery** score per question — high means "you know it well, and r
 Computed from your attempt history in [`src/lib/mastery.ts`](../src/lib/mastery.ts) and
 shown as a `★ NN` chip in the per-question stats line (dashboard rows and the quiz).
 
-> **Status: display-only.** Mastery does **not** yet affect quiz ordering or the
-> question pool. See *Not wired in yet*.
+> **Status: partially wired in.** Mastery drives the result filter (the quiz
+> pool can be narrowed to one bucket) but does **not** yet affect quiz ordering.
+> See *Not wired in yet*.
 
 ## Model
 

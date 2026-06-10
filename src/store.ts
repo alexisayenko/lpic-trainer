@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { RESULT_FILTERS, SOURCE_FILTERS } from './types';
+import { SOURCE_FILTERS } from './types';
 import type { AnswerRecord, ResultFilter, SourceFilter, Topic } from './types';
 
 function newId(): string {
@@ -46,17 +46,20 @@ export const useStore = create<State>()(
     }),
     {
       name: 'lpic-trainer-state',
-      version: 2,
-      // Runs only for persisted versions < 2 (v0/v1): answer records gained a
-      // stable `id`, and the result/source filters were added.
+      version: 3,
+      // v0/v1: answer records gained a stable `id`, and the result/source
+      // filters were added. v3: the result filter became mastery buckets —
+      // 'unseen' carries over, anything else falls back to 'all'.
       migrate: (state: unknown, version: number) => {
         const s = (state ?? {}) as Partial<State>;
         s.history = Array.isArray(s.history)
           ? s.history.map((r) => (r.id ? r : { ...r, id: newId() }))
           : [];
         if (version < 2) {
-          if (!RESULT_FILTERS.includes(s.resultFilter as ResultFilter)) s.resultFilter = 'all';
           if (!SOURCE_FILTERS.includes(s.sourceFilter as SourceFilter)) s.sourceFilter = 'all';
+        }
+        if (version < 3) {
+          s.resultFilter = s.resultFilter === 'unseen' ? 'unseen' : 'all';
         }
         return s as State;
       },

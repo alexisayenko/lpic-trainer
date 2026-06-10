@@ -5,6 +5,7 @@ import {
   type ResultFilter,
   type SourceFilter,
 } from '../types';
+import { MasteryChip } from './QuestionStats';
 
 export function FilterBar({
   resultFilter,
@@ -19,17 +20,25 @@ export function FilterBar({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-3 text-sm">
-      <div className="flex rounded-md overflow-hidden border border-slate-700 w-fit">
+      <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit">
         {RESULT_FILTERS.map((f) => (
           <button
-            key={f}
+            key={String(f)}
             type="button"
             onClick={() => setResultFilter(f)}
-            className={`px-3 py-1.5 capitalize ${
+            className={`px-2 py-1.5 ${
               resultFilter === f ? 'bg-emerald-700 text-white' : 'bg-slate-800 text-slate-300'
             }`}
           >
-            {f}
+            {f === 'all' ? (
+              <span className="px-1">All</span>
+            ) : f === 'unseen' ? (
+              <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-700/40 text-slate-400 border-slate-600">
+                unseen
+              </span>
+            ) : (
+              <MasteryChip score={f} />
+            )}
           </button>
         ))}
       </div>

@@ -72,21 +72,26 @@ Zustand store persisted to `localStorage` key `lpic-trainer-state`:
 |---|---|
 | `selectedTopics` | ticked topics, or `null` = all |
 | `quizSize` | questions per quiz, or `null` = all matching |
-| `resultFilter` | `all` / `correct` / `wrong` / `unseen` |
+| `resultFilter` | `all` / `unseen` / a mastery bucket (`0`/`20`/`40`/`60`/`80`/`100`) |
 | `sourceFilter` | `all` or an `Origin` |
 | `history` | `AnswerRecord[]` — the full answer log |
 
 `recordAnswer` appends; `setHistory` replaces (after a sync merge).
-Persist is **version 2**: `migrate` backfills a fresh `id` on legacy records that
-lack one and defaults/sanitises the filter fields for v0/v1.
+Persist is **version 3**: `migrate` backfills a fresh `id` on legacy records that
+lack one, sanitises the source filter for v0/v1, and maps the old result filter
+(v<3) to the bucket model — `unseen` carries over, `correct`/`wrong`/anything
+else falls back to `all`.
 
 ## Deck pipeline ([`lib/select.ts`](../src/lib/select.ts))
 
 Building a quiz deck is three independent stages:
 
-1. **Eligibility** — `filterPool(pool, last, resultFilter, sourceFilter)` decides
-   which questions qualify. The dashboard's "available" count, its per-topic question
-   list, and the quiz deck all run the *same* predicate, so they can't diverge.
+1. **Eligibility** — `filterPool(pool, attempts, resultFilter, sourceFilter, now)`
+   decides which questions qualify: by origin, and by current mastery bucket
+   (`unseen` = zero attempts; a numeric bucket matches questions whose
+   `masteryOf` score equals it, computed against the single `now` snapshot).
+   The dashboard's "available" count, its per-topic question list, and the quiz
+   deck all run the *same* predicate, so they can't diverge.
 2. **Order** — `orderByWeakness(pool, last, rng?)` sorts unseen > last-wrong >
    last-correct, with a random tiebreak (injectable RNG for testing).
 3. **Take** — `pickDeck(ordered, size)` slices the first N.
@@ -100,16 +105,18 @@ three stages and by the dashboard.
 **QuizDays** (a new day starts when the gap is ≥21h *and* the local calendar
 date changes; any wrong attempt makes the whole day wrong); the last 5 QuizDays in a rolling 21-day window are scored, with missing
 slots counted as wrong. Full spec and constants:
-[mastery-formula.md](mastery-formula.md). **Display-only** — shown as a star chip
-in [`QuestionStats`](../src/components/QuestionStats.tsx); it does **not** yet
-affect deck ordering or eligibility. The dashboard computes one entry per
+[mastery-formula.md](mastery-formula.md). Shown as a star chip
+in [`QuestionStats`](../src/components/QuestionStats.tsx) and used by the result
+filter for pool eligibility; it does **not** yet affect deck ordering. The
+dashboard computes one entry per
 question in a memoized map ([`useDashboardStats`](../src/components/useDashboardStats.ts))
 with a single clock snapshot for consistency.
 
 ## Dashboard
 
 - **Filters** ([`FilterBar`](../src/components/FilterBar.tsx)) — result + source toggles.
-  They both filter the displayed rows **and form the quiz pool**.
+  The result filter is All / unseen / the six mastery buckets, rendered as medal
+  chips. They both filter the displayed rows **and form the quiz pool**.
 - **Per-topic progress** — a stacked correct/wrong/unseen bar and counts per topic,
   derived in `useDashboardStats` (one pass over the latest-record map; orphaned ids
   for removed questions are skipped).
@@ -159,7 +166,7 @@ per-row validation matching the schema, 2 MB body cap.
 src/
 ├── App.tsx                      screen switch + login gate
 ├── main.tsx                     Vite entry
-├── store.ts                     Zustand store (persist v2 + migrate)
+├── store.ts                     Zustand store (persist v3 + migrate)
 ├── types.ts                     Question union, AnswerRecord, Topic/Origin, constants
 ├── data/
 │   ├── topics.json              6 exam topics (207–212)

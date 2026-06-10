@@ -85,13 +85,13 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       const t = topicOf(q);
       return t !== undefined && (selected === null || selected.includes(t));
     });
-    return filterPool(topicPool, last, resultFilter, sourceFilter).length;
-  }, [selected, resultFilter, sourceFilter, last]);
+    return filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, Date.now()).length;
+  }, [selected, resultFilter, sourceFilter, attemptsByQ]);
 
   const questionRows = useMemo(() => {
     if (!open) return [];
     const pool = QUESTIONS.filter((q) => topicOf(q) === open);
-    return filterPool(pool, last, resultFilter, sourceFilter).sort((a, b) => {
+    return filterPool(pool, attemptsByQ, resultFilter, sourceFilter, Date.now()).sort((a, b) => {
       const ra = last.get(a.id);
       const rb = last.get(b.id);
       if (ra && rb) return rb.ts - ra.ts;
@@ -99,7 +99,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       if (rb) return 1;
       return a.id.localeCompare(b.id);
     });
-  }, [open, resultFilter, sourceFilter, last]);
+  }, [open, resultFilter, sourceFilter, attemptsByQ, last]);
 
   const totalAttempts = history.length;
   const totalCorrect = history.filter((r) => r.correct).length;

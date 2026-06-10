@@ -60,7 +60,7 @@ src/
 │       └── <utility>/         one folder per utility: q JSON files + notes.md
 ├── lib/
 │   ├── select.ts              deck pipeline: filterPool / orderByWeakness / pickDeck
-│   ├── mastery.ts             mastery score (display-only)
+│   ├── mastery.ts             mastery score (chip + result filter)
 │   ├── api.ts                 sync transport + mergeHistories
 │   ├── auth.ts                token store
 │   └── useTokenConnect.ts     shared token entry/validation hook

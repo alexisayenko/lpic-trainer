@@ -50,11 +50,15 @@ export const ORIGIN_LABELS: Record<Origin, string> = {
   'claude-lpic2book': 'Claude',
 };
 
+/** The six possible mastery scores (see lib/mastery.ts). */
+export const MASTERY_BUCKETS = [0, 20, 40, 60, 80, 100] as const;
+export type MasteryBucket = (typeof MASTERY_BUCKETS)[number];
+
 /** Quiz pool / dashboard filters. */
-export type ResultFilter = 'all' | 'correct' | 'wrong' | 'unseen';
+export type ResultFilter = 'all' | 'unseen' | MasteryBucket;
 export type SourceFilter = 'all' | Origin;
 
-export const RESULT_FILTERS: ResultFilter[] = ['all', 'correct', 'wrong', 'unseen'];
+export const RESULT_FILTERS: ResultFilter[] = ['all', 'unseen', ...MASTERY_BUCKETS];
 export const SOURCE_FILTERS: SourceFilter[] = ['all', ...ORIGINS];
 
 export interface AnswerRecord {

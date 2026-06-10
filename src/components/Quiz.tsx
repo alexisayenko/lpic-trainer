@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
-import { attemptsFor, filterPool, lastByQuestion, orderByWeakness, pickDeck, shuffledIndices } from '../lib/select';
+import { attemptsByQuestion, attemptsFor, filterPool, lastByQuestion, orderByWeakness, pickDeck, shuffledIndices } from '../lib/select';
 import { masteryOf } from '../lib/mastery';
 import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
 import { QuestionStats } from './QuestionStats';
@@ -30,8 +30,9 @@ export function Quiz({ onExit, onFinish }: { onExit: () => void; onFinish: () =>
           return t !== undefined && selectedTopics.includes(t);
         })
       : QUESTIONS;
-    const last = lastByQuestion(useStore.getState().history);
-    const pool = filterPool(topicPool, last, resultFilter, sourceFilter);
+    const snapshot = useStore.getState().history;
+    const last = lastByQuestion(snapshot);
+    const pool = filterPool(topicPool, attemptsByQuestion(snapshot), resultFilter, sourceFilter, Date.now());
     const ordered = orderByWeakness(pool, last);
     return pickDeck(ordered, quizSize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
