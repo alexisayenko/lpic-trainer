@@ -12,11 +12,15 @@ export function FilterBar({
   setResultFilter,
   sourceFilter,
   setSourceFilter,
+  unseenToday,
+  setUnseenToday,
 }: {
   resultFilter: ResultFilter;
   setResultFilter: (f: ResultFilter) => void;
   sourceFilter: SourceFilter;
   setSourceFilter: (s: SourceFilter) => void;
+  unseenToday: boolean;
+  setUnseenToday: (on: boolean) => void;
 }) {
   return (
     <div className="flex flex-wrap items-center gap-3 text-sm">
@@ -32,9 +36,9 @@ export function FilterBar({
           >
             {f === 'all' ? (
               <span className="px-1">All</span>
-            ) : f === 'unseen' || f === 'unseen-today' ? (
+            ) : f === 'unseen' ? (
               <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-700/40 text-slate-400 border-slate-600">
-                {f === 'unseen' ? 'unseen' : 'unseen today'}
+                unseen
               </span>
             ) : (
               <MasteryChip score={f} />
@@ -55,6 +59,19 @@ export function FilterBar({
             {sKey === 'all' ? 'All' : ORIGIN_LABELS[sKey]}
           </button>
         ))}
+      </div>
+      <div className="rounded-md overflow-hidden border border-slate-700 w-fit">
+        <button
+          type="button"
+          onClick={() => setUnseenToday(!unseenToday)}
+          className={`px-2 py-1.5 bg-slate-800 ${
+            unseenToday ? 'text-white ring-1 ring-inset ring-emerald-500' : 'text-slate-300'
+          }`}
+        >
+          <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-700/40 text-slate-400 border-slate-600">
+            unseen today
+          </span>
+        </button>
       </div>
     </div>
   );

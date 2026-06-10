@@ -29,7 +29,8 @@ export function attemptsFor(history: AnswerRecord[], questionId: string): Answer
 }
 
 /**
- * Narrow a pool by source origin and by current mastery bucket.
+ * Narrow a pool by source origin, by current mastery bucket, and optionally
+ * to questions not yet attempted today (`unseenToday`, ANDed with the rest).
  * Used for the dashboard's "available" count, its per-question list, and the
  * quiz deck so all three agree on one predicate. `now` is one shared snapshot
  * so every question's mastery is computed against the same clock.
@@ -39,15 +40,16 @@ export function filterPool(
   attempts: Map<string, AnswerRecord[]>,
   result: ResultFilter,
   source: SourceFilter,
+  unseenToday: boolean,
   now: number,
 ): Question[] {
   const todayStart = new Date(now).setHours(0, 0, 0, 0);
   return pool.filter((q) => {
     if (source !== 'all' && q.origin !== source) return false;
-    if (result === 'all') return true;
     const atts = attempts.get(q.id);
+    if (unseenToday && atts && atts.some((a) => a.ts >= todayStart)) return false;
+    if (result === 'all') return true;
     if (result === 'unseen') return !atts || atts.length === 0;
-    if (result === 'unseen-today') return !atts || atts.every((a) => a.ts < todayStart);
     if (!atts) return false;
     return masteryOf(atts, now) === result;
   });

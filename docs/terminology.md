@@ -67,10 +67,12 @@ reflects the current source; deeper detail lives in
   `useDashboardStats` but no longer rendered — the per-topic bar shows mastery
   buckets instead.
 - **Result filter** — the dashboard/quiz-pool toggle: **All**, **unseen**
-  (zero attempts), **unseen today** (no attempts on the current local calendar
-  day — the daily-drill view), or one of the six mastery buckets — a bucket matches
+  (zero attempts), or one of the six mastery buckets — a bucket matches
   questions whose current `masteryOf` score equals it, computed at one shared
   `now` per filtering pass (`filterPool` in [`select.ts`](../src/lib/select.ts)).
+  **Unseen today** (no attempts on the current local calendar day — the
+  daily-drill view) is a separate standalone toggle ANDed with the result
+  filter, so e.g. "mastery 40 AND not practiced today" is expressible.
 - **Overall score** — the dashboard header line; *cumulative* over every record
   in history (`totalCorrect/totalAttempts`), unlike the per-topic "now" numbers.
 - **Accuracy** — per-topic `askedAccuracy`: `correctNow / seen`, i.e. the share

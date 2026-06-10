@@ -67,6 +67,8 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const setResultFilter = useStore((s) => s.setResultFilter);
   const sourceFilter = useStore((s) => s.sourceFilter);
   const setSourceFilter = useStore((s) => s.setSourceFilter);
+  const unseenToday = useStore((s) => s.unseenToday);
+  const setUnseenToday = useStore((s) => s.setUnseenToday);
 
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
@@ -85,13 +87,13 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       const t = topicOf(q);
       return t !== undefined && (selected === null || selected.includes(t));
     });
-    return filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, Date.now()).length;
-  }, [selected, resultFilter, sourceFilter, attemptsByQ]);
+    return filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, unseenToday, Date.now()).length;
+  }, [selected, resultFilter, sourceFilter, unseenToday, attemptsByQ]);
 
   const questionRows = useMemo(() => {
     if (!open) return [];
     const pool = QUESTIONS.filter((q) => topicOf(q) === open);
-    return filterPool(pool, attemptsByQ, resultFilter, sourceFilter, Date.now()).sort((a, b) => {
+    return filterPool(pool, attemptsByQ, resultFilter, sourceFilter, unseenToday, Date.now()).sort((a, b) => {
       const ra = last.get(a.id);
       const rb = last.get(b.id);
       if (ra && rb) return rb.ts - ra.ts;
@@ -99,7 +101,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       if (rb) return 1;
       return a.id.localeCompare(b.id);
     });
-  }, [open, resultFilter, sourceFilter, attemptsByQ, last]);
+  }, [open, resultFilter, sourceFilter, unseenToday, attemptsByQ, last]);
 
   const totalAttempts = history.length;
   const totalCorrect = history.filter((r) => r.correct).length;
@@ -158,6 +160,8 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         setResultFilter={setResultFilter}
         sourceFilter={sourceFilter}
         setSourceFilter={setSourceFilter}
+        unseenToday={unseenToday}
+        setUnseenToday={setUnseenToday}
       />
 
       <ul className="space-y-2">

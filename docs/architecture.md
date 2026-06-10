@@ -87,10 +87,12 @@ else falls back to `all`.
 
 Building a quiz deck is three independent stages:
 
-1. **Eligibility** — `filterPool(pool, attempts, resultFilter, sourceFilter, now)`
-   decides which questions qualify: by origin, and by current mastery bucket
+1. **Eligibility** — `filterPool(pool, attempts, resultFilter, sourceFilter, unseenToday, now)`
+   decides which questions qualify: by origin, by current mastery bucket
    (`unseen` = zero attempts; a numeric bucket matches questions whose
-   `masteryOf` score equals it, computed against the single `now` snapshot).
+   `masteryOf` score equals it, computed against the single `now` snapshot),
+   and — when the `unseenToday` toggle is on — only questions with no attempt
+   on the current local calendar day (ANDed with the result filter).
    The dashboard's "available" count, its per-topic question list, and the quiz
    deck all run the *same* predicate, so they can't diverge.
 2. **Order** — `orderByWeakness(pool, last, rng?)` sorts unseen > last-wrong >

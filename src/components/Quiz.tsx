@@ -19,6 +19,7 @@ export function Quiz({ onExit }: { onExit: () => void }) {
   const quizSize = useStore((s) => s.quizSize);
   const resultFilter = useStore((s) => s.resultFilter);
   const sourceFilter = useStore((s) => s.sourceFilter);
+  const unseenToday = useStore((s) => s.unseenToday);
   const recordAnswer = useStore((s) => s.recordAnswer);
   const history = useStore((s) => s.history);
 
@@ -32,11 +33,11 @@ export function Quiz({ onExit }: { onExit: () => void }) {
       : QUESTIONS;
     const snapshot = useStore.getState().history;
     const last = lastByQuestion(snapshot);
-    const pool = filterPool(topicPool, attemptsByQuestion(snapshot), resultFilter, sourceFilter, Date.now());
+    const pool = filterPool(topicPool, attemptsByQuestion(snapshot), resultFilter, sourceFilter, unseenToday, Date.now());
     const ordered = orderByWeakness(pool, last);
     return pickDeck(ordered, quizSize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTopics, quizSize, resultFilter, sourceFilter]);
+  }, [selectedTopics, quizSize, resultFilter, sourceFilter, unseenToday]);
 
   // Display order of choices per question, in original-index space. Built once
   // per deck so stored pickedIndex/answerIndices stay in original indices.
