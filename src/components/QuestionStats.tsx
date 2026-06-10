@@ -18,10 +18,10 @@ export function SourceTag({ origin }: { origin?: Origin }) {
 }
 
 const MASTERY_RAMP: [number, string][] = [
-  [0, 'bg-slate-700/40 text-slate-400 border-slate-600'],
-  [20, 'bg-red-500/15 text-red-300 border-red-500/30'],
-  [40, 'bg-orange-500/15 text-orange-300 border-orange-500/30'],
-  [60, 'bg-amber-400/15 text-amber-300 border-amber-400/30'],
+  [0, 'bg-red-500/15 text-red-300 border-red-500/30'],
+  [20, 'bg-orange-500/15 text-orange-300 border-orange-500/30'],
+  [40, 'bg-amber-400/15 text-amber-300 border-amber-400/30'],
+  [60, 'bg-yellow-300/15 text-yellow-300 border-yellow-300/30'],
   [80, 'bg-lime-400/15 text-lime-300 border-lime-400/30'],
   [100, 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'],
 ];
@@ -82,11 +82,10 @@ export function QuestionStats({
     <div className="flex items-center gap-2 cursor-default">
       <DayStrip cells={cells} />
       {mastery != null && <MasteryChip score={mastery} />}
-      {q.origin && (
-        <div className="ml-auto">
-          <SourceTag origin={q.origin} />
-        </div>
-      )}
+      <div className="ml-auto flex items-center gap-2">
+        {q.origin && <SourceTag origin={q.origin} />}
+        <span className="text-[10px] text-slate-500">[{q.id}]</span>
+      </div>
     </div>
   );
 }

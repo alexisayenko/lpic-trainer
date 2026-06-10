@@ -12,13 +12,13 @@ import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
 
-const MASTERY_COLORS: [number, string][] = [
-  [100, 'bg-emerald-500'],
-  [80, 'bg-lime-400'],
-  [60, 'bg-amber-400'],
-  [40, 'bg-orange-500'],
-  [20, 'bg-red-500'],
-  [0, 'bg-slate-700'],
+const MASTERY_COLORS: [number, string, string][] = [
+  [100, 'bg-emerald-500', 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'],
+  [80, 'bg-lime-400', 'bg-lime-400/15 text-lime-300 border-lime-400/30'],
+  [60, 'bg-yellow-300', 'bg-yellow-300/15 text-yellow-300 border-yellow-300/30'],
+  [40, 'bg-amber-400', 'bg-amber-400/15 text-amber-300 border-amber-400/30'],
+  [20, 'bg-orange-500', 'bg-orange-500/15 text-orange-300 border-orange-500/30'],
+  [0, 'bg-red-500', 'bg-red-500/15 text-red-300 border-red-500/30'],
 ];
 
 function AnswerLine({
@@ -135,13 +135,19 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         {perTopic.map((s) => {
           const isOpen = open === s.topic;
           const buckets = bucketsByTopic.get(s.topic);
-          const segments = MASTERY_COLORS.flatMap(([score, cls]) => {
+          const segments = MASTERY_COLORS.flatMap(([score, cls, badge]) => {
             const n = buckets?.get(score) ?? 0;
-            return n > 0 ? [{ key: `m${score}`, n, cls, title: `${n} × ${score}%` }] : [];
+            return n > 0 ? [{ key: `m${score}`, n, cls, badge, title: `${n} × ${score}%` }] : [];
           });
           const unseen = s.total - segments.reduce((acc, seg) => acc + seg.n, 0);
           if (unseen > 0)
-            segments.push({ key: 'unseen', n: unseen, cls: 'bg-slate-700', title: `${unseen} unseen` });
+            segments.push({
+              key: 'unseen',
+              n: unseen,
+              cls: 'bg-slate-700',
+              badge: 'bg-slate-700/40 text-slate-500 border-slate-600',
+              title: `${unseen} unseen`,
+            });
           return (
             <li key={s.topic} className="rounded-md border border-slate-700 overflow-hidden">
               <div className="flex items-stretch bg-slate-800/60">
@@ -167,6 +173,13 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                       asked {s.seen}/{s.total}
                     </span>
                   </div>
+                  <div className="flex items-center gap-3 text-xs text-slate-400">
+                    <span className="text-rose-400">✗ {s.wrongNow} wrong</span>
+                    <span className="text-emerald-400">
+                      ✓ {s.correctNow} correct
+                      {s.askedAccuracy !== null && ` (${s.askedAccuracy}%)`}
+                    </span>
+                  </div>
                   <div className="flex h-2 rounded-full overflow-hidden bg-slate-700">
                     <div className="bg-emerald-500" style={{ width: `${s.correctPct}%` }} />
                     <div className="bg-rose-500" style={{ width: `${s.wrongPct}%` }} />
@@ -181,12 +194,15 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                       />
                     ))}
                   </div>
-                  <div className="flex items-center gap-3 text-xs text-slate-400">
-                    <span className="text-rose-400">✗ {s.wrongNow} wrong</span>
-                    <span className="text-emerald-400">
-                      ✓ {s.correctNow} correct
-                      {s.askedAccuracy !== null && ` (${s.askedAccuracy}%)`}
-                    </span>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {segments.map((seg) => (
+                      <span
+                        key={seg.key}
+                        className={`rounded border px-1.5 py-0.5 text-[10px] ${seg.badge}`}
+                      >
+                        {seg.title}
+                      </span>
+                    ))}
                   </div>
                 </button>
               </div>
