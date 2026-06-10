@@ -78,8 +78,6 @@ export const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
 
 export const UTILITIES: Record<string, UtilityInfo> = utilities as Record<string, UtilityInfo>;
 
-export type Utility = keyof typeof utilities;
-
 /** Resolve a question's topic from its tool slug via utilities.json. */
 export function topicOf(question: Question): Topic | undefined {
   return UTILITIES[question.tool]?.topic;
