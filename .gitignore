@@ -16,3 +16,6 @@ pnpm-debug.log*
 docs/refs/
 
 tmp/
+.claude-bye.md
+.claude-blockers.md
+.claude/

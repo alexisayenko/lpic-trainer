@@ -79,6 +79,10 @@ src/
 See [docs/architecture.md](docs/architecture.md) for how these fit together and
 [docs/terminology.md](docs/terminology.md) for a glossary of the domain terms.
 
+Outside `src/`: `ios/` holds the Capacitor-generated native iOS shell (the web
+bundle wrapped in a WKWebView, UI fully shared) — see
+[mobile/README.md](mobile/README.md) for how to build and run it.
+
 ## Coverage
 
 The exam 202 objectives, as published by LPI:
