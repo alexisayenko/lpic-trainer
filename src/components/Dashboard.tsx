@@ -40,13 +40,8 @@ function AnswerLine({
         : q.choices[q.answerIndex];
   const yours =
     q.type === 'single' && rec?.pickedIndex != null ? q.choices[rec.pickedIndex] : undefined;
-  const border = !rec
-    ? 'border-slate-700 bg-slate-800/20'
-    : rec.correct
-      ? 'border-emerald-700 bg-emerald-900/20'
-      : 'border-rose-700 bg-rose-900/20';
   return (
-    <div className={`p-3 rounded-md border ${border}`}>
+    <div className="p-3 rounded-md border border-slate-700 bg-slate-800/20">
       <QuestionStats q={q} attempts={attempts} mastery={mastery} />
       <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
       {rec && !rec.correct && yours !== undefined && (
@@ -178,10 +173,9 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                       />
                     ))}
                   </div>
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+                  <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
                     {segments.map((seg) => (
                       <span key={seg.key} className="flex items-center gap-1">
-                        {seg.n} ×
                         {seg.score !== null ? (
                           <MasteryChip score={seg.score} />
                         ) : (
@@ -189,6 +183,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                             unseen
                           </span>
                         )}
+                        × {seg.n}
                       </span>
                     ))}
                   </div>
