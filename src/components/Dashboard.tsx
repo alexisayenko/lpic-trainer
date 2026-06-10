@@ -45,8 +45,8 @@ function AnswerLine({
     <div className="p-3 rounded-md border border-slate-700 bg-slate-800/20">
       <div className="flex items-center gap-2 text-xs text-slate-500">
         <span>
+          {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
           {UTILITIES[q.tool]?.label ?? q.tool}
-          {topicOf(q) ? ` · ${TOPIC_LABELS[topicOf(q)!]} (${topicOf(q)})` : ''}
         </span>
         <span className="ml-auto flex items-center gap-2">
           {q.origin && <SourceTag origin={q.origin} />}
@@ -72,9 +72,9 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const quizSize = useStore((s) => s.quizSize);
   const setQuizSize = useStore((s) => s.setQuizSize);
   const resultFilter = useStore((s) => s.resultFilter);
-  const setResultFilter = useStore((s) => s.setResultFilter);
+  const toggleResultFilter = useStore((s) => s.toggleResultFilter);
   const sourceFilter = useStore((s) => s.sourceFilter);
-  const setSourceFilter = useStore((s) => s.setSourceFilter);
+  const toggleSourceFilter = useStore((s) => s.toggleSourceFilter);
   const unseenToday = useStore((s) => s.unseenToday);
   const setUnseenToday = useStore((s) => s.setUnseenToday);
 
@@ -135,7 +135,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
           <img src={logo} alt="LPIC-2" className="h-14 w-14 rounded-md object-cover cursor-zoom-in" />
         </button>
         <div className="flex-1">
-          <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (202) Trainer</h1>
+          <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (Exam 202-450) Trainer</h1>
           <p className="text-sm text-slate-400">
             {totalAttempts > 0
               ? `Overall score: ${totalCorrect}/${totalAttempts} correct (${overallPct}%) · ${QUESTIONS.length} questions`
@@ -165,9 +165,9 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
 
       <FilterBar
         resultFilter={resultFilter}
-        setResultFilter={setResultFilter}
+        toggleResultFilter={toggleResultFilter}
         sourceFilter={sourceFilter}
-        setSourceFilter={setSourceFilter}
+        toggleSourceFilter={toggleSourceFilter}
         unseenToday={unseenToday}
         setUnseenToday={setUnseenToday}
       />
@@ -252,7 +252,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                       {seg.score !== null ? (
                         <MasteryChip score={seg.score} count={seg.n} />
                       ) : (
-                        <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-700/40 text-slate-500 border-slate-600">
+                        <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-500/25 text-slate-200 border-slate-400/60">
                           unseen · {seg.n}
                         </span>
                       )}
@@ -282,48 +282,37 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         })}
       </ul>
 
-      {/* Quiz launcher */}
-      <div className="space-y-3 p-4 rounded-md bg-slate-800/60 border border-slate-700">
-        <div className="flex items-center justify-between">
-          <span className="text-slate-300">Questions per quiz</span>
-          <span className="text-sm text-slate-500">{available} available</span>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="w-20 text-slate-300">Quiz size</span>
+        {[null, ...PRESETS].map((n) => (
           <button
+            key={n ?? 'all'}
             type="button"
-            onClick={() => setQuizSize(null)}
-            className={`px-4 py-2 rounded-md border text-sm transition-colors ${
-              quizSize === null
+            onClick={() => setQuizSize(n)}
+            className={`px-3 py-1.5 rounded-md border text-xs transition-colors ${
+              quizSize === n
                 ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
                 : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
             }`}
           >
-            All
+            {n ?? 'All'}
           </button>
-          {PRESETS.map((n) => (
-            <button
-              key={n}
-              type="button"
-              onClick={() => setQuizSize(n)}
-              className={`px-4 py-2 rounded-md border text-sm transition-colors ${
-                quizSize === n
-                  ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
-                  : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
-              }`}
-            >
-              {n}
-            </button>
-          ))}
-          <button
-            type="button"
-            onClick={onStart}
-            disabled={available === 0}
-            className="ml-auto px-6 py-2 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-medium transition-colors disabled:opacity-50"
-          >
-            Start quiz
-          </button>
-        </div>
+        ))}
+        <span className="ml-auto text-sm text-slate-500">{available} available</span>
       </div>
+
+      <button
+        type="button"
+        onClick={onStart}
+        disabled={available === 0}
+        className="block mx-auto px-10 py-3 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-medium transition-colors disabled:opacity-50"
+      >
+        Start quiz
+      </button>
+
+      <footer className="pt-4 pb-8 text-center text-xs text-slate-600">
+        LPIC-2 (Exam 202-450) Trainer
+      </footer>
 
       {zoom && <LogoZoom src={logo} alt="LPIC-2" onClose={() => setZoom(false)} />}
     </div>

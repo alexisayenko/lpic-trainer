@@ -4,7 +4,7 @@ import { useStore } from '../store';
 import { attemptsByQuestion, attemptsFor, filterPool, lastByQuestion, orderByWeakness, pickDeck, shuffledIndices } from '../lib/select';
 import { masteryOf } from '../lib/mastery';
 import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
-import { QuestionStats } from './QuestionStats';
+import { QuestionStats, SourceTag } from './QuestionStats';
 
 const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
 
@@ -145,13 +145,17 @@ export function Quiz({ onExit }: { onExit: () => void }) {
 
   return (
     <div className="max-w-xl mx-auto p-6 space-y-5">
-      <div className="flex items-center justify-between text-sm text-slate-400">
+      <div className="flex items-center justify-between gap-2 text-sm text-slate-400">
         <span>
+          {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
           {UTILITIES[q.tool]?.label ?? q.tool}
-          {topicOf(q) ? ` · ${TOPIC_LABELS[topicOf(q)!]} (${topicOf(q)})` : ''}
+        </span>
+        <span className="flex items-center gap-2">
+          {q.origin && <SourceTag origin={q.origin} />}
+          <span className="text-[10px] text-slate-500">[{q.id}]</span>
         </span>
       </div>
-      <QuestionStats q={q} attempts={attempts} mastery={mastery} />
+      <QuestionStats q={q} attempts={attempts} mastery={mastery} showSource={false} />
       <h2 className="text-xl text-slate-100 leading-snug">{q.prompt}</h2>
       {q.type === 'multi' && !answered && (
         <p className="text-xs text-slate-500 -mt-2">Select all that apply, then submit.</p>

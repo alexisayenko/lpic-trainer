@@ -2,77 +2,71 @@ import {
   ORIGIN_LABELS,
   RESULT_FILTERS,
   SOURCE_FILTERS,
-  type ResultFilter,
-  type SourceFilter,
+  type Origin,
+  type ResultOption,
+  type ResultSelection,
+  type SourceSelection,
 } from '../types';
-import { MasteryChip } from './QuestionStats';
 
 export function FilterBar({
   resultFilter,
-  setResultFilter,
+  toggleResultFilter,
   sourceFilter,
-  setSourceFilter,
+  toggleSourceFilter,
   unseenToday,
   setUnseenToday,
 }: {
-  resultFilter: ResultFilter;
-  setResultFilter: (f: ResultFilter) => void;
-  sourceFilter: SourceFilter;
-  setSourceFilter: (s: SourceFilter) => void;
+  resultFilter: ResultSelection;
+  toggleResultFilter: (f: ResultOption) => void;
+  sourceFilter: SourceSelection;
+  toggleSourceFilter: (o: Origin) => void;
   unseenToday: boolean;
   setUnseenToday: (on: boolean) => void;
 }) {
+  const btnClass = (on: boolean) =>
+    `px-3 py-1.5 rounded-md border text-xs transition-colors ${
+      on
+        ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
+        : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800'
+    }`;
+
   return (
-    <div className="flex flex-wrap items-center gap-3 text-sm">
-      <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit">
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="w-20 text-slate-300">Mastery</span>
         {RESULT_FILTERS.map((f) => (
           <button
             key={String(f)}
             type="button"
-            onClick={() => setResultFilter(f)}
-            className={`px-2 py-1.5 bg-slate-800 ${
-              resultFilter === f ? 'text-white ring-1 ring-inset ring-emerald-500' : 'text-slate-300'
-            }`}
+            onClick={() => toggleResultFilter(f)}
+            className={btnClass(resultFilter.includes(f))}
           >
-            {f === 'all' ? (
-              <span className="px-1">All</span>
-            ) : f === 'unseen' ? (
-              <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-700/40 text-slate-400 border-slate-600">
-                unseen
-              </span>
-            ) : (
-              <MasteryChip score={f} />
-            )}
+            {f === 'unseen' ? 'unrated' : f}
           </button>
         ))}
       </div>
-      <div className="flex flex-wrap rounded-md overflow-hidden border border-slate-700 w-fit">
-        {SOURCE_FILTERS.map((sKey) => (
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="w-20 text-slate-300">Source</span>
+        {SOURCE_FILTERS.map((o) => (
           <button
-            key={sKey}
+            key={o}
             type="button"
-            onClick={() => setSourceFilter(sKey)}
-            className={`px-3 py-1.5 bg-slate-800 ${
-              sourceFilter === sKey ? 'text-white ring-1 ring-inset ring-emerald-500' : 'text-slate-300'
-            }`}
+            onClick={() => toggleSourceFilter(o)}
+            className={btnClass(sourceFilter.includes(o))}
           >
-            {sKey === 'all' ? 'All' : ORIGIN_LABELS[sKey]}
+            {ORIGIN_LABELS[o]}
           </button>
         ))}
       </div>
-      <div className="rounded-md overflow-hidden border border-slate-700 w-fit">
-        <button
-          type="button"
-          onClick={() => setUnseenToday(!unseenToday)}
-          className={`px-2 py-1.5 bg-slate-800 ${
-            unseenToday ? 'text-white ring-1 ring-inset ring-emerald-500' : 'text-slate-300'
-          }`}
-        >
-          <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-700/40 text-slate-400 border-slate-600">
-            unseen today
-          </span>
-        </button>
-      </div>
+      <label className="flex w-fit cursor-pointer items-center gap-2 text-sm text-slate-300">
+        <input
+          type="checkbox"
+          checked={unseenToday}
+          onChange={(e) => setUnseenToday(e.target.checked)}
+          className="h-4 w-4 accent-emerald-500"
+        />
+        practice only questions unseen today
+      </label>
     </div>
   );
 }

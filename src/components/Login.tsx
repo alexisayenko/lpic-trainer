@@ -8,7 +8,7 @@ export function Login() {
     <div className="min-h-screen flex items-center justify-center p-6">
       <div className="w-full max-w-sm space-y-5">
         <div className="text-center space-y-1">
-          <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 Trainer</h1>
+          <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (Exam 202-450) Trainer</h1>
           <p className="text-sm text-slate-400">Enter your sync token to continue.</p>
         </div>
         <input
