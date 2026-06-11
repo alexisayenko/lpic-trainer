@@ -16,8 +16,21 @@ const TOTALS = (() => {
   return m;
 })();
 
+/** Total questions per tool slug — static, computed once from the loaded bank. */
+const TOOL_TOTALS = (() => {
+  const m = new Map<string, number>();
+  for (const q of QUESTIONS) m.set(q.tool, (m.get(q.tool) ?? 0) + 1);
+  return m;
+})();
+
 export interface TopicStats {
   topic: Topic;
+  total: number;
+  seen: number;
+}
+
+export interface ToolStats {
+  tool: string;
   total: number;
   seen: number;
 }
@@ -72,5 +85,33 @@ export function useDashboardStats(history: AnswerRecord[]) {
     return m;
   }, [masteryByQ]);
 
-  return { last, attemptsByQ, perTopic, masteryByQ, bucketsByTopic };
+  // Same aggregates one level finer, keyed by tool slug.
+  const perTool = useMemo(() => {
+    const seen = new Map<string, number>();
+    for (const rec of last.values()) {
+      const q = byId.get(rec.questionId);
+      if (!q) continue;
+      seen.set(q.tool, (seen.get(q.tool) ?? 0) + 1);
+    }
+    const m = new Map<string, ToolStats>();
+    for (const [tool, total] of TOOL_TOTALS) m.set(tool, { tool, total, seen: seen.get(tool) ?? 0 });
+    return m;
+  }, [last]);
+
+  const bucketsByTool = useMemo(() => {
+    const m = new Map<string, Map<number, number>>();
+    for (const [qid, score] of masteryByQ) {
+      const q = byId.get(qid);
+      if (!q) continue;
+      let b = m.get(q.tool);
+      if (!b) {
+        b = new Map();
+        m.set(q.tool, b);
+      }
+      b.set(score, (b.get(score) ?? 0) + 1);
+    }
+    return m;
+  }, [masteryByQ]);
+
+  return { last, attemptsByQ, perTopic, masteryByQ, bucketsByTopic, perTool, bucketsByTool };
 }

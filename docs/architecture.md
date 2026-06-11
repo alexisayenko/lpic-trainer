@@ -134,10 +134,11 @@ with a single clock snapshot for consistency.
   topic (unseen + the six bucket colours), with portion badges (mastery chip
   `× N`) underneath; derived in `useDashboardStats` (one pass over the
   latest-record map; orphaned ids for removed questions are skipped).
-- **Expandable rows** — open a topic to see its questions: stats line (21-day
-  strip · mastery chip · source tag · id), a `tool · Topic Label (207)` line, the
-  prompt, your answer when the last attempt was wrong, and the correct answer —
-  on neutral slate cards.
+- **Expandable rows** — open a topic to see, first, a read-only per-tool stats
+  block (label · seen/total · stacked mastery bar, from `perTool`/`bucketsByTool`),
+  then its questions: stats line (21-day strip · mastery chip · source tag · id),
+  a `tool · Topic Label (207)` line, the prompt, your answer when the last attempt
+  was wrong, and the correct answer — on neutral slate cards.
 - **Quiz launcher** — size presets + an "available" count; **Start** is disabled when
   the pool is empty.
 - **Logo lightbox** ([`LogoZoom`](../src/components/LogoZoom.tsx)) — accessible modal
@@ -203,7 +204,7 @@ src/
 │   └── useTokenConnect.ts       shared token entry/validation hook
 └── components/
     ├── Dashboard.tsx            home: filters, per-topic progress, launcher
-    ├── useDashboardStats.ts     memoized last/attempts/perTopic/mastery maps
+    ├── useDashboardStats.ts     memoized last/attempts/perTopic/perTool/mastery maps
     ├── FilterBar.tsx            result + source filters
     ├── ToggleChip.tsx           shared on/off filter chip button
     ├── Quiz.tsx                 question card, scoring, results

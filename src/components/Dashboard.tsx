@@ -15,6 +15,18 @@ import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
 
+/** Unseen-first mastery segments for a stacked progress bar (shared by topic and tool rows). */
+function masterySegments(total: number, buckets: Map<number, number> | undefined) {
+  const segments: { key: string; n: number; cls: string; score: number | null; title: string }[] =
+    MASTERY_BUCKETS.map((score) => {
+      const n = buckets?.get(score) ?? 0;
+      return { key: `m${score}`, n, cls: MASTERY_TINTS[score].bar, score, title: `${n} × ${score}%` };
+    });
+  const unseen = total - segments.reduce((acc, seg) => acc + seg.n, 0);
+  segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-700', score: null, title: `${unseen} unseen` });
+  return segments;
+}
+
 function AnswerLine({
   q,
   rec,
@@ -74,7 +86,8 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
 
-  const { last, attemptsByQ, perTopic, masteryByQ, bucketsByTopic } = useDashboardStats(history);
+  const { last, attemptsByQ, perTopic, masteryByQ, bucketsByTopic, perTool, bucketsByTool } =
+    useDashboardStats(history);
 
   const isOn = (t: Topic) => selected === null || selected.includes(t);
   const toggleTopic = (t: Topic) => {
@@ -103,6 +116,14 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       return a.id.localeCompare(b.id);
     });
   }, [open, resultFilter, sourceFilter, unseenToday, attemptsByQ, last]);
+
+  const toolRows = useMemo(() => {
+    if (!open) return [];
+    return Object.entries(UTILITIES)
+      .filter(([, info]) => info.topic === open)
+      .map(([tool, info]) => ({ tool, label: info.label, stats: perTool.get(tool) }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+  }, [open, perTool]);
 
   const totalAttempts = history.length;
   const totalCorrect = history.filter((r) => r.correct).length;
@@ -169,14 +190,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       <ul className="space-y-2">
         {perTopic.map((s) => {
           const isOpen = open === s.topic;
-          const buckets = bucketsByTopic.get(s.topic);
-          const segments: { key: string; n: number; cls: string; score: number | null; title: string }[] =
-            MASTERY_BUCKETS.map((score) => {
-              const n = buckets?.get(score) ?? 0;
-              return { key: `m${score}`, n, cls: MASTERY_TINTS[score].bar, score, title: `${n} × ${score}%` };
-            });
-          const unseen = s.total - segments.reduce((acc, seg) => acc + seg.n, 0);
-          segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-700', score: null, title: `${unseen} unseen` });
+          const segments = masterySegments(s.total, bucketsByTopic.get(s.topic));
           return (
             <li
               key={s.topic}
@@ -256,6 +270,30 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
               </div>
               {isOpen && (
                 <div className="p-3 space-y-2 bg-slate-900/40">
+                  {toolRows.length > 0 && (
+                    <div className="mb-3 space-y-1.5">
+                      {toolRows.map(({ tool, label, stats }) => (
+                        <div key={tool} className="flex items-center gap-3 text-xs">
+                          <span className="w-44 truncate text-slate-300" title={label}>
+                            {label}
+                          </span>
+                          <span className="w-14 shrink-0 text-right tabular-nums text-slate-500">
+                            {stats ? `${stats.seen}/${stats.total}` : '0/0'}
+                          </span>
+                          <div className="flex h-1.5 flex-1 rounded-full overflow-hidden bg-slate-700">
+                            {masterySegments(stats?.total ?? 0, bucketsByTool.get(tool)).map((seg) => (
+                              <div
+                                key={seg.key}
+                                className={seg.cls}
+                                title={seg.title}
+                                style={{ width: `${stats?.total ? (seg.n / stats.total) * 100 : 0}%` }}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   {questionRows.length === 0 ? (
                     <p className="text-sm text-slate-500">No matching questions.</p>
                   ) : (
