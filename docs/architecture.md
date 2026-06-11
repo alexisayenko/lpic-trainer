@@ -97,9 +97,10 @@ Building a quiz deck is three independent stages:
    (a question matches any selected option — `unseen` = zero attempts; a
    numeric bucket matches questions whose `masteryOf` score equals it, computed
    against the single `now` snapshot), and — when the `unseenToday` toggle is
-   on — only questions with no attempt on the current local calendar day
-   (ANDed with the result filter). An empty selection in either row matches
-   nothing.
+   on — only questions whose re-attempt now would start a new QuizDay, i.e.
+   no attempt on the current local calendar day **and** none within the last
+   `DAY_GAP` (21h) (ANDed with the result filter). An empty selection in either
+   row matches nothing.
    The dashboard's "available" count, its per-topic question list, and the quiz
    deck all run the *same* predicate, so they can't diverge.
 2. **Order** — `orderByWeakness(pool, last, rng?)` sorts unseen > last-wrong >

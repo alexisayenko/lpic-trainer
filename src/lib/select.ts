@@ -1,6 +1,6 @@
 import type { AnswerRecord, MasteryBucket, Question, ResultSelection, SourceSelection } from '../types';
 import { startOfLocalDay } from './dates';
-import { masteryOf } from './mastery';
+import { DAY_GAP, masteryOf } from './mastery';
 
 /** Latest answer record per question id (last write wins on ties). */
 export function lastByQuestion(history: AnswerRecord[]): Map<string, AnswerRecord> {
@@ -36,7 +36,9 @@ export function attemptsFor(history: AnswerRecord[], questionId: string): Answer
  * today (`unseenToday`, ANDed with the rest). Used for the dashboard's
  * "available" count, its per-question list, and the quiz deck so all three
  * agree on one predicate. `now` is one shared snapshot so every question's
- * mastery is computed against the same clock.
+ * mastery is computed against the same clock. `unseenToday` excludes any
+ * question whose re-attempt now would land in the same QuizDay — i.e. seen
+ * today OR within the last `DAY_GAP` (21h).
  */
 export function filterPool(
   pool: Question[],
@@ -50,7 +52,7 @@ export function filterPool(
   return pool.filter((q) => {
     if (!q.origin || !source.includes(q.origin)) return false;
     const atts = attempts.get(q.id);
-    if (unseenToday && atts && atts.some((a) => a.ts >= todayStart)) return false;
+    if (unseenToday && atts && atts.some((a) => a.ts >= todayStart || now - a.ts < DAY_GAP)) return false;
     if (!atts || atts.length === 0) return result.includes('unseen');
     const mastery = masteryOf(atts, now);
     return mastery !== null && result.includes(mastery as MasteryBucket);

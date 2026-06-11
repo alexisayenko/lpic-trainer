@@ -2,7 +2,7 @@ import type { AnswerRecord } from '../types';
 import { daysBack, startOfLocalDay } from './dates';
 
 // See docs/mastery-formula.md for rationale.
-const DAY_GAP = 21 * 3_600_000; // attempts ≥ this far apart AND on different local dates are different QuizDays
+export const DAY_GAP = 21 * 3_600_000; // attempts ≥ this far apart AND on different local dates are different QuizDays
 const WINDOW_MS = 21 * 86_400_000; // forgetting window, measured from now
 const SLOTS = 5; // last N QuizDays scored; missing slots count as wrong
 

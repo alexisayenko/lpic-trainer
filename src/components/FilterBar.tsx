@@ -49,7 +49,7 @@ export function FilterBar({
           onChange={(e) => setUnseenToday(e.target.checked)}
           className="h-4 w-4 accent-emerald-500"
         />
-        practice only questions unseen today
+        practice only questions unseen today or in the last 21h
       </label>
     </div>
   );
