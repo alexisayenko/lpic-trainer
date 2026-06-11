@@ -58,8 +58,8 @@ export type MasteryBucket = (typeof MASTERY_BUCKETS)[number];
 export const MASTERY_TINTS: Record<MasteryBucket, { bar: string; chip: string }> = {
   0: { bar: 'bg-red-500/60', chip: 'bg-red-500/15 text-red-300 border-red-500/30' },
   20: { bar: 'bg-orange-500/60', chip: 'bg-orange-500/15 text-orange-300 border-orange-500/30' },
-  40: { bar: 'bg-amber-400/60', chip: 'bg-amber-400/15 text-amber-300 border-amber-400/30' },
-  60: { bar: 'bg-yellow-300/60', chip: 'bg-yellow-300/15 text-yellow-300 border-yellow-300/30' },
+  40: { bar: 'bg-amber-500/60', chip: 'bg-amber-500/15 text-amber-400 border-amber-500/30' },
+  60: { bar: 'bg-yellow-400/60', chip: 'bg-yellow-400/15 text-yellow-300 border-yellow-400/30' },
   80: { bar: 'bg-lime-400/60', chip: 'bg-lime-400/15 text-lime-300 border-lime-400/30' },
   100: { bar: 'bg-emerald-500/60', chip: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30' },
 };
