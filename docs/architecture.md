@@ -116,8 +116,8 @@ three stages and by the dashboard.
 **QuizDays** (a new day starts when the gap is ≥21h *and* the local calendar
 date changes; any wrong attempt makes the whole day wrong); the last 5 QuizDays in a rolling 21-day window are scored, with missing
 slots counted as wrong. Full spec and constants:
-[mastery-formula.md](mastery-formula.md). Shown as a medal chip (monochrome SVG
-medal + score) in [`QuestionStats`](../src/components/QuestionStats.tsx) and used by the result
+[mastery-formula.md](mastery-formula.md). Shown as a medal chip (5 medal slots,
+filled = score/20, rest dimmed) in [`QuestionStats`](../src/components/QuestionStats.tsx) and used by the result
 filter for pool eligibility; it does **not** yet affect deck ordering. The
 dashboard computes one entry per
 question in a memoized map ([`useDashboardStats`](../src/components/useDashboardStats.ts))

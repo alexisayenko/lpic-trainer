@@ -116,8 +116,8 @@ reflects the current source; deeper detail lives in
 - **Daily-count strip** — the 21-cell row in the dashboard header: per calendar
   day, the number of *unique* questions answered (`·` for none); not to be
   confused with the per-question 21-day strip.
-- **Mastery chip** — the coloured badge next to the strip (`MasteryChip`): a
-  monochrome SVG medal glyph plus the question's mastery score.
+- **Mastery chip** — the coloured badge next to the strip (`MasteryChip`): five
+  monochrome SVG medal slots, one filled per 20 mastery points, the rest dimmed.
 - **Source chip** — the small origin badge (`SourceTag`) on each question row and
   on the quiz card.
 - **Portion badges** — the per-topic badges under the mastery bar on the

@@ -25,12 +25,21 @@ export function MasteryChip({ score, count }: { score: number; count?: number })
       className={`rounded border px-1.5 py-0.5 text-[10px] ${tone}`}
     >
       <span aria-hidden="true" className="inline-flex items-center gap-1">
-        <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor">
-          <path d="M9 2 7 8l3 2 2-8H9z" opacity=".6" />
-          <path d="M15 2l2 6-3 2-2-8h3z" opacity=".8" />
-          <circle cx="12" cy="15" r="5" />
-        </svg>
-        {count != null ? `${score} · ${count}` : score}
+        <span className="inline-flex items-center gap-0.5">
+          {Array.from({ length: 5 }, (_, i) => (
+            <svg
+              key={i}
+              viewBox="0 0 24 24"
+              className={`h-3 w-3 ${i < score / 20 ? '' : 'opacity-25'}`}
+              fill="currentColor"
+            >
+              <path d="M9 2 7 8l3 2 2-8H9z" opacity=".6" />
+              <path d="M15 2l2 6-3 2-2-8h3z" opacity=".8" />
+              <circle cx="12" cy="15" r="5" />
+            </svg>
+          ))}
+        </span>
+        {count != null && `· ${count}`}
       </span>
     </span>
   );
