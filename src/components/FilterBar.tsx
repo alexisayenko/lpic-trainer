@@ -1,8 +1,9 @@
 import { ToggleChip } from './ToggleChip';
 import {
+  ORIGINS,
   ORIGIN_LABELS,
   RESULT_FILTERS,
-  SOURCE_FILTERS,
+  RESULT_OPTION_LABELS,
   type Origin,
   type ResultOption,
   type ResultSelection,
@@ -30,13 +31,13 @@ export function FilterBar({
         <span className="w-20 text-slate-300">Mastery</span>
         {RESULT_FILTERS.map((f) => (
           <ToggleChip key={String(f)} on={resultFilter.includes(f)} onClick={() => toggleResultFilter(f)}>
-            {f === 'unseen' ? 'unanswered' : f}
+            {RESULT_OPTION_LABELS[f]}
           </ToggleChip>
         ))}
       </div>
       <div className="flex flex-wrap items-center gap-2">
         <span className="w-20 text-slate-300">Source</span>
-        {SOURCE_FILTERS.map((o) => (
+        {ORIGINS.map((o) => (
           <ToggleChip key={o} on={sourceFilter.includes(o)} onClick={() => toggleSourceFilter(o)}>
             {ORIGIN_LABELS[o]}
           </ToggleChip>

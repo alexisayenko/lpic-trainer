@@ -70,6 +70,9 @@ export const useStore = create<State>()(
       // filtering), any single value maps to a one-element selection.
       // v6: empty selections now match nothing, so [] / 'all' / missing map
       // to everything selected; the source filter became multi-select too.
+      // When adding new persisted fields or filter values, bump `version` and
+      // append a `if (version < N)` block — earlier blocks must keep working
+      // on data shaped by every prior version.
       migrate: (state: unknown, version: number) => {
         const s = (state ?? {}) as Omit<Partial<State>, 'resultFilter' | 'sourceFilter'> & {
           resultFilter?: unknown;

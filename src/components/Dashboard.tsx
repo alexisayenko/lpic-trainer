@@ -3,93 +3,21 @@ import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
 import { useAuth } from '../lib/auth';
 import { cloudEnabled } from '../lib/api';
-import { daysBack, startOfLocalDay } from '../lib/dates';
+import { MS_PER_DAY, daysBack, startOfLocalDay } from '../lib/dates';
 import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
-import { ALL_TOPICS, MASTERY_BUCKETS, MASTERY_TINTS, TOPIC_LABELS, UTILITIES, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
+import { ALL_TOPICS, UTILITIES, topicOf, type Topic } from '../types';
 import { Account } from './Account';
-import { QuestionStats } from './QuestionStats';
+import { AnswerLine } from './AnswerLine';
 import { FilterBar } from './FilterBar';
+import { MasteryBar, MiniMasteryBar } from './MasteryBar';
+import { TopicCard } from './TopicCard';
 import { ToggleChip } from './ToggleChip';
 import { LogoZoom } from './LogoZoom';
 import { useDashboardStats } from './useDashboardStats';
 import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
-
-/** Unseen-first mastery segments for a stacked progress bar (shared by topic and tool rows). */
-function masterySegments(total: number, buckets: Map<number, number> | undefined) {
-  const segments: { key: string; n: number; cls: string; txt: string; score: number | null; title: string }[] =
-    MASTERY_BUCKETS.map((score) => {
-      const n = buckets?.get(score) ?? 0;
-      const t = MASTERY_TINTS[score];
-      return { key: `m${score}`, n, cls: t.bar, txt: t.on, score, title: `${n} × ${score}%` };
-    });
-  const unseen = total - segments.reduce((acc, seg) => acc + seg.n, 0);
-  segments.unshift({ key: 'unseen', n: unseen, cls: 'border border-slate-500 bg-slate-500/25', txt: 'text-slate-300', score: null, title: `${unseen} unanswered` });
-  return segments;
-}
-
-function MasteryBar({ total, buckets }: { total: number; buckets: Map<number, number> | undefined }) {
-  return (
-    <div className="flex h-4 gap-0.5 text-[10px] leading-none">
-      {masterySegments(total, buckets).filter((seg) => seg.n > 0).map((seg) => {
-        const pct = total ? (seg.n / total) * 100 : 0;
-        return (
-          <div
-            key={seg.key}
-            className={`${seg.cls} ${seg.txt} flex items-center justify-center overflow-hidden rounded-sm`}
-            title={seg.title}
-            style={{ width: `${pct}%` }}
-          >
-            {pct >= String(seg.n).length * 2 && seg.n}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function AnswerLine({
-  q,
-  rec,
-  attempts,
-  mastery,
-}: {
-  q: Question;
-  rec?: AnswerRecord;
-  attempts?: AnswerRecord[];
-  mastery?: number | null;
-}) {
-  const correctText =
-    q.type === 'fill'
-      ? q.answer
-      : q.type === 'multi'
-        ? q.answerIndices.map((i) => q.choices[i]).join(', ')
-        : q.choices[q.answerIndex];
-  const yours =
-    q.type === 'single' && rec?.pickedIndex != null ? q.choices[rec.pickedIndex] : undefined;
-  return (
-    <div className="p-3 rounded-md border border-slate-700 bg-slate-800/20">
-      <QuestionStats
-        q={q}
-        attempts={attempts}
-        mastery={mastery}
-        title={
-          <div className="text-xs text-slate-500">
-            {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
-            {UTILITIES[q.tool]?.label ?? q.tool}
-          </div>
-        }
-      />
-      <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
-      {rec && !rec.correct && yours !== undefined && (
-        <p className="mt-2 text-xs text-[#a4434b]">You answered: {yours}</p>
-      )}
-      {correctText && <p className="mt-1 text-xs text-emerald-300">Correct: {correctText}</p>}
-    </div>
-  );
-}
 
 export function Dashboard({ onStart }: { onStart: () => void }) {
   const token = useAuth((s) => s.token);
@@ -174,48 +102,48 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
     }
     return sets.map((s, i) => ({
       n: s.size,
-      date: new Date(todayStart - (STRIP_DAYS - 1 - i) * 86_400_000).toLocaleDateString(),
+      date: new Date(todayStart - (STRIP_DAYS - 1 - i) * MS_PER_DAY).toLocaleDateString(),
     }));
   }, [history]);
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
       <div className="space-y-2">
-      <header className="flex flex-wrap items-center gap-4">
-        <button type="button" onClick={() => setZoom(true)} className="shrink-0">
-          <img src={logo} alt="LPIC-2" className="h-14 w-14 rounded-md object-cover cursor-zoom-in" />
-        </button>
-        <div className="flex-1">
-          <div
-            className="mb-1 flex items-center gap-0.5 font-mono text-[10px]"
-            aria-label={`Unique questions answered per day, last ${STRIP_DAYS} days`}
-          >
-            {dayCounts.map((d, i) => (
-              <span
-                key={i}
-                title={`${d.date}: ${d.n} unique`}
-                className={`text-center rounded px-0.5 ${
-                  d.n ? 'bg-slate-700/60 text-slate-200' : 'text-slate-600'
-                }`}
-              >
-                {d.n || '·'}
+        <header className="flex flex-wrap items-center gap-4">
+          <button type="button" onClick={() => setZoom(true)} className="shrink-0">
+            <img src={logo} alt="LPIC-2" className="h-14 w-14 rounded-md object-cover cursor-zoom-in" />
+          </button>
+          <div className="flex-1">
+            <div
+              className="mb-1 flex items-center gap-0.5 font-mono text-[10px]"
+              aria-label={`Unique questions answered per day, last ${STRIP_DAYS} days`}
+            >
+              {dayCounts.map((d, i) => (
+                <span
+                  key={i}
+                  title={`${d.date}: ${d.n} unique`}
+                  className={`text-center rounded px-0.5 ${
+                    d.n ? 'bg-slate-700/60 text-slate-200' : 'text-slate-600'
+                  }`}
+                >
+                  {d.n || '·'}
+                </span>
+              ))}
+            </div>
+            <div className="flex items-baseline justify-between gap-4">
+              <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (Exam 202-450) Trainer</h1>
+              <span className="text-sm text-slate-400">
+                answered {overall.seen}/{overall.total}
               </span>
-            ))}
+            </div>
+            {totalAttempts === 0 && (
+              <p className="text-sm text-slate-400">
+                No answers yet — tick topics and start a quiz. {QUESTIONS.length} questions
+              </p>
+            )}
           </div>
-          <div className="flex items-baseline justify-between gap-4">
-            <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (Exam 202-450) Trainer</h1>
-            <span className="text-sm text-slate-400">
-              answered {overall.seen}/{overall.total}
-            </span>
-          </div>
-          {totalAttempts === 0 && (
-            <p className="text-sm text-slate-400">
-              No answers yet — tick topics and start a quiz. {QUESTIONS.length} questions
-            </p>
-          )}
-        </div>
-      </header>
-      {totalAttempts > 0 && <MasteryBar total={overall.total} buckets={overall.buckets} />}
+        </header>
+        {totalAttempts > 0 && <MasteryBar total={overall.total} buckets={overall.buckets} />}
       </div>
 
       <FilterBar
@@ -228,107 +156,48 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       />
 
       <ul className="space-y-2">
-        {perTopic.map((s) => {
-          const isOpen = open === s.topic;
-          return (
-            <li
-              key={s.topic}
-              className={`rounded-md border overflow-hidden ${
-                isOn(s.topic) ? 'border-sky-500 bg-sky-900/10' : 'border-slate-700'
-              }`}
-            >
-              <div
-                role="button"
-                tabIndex={0}
-                aria-pressed={isOn(s.topic)}
-                onClick={() => toggleTopic(s.topic)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleTopic(s.topic);
-                  }
-                }}
-                className="p-3 bg-slate-800/60 hover:bg-slate-800 cursor-pointer space-y-2"
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-200">
-                    <span className="text-slate-500 mr-2">{s.topic}</span>
-                    {TOPIC_LABELS[s.topic]}
-                  </span>
-                  <span className="flex shrink-0 items-center gap-2">
-                    <span className="text-sm text-slate-400">
-                      answered {s.seen}/{s.total}
+        {perTopic.map((s) => (
+          <TopicCard
+            key={s.topic}
+            topic={s.topic}
+            seen={s.seen}
+            total={s.total}
+            buckets={bucketsByTopic.get(s.topic)}
+            selected={isOn(s.topic)}
+            isOpen={open === s.topic}
+            onToggleSelect={() => toggleTopic(s.topic)}
+            onToggleOpen={() => setOpen(open === s.topic ? null : s.topic)}
+          >
+            {toolRows.length > 0 && (
+              <div className="mb-3 space-y-1.5">
+                {toolRows.map(({ tool, label, stats }) => (
+                  <div key={tool} className="flex items-center gap-3 text-xs">
+                    <span className="w-44 truncate text-slate-300" title={label}>
+                      {label}
                     </span>
-                    <button
-                      type="button"
-                      aria-expanded={isOpen}
-                      aria-label={isOpen ? 'Hide questions' : 'Show questions'}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setOpen(isOpen ? null : s.topic);
-                      }}
-                      className="p-2 -m-2 text-slate-400 hover:text-slate-200"
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="m6 9 6 6 6-6" />
-                      </svg>
-                    </button>
-                  </span>
-                </div>
-                <MasteryBar total={s.total} buckets={bucketsByTopic.get(s.topic)} />
+                    <span className="w-14 shrink-0 text-right tabular-nums text-slate-500">
+                      {stats ? `${stats.seen}/${stats.total}` : '0/0'}
+                    </span>
+                    <MiniMasteryBar total={stats?.total ?? 0} buckets={bucketsByTool.get(tool)} />
+                  </div>
+                ))}
               </div>
-              {isOpen && (
-                <div className="p-3 space-y-2 bg-slate-900/40">
-                  {toolRows.length > 0 && (
-                    <div className="mb-3 space-y-1.5">
-                      {toolRows.map(({ tool, label, stats }) => (
-                        <div key={tool} className="flex items-center gap-3 text-xs">
-                          <span className="w-44 truncate text-slate-300" title={label}>
-                            {label}
-                          </span>
-                          <span className="w-14 shrink-0 text-right tabular-nums text-slate-500">
-                            {stats ? `${stats.seen}/${stats.total}` : '0/0'}
-                          </span>
-                          <div className="flex h-2.5 flex-1 gap-0.5">
-                            {masterySegments(stats?.total ?? 0, bucketsByTool.get(tool)).filter((seg) => seg.n > 0).map((seg) => (
-                              <div
-                                key={seg.key}
-                                className={`${seg.cls} rounded-sm`}
-                                title={seg.title}
-                                style={{ width: `${stats?.total ? (seg.n / stats.total) * 100 : 0}%` }}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {questionRows.length === 0 ? (
-                    <p className="text-sm text-slate-500">No matching questions.</p>
-                  ) : (
-                    questionRows.map((q) => (
-                      <AnswerLine
-                        key={q.id}
-                        q={q}
-                        rec={last.get(q.id)}
-                        attempts={attemptsByQ.get(q.id)}
-                        mastery={masteryByQ.get(q.id)}
-                      />
-                    ))
-                  )}
-                </div>
-              )}
-            </li>
-          );
-        })}
+            )}
+            {questionRows.length === 0 ? (
+              <p className="text-sm text-slate-500">No matching questions.</p>
+            ) : (
+              questionRows.map((q) => (
+                <AnswerLine
+                  key={q.id}
+                  q={q}
+                  rec={last.get(q.id)}
+                  attempts={attemptsByQ.get(q.id)}
+                  mastery={masteryByQ.get(q.id)}
+                />
+              ))
+            )}
+          </TopicCard>
+        ))}
       </ul>
 
       <div className="flex flex-wrap items-center gap-2">

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { MASTERY_BUCKETS, MASTERY_TINTS } from '../types';
-import { MasteryChip, UnseenChip } from './QuestionStats';
+import { MasteryChip } from './QuestionCardHeader';
 
 function toHex(r: number, g: number, b: number) {
   return `#${[r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('')}`;
@@ -86,12 +86,12 @@ export function PalettePanel() {
   const [overrides, setOverrides] = useState<Record<string, string>>({});
 
   const stages = [
-    { key: 'unseen', label: 'unseen', bar: 'bg-slate-500', chip: <UnseenChip count={12} /> },
+    { key: 'unseen', label: 'unseen', bar: 'bg-slate-500', chip: <MasteryChip score={null} /> },
     ...MASTERY_BUCKETS.map((score) => ({
       key: `m${score}`,
       label: `${score}%`,
       bar: MASTERY_TINTS[score].bar,
-      chip: <MasteryChip score={score} count={12} />,
+      chip: <MasteryChip score={score} />,
     })),
   ];
 

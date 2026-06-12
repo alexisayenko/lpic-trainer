@@ -47,7 +47,7 @@ renders nothing; it reacts to the token and to history changes.
 - **`Topic`** — the six exam-202 objective codes `207`–`212` (labels in
   [`topics.json`](../src/data/topics.json)).
 - **`Origin`** — question provenance; `ORIGINS` / `ORIGIN_LABELS` /
-  `RESULT_FILTERS` / `SOURCE_FILTERS` / `ALL_TOPICS` are the single-source constants
+  `RESULT_FILTERS` / `ALL_TOPICS` are the single-source constants
   consumed by filters and the store migration.
 - **`topicOf(q)`** resolves a question's topic from its `tool` via
   [`utilities.json`](../src/data/utilities.json) (26 utilities → `{topic, label}`).
@@ -119,7 +119,7 @@ three stages and by the dashboard.
 date changes; any wrong attempt makes the whole day wrong); the last 5 QuizDays in a rolling 21-day window are scored, with missing
 slots counted as wrong. Full spec and constants:
 [mastery-formula.md](mastery-formula.md). Shown as a pennant-shaped chip of
-stacked chevrons (one per 20 points; × at 0%, empty when unseen) in [`QuestionStats`](../src/components/QuestionStats.tsx) and used by the result
+stacked chevrons (one per 20 points; × at 0%, empty when unseen) in [`QuestionCardHeader`](../src/components/QuestionCardHeader.tsx) and used by the result
 filter for pool eligibility; it does **not** yet affect deck ordering. The
 dashboard computes one entry per
 question in a memoized map ([`useDashboardStats`](../src/components/useDashboardStats.ts))
@@ -208,12 +208,15 @@ src/
 │   ├── api.ts                   sync transport + mergeHistories
 │   └── auth.ts                  token store
 └── components/
-    ├── Dashboard.tsx            home: filters, per-topic progress, launcher
+    ├── Dashboard.tsx            home: header, filters, topic list, launcher
+    ├── TopicCard.tsx            selectable/expandable topic row + mastery bar
+    ├── MasteryBar.tsx           stacked mastery bar (+ thin per-tool variant)
+    ├── AnswerLine.tsx           question card in an expanded topic
     ├── useDashboardStats.ts     memoized last/attempts/perTopic/perTool/mastery maps
     ├── FilterBar.tsx            result + source filters
     ├── ToggleChip.tsx           shared on/off filter chip button
     ├── Quiz.tsx                 question card, scoring, results
-    ├── QuestionStats.tsx        source tag · mastery chip · history line
+    ├── QuestionCardHeader.tsx   question-card header: context · source · day strip · chip
     ├── LogoZoom.tsx             accessible image lightbox
     ├── Account.tsx              disconnect button / read-only / local-only notice
     └── CloudSync.tsx            headless two-way sync

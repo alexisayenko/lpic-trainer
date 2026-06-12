@@ -11,8 +11,12 @@ interface AuthState {
 export const useAuth = create<AuthState>((set) => ({
   token: typeof localStorage !== 'undefined' ? localStorage.getItem(KEY) : null,
   setToken: (t) => {
-    if (t) localStorage.setItem(KEY, t);
-    else localStorage.removeItem(KEY);
+    try {
+      if (t) localStorage.setItem(KEY, t);
+      else localStorage.removeItem(KEY);
+    } catch {
+      // storage unavailable (private mode, quota) — keep the token in memory only
+    }
     set({ token: t });
   },
 }));

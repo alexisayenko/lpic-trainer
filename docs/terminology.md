@@ -100,7 +100,7 @@ reflects the current source; deeper detail lives in
   so mastery decays on its own as old days drop out.
 - **Mastery ramp / buckets** — the six possible scores `0/20/40/60/80/100`, each
   with a fixed colour (red → emerald): `MASTERY_RAMP` in
-  [`QuestionStats.tsx`](../src/components/QuestionStats.tsx) for the chip,
+  [`QuestionCardHeader.tsx`](../src/components/QuestionCardHeader.tsx) for the chip,
   `MASTERY_COLORS` in `Dashboard.tsx` for the per-topic mastery bar.
   `bucketsByTopic` in `useDashboardStats` counts questions per score per topic.
 - **Unseen** — never-asked questions; they are *unrated* (no mastery chip,
@@ -109,7 +109,7 @@ reflects the current source; deeper detail lives in
 ## UI elements
 
 - **21-day strip** — the per-question bullet line (`DayStrip` in
-  [`QuestionStats.tsx`](../src/components/QuestionStats.tsx)): one **day cell**
+  [`QuestionCardHeader.tsx`](../src/components/QuestionCardHeader.tsx)): one **day cell**
   per local calendar day, oldest → newest, from `dayCells`, drawn as SVG
   bullets. A day with any wrong attempt shows a red bullet (the 0%-bucket
   colour); only-correct a green bullet; no attempts `·`. Note: cells are plain

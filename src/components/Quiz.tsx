@@ -3,8 +3,8 @@ import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
 import { attemptsByQuestion, attemptsFor, filterPool, lastByQuestion, orderByWeakness, pickDeck, shuffledIndices } from '../lib/select';
 import { masteryOf } from '../lib/mastery';
-import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
-import { QuestionStats } from './QuestionStats';
+import { topicOf, type Question } from '../types';
+import { QuestionCardHeader } from './QuestionCardHeader';
 
 const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
 
@@ -145,16 +145,11 @@ export function Quiz({ onExit }: { onExit: () => void }) {
 
   return (
     <div className="max-w-xl mx-auto p-6 space-y-5">
-      <QuestionStats
+      <QuestionCardHeader
         q={q}
         attempts={attempts}
         mastery={mastery}
-        title={
-          <div className="text-sm text-slate-400">
-            {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
-            {UTILITIES[q.tool]?.label ?? q.tool}
-          </div>
-        }
+        titleClassName="text-sm text-slate-400"
       />
       <h2 className="text-xl text-slate-100 leading-snug">{q.prompt}</h2>
       {q.type === 'multi' && !answered && (

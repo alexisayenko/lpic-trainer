@@ -64,11 +64,14 @@ src/
 │   ├── api.ts                 sync transport + mergeHistories
 │   └── auth.ts                token store
 └── components/
-    ├── Dashboard.tsx          home: filters, per-topic progress, launcher
+    ├── Dashboard.tsx          home: header, filters, topic list, launcher
+    ├── TopicCard.tsx          selectable/expandable topic row + mastery bar
+    ├── MasteryBar.tsx         stacked mastery bar (+ thin per-tool variant)
+    ├── AnswerLine.tsx         question card in an expanded topic
     ├── useDashboardStats.ts   memoized last/attempts/perTopic/mastery maps
     ├── FilterBar.tsx          result + source filters
     ├── Quiz.tsx               question card, scoring, results screen
-    ├── QuestionStats.tsx      source tag · mastery chip · attempt history
+    ├── QuestionCardHeader.tsx question-card header: context · source · day strip · chip
     ├── LogoZoom.tsx           accessible image lightbox
     ├── Account.tsx            disconnect button / read-only / local-only notice
     └── CloudSync.tsx          headless two-way sync

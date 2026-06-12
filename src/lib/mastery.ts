@@ -1,4 +1,4 @@
-import type { AnswerRecord } from '../types';
+import { MASTERY_BUCKETS, MASTERY_TINTS, type AnswerRecord } from '../types';
 import { daysBack, startOfLocalDay } from './dates';
 
 // See docs/mastery-formula.md for rationale.
@@ -48,4 +48,32 @@ export function masteryOf(attempts: AnswerRecord[], now: number): number | null 
   const last = quizDays.slice(-SLOTS);
   const correct = last.filter(Boolean).length;
   return Math.round((correct / SLOTS) * 100);
+}
+
+export interface MasterySegment {
+  key: string;
+  n: number;
+  cls: string;
+  txt: string;
+  score: number | null;
+  title: string;
+}
+
+/** Unanswered-first segments for a stacked mastery bar (overall, topic and tool rows). */
+export function masterySegments(total: number, buckets: Map<number, number> | undefined): MasterySegment[] {
+  const segments: MasterySegment[] = MASTERY_BUCKETS.map((score) => {
+    const n = buckets?.get(score) ?? 0;
+    const t = MASTERY_TINTS[score];
+    return { key: `m${score}`, n, cls: t.bar, txt: t.on, score, title: `${n} × ${score}%` };
+  });
+  const unseen = total - segments.reduce((acc, seg) => acc + seg.n, 0);
+  segments.unshift({
+    key: 'unseen',
+    n: unseen,
+    cls: 'border border-slate-500 bg-slate-500/25',
+    txt: 'text-slate-300',
+    score: null,
+    title: `${unseen} unanswered`,
+  });
+  return segments;
 }

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { MASTERY_BUCKETS, MASTERY_TINTS, ORIGIN_LABELS, type AnswerRecord, type Origin, type Question } from '../types';
+import { MASTERY_BUCKETS, MASTERY_TINTS, ORIGIN_LABELS, questionContext, type AnswerRecord, type Origin, type Question } from '../types';
 import { STRIP_DAYS, dayCells, type DayStatus } from '../lib/mastery';
 
 export function SourceTag({ origin }: { origin?: Origin }) {
@@ -9,17 +9,17 @@ export function SourceTag({ origin }: { origin?: Origin }) {
   );
 }
 
-export function MasteryChip({ score, count }: { score: number | null; count?: number }) {
+/** Pennant-shaped badge: one chevron per 20 mastery points, × at 0, empty when unanswered. */
+export function MasteryChip({ score }: { score: number | null }) {
   const unseen = score == null;
   const tone = unseen
     ? 'text-slate-500'
     : MASTERY_TINTS[MASTERY_BUCKETS.find((max) => score <= max) ?? 100].text;
   const filled = unseen ? null : Math.round(score / 20);
-  const label = unseen ? 'Unseen' : `Mastery ${score} of 100`;
   return (
     <span
-      aria-label={count != null ? `${label}, ${count} questions` : label}
-      className={`inline-flex items-center gap-0.5 text-xs ${tone}`}
+      aria-label={unseen ? 'Unanswered' : `Mastery ${score} of 100`}
+      className={`inline-flex items-center text-xs ${tone}`}
     >
       <svg aria-hidden="true" viewBox="0 0 16 30" className="h-[30px] w-4">
         <path
@@ -29,44 +29,40 @@ export function MasteryChip({ score, count }: { score: number | null; count?: nu
           stroke="currentColor"
           strokeWidth="1"
         />
-        {filled == null ? null : filled === 0 ? (
-          <path
-            d="M5 10 l6 6 M11 10 l-6 6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        ) : (
-          Array.from({ length: filled }, (_, i) => {
-            const y = 5 + ((5 - filled) * 4) / 2 + i * 4;
-            return (
-              <path
-                key={i}
-                d={`M4 ${y} l4 3.5 4 -3.5`}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            );
-          })
-        )}
+        <ChipGlyph filled={filled} />
       </svg>
-      {count != null && <span className="text-slate-400">{count}</span>}
     </span>
   );
 }
 
-export function UnseenChip({ count }: { count: number }) {
+/** Chip interior: nothing when unanswered, × at 0, otherwise a centred chevron stack. */
+function ChipGlyph({ filled }: { filled: number | null }) {
+  if (filled == null) return null;
+  if (filled === 0) {
+    return (
+      <path
+        d="M5 10 l6 6 M11 10 l-6 6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    );
+  }
   return (
-    <span aria-label={`Unseen, ${count} questions`} className="inline-flex items-center text-xs text-slate-400">
-      <span aria-hidden="true" className="inline-flex items-center gap-0.5 leading-none">
-        <span className="text-slate-500">unseen</span>
-        {count}
-      </span>
-    </span>
+    <>
+      {Array.from({ length: filled }, (_, i) => (
+        <path
+          key={i}
+          d={`M4 ${5 + ((5 - filled) * 4) / 2 + i * 4} l4 3.5 4 -3.5`}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      ))}
+    </>
   );
 }
 
@@ -84,7 +80,7 @@ const CELL_GLYPH: Record<DayStatus, ReactNode> = {
 const CELL_TONE: Record<DayStatus, string> = {
   none: 'text-slate-600',
   correct: 'text-emerald-400',
-  wrong: 'text-[#a4434b]',
+  wrong: MASTERY_TINTS[0].text,
 };
 
 function DayStrip({ cells }: { cells: DayStatus[] }) {
@@ -102,23 +98,23 @@ function DayStrip({ cells }: { cells: DayStatus[] }) {
   );
 }
 
-/** Question-card header: title line, source + id, day strip on the left; mastery chip top-right. */
-export function QuestionStats({
+/** Question-card header: context line, source + id on the left; day strip and mastery chip on the right. */
+export function QuestionCardHeader({
   q,
   attempts,
   mastery,
-  title,
+  titleClassName,
 }: {
   q: Question;
   attempts?: AnswerRecord[];
   mastery?: number | null;
-  title: ReactNode;
+  titleClassName: string;
 }) {
   const cells = dayCells(attempts ?? [], Date.now());
   return (
     <div className="flex items-start gap-2 cursor-default">
       <div className="flex-1">
-        {title}
+        <div className={titleClassName}>{questionContext(q)}</div>
         <div className="mt-1 flex items-center gap-2 text-[10px] text-slate-500">
           {q.origin && <SourceTag origin={q.origin} />}
           <span>[{q.id}]</span>
