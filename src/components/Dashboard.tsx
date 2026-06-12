@@ -6,7 +6,7 @@ import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
 import { ALL_TOPICS, MASTERY_BUCKETS, MASTERY_TINTS, TOPIC_LABELS, UTILITIES, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
-import { MasteryChip, QuestionStats, SourceTag, UnseenChip } from './QuestionStats';
+import { QuestionStats, SourceTag } from './QuestionStats';
 import { FilterBar } from './FilterBar';
 import { ToggleChip } from './ToggleChip';
 import { LogoZoom } from './LogoZoom';
@@ -17,13 +17,14 @@ const PRESETS = [5, 6, 12, 24, 48, 60];
 
 /** Unseen-first mastery segments for a stacked progress bar (shared by topic and tool rows). */
 function masterySegments(total: number, buckets: Map<number, number> | undefined) {
-  const segments: { key: string; n: number; cls: string; score: number | null; title: string }[] =
+  const segments: { key: string; n: number; cls: string; txt: string; score: number | null; title: string }[] =
     MASTERY_BUCKETS.map((score) => {
       const n = buckets?.get(score) ?? 0;
-      return { key: `m${score}`, n, cls: MASTERY_TINTS[score].bar, score, title: `${n} × ${score}%` };
+      const t = MASTERY_TINTS[score];
+      return { key: `m${score}`, n, cls: t.bar, txt: t.on, score, title: `${n} × ${score}%` };
     });
   const unseen = total - segments.reduce((acc, seg) => acc + seg.n, 0);
-  segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-500', score: null, title: `${unseen} unseen` });
+  segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-500', txt: 'text-slate-200', score: null, title: `${unseen} unseen` });
   return segments;
 }
 
@@ -53,7 +54,7 @@ function AnswerLine({
           {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
           {UTILITIES[q.tool]?.label ?? q.tool}
         </span>
-        <span className="ml-auto flex items-center gap-2">
+        <span className="ml-auto flex flex-col items-end gap-0.5">
           {q.origin && <SourceTag origin={q.origin} />}
           <span className="text-[10px]">[{q.id}]</span>
         </span>
@@ -63,7 +64,7 @@ function AnswerLine({
       </div>
       <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
       {rec && !rec.correct && yours !== undefined && (
-        <p className="mt-2 text-xs text-rose-300">You answered: {yours}</p>
+        <p className="mt-2 text-xs text-[#a4434b]">You answered: {yours}</p>
       )}
       {correctText && <p className="mt-1 text-xs text-emerald-300">Correct: {correctText}</p>}
     </div>
@@ -244,26 +245,20 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                     </button>
                   </span>
                 </div>
-                <div className="flex h-1.5 gap-px rounded-full overflow-hidden bg-slate-700">
-                  {segments.filter((seg) => seg.n > 0).map((seg) => (
-                    <div
-                      key={seg.key}
-                      className={seg.cls}
-                      title={seg.title}
-                      style={{ width: `${s.total ? (seg.n / s.total) * 100 : 0}%` }}
-                    />
-                  ))}
-                </div>
-                <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
-                  {segments.map((seg) => (
-                    <span key={seg.key}>
-                      {seg.score !== null ? (
-                        <MasteryChip score={seg.score} count={seg.n} />
-                      ) : (
-                        <UnseenChip count={seg.n} />
-                      )}
-                    </span>
-                  ))}
+                <div className="flex h-4 gap-px rounded overflow-hidden bg-slate-700 text-[10px] leading-none">
+                  {segments.filter((seg) => seg.n > 0).map((seg) => {
+                    const pct = s.total ? (seg.n / s.total) * 100 : 0;
+                    return (
+                      <div
+                        key={seg.key}
+                        className={`${seg.cls} ${seg.txt} flex items-center justify-center overflow-hidden`}
+                        title={seg.title}
+                        style={{ width: `${pct}%` }}
+                      >
+                        {pct >= String(seg.n).length * 2 && seg.n}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               {isOpen && (

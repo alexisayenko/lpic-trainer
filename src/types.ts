@@ -54,14 +54,15 @@ export const ORIGIN_LABELS: Record<Origin, string> = {
 export const MASTERY_BUCKETS = [0, 20, 40, 60, 80, 100] as const;
 export type MasteryBucket = (typeof MASTERY_BUCKETS)[number];
 
-/** One red→green ramp per bucket (hand-tuned, not a uniform Tailwind ladder): solid bar segment + tinted chip + plain text classes. */
-export const MASTERY_TINTS: Record<MasteryBucket, { bar: string; chip: string; text: string }> = {
-  0: { bar: 'bg-red-500/60', chip: 'bg-red-500/15 text-red-300 border-red-500/30', text: 'text-red-300' },
-  20: { bar: 'bg-orange-600', chip: 'bg-orange-500/15 text-orange-600 border-orange-500/30', text: 'text-orange-600' },
-  40: { bar: 'bg-amber-500', chip: 'bg-amber-500/15 text-amber-500 border-amber-500/30', text: 'text-amber-500' },
-  60: { bar: 'bg-yellow-400', chip: 'bg-yellow-400/15 text-yellow-400 border-yellow-400/30', text: 'text-yellow-400' },
-  80: { bar: 'bg-[#c4db00]', chip: 'bg-lime-400/15 text-[#c4db00] border-lime-400/30', text: 'text-[#c4db00]' },
-  100: { bar: 'bg-green-700', chip: 'bg-green-700/15 text-green-700 border-green-700/30', text: 'text-green-700' },
+/** One red→green ramp per bucket (hand-tuned, not a uniform Tailwind ladder):
+ *  solid bar/pill background + tinted chip + plain text + on-colour text classes. */
+export const MASTERY_TINTS: Record<MasteryBucket, { bar: string; chip: string; text: string; on: string }> = {
+  0: { bar: 'bg-[#a4434b]', chip: 'bg-red-500/15 text-red-300 border-red-500/30', text: 'text-red-300', on: 'text-slate-200' },
+  20: { bar: 'bg-orange-600', chip: 'bg-orange-500/15 text-orange-600 border-orange-500/30', text: 'text-orange-600', on: 'text-slate-100' },
+  40: { bar: 'bg-amber-500', chip: 'bg-amber-500/15 text-amber-500 border-amber-500/30', text: 'text-amber-500', on: 'text-slate-900' },
+  60: { bar: 'bg-yellow-400', chip: 'bg-yellow-400/15 text-yellow-400 border-yellow-400/30', text: 'text-yellow-400', on: 'text-slate-900' },
+  80: { bar: 'bg-[#c4db00]', chip: 'bg-lime-400/15 text-[#c4db00] border-lime-400/30', text: 'text-[#c4db00]', on: 'text-slate-900' },
+  100: { bar: 'bg-green-700', chip: 'bg-green-700/15 text-green-700 border-green-700/30', text: 'text-green-700', on: 'text-slate-100' },
 };
 
 /** Quiz pool / dashboard filters. */

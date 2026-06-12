@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { MASTERY_BUCKETS, MASTERY_TINTS, ORIGIN_LABELS, type AnswerRecord, type Origin, type Question } from '../types';
 import { STRIP_DAYS, dayCells, type DayStatus } from '../lib/mastery';
 
@@ -18,19 +19,30 @@ export function SourceTag({ origin }: { origin?: Origin }) {
 }
 
 export function MasteryChip({ score, count }: { score: number; count?: number }) {
-  const tone = MASTERY_TINTS[MASTERY_BUCKETS.find((max) => score <= max) ?? 100].text;
+  const tint = MASTERY_TINTS[MASTERY_BUCKETS.find((max) => score <= max) ?? 100];
+  const filled = Math.round(score / 20);
   return (
     <span
       aria-label={count != null ? `Mastery ${score} of 100, ${count} questions` : `Mastery ${score} of 100`}
-      className={`inline-flex items-center text-xs ${tone}`}
+      className={`inline-flex items-center gap-0.5 text-xs ${tint.text}`}
     >
-      <span aria-hidden="true" className="inline-flex items-center gap-0.5 leading-none">
-        <svg viewBox="0 0 48 48" className="h-4 w-4 -rotate-90 -translate-y-[0.25px]" fill="none" stroke="currentColor" strokeWidth="10">
-          <circle cx="24" cy="24" r="18" className="opacity-25" />
-          {score > 0 && <circle cx="24" cy="24" r="18" strokeDasharray={`${(score / 100) * 113.1} 113.1`} />}
-        </svg>
-        {count != null && <span className="text-slate-400">{count}</span>}
+      <span aria-hidden="true" className="inline-flex flex-col items-center">
+        {Array.from({ length: filled || 1 }, (_, i) => (
+          <svg
+            key={i}
+            viewBox="0 0 24 24"
+            className={`h-2.5 w-3 ${i > 0 ? '-mt-[7px]' : ''} ${filled === 0 ? 'opacity-30' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M4 8l8 8 8-8" />
+          </svg>
+        ))}
       </span>
+      {count != null && <span className="text-slate-400">{count}</span>}
     </span>
   );
 }
@@ -46,21 +58,31 @@ export function UnseenChip({ count }: { count: number }) {
   );
 }
 
-const CELL_GLYPH: Record<DayStatus, string> = { none: '·', correct: '✓', wrong: '✗' };
+const BULLET = (
+  <svg viewBox="0 0 24 24" className="h-[0.7em] w-[0.7em]" fill="currentColor">
+    <circle cx="12" cy="12" r="7" />
+  </svg>
+);
+
+const CELL_GLYPH: Record<DayStatus, ReactNode> = {
+  none: '·',
+  correct: BULLET,
+  wrong: BULLET,
+};
 const CELL_TONE: Record<DayStatus, string> = {
   none: 'text-slate-600',
   correct: 'text-emerald-400',
-  wrong: 'text-rose-400',
+  wrong: 'text-[#a4434b]',
 };
 
 function DayStrip({ cells }: { cells: DayStatus[] }) {
   return (
-    <span
-      aria-label={`Last ${STRIP_DAYS} days`}
-      className="font-mono text-xs leading-none tracking-tight"
-    >
+    <span aria-label={`Last ${STRIP_DAYS} days`} className="inline-flex items-center text-[14px] leading-none">
       {cells.map((c, i) => (
-        <span key={i} className={CELL_TONE[c]}>
+        <span
+          key={i}
+          className={`flex h-[14px] w-[10px] items-center justify-center ${CELL_TONE[c]} ${c !== 'none' ? 'scale-[1.25]' : ''}`}
+        >
           {CELL_GLYPH[c]}
         </span>
       ))}
@@ -86,7 +108,7 @@ export function QuestionStats({
       <DayStrip cells={cells} />
       {mastery != null && <MasteryChip score={mastery} />}
       {showSource && (
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex flex-col items-end gap-0.5">
           {q.origin && <SourceTag origin={q.origin} />}
           <span className="text-[10px] text-slate-500">[{q.id}]</span>
         </div>

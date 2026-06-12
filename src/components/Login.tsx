@@ -28,7 +28,7 @@ export function Login() {
         >
           {status === 'checking' ? 'Checking…' : 'Continue'}
         </button>
-        {status === 'error' && <p className="text-sm text-rose-400 text-center">{error}</p>}
+        {status === 'error' && <p className="text-sm text-red-400 text-center">{error}</p>}
       </div>
     </div>
   );

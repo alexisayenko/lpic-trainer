@@ -58,7 +58,8 @@ drops out of the score when five newer QuizDays push it past the 5-slot window.
 ## Chip colours
 
 One tint per bucket — a hand-tuned red→green ramp in `MASTERY_TINTS`
-(`src/types.ts`), shared by bar segments, donut rings, and chips.
+(`src/types.ts`), shared by bar segments, chevron stacks, and chips; each
+bucket also carries an `on` class for text rendered on top of its colour.
 
 ## Not wired in yet
 

@@ -108,22 +108,23 @@ reflects the current source; deeper detail lives in
 
 ## UI elements
 
-- **21-day strip** — the per-question `·✓✗` line (`DayStrip` in
+- **21-day strip** — the per-question bullet line (`DayStrip` in
   [`QuestionStats.tsx`](../src/components/QuestionStats.tsx)): one **day cell**
-  per local calendar day, oldest → newest, from `dayCells`. A day with any wrong
-  attempt shows `✗`; only-correct shows `✓`; no attempts `·`. Note: cells are
-  plain calendar days, not QuizDays.
+  per local calendar day, oldest → newest, from `dayCells`, drawn as SVG
+  bullets. A day with any wrong attempt shows a red bullet (the 0%-bucket
+  colour); only-correct a green bullet; no attempts `·`. Note: cells are plain
+  calendar days, not QuizDays.
 - **Daily-count strip** — the 21-cell row in the dashboard header: per calendar
   day, the number of *unique* questions answered (`·` for none); not to be
   confused with the per-question 21-day strip.
-- **Mastery chip** — the box-less indicator next to the strip (`MasteryChip`): a
-  donut ring tinted by bucket, arc length = the mastery score, dim full track.
+- **Mastery chip** — the indicator next to the strip (`MasteryChip`): a vertical
+  stack of downward chevrons tinted by bucket, one per 20 points (score/20 =
+  one chevron per remembered QuizDay slot); 0% shows a single faint chevron.
 - **Source chip** — the small origin badge (`SourceTag`) on each question row and
   on the quiz card.
-- **Portion badges** — the per-topic badges under the mastery bar on the
-  dashboard, one per bucket: a mastery ring (or the word "unseen",
-  `UnseenChip`) followed by its question count, ordered unseen → 0 → … → 100;
-  they mirror the bar's segments.
+- **In-bar counters** — each topic-bar segment shows its question count inside
+  the block (hidden when the segment is too narrow; the hover tooltip always
+  has it). Replaces the former portion-badge legend row.
 
 ## Sync
 

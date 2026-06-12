@@ -136,7 +136,7 @@ export function Quiz({ onExit }: { onExit: () => void }) {
     const isPick = q.type === 'multi' ? selected.includes(i) : picked === i;
     if (answered) {
       if (isAnswer) return 'border-emerald-500 bg-emerald-900/40';
-      if (isPick) return 'border-rose-500 bg-rose-900/40';
+      if (isPick) return 'border-red-500 bg-red-900/40';
       return 'border-slate-700 bg-slate-800/30 opacity-60';
     }
     if (isPick) return 'border-emerald-600 bg-emerald-900/20';
@@ -223,7 +223,7 @@ export function Quiz({ onExit }: { onExit: () => void }) {
         <div className="space-y-3">
           <div
             className={`p-3 rounded-md border ${
-              lastCorrect ? 'border-emerald-600 bg-emerald-900/30' : 'border-rose-600 bg-rose-900/30'
+              lastCorrect ? 'border-emerald-600 bg-emerald-900/30' : 'border-red-600 bg-red-900/30'
             }`}
           >
             <p className="font-medium text-slate-100">{lastCorrect ? 'Correct' : 'Incorrect'}</p>

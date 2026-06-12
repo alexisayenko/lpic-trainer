@@ -116,8 +116,8 @@ three stages and by the dashboard.
 **QuizDays** (a new day starts when the gap is ≥21h *and* the local calendar
 date changes; any wrong attempt makes the whole day wrong); the last 5 QuizDays in a rolling 21-day window are scored, with missing
 slots counted as wrong. Full spec and constants:
-[mastery-formula.md](mastery-formula.md). Shown as a donut ring (tinted arc =
-score %, dim track) in [`QuestionStats`](../src/components/QuestionStats.tsx) and used by the result
+[mastery-formula.md](mastery-formula.md). Shown as a stack of bucket-tinted
+chevrons (one per 20 points) in [`QuestionStats`](../src/components/QuestionStats.tsx) and used by the result
 filter for pool eligibility; it does **not** yet affect deck ordering. The
 dashboard computes one entry per
 question in a memoized map ([`useDashboardStats`](../src/components/useDashboardStats.ts))
@@ -131,9 +131,8 @@ with a single clock snapshot for consistency.
   The result filter is unseen / the six mastery buckets, rendered as labelled
   toggle chips. They both filter the displayed rows **and form the quiz pool**.
 - **Per-topic progress** — an "asked N/total" count and a stacked mastery bar per
-  topic (unseen + the six bucket colours, 1px gaps between segments), with
-  portion badges (mastery ring or the word "unseen" + count) underneath;
-  derived in `useDashboardStats` (one pass over the
+  topic (unseen + the six bucket colours, 1px gaps between segments, question
+  counts inside the blocks when they fit); derived in `useDashboardStats` (one pass over the
   latest-record map; orphaned ids for removed questions are skipped).
 - **Expandable rows** — open a topic to see, first, a read-only per-tool stats
   block (label · seen/total · stacked mastery bar, from `perTool`/`bucketsByTool`),
