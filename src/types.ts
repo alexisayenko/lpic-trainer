@@ -56,12 +56,12 @@ export type MasteryBucket = (typeof MASTERY_BUCKETS)[number];
 
 /** One red→green ramp per bucket: solid bar segment + tinted chip + plain text classes. */
 export const MASTERY_TINTS: Record<MasteryBucket, { bar: string; chip: string; text: string }> = {
-  0: { bar: 'bg-red-500/60', chip: 'bg-red-500/15 text-red-300 border-red-500/30', text: 'text-red-300' },
-  20: { bar: 'bg-orange-500/60', chip: 'bg-orange-500/15 text-orange-300 border-orange-500/30', text: 'text-orange-300' },
-  40: { bar: 'bg-amber-500/60', chip: 'bg-amber-500/15 text-amber-400 border-amber-500/30', text: 'text-amber-400' },
-  60: { bar: 'bg-yellow-400/60', chip: 'bg-yellow-400/15 text-yellow-300 border-yellow-400/30', text: 'text-yellow-300' },
-  80: { bar: 'bg-lime-400/60', chip: 'bg-lime-400/15 text-lime-300 border-lime-400/30', text: 'text-lime-300' },
-  100: { bar: 'bg-emerald-500/60', chip: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', text: 'text-emerald-300' },
+  0: { bar: 'bg-red-300', chip: 'bg-red-500/15 text-red-300 border-red-500/30', text: 'text-red-300' },
+  20: { bar: 'bg-orange-300', chip: 'bg-orange-500/15 text-orange-300 border-orange-500/30', text: 'text-orange-300' },
+  40: { bar: 'bg-amber-400', chip: 'bg-amber-500/15 text-amber-400 border-amber-500/30', text: 'text-amber-400' },
+  60: { bar: 'bg-yellow-300', chip: 'bg-yellow-400/15 text-yellow-300 border-yellow-400/30', text: 'text-yellow-300' },
+  80: { bar: 'bg-lime-300', chip: 'bg-lime-400/15 text-lime-300 border-lime-400/30', text: 'text-lime-300' },
+  100: { bar: 'bg-emerald-300', chip: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', text: 'text-emerald-300' },
 };
 
 /** Quiz pool / dashboard filters. */

@@ -37,9 +37,9 @@ export function MasteryChip({ score, count }: { score: number; count?: number })
 
 export function UnseenChip({ count }: { count: number }) {
   return (
-    <span aria-label={`Unseen, ${count} questions`} className="text-xs text-slate-300">
+    <span aria-label={`Unseen, ${count} questions`} className="text-xs text-slate-400">
       <span aria-hidden="true" className="inline-flex items-center gap-0.5 leading-none">
-        <svg viewBox="0 2 24 20" className="h-3 w-3 -translate-y-[0.25px]" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg viewBox="0 2 24 20" className="h-3 w-3 -translate-y-[0.25px] text-slate-700" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
           <circle cx="12" cy="12" r="3" />
           <path d="M3 21 21 3" />
