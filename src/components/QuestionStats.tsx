@@ -18,28 +18,33 @@ export function SourceTag({ origin }: { origin?: Origin }) {
 }
 
 export function MasteryChip({ score, count }: { score: number; count?: number }) {
-  const tone = MASTERY_TINTS[MASTERY_BUCKETS.find((max) => score <= max) ?? 100].chip;
+  const tone = MASTERY_TINTS[MASTERY_BUCKETS.find((max) => score <= max) ?? 100].text;
   return (
     <span
       aria-label={count != null ? `Mastery ${score} of 100, ${count} questions` : `Mastery ${score} of 100`}
-      className={`rounded border px-1.5 py-0.5 text-[10px] ${tone}`}
+      className={`text-xs ${tone}`}
     >
-      <span aria-hidden="true" className="inline-flex items-center gap-1">
-        <span className="inline-flex items-center gap-0.5">
-          {Array.from({ length: 5 }, (_, i) => (
-            <svg
-              key={i}
-              viewBox="0 0 24 24"
-              className={`h-3 w-3 ${i < score / 20 ? '' : 'opacity-25'}`}
-              fill="currentColor"
-            >
-              <path d="M9 2 7 8l3 2 2-8H9z" opacity=".6" />
-              <path d="M15 2l2 6-3 2-2-8h3z" opacity=".8" />
-              <circle cx="12" cy="15" r="5" />
-            </svg>
-          ))}
-        </span>
-        {count != null && `· ${count}`}
+      <span aria-hidden="true" className="inline-flex items-center gap-0.5 leading-none">
+        <svg viewBox="0 0 48 48" className="h-4 w-4 -rotate-90 -translate-y-[0.25px]" fill="none" stroke="currentColor" strokeWidth="10">
+          <circle cx="24" cy="24" r="18" className="opacity-25" />
+          {score > 0 && <circle cx="24" cy="24" r="18" strokeDasharray={`${(score / 100) * 113.1} 113.1`} />}
+        </svg>
+        {count != null && <span className="text-slate-400">{count}</span>}
+      </span>
+    </span>
+  );
+}
+
+export function UnseenChip({ count }: { count: number }) {
+  return (
+    <span aria-label={`Unseen, ${count} questions`} className="text-xs text-slate-300">
+      <span aria-hidden="true" className="inline-flex items-center gap-0.5 leading-none">
+        <svg viewBox="0 2 24 20" className="h-3 w-3 -translate-y-[0.25px]" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+          <circle cx="12" cy="12" r="3" />
+          <path d="M3 21 21 3" />
+        </svg>
+        {count}
       </span>
     </span>
   );

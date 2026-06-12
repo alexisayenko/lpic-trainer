@@ -6,7 +6,7 @@ import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
 import { ALL_TOPICS, MASTERY_BUCKETS, MASTERY_TINTS, TOPIC_LABELS, UTILITIES, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
-import { MasteryChip, QuestionStats, SourceTag } from './QuestionStats';
+import { MasteryChip, QuestionStats, SourceTag, UnseenChip } from './QuestionStats';
 import { FilterBar } from './FilterBar';
 import { ToggleChip } from './ToggleChip';
 import { LogoZoom } from './LogoZoom';
@@ -254,15 +254,13 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                     />
                   ))}
                 </div>
-                <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+                <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
                   {segments.map((seg) => (
-                    <span key={seg.key} className={seg.n === 0 ? 'opacity-40 saturate-50' : ''}>
+                    <span key={seg.key}>
                       {seg.score !== null ? (
                         <MasteryChip score={seg.score} count={seg.n} />
                       ) : (
-                        <span className="rounded border px-1.5 py-0.5 text-[10px] bg-slate-500/25 text-slate-200 border-slate-400/60">
-                          unseen · {seg.n}
-                        </span>
+                        <UnseenChip count={seg.n} />
                       )}
                     </span>
                   ))}

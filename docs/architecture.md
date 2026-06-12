@@ -116,8 +116,8 @@ three stages and by the dashboard.
 **QuizDays** (a new day starts when the gap is ≥21h *and* the local calendar
 date changes; any wrong attempt makes the whole day wrong); the last 5 QuizDays in a rolling 21-day window are scored, with missing
 slots counted as wrong. Full spec and constants:
-[mastery-formula.md](mastery-formula.md). Shown as a medal chip (5 medal slots,
-filled = score/20, rest dimmed) in [`QuestionStats`](../src/components/QuestionStats.tsx) and used by the result
+[mastery-formula.md](mastery-formula.md). Shown as a donut ring (tinted arc =
+score %, dim track) in [`QuestionStats`](../src/components/QuestionStats.tsx) and used by the result
 filter for pool eligibility; it does **not** yet affect deck ordering. The
 dashboard computes one entry per
 question in a memoized map ([`useDashboardStats`](../src/components/useDashboardStats.ts))
@@ -128,11 +128,11 @@ with a single clock snapshot for consistency.
 - **Header** — logo, the cumulative overall-score line, and a 21-cell strip showing
   the number of *unique* questions answered on each of the last 21 days.
 - **Filters** ([`FilterBar`](../src/components/FilterBar.tsx)) — result + source toggles.
-  The result filter is All / unseen / the six mastery buckets, rendered as medal
-  chips. They both filter the displayed rows **and form the quiz pool**.
+  The result filter is unseen / the six mastery buckets, rendered as labelled
+  toggle chips. They both filter the displayed rows **and form the quiz pool**.
 - **Per-topic progress** — an "asked N/total" count and a stacked mastery bar per
-  topic (unseen + the six bucket colours), with portion badges (mastery chip
-  `× N`) underneath; derived in `useDashboardStats` (one pass over the
+  topic (unseen + the six bucket colours), with portion badges (mastery ring or
+  eye-slash unseen glyph + count) underneath; derived in `useDashboardStats` (one pass over the
   latest-record map; orphaned ids for removed questions are skipped).
 - **Expandable rows** — open a topic to see, first, a read-only per-tool stats
   block (label · seen/total · stacked mastery bar, from `perTool`/`bucketsByTool`),
