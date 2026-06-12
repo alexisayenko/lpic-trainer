@@ -21,7 +21,7 @@ export function ToggleChip({
       disabled={disabled}
       className={`px-3 py-1.5 rounded-md border text-xs transition-colors disabled:opacity-40 ${
         on
-          ? 'border-emerald-500 bg-emerald-900/40 text-emerald-100'
+          ? 'border-sky-500 bg-sky-900/40 text-sky-100'
           : 'border-slate-700 bg-slate-800/60 text-slate-200 hover:bg-slate-800 disabled:hover:bg-slate-800/60'
       } ${className}`}
     >

@@ -3,6 +3,7 @@ import { cloudEnabled } from '../lib/api';
 
 export function Account() {
   const setToken = useAuth((s) => s.setToken);
+  const token = useAuth((s) => s.token);
 
   if (!cloudEnabled) {
     return (
@@ -12,7 +13,10 @@ export function Account() {
     );
   }
 
-  // Cloud is on, so App's login gate guarantees a token exists here.
+  if (!token) {
+    return <p className="text-xs text-slate-500">Read-only</p>;
+  }
+
   return (
     <button
       type="button"

@@ -145,17 +145,21 @@ export function Quiz({ onExit }: { onExit: () => void }) {
 
   return (
     <div className="max-w-xl mx-auto p-6 space-y-5">
-      <div className="flex items-center justify-between gap-2 text-sm text-slate-400">
-        <span>
-          {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
-          {UTILITIES[q.tool]?.label ?? q.tool}
-        </span>
-        <span className="flex items-center gap-2">
+      <div className="flex items-start gap-2 text-sm text-slate-400">
+        <div className="flex-1">
+          <span>
+            {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
+            {UTILITIES[q.tool]?.label ?? q.tool}
+          </span>
+          <div className="mt-2">
+            <QuestionStats q={q} attempts={attempts} mastery={mastery} showSource={false} />
+          </div>
+        </div>
+        <span className="flex shrink-0 flex-col items-end gap-0.5">
           {q.origin && <SourceTag origin={q.origin} />}
           <span className="text-[10px] text-slate-500">[{q.id}]</span>
         </span>
       </div>
-      <QuestionStats q={q} attempts={attempts} mastery={mastery} showSource={false} />
       <h2 className="text-xl text-slate-100 leading-snug">{q.prompt}</h2>
       {q.type === 'multi' && !answered && (
         <p className="text-xs text-slate-500 -mt-2">Select all that apply, then submit.</p>

@@ -2,7 +2,7 @@
 
 Practice quiz for the **LPIC-2 exam 202** (Linux Network Professional, second of the two LPIC-2 exams).
 
-Web app, single-player, runs entirely in the browser. Pick which exam objectives to drill, answer questions (single-choice, multiple-response, or fill-in-the-blank), get an immediate explanation after each one. Progress is kept in `localStorage`. When cloud sync is configured, a valid sync token is required to enter (a login gate); without it, the app is not usable.
+Web app, single-player, runs entirely in the browser. Pick which exam objectives to drill, answer questions (single-choice, multiple-response, or fill-in-the-blank), get an immediate explanation after each one. Progress is kept in `localStorage`. When cloud sync is configured, the site is public read-only; opening it once with `?token=xxx` stores the sync token and unlocks quizzing and answer sync.
 
 ## Stack
 
@@ -47,7 +47,7 @@ The site is served from the custom domain `lpic.isayenko.org`. `public/CNAME` ca
 
 ```
 src/
-├── App.tsx                    Screen switch (login gate → dashboard → quiz)
+├── App.tsx                    Screen switch (dashboard → quiz) + ?token capture
 ├── main.tsx                   Vite entry
 ├── index.css                  Tailwind directives + base styles
 ├── store.ts                   Zustand store (topics, filters, quizSize, answer history)
@@ -62,8 +62,7 @@ src/
 │   ├── select.ts              deck pipeline: filterPool / orderByWeakness / pickDeck
 │   ├── mastery.ts             mastery score (chip + result filter)
 │   ├── api.ts                 sync transport + mergeHistories
-│   ├── auth.ts                token store
-│   └── useTokenConnect.ts     shared token entry/validation hook
+│   └── auth.ts                token store
 └── components/
     ├── Dashboard.tsx          home: filters, per-topic progress, launcher
     ├── useDashboardStats.ts   memoized last/attempts/perTopic/mastery maps
@@ -71,8 +70,7 @@ src/
     ├── Quiz.tsx               question card, scoring, results screen
     ├── QuestionStats.tsx      source tag · mastery chip · attempt history
     ├── LogoZoom.tsx           accessible image lightbox
-    ├── Account.tsx            connect/disconnect panel
-    ├── Login.tsx              full-screen token gate
+    ├── Account.tsx            disconnect button / read-only / local-only notice
     └── CloudSync.tsx          headless two-way sync
 ```
 

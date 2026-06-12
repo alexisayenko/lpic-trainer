@@ -31,7 +31,7 @@ export function MasteryChip({ score, count }: { score: number; count?: number })
           <svg
             key={i}
             viewBox="0 0 24 24"
-            className={`h-2.5 w-3 ${i > 0 ? '-mt-[7px]' : ''} ${filled === 0 ? 'opacity-30' : ''}`}
+            className={`h-2.5 w-3 ${i > 0 ? '-mt-[7px]' : ''}`}
             fill="none"
             stroke="currentColor"
             strokeWidth="4"

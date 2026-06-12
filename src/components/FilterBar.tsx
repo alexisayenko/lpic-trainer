@@ -47,7 +47,7 @@ export function FilterBar({
           type="checkbox"
           checked={unseenToday}
           onChange={(e) => setUnseenToday(e.target.checked)}
-          className="h-4 w-4 accent-emerald-500"
+          className="h-4 w-4 accent-sky-500"
         />
         practice only questions unseen today or in the last 21h
       </label>

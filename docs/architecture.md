@@ -20,13 +20,15 @@ Capacitor (`capacitor.config.ts` + `ios/`); see [mobile/README.md](../mobile/REA
 
 ## Screens & flow
 
-[`App.tsx`](../src/App.tsx) renders one of three things:
+[`App.tsx`](../src/App.tsx) renders one of two screens:
 
-1. **Login gate** ([`Login.tsx`](../src/components/Login.tsx)) — shown only when cloud
-   sync is configured (`VITE_API_URL` baked in) **and** no valid token is stored.
-   Without a token the app is unusable in that build.
-2. **Dashboard** ([`Dashboard.tsx`](../src/components/Dashboard.tsx)) — the home screen.
-3. **Quiz** ([`Quiz.tsx`](../src/components/Quiz.tsx)) — the active session.
+1. **Dashboard** ([`Dashboard.tsx`](../src/components/Dashboard.tsx)) — the home screen.
+2. **Quiz** ([`Quiz.tsx`](../src/components/Quiz.tsx)) — the active session.
+
+There is no login gate: the site is public read-only. Visiting once with
+`?token=xxx` stores the token (App strips the param from the URL) and unlocks
+quizzing; without a token the **Start quiz** button is hidden and the header
+shows "Read-only".
 
 [`CloudSync`](../src/components/CloudSync.tsx) is mounted headlessly at all times and
 renders nothing; it reacts to the token and to history changes.
@@ -173,9 +175,9 @@ sent as `Authorization: Bearer`). Setup/ops: [self-hosted-sync.md](self-hosted-s
   apply-guard stops the programmatic write from echoing back as a push. New answers
   push incrementally — the subscription diffs by record `id`, so it pushes exactly the
   records not previously present (survives reorders/inserts).
-- Token entry/validation is the [`useTokenConnect`](../src/lib/useTokenConnect.ts)
-  hook used by Login; [`Account`](../src/components/Account.tsx) only offers
-  disconnect (the login gate guarantees a token once inside).
+- The token arrives via the `?token=xxx` URL param, captured once in `App`;
+  [`Account`](../src/components/Account.tsx) shows "Read-only" without a token
+  and a disconnect button with one.
 
 Server ([`server/index.js`](../server/index.js)): Node + MySQL behind Apache, binds
 `127.0.0.1`. Constant-time token compare, parameterised + `ts`-guarded upsert,
@@ -185,7 +187,7 @@ per-row validation matching the schema, 2 MB body cap.
 
 ```
 src/
-├── App.tsx                      screen switch + login gate
+├── App.tsx                      screen switch + ?token capture
 ├── main.tsx                     Vite entry
 ├── store.ts                     Zustand store (persist v3 + migrate)
 ├── types.ts                     Question union, AnswerRecord, Topic/Origin, constants
@@ -200,8 +202,7 @@ src/
 │   ├── mastery.ts               masteryOf (0–100 score)
 │   ├── dates.ts                 startOfLocalDay / daysBack day-math helpers
 │   ├── api.ts                   sync transport + mergeHistories
-│   ├── auth.ts                  token store
-│   └── useTokenConnect.ts       shared token entry/validation hook
+│   └── auth.ts                  token store
 └── components/
     ├── Dashboard.tsx            home: filters, per-topic progress, launcher
     ├── useDashboardStats.ts     memoized last/attempts/perTopic/perTool/mastery maps
@@ -210,8 +211,7 @@ src/
     ├── Quiz.tsx                 question card, scoring, results
     ├── QuestionStats.tsx        source tag · mastery chip · history line
     ├── LogoZoom.tsx             accessible image lightbox
-    ├── Account.tsx              disconnect button / local-only notice
-    ├── Login.tsx                full-screen token gate
+    ├── Account.tsx              disconnect button / read-only / local-only notice
     └── CloudSync.tsx            headless two-way sync
 ```
 

@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
+import { useAuth } from '../lib/auth';
+import { cloudEnabled } from '../lib/api';
 import { daysBack, startOfLocalDay } from '../lib/dates';
 import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
@@ -49,18 +51,20 @@ function AnswerLine({
     q.type === 'single' && rec?.pickedIndex != null ? q.choices[rec.pickedIndex] : undefined;
   return (
     <div className="p-3 rounded-md border border-slate-700 bg-slate-800/20">
-      <div className="flex items-center gap-2 text-xs text-slate-500">
-        <span>
-          {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
-          {UTILITIES[q.tool]?.label ?? q.tool}
-        </span>
-        <span className="ml-auto flex flex-col items-end gap-0.5">
+      <div className="flex items-start gap-2 text-xs text-slate-500">
+        <div className="flex-1">
+          <span>
+            {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
+            {UTILITIES[q.tool]?.label ?? q.tool}
+          </span>
+          <div className="mt-2">
+            <QuestionStats q={q} attempts={attempts} mastery={mastery} showSource={false} />
+          </div>
+        </div>
+        <span className="flex shrink-0 flex-col items-end gap-0.5">
           {q.origin && <SourceTag origin={q.origin} />}
           <span className="text-[10px]">[{q.id}]</span>
         </span>
-      </div>
-      <div className="mt-2">
-        <QuestionStats q={q} attempts={attempts} mastery={mastery} showSource={false} />
       </div>
       <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
       {rec && !rec.correct && yours !== undefined && (
@@ -72,6 +76,8 @@ function AnswerLine({
 }
 
 export function Dashboard({ onStart }: { onStart: () => void }) {
+  const token = useAuth((s) => s.token);
+  const canQuiz = !cloudEnabled || !!token;
   const history = useStore((s) => s.history);
   const selected = useStore((s) => s.selectedTopics);
   const setTopics = useStore((s) => s.setTopics);
@@ -196,7 +202,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
             <li
               key={s.topic}
               className={`rounded-md border overflow-hidden ${
-                isOn(s.topic) ? 'border-emerald-500 bg-emerald-900/10' : 'border-slate-700'
+                isOn(s.topic) ? 'border-sky-500 bg-sky-900/10' : 'border-slate-700'
               }`}
             >
               <div
@@ -322,14 +328,16 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         ))}
       </div>
 
-      <button
-        type="button"
-        onClick={onStart}
-        disabled={available === 0}
-        className="block mx-auto px-10 py-3 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-medium transition-colors disabled:opacity-50"
-      >
-        Start quiz
-      </button>
+      {canQuiz && (
+        <button
+          type="button"
+          onClick={onStart}
+          disabled={available === 0}
+          className="block mx-auto px-10 py-3 rounded-md bg-sky-600 hover:bg-sky-500 text-white font-medium transition-colors disabled:opacity-50"
+        >
+          Start quiz
+        </button>
+      )}
 
       <footer className="pt-4 pb-8 text-center text-xs text-slate-600">
         LPIC-2 (Exam 202-450) Trainer
