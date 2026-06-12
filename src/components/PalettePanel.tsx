@@ -8,7 +8,7 @@ function toHex(r: number, g: number, b: number) {
 
 /** Canvas gradient: hue left→right, white→black top→bottom. Tap returns the exact pixel colour.
  *  When `value` is set, a crosshair marks the nearest matching spot. */
-function GradientPicker({ value, onPick }: { value: string | null; onPick: (hex: string) => void }) {
+function GradientPicker({ value, onPick }: Readonly<{ value: string | null; onPick: (hex: string) => void }>) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -29,9 +29,9 @@ function GradientPicker({ value, onPick }: { value: string | null; onPick: (hex:
     ctx.fillRect(0, 0, width, height);
 
     if (!value) return;
-    const tr = parseInt(value.slice(1, 3), 16);
-    const tg = parseInt(value.slice(3, 5), 16);
-    const tb = parseInt(value.slice(5, 7), 16);
+    const tr = Number.parseInt(value.slice(1, 3), 16);
+    const tg = Number.parseInt(value.slice(3, 5), 16);
+    const tb = Number.parseInt(value.slice(5, 7), 16);
     const px = ctx.getImageData(0, 0, width, height).data;
     let best = Infinity;
     let bx = 0;

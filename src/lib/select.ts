@@ -52,7 +52,7 @@ export function filterPool(
   return pool.filter((q) => {
     if (!q.origin || !source.includes(q.origin)) return false;
     const atts = attempts.get(q.id);
-    if (unseenToday && atts && atts.some((a) => a.ts >= todayStart || now - a.ts < DAY_GAP)) return false;
+    if (unseenToday && atts?.some((a) => a.ts >= todayStart || now - a.ts < DAY_GAP)) return false;
     if (!atts || atts.length === 0) return result.includes('unseen');
     const mastery = masteryOf(atts, now);
     return mastery !== null && result.includes(mastery as MasteryBucket);

@@ -14,7 +14,7 @@ function sameSet(a: number[], b: number[]): boolean {
   return a.every((x) => bs.has(x));
 }
 
-export function Quiz({ onExit }: { onExit: () => void }) {
+export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
   const selectedTopics = useStore((s) => s.selectedTopics);
   const quizSize = useStore((s) => s.quizSize);
   const resultFilter = useStore((s) => s.resultFilter);
@@ -130,9 +130,14 @@ export function Quiz({ onExit }: { onExit: () => void }) {
     setIndex((i) => i + 1);
   };
 
+  const isCorrectChoice = (i: number) => {
+    if (q.type === 'multi') return q.answerIndices.includes(i);
+    if (q.type === 'single') return q.answerIndex === i;
+    return false;
+  };
+
   const choiceClass = (i: number) => {
-    const isAnswer =
-      q.type === 'multi' ? q.answerIndices.includes(i) : q.type === 'single' ? q.answerIndex === i : false;
+    const isAnswer = isCorrectChoice(i);
     const isPick = q.type === 'multi' ? selected.includes(i) : picked === i;
     if (answered) {
       if (isAnswer) return 'border-emerald-500 bg-emerald-900/40';

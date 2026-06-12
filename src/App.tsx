@@ -12,12 +12,12 @@ export default function App() {
 
   // The site is public read-only; quizzing unlocks by visiting once with ?token=xxx.
   useEffect(() => {
-    const url = new URL(window.location.href);
+    const url = new URL(globalThis.location.href);
     const token = url.searchParams.get('token');
     if (token) {
       setToken(token);
       url.searchParams.delete('token');
-      window.history.replaceState(null, '', url);
+      globalThis.history.replaceState(null, '', url);
     }
   }, [setToken]);
 

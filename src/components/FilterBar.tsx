@@ -17,14 +17,14 @@ export function FilterBar({
   toggleSourceFilter,
   unseenToday,
   setUnseenToday,
-}: {
+}: Readonly<{
   resultFilter: ResultSelection;
   toggleResultFilter: (f: ResultOption) => void;
   sourceFilter: SourceSelection;
   toggleSourceFilter: (o: Origin) => void;
   unseenToday: boolean;
   setUnseenToday: (on: boolean) => void;
-}) {
+}>) {
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-2">
@@ -50,7 +50,7 @@ export function FilterBar({
           onChange={(e) => setUnseenToday(e.target.checked)}
           className="h-4 w-4 accent-sky-500"
         />
-        practice only questions unseen today or in the last 21h
+        <span>practice only questions unseen today or in the last 21h</span>
       </label>
     </div>
   );

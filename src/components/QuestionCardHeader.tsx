@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { MASTERY_BUCKETS, MASTERY_TINTS, ORIGIN_LABELS, questionContext, type AnswerRecord, type Origin, type Question } from '../types';
 import { STRIP_DAYS, dayCells, type DayStatus } from '../lib/mastery';
 
-export function SourceTag({ origin }: { origin?: Origin }) {
+export function SourceTag({ origin }: Readonly<{ origin?: Origin }>) {
   if (!origin) return null;
   return (
     <span className="text-[10px] text-slate-500">[{ORIGIN_LABELS[origin] ?? origin}]</span>
@@ -10,7 +10,7 @@ export function SourceTag({ origin }: { origin?: Origin }) {
 }
 
 /** Pennant-shaped badge: one chevron per 20 mastery points, × at 0, empty when unanswered. */
-export function MasteryChip({ score }: { score: number | null }) {
+export function MasteryChip({ score }: Readonly<{ score: number | null }>) {
   const unseen = score == null;
   const tone = unseen
     ? 'text-slate-500'
@@ -36,7 +36,7 @@ export function MasteryChip({ score }: { score: number | null }) {
 }
 
 /** Chip interior: nothing when unanswered, × at 0, otherwise a centred chevron stack. */
-function ChipGlyph({ filled }: { filled: number | null }) {
+function ChipGlyph({ filled }: Readonly<{ filled: number | null }>) {
   if (filled == null) return null;
   if (filled === 0) {
     return (
@@ -83,13 +83,13 @@ const CELL_TONE: Record<DayStatus, string> = {
   wrong: MASTERY_TINTS[0].text,
 };
 
-function DayStrip({ cells }: { cells: DayStatus[] }) {
+function DayStrip({ cells }: Readonly<{ cells: DayStatus[] }>) {
   return (
     <span aria-label={`Last ${STRIP_DAYS} days`} className="inline-flex items-center text-[14px] leading-none">
       {cells.map((c, i) => (
         <span
           key={i}
-          className={`flex h-[14px] w-[10px] items-center justify-center ${CELL_TONE[c]} ${c !== 'none' ? 'scale-[1.25]' : ''}`}
+          className={`flex h-[14px] w-[10px] items-center justify-center ${CELL_TONE[c]} ${c === 'none' ? '' : 'scale-[1.25]'}`}
         >
           {CELL_GLYPH[c]}
         </span>
@@ -104,12 +104,12 @@ export function QuestionCardHeader({
   attempts,
   mastery,
   titleClassName,
-}: {
+}: Readonly<{
   q: Question;
   attempts?: AnswerRecord[];
   mastery?: number | null;
   titleClassName: string;
-}) {
+}>) {
   const cells = dayCells(attempts ?? [], Date.now());
   return (
     <div className="flex items-start gap-2 cursor-default">

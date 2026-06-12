@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 /** Full-screen image lightbox. Closes on click or Escape; manages focus for accessibility. */
-export function LogoZoom({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+export function LogoZoom({ src, alt, onClose }: Readonly<{ src: string; alt: string; onClose: () => void }>) {
   const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {

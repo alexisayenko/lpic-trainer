@@ -101,6 +101,43 @@ function readJson(req) {
   });
 }
 
+async function getAnswers(res) {
+  const [rows] = await pool.query(
+    'SELECT id, question_id, picked_index, correct, ts FROM answers',
+  );
+  return send(res, 200, rows);
+}
+
+async function postAnswers(req, res) {
+  const body = await readJson(req);
+  if (!Array.isArray(body)) return send(res, 400, { error: 'expected an array' });
+  if (body.length > 5000) return send(res, 413, { error: 'too many records' });
+  if (!body.every(validRow)) return send(res, 400, { error: 'invalid record' });
+  if (body.length) {
+    const values = body.map((r) => [
+      r.id,
+      r.question_id,
+      r.picked_index ?? null,
+      r.correct ? 1 : 0,
+      r.ts,
+    ]);
+    await pool.query(
+      `INSERT INTO answers (id, question_id, picked_index, correct, ts) VALUES ?
+       ON DUPLICATE KEY UPDATE
+         picked_index = IF(VALUES(ts) > ts, VALUES(picked_index), picked_index),
+         correct = IF(VALUES(ts) > ts, VALUES(correct), correct),
+         ts = IF(VALUES(ts) > ts, VALUES(ts), ts)`,
+      [values],
+    );
+  }
+  return send(res, 200, { inserted: body.length });
+}
+
+async function deleteAnswers(res) {
+  await pool.query('DELETE FROM answers');
+  return send(res, 200, { ok: true });
+}
+
 const server = http.createServer(async (req, res) => {
   applyCors(req, res);
 
@@ -112,43 +149,9 @@ const server = http.createServer(async (req, res) => {
   if (!authed(req)) return send(res, 401, { error: 'unauthorized' });
 
   try {
-    if (path === '/answers' && req.method === 'GET') {
-      const [rows] = await pool.query(
-        'SELECT id, question_id, picked_index, correct, ts FROM answers',
-      );
-      return send(res, 200, rows);
-    }
-
-    if (path === '/answers' && req.method === 'POST') {
-      const body = await readJson(req);
-      if (!Array.isArray(body)) return send(res, 400, { error: 'expected an array' });
-      if (body.length > 5000) return send(res, 413, { error: 'too many records' });
-      if (!body.every(validRow)) return send(res, 400, { error: 'invalid record' });
-      if (body.length) {
-        const values = body.map((r) => [
-          r.id,
-          r.question_id,
-          r.picked_index ?? null,
-          r.correct ? 1 : 0,
-          r.ts,
-        ]);
-        await pool.query(
-          `INSERT INTO answers (id, question_id, picked_index, correct, ts) VALUES ?
-           ON DUPLICATE KEY UPDATE
-             picked_index = IF(VALUES(ts) > ts, VALUES(picked_index), picked_index),
-             correct = IF(VALUES(ts) > ts, VALUES(correct), correct),
-             ts = IF(VALUES(ts) > ts, VALUES(ts), ts)`,
-          [values],
-        );
-      }
-      return send(res, 200, { inserted: body.length });
-    }
-
-    if (path === '/answers' && req.method === 'DELETE') {
-      await pool.query('DELETE FROM answers');
-      return send(res, 200, { ok: true });
-    }
-
+    if (path === '/answers' && req.method === 'GET') return await getAnswers(res);
+    if (path === '/answers' && req.method === 'POST') return await postAnswers(req, res);
+    if (path === '/answers' && req.method === 'DELETE') return await deleteAnswers(res);
     return send(res, 404, { error: 'not found' });
   } catch (err) {
     console.error(err);

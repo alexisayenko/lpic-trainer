@@ -16,7 +16,7 @@ export type DayStatus = 'none' | 'correct' | 'wrong';
  * A day with any wrong attempt is 'wrong'; only-correct is 'correct'; otherwise 'none'.
  */
 export function dayCells(attempts: AnswerRecord[], now: number): DayStatus[] {
-  const cells: DayStatus[] = Array(STRIP_DAYS).fill('none');
+  const cells: DayStatus[] = new Array(STRIP_DAYS).fill('none');
   for (const a of attempts) {
     const offset = daysBack(a.ts, now);
     if (offset < 0 || offset >= STRIP_DAYS) continue;

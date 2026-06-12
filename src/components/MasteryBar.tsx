@@ -1,7 +1,7 @@
 import { masterySegments } from '../lib/mastery';
 
 /** Stacked soft-outlined mastery bar with question counts inside segments wide enough to fit them. */
-export function MasteryBar({ total, buckets }: { total: number; buckets: Map<number, number> | undefined }) {
+export function MasteryBar({ total, buckets }: Readonly<{ total: number; buckets: Map<number, number> | undefined }>) {
   return (
     <div className="flex h-4 gap-0.5 text-[10px] leading-none">
       {masterySegments(total, buckets).filter((seg) => seg.n > 0).map((seg) => {
@@ -22,7 +22,7 @@ export function MasteryBar({ total, buckets }: { total: number; buckets: Map<num
 }
 
 /** Thin counter-less variant used by the per-tool rows. */
-export function MiniMasteryBar({ total, buckets }: { total: number; buckets: Map<number, number> | undefined }) {
+export function MiniMasteryBar({ total, buckets }: Readonly<{ total: number; buckets: Map<number, number> | undefined }>) {
   return (
     <div className="flex h-2.5 flex-1 gap-0.5">
       {masterySegments(total, buckets).filter((seg) => seg.n > 0).map((seg) => (

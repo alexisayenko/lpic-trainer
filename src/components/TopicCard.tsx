@@ -14,7 +14,7 @@ export function TopicCard({
   onToggleSelect,
   onToggleOpen,
   children,
-}: {
+}: Readonly<{
   topic: Topic;
   seen: number;
   total: number;
@@ -24,7 +24,7 @@ export function TopicCard({
   onToggleSelect: () => void;
   onToggleOpen: () => void;
   children?: ReactNode;
-}) {
+}>) {
   return (
     <li
       className={`rounded-md border overflow-hidden ${

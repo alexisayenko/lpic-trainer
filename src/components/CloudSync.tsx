@@ -38,12 +38,14 @@ export function CloudSync() {
     }
     if (syncedToken.current === token) return;
     syncedToken.current = token;
-    void runSync();
+    runSync();
   }, [enabled, token, runSync]);
 
   useEffect(() => {
     if (!enabled) return;
-    const onOnline = () => void runSync();
+    const onOnline = () => {
+      runSync();
+    };
     window.addEventListener('online', onOnline);
     return () => window.removeEventListener('online', onOnline);
   }, [enabled, runSync]);
@@ -56,7 +58,7 @@ export function CloudSync() {
       // survives reorders/inserts.
       const prevIds = new Set(prev.history.map((r) => r.id));
       const added = state.history.filter((r) => !prevIds.has(r.id));
-      if (added.length) void pushRecords(added).catch(() => {});
+      if (added.length) pushRecords(added).catch(() => {});
     });
   }, [enabled]);
 

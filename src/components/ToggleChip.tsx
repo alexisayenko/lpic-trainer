@@ -7,13 +7,13 @@ export function ToggleChip({
   disabled,
   className = '',
   children,
-}: {
+}: Readonly<{
   on: boolean;
   onClick: () => void;
   disabled?: boolean;
   className?: string;
   children: ReactNode;
-}) {
+}>) {
   return (
     <button
       type="button"

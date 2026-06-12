@@ -8,6 +8,27 @@ function newId(): string {
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
+function isResultOption(x: unknown): x is ResultOption {
+  return RESULT_FILTERS.includes(x as ResultOption);
+}
+
+function isOrigin(x: unknown): x is Origin {
+  return ORIGINS.includes(x as Origin);
+}
+
+/** v6: empty/legacy selections mean "everything"; keep valid entries otherwise. */
+function toResultSelection(value: unknown): ResultSelection {
+  const results = Array.isArray(value) ? value.filter(isResultOption) : [];
+  return results.length > 0 ? results : [...RESULT_FILTERS];
+}
+
+/** v6: a single origin becomes a one-element selection; anything else means "everything". */
+function toSourceSelection(value: unknown): SourceSelection {
+  if (Array.isArray(value)) return value.filter(isOrigin);
+  if (isOrigin(value)) return [value];
+  return [...ORIGINS];
+}
+
 interface State {
   selectedTopics: Topic[] | null;
   /** Number of questions per quiz; null means "all matching questions". */
@@ -93,20 +114,11 @@ export const useStore = create<State>()(
           }
         }
         if (version < 5) {
-          s.resultFilter = RESULT_FILTERS.includes(s.resultFilter as ResultOption)
-            ? [s.resultFilter as ResultOption]
-            : [];
+          s.resultFilter = isResultOption(s.resultFilter) ? [s.resultFilter] : [];
         }
         if (version < 6) {
-          const results = Array.isArray(s.resultFilter)
-            ? s.resultFilter.filter((x): x is ResultOption => RESULT_FILTERS.includes(x as ResultOption))
-            : [];
-          s.resultFilter = results.length > 0 ? results : [...RESULT_FILTERS];
-          s.sourceFilter = Array.isArray(s.sourceFilter)
-            ? s.sourceFilter.filter((x): x is Origin => ORIGINS.includes(x as Origin))
-            : ORIGINS.includes(s.sourceFilter as Origin)
-              ? [s.sourceFilter as Origin]
-              : [...ORIGINS];
+          s.resultFilter = toResultSelection(s.resultFilter);
+          s.sourceFilter = toSourceSelection(s.sourceFilter);
         }
         return s as State;
       },

@@ -19,7 +19,7 @@ import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
 
-export function Dashboard({ onStart }: { onStart: () => void }) {
+export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const token = useAuth((s) => s.token);
   const canQuiz = !cloudEnabled || !!token;
   const history = useStore((s) => s.history);
@@ -118,9 +118,9 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
               className="mb-1 flex items-center gap-0.5 font-mono text-[10px]"
               aria-label={`Unique questions answered per day, last ${STRIP_DAYS} days`}
             >
-              {dayCounts.map((d, i) => (
+              {dayCounts.map((d) => (
                 <span
-                  key={i}
+                  key={d.date}
                   title={`${d.date}: ${d.n} unique`}
                   className={`text-center rounded px-0.5 ${
                     d.n ? 'bg-slate-700/60 text-slate-200' : 'text-slate-600'
@@ -227,7 +227,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       )}
 
       <footer className="relative pt-4 pb-8 text-center text-xs text-slate-600">
-        LPIC-2 (Exam 202-450) Trainer
+        <span>LPIC-2 (Exam 202-450) Trainer</span>
         <span className="absolute bottom-8 right-0">
           <Account />
         </span>

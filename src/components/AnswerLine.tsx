@@ -18,12 +18,12 @@ export function AnswerLine({
   rec,
   attempts,
   mastery,
-}: {
+}: Readonly<{
   q: Question;
   rec?: AnswerRecord;
   attempts?: AnswerRecord[];
   mastery?: number | null;
-}) {
+}>) {
   const correctText = correctAnswerText(q);
   const yours =
     q.type === 'single' && rec?.pickedIndex != null ? q.choices[rec.pickedIndex] : undefined;
