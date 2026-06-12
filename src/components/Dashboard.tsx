@@ -26,8 +26,28 @@ function masterySegments(total: number, buckets: Map<number, number> | undefined
       return { key: `m${score}`, n, cls: t.bar, txt: t.on, score, title: `${n} × ${score}%` };
     });
   const unseen = total - segments.reduce((acc, seg) => acc + seg.n, 0);
-  segments.unshift({ key: 'unseen', n: unseen, cls: 'border border-slate-500 bg-slate-500/25', txt: 'text-slate-300', score: null, title: `${unseen} unseen` });
+  segments.unshift({ key: 'unseen', n: unseen, cls: 'border border-slate-500 bg-slate-500/25', txt: 'text-slate-300', score: null, title: `${unseen} unanswered` });
   return segments;
+}
+
+function MasteryBar({ total, buckets }: { total: number; buckets: Map<number, number> | undefined }) {
+  return (
+    <div className="flex h-4 gap-0.5 text-[10px] leading-none">
+      {masterySegments(total, buckets).filter((seg) => seg.n > 0).map((seg) => {
+        const pct = total ? (seg.n / total) * 100 : 0;
+        return (
+          <div
+            key={seg.key}
+            className={`${seg.cls} ${seg.txt} flex items-center justify-center overflow-hidden rounded-sm`}
+            title={seg.title}
+            style={{ width: `${pct}%` }}
+          >
+            {pct >= String(seg.n).length * 2 && seg.n}
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 function AnswerLine({
@@ -129,8 +149,20 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
   }, [open, perTool]);
 
   const totalAttempts = history.length;
-  const totalCorrect = history.filter((r) => r.correct).length;
-  const overallPct = totalAttempts ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
+
+  const overall = useMemo(() => {
+    const buckets = new Map<number, number>();
+    let total = 0;
+    let seen = 0;
+    for (const s of perTopic) {
+      total += s.total;
+      seen += s.seen;
+    }
+    for (const b of bucketsByTopic.values()) {
+      for (const [score, n] of b) buckets.set(score, (buckets.get(score) ?? 0) + n);
+    }
+    return { total, seen, buckets };
+  }, [perTopic, bucketsByTopic]);
 
   const dayCounts = useMemo(() => {
     const now = Date.now();
@@ -148,19 +180,14 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
 
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
+      <div className="space-y-2">
       <header className="flex flex-wrap items-center gap-4">
         <button type="button" onClick={() => setZoom(true)} className="shrink-0">
           <img src={logo} alt="LPIC-2" className="h-14 w-14 rounded-md object-cover cursor-zoom-in" />
         </button>
         <div className="flex-1">
-          <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (Exam 202-450) Trainer</h1>
-          <p className="text-sm text-slate-400">
-            {totalAttempts > 0
-              ? `Overall score: ${totalCorrect}/${totalAttempts} correct (${overallPct}%) · ${QUESTIONS.length} questions`
-              : `No answers yet — tick topics and start a quiz. ${QUESTIONS.length} questions`}
-          </p>
           <div
-            className="mt-1 flex items-center gap-0.5 font-mono text-[10px]"
+            className="mb-1 flex items-center gap-0.5 font-mono text-[10px]"
             aria-label={`Unique questions answered per day, last ${STRIP_DAYS} days`}
           >
             {dayCounts.map((d, i) => (
@@ -175,11 +202,21 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
               </span>
             ))}
           </div>
-        </div>
-        <div className="shrink-0">
-          <Account />
+          <div className="flex items-baseline justify-between gap-4">
+            <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (Exam 202-450) Trainer</h1>
+            <span className="text-sm text-slate-400">
+              answered {overall.seen}/{overall.total}
+            </span>
+          </div>
+          {totalAttempts === 0 && (
+            <p className="text-sm text-slate-400">
+              No answers yet — tick topics and start a quiz. {QUESTIONS.length} questions
+            </p>
+          )}
         </div>
       </header>
+      {totalAttempts > 0 && <MasteryBar total={overall.total} buckets={overall.buckets} />}
+      </div>
 
       <FilterBar
         resultFilter={resultFilter}
@@ -193,7 +230,6 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
       <ul className="space-y-2">
         {perTopic.map((s) => {
           const isOpen = open === s.topic;
-          const segments = masterySegments(s.total, bucketsByTopic.get(s.topic));
           return (
             <li
               key={s.topic}
@@ -221,7 +257,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                   </span>
                   <span className="flex shrink-0 items-center gap-2">
                     <span className="text-sm text-slate-400">
-                      asked {s.seen}/{s.total}
+                      answered {s.seen}/{s.total}
                     </span>
                     <button
                       type="button"
@@ -247,21 +283,7 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                     </button>
                   </span>
                 </div>
-                <div className="flex h-4 gap-0.5 text-[10px] leading-none">
-                  {segments.filter((seg) => seg.n > 0).map((seg) => {
-                    const pct = s.total ? (seg.n / s.total) * 100 : 0;
-                    return (
-                      <div
-                        key={seg.key}
-                        className={`${seg.cls} ${seg.txt} flex items-center justify-center overflow-hidden rounded-sm`}
-                        title={seg.title}
-                        style={{ width: `${pct}%` }}
-                      >
-                        {pct >= String(seg.n).length * 2 && seg.n}
-                      </div>
-                    );
-                  })}
-                </div>
+                <MasteryBar total={s.total} buckets={bucketsByTopic.get(s.topic)} />
               </div>
               {isOpen && (
                 <div className="p-3 space-y-2 bg-slate-900/40">
@@ -335,8 +357,11 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
         </button>
       )}
 
-      <footer className="pt-4 pb-8 text-center text-xs text-slate-600">
+      <footer className="relative pt-4 pb-8 text-center text-xs text-slate-600">
         LPIC-2 (Exam 202-450) Trainer
+        <span className="absolute bottom-8 right-0">
+          <Account />
+        </span>
       </footer>
 
       {zoom && <LogoZoom src={logo} alt="LPIC-2" onClose={() => setZoom(false)} />}

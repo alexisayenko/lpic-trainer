@@ -30,7 +30,7 @@ export function FilterBar({
         <span className="w-20 text-slate-300">Mastery</span>
         {RESULT_FILTERS.map((f) => (
           <ToggleChip key={String(f)} on={resultFilter.includes(f)} onClick={() => toggleResultFilter(f)}>
-            {f}
+            {f === 'unseen' ? 'unanswered' : f}
           </ToggleChip>
         ))}
       </div>

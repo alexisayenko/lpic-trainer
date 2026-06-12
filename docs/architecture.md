@@ -127,12 +127,16 @@ with a single clock snapshot for consistency.
 
 ## Dashboard
 
-- **Header** — logo, the cumulative overall-score line, and a 21-cell strip showing
-  the number of *unique* questions answered on each of the last 21 days.
+- **Header** — logo; a 21-cell strip (unique questions answered per day, last
+  21 days) above the title; "answered N/total" for the whole exam at the right;
+  and a full-width overall mastery bar (all topics combined, same segment style
+  as the topic bars) directly below. The Account panel lives bottom-right in
+  the footer.
 - **Filters** ([`FilterBar`](../src/components/FilterBar.tsx)) — result + source toggles.
-  The result filter is unseen / the six mastery buckets, rendered as labelled
-  toggle chips. They both filter the displayed rows **and form the quiz pool**.
-- **Per-topic progress** — an "asked N/total" count and a stacked mastery bar per
+  The result filter is unanswered (internal value `unseen`) / the six mastery
+  buckets, rendered as labelled toggle chips. They both filter the displayed
+  rows **and form the quiz pool**.
+- **Per-topic progress** — an "answered N/total" count and a stacked mastery bar per
   topic (unseen + the six bucket colours, soft-outlined segments, question
   counts inside the blocks when they fit); derived in `useDashboardStats` (one pass over the
   latest-record map; orphaned ids for removed questions are skipped).
