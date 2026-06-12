@@ -57,7 +57,8 @@ drops out of the score when five newer QuizDays push it past the 5-slot window.
 
 ## Chip colours
 
-`≥80` green · `≥50` amber · `<50` red.
+One tint per bucket — a hand-tuned red→green ramp in `MASTERY_TINTS`
+(`src/types.ts`), shared by bar segments, donut rings, and chips.
 
 ## Not wired in yet
 

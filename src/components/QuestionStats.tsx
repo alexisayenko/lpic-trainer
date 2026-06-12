@@ -22,7 +22,7 @@ export function MasteryChip({ score, count }: { score: number; count?: number })
   return (
     <span
       aria-label={count != null ? `Mastery ${score} of 100, ${count} questions` : `Mastery ${score} of 100`}
-      className={`text-xs ${tone}`}
+      className={`inline-flex items-center text-xs ${tone}`}
     >
       <span aria-hidden="true" className="inline-flex items-center gap-0.5 leading-none">
         <svg viewBox="0 0 48 48" className="h-4 w-4 -rotate-90 -translate-y-[0.25px]" fill="none" stroke="currentColor" strokeWidth="10">
@@ -37,13 +37,9 @@ export function MasteryChip({ score, count }: { score: number; count?: number })
 
 export function UnseenChip({ count }: { count: number }) {
   return (
-    <span aria-label={`Unseen, ${count} questions`} className="text-xs text-slate-400">
+    <span aria-label={`Unseen, ${count} questions`} className="inline-flex items-center text-xs text-slate-400">
       <span aria-hidden="true" className="inline-flex items-center gap-0.5 leading-none">
-        <svg viewBox="0 2 24 20" className="h-3 w-3 -translate-y-[0.25px] text-slate-700" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
-          <circle cx="12" cy="12" r="3" />
-          <path d="M3 21 21 3" />
-        </svg>
+        <span className="text-slate-500">unseen</span>
         {count}
       </span>
     </span>

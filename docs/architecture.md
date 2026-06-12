@@ -131,8 +131,9 @@ with a single clock snapshot for consistency.
   The result filter is unseen / the six mastery buckets, rendered as labelled
   toggle chips. They both filter the displayed rows **and form the quiz pool**.
 - **Per-topic progress** — an "asked N/total" count and a stacked mastery bar per
-  topic (unseen + the six bucket colours), with portion badges (mastery ring or
-  eye-slash unseen glyph + count) underneath; derived in `useDashboardStats` (one pass over the
+  topic (unseen + the six bucket colours, 1px gaps between segments), with
+  portion badges (mastery ring or the word "unseen" + count) underneath;
+  derived in `useDashboardStats` (one pass over the
   latest-record map; orphaned ids for removed questions are skipped).
 - **Expandable rows** — open a topic to see, first, a read-only per-tool stats
   block (label · seen/total · stacked mastery bar, from `perTool`/`bucketsByTool`),

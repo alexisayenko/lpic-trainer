@@ -121,7 +121,7 @@ reflects the current source; deeper detail lives in
 - **Source chip** — the small origin badge (`SourceTag`) on each question row and
   on the quiz card.
 - **Portion badges** — the per-topic badges under the mastery bar on the
-  dashboard, one per bucket: a mastery ring (or the eye-slash unseen glyph,
+  dashboard, one per bucket: a mastery ring (or the word "unseen",
   `UnseenChip`) followed by its question count, ordered unseen → 0 → … → 100;
   they mirror the bar's segments.
 

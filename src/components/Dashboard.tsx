@@ -23,7 +23,7 @@ function masterySegments(total: number, buckets: Map<number, number> | undefined
       return { key: `m${score}`, n, cls: MASTERY_TINTS[score].bar, score, title: `${n} × ${score}%` };
     });
   const unseen = total - segments.reduce((acc, seg) => acc + seg.n, 0);
-  segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-700', score: null, title: `${unseen} unseen` });
+  segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-500', score: null, title: `${unseen} unseen` });
   return segments;
 }
 
@@ -244,8 +244,8 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                     </button>
                   </span>
                 </div>
-                <div className="flex h-1.5 rounded-full overflow-hidden bg-slate-700">
-                  {segments.map((seg) => (
+                <div className="flex h-1.5 gap-px rounded-full overflow-hidden bg-slate-700">
+                  {segments.filter((seg) => seg.n > 0).map((seg) => (
                     <div
                       key={seg.key}
                       className={seg.cls}
@@ -278,8 +278,8 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                           <span className="w-14 shrink-0 text-right tabular-nums text-slate-500">
                             {stats ? `${stats.seen}/${stats.total}` : '0/0'}
                           </span>
-                          <div className="flex h-1.5 flex-1 rounded-full overflow-hidden bg-slate-700">
-                            {masterySegments(stats?.total ?? 0, bucketsByTool.get(tool)).map((seg) => (
+                          <div className="flex h-1.5 flex-1 gap-px rounded-full overflow-hidden bg-slate-700">
+                            {masterySegments(stats?.total ?? 0, bucketsByTool.get(tool)).filter((seg) => seg.n > 0).map((seg) => (
                               <div
                                 key={seg.key}
                                 className={seg.cls}
