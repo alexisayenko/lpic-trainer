@@ -2,46 +2,58 @@ import type { ReactNode } from 'react';
 import { MASTERY_BUCKETS, MASTERY_TINTS, ORIGIN_LABELS, type AnswerRecord, type Origin, type Question } from '../types';
 import { STRIP_DAYS, dayCells, type DayStatus } from '../lib/mastery';
 
-const ORIGIN_STYLES: Record<string, string> = {
-  'linux-direct': 'bg-purple-500/15 text-purple-300 border-purple-500/30',
-  'ken-adams': 'bg-black/40 text-white border-purple-500/40',
-  'gpt-deep-research': 'bg-white/15 text-white border-white/30',
-  'claude-lpic2book': 'bg-orange-500/15 text-orange-300 border-orange-500/30',
-};
-
 export function SourceTag({ origin }: { origin?: Origin }) {
   if (!origin) return null;
-  const label = ORIGIN_LABELS[origin] ?? origin;
-  const style = ORIGIN_STYLES[origin] ?? 'bg-slate-700/40 text-slate-400 border-slate-600';
   return (
-    <span className={`inline-block rounded border px-1.5 py-0.5 text-[10px] ${style}`}>{label}</span>
+    <span className="text-[10px] text-slate-500">[{ORIGIN_LABELS[origin] ?? origin}]</span>
   );
 }
 
-export function MasteryChip({ score, count }: { score: number; count?: number }) {
-  const tint = MASTERY_TINTS[MASTERY_BUCKETS.find((max) => score <= max) ?? 100];
-  const filled = Math.round(score / 20);
+export function MasteryChip({ score, count }: { score: number | null; count?: number }) {
+  const unseen = score == null;
+  const tone = unseen
+    ? 'text-slate-500'
+    : MASTERY_TINTS[MASTERY_BUCKETS.find((max) => score <= max) ?? 100].text;
+  const filled = unseen ? null : Math.round(score / 20);
+  const label = unseen ? 'Unseen' : `Mastery ${score} of 100`;
   return (
     <span
-      aria-label={count != null ? `Mastery ${score} of 100, ${count} questions` : `Mastery ${score} of 100`}
-      className={`inline-flex items-center gap-0.5 text-xs ${tint.text}`}
+      aria-label={count != null ? `${label}, ${count} questions` : label}
+      className={`inline-flex items-center gap-0.5 text-xs ${tone}`}
     >
-      <span aria-hidden="true" className="inline-flex flex-col items-center">
-        {Array.from({ length: filled || 1 }, (_, i) => (
-          <svg
-            key={i}
-            viewBox="0 0 24 24"
-            className={`h-2.5 w-3 ${i > 0 ? '-mt-[7px]' : ''}`}
+      <svg aria-hidden="true" viewBox="0 0 16 30" className="h-[30px] w-4">
+        <path
+          d="M0.5 0.5 H15.5 V25 L8 29.5 L0.5 25 Z"
+          fill="currentColor"
+          fillOpacity="0.2"
+          stroke="currentColor"
+          strokeWidth="1"
+        />
+        {filled == null ? null : filled === 0 ? (
+          <path
+            d="M5 10 l6 6 M11 10 l-6 6"
             fill="none"
             stroke="currentColor"
-            strokeWidth="4"
+            strokeWidth="2"
             strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M4 8l8 8 8-8" />
-          </svg>
-        ))}
-      </span>
+          />
+        ) : (
+          Array.from({ length: filled }, (_, i) => {
+            const y = 5 + ((5 - filled) * 4) / 2 + i * 4;
+            return (
+              <path
+                key={i}
+                d={`M4 ${y} l4 3.5 4 -3.5`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            );
+          })
+        )}
+      </svg>
       {count != null && <span className="text-slate-400">{count}</span>}
     </span>
   );
@@ -90,29 +102,32 @@ function DayStrip({ cells }: { cells: DayStatus[] }) {
   );
 }
 
-/** Compact attempt history for one question: 21-day strip · mastery · source. */
+/** Question-card header: title line, source + id, day strip on the left; mastery chip top-right. */
 export function QuestionStats({
   q,
   attempts,
   mastery,
-  showSource = true,
+  title,
 }: {
   q: Question;
   attempts?: AnswerRecord[];
   mastery?: number | null;
-  showSource?: boolean;
+  title: ReactNode;
 }) {
   const cells = dayCells(attempts ?? [], Date.now());
   return (
-    <div className="flex items-center gap-2 cursor-default">
-      <DayStrip cells={cells} />
-      {mastery != null && <MasteryChip score={mastery} />}
-      {showSource && (
-        <div className="ml-auto flex flex-col items-end gap-0.5">
+    <div className="flex items-start gap-2 cursor-default">
+      <div className="flex-1">
+        {title}
+        <div className="mt-1 flex items-center gap-2 text-[10px] text-slate-500">
           {q.origin && <SourceTag origin={q.origin} />}
-          <span className="text-[10px] text-slate-500">[{q.id}]</span>
+          <span>[{q.id}]</span>
         </div>
-      )}
+      </div>
+      <span className="flex shrink-0 items-center gap-2">
+        <DayStrip cells={cells} />
+        <MasteryChip score={mastery ?? null} />
+      </span>
     </div>
   );
 }

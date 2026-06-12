@@ -8,7 +8,7 @@ import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
 import { ALL_TOPICS, MASTERY_BUCKETS, MASTERY_TINTS, TOPIC_LABELS, UTILITIES, topicOf, type AnswerRecord, type Question, type Topic } from '../types';
 import { Account } from './Account';
-import { QuestionStats, SourceTag } from './QuestionStats';
+import { QuestionStats } from './QuestionStats';
 import { FilterBar } from './FilterBar';
 import { ToggleChip } from './ToggleChip';
 import { LogoZoom } from './LogoZoom';
@@ -26,7 +26,7 @@ function masterySegments(total: number, buckets: Map<number, number> | undefined
       return { key: `m${score}`, n, cls: t.bar, txt: t.on, score, title: `${n} × ${score}%` };
     });
   const unseen = total - segments.reduce((acc, seg) => acc + seg.n, 0);
-  segments.unshift({ key: 'unseen', n: unseen, cls: 'bg-slate-500', txt: 'text-slate-200', score: null, title: `${unseen} unseen` });
+  segments.unshift({ key: 'unseen', n: unseen, cls: 'border border-slate-500 bg-slate-500/25', txt: 'text-slate-300', score: null, title: `${unseen} unseen` });
   return segments;
 }
 
@@ -51,21 +51,17 @@ function AnswerLine({
     q.type === 'single' && rec?.pickedIndex != null ? q.choices[rec.pickedIndex] : undefined;
   return (
     <div className="p-3 rounded-md border border-slate-700 bg-slate-800/20">
-      <div className="flex items-start gap-2 text-xs text-slate-500">
-        <div className="flex-1">
-          <span>
+      <QuestionStats
+        q={q}
+        attempts={attempts}
+        mastery={mastery}
+        title={
+          <div className="text-xs text-slate-500">
             {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
             {UTILITIES[q.tool]?.label ?? q.tool}
-          </span>
-          <div className="mt-2">
-            <QuestionStats q={q} attempts={attempts} mastery={mastery} showSource={false} />
           </div>
-        </div>
-        <span className="flex shrink-0 flex-col items-end gap-0.5">
-          {q.origin && <SourceTag origin={q.origin} />}
-          <span className="text-[10px]">[{q.id}]</span>
-        </span>
-      </div>
+        }
+      />
       <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
       {rec && !rec.correct && yours !== undefined && (
         <p className="mt-2 text-xs text-[#a4434b]">You answered: {yours}</p>
@@ -251,13 +247,13 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                     </button>
                   </span>
                 </div>
-                <div className="flex h-4 gap-px rounded overflow-hidden bg-slate-700 text-[10px] leading-none">
+                <div className="flex h-4 gap-0.5 text-[10px] leading-none">
                   {segments.filter((seg) => seg.n > 0).map((seg) => {
                     const pct = s.total ? (seg.n / s.total) * 100 : 0;
                     return (
                       <div
                         key={seg.key}
-                        className={`${seg.cls} ${seg.txt} flex items-center justify-center overflow-hidden`}
+                        className={`${seg.cls} ${seg.txt} flex items-center justify-center overflow-hidden rounded-sm`}
                         title={seg.title}
                         style={{ width: `${pct}%` }}
                       >
@@ -279,11 +275,11 @@ export function Dashboard({ onStart }: { onStart: () => void }) {
                           <span className="w-14 shrink-0 text-right tabular-nums text-slate-500">
                             {stats ? `${stats.seen}/${stats.total}` : '0/0'}
                           </span>
-                          <div className="flex h-1.5 flex-1 gap-px rounded-full overflow-hidden bg-slate-700">
+                          <div className="flex h-2.5 flex-1 gap-0.5">
                             {masterySegments(stats?.total ?? 0, bucketsByTool.get(tool)).filter((seg) => seg.n > 0).map((seg) => (
                               <div
                                 key={seg.key}
-                                className={seg.cls}
+                                className={`${seg.cls} rounded-sm`}
                                 title={seg.title}
                                 style={{ width: `${stats?.total ? (seg.n / stats.total) * 100 : 0}%` }}
                               />

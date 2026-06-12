@@ -4,7 +4,7 @@ import { useStore } from '../store';
 import { attemptsByQuestion, attemptsFor, filterPool, lastByQuestion, orderByWeakness, pickDeck, shuffledIndices } from '../lib/select';
 import { masteryOf } from '../lib/mastery';
 import { TOPIC_LABELS, UTILITIES, topicOf, type Question } from '../types';
-import { QuestionStats, SourceTag } from './QuestionStats';
+import { QuestionStats } from './QuestionStats';
 
 const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
 
@@ -80,7 +80,7 @@ export function Quiz({ onExit }: { onExit: () => void }) {
         <button
           type="button"
           onClick={onExit}
-          className="px-4 py-2 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white"
+          className="px-4 py-2 rounded-md bg-sky-600 hover:bg-sky-500 text-white"
         >
           Back to dashboard
         </button>
@@ -139,27 +139,23 @@ export function Quiz({ onExit }: { onExit: () => void }) {
       if (isPick) return 'border-red-500 bg-red-900/40';
       return 'border-slate-700 bg-slate-800/30 opacity-60';
     }
-    if (isPick) return 'border-emerald-600 bg-emerald-900/20';
+    if (isPick) return 'border-sky-600 bg-sky-900/20';
     return 'border-slate-700 bg-slate-800/60 hover:bg-slate-800';
   };
 
   return (
     <div className="max-w-xl mx-auto p-6 space-y-5">
-      <div className="flex items-start gap-2 text-sm text-slate-400">
-        <div className="flex-1">
-          <span>
+      <QuestionStats
+        q={q}
+        attempts={attempts}
+        mastery={mastery}
+        title={
+          <div className="text-sm text-slate-400">
             {topicOf(q) ? `${topicOf(q)} ${TOPIC_LABELS[topicOf(q)!]} · ` : ''}
             {UTILITIES[q.tool]?.label ?? q.tool}
-          </span>
-          <div className="mt-2">
-            <QuestionStats q={q} attempts={attempts} mastery={mastery} showSource={false} />
           </div>
-        </div>
-        <span className="flex shrink-0 flex-col items-end gap-0.5">
-          {q.origin && <SourceTag origin={q.origin} />}
-          <span className="text-[10px] text-slate-500">[{q.id}]</span>
-        </span>
-      </div>
+        }
+      />
       <h2 className="text-xl text-slate-100 leading-snug">{q.prompt}</h2>
       {q.type === 'multi' && !answered && (
         <p className="text-xs text-slate-500 -mt-2">Select all that apply, then submit.</p>
@@ -182,7 +178,7 @@ export function Quiz({ onExit }: { onExit: () => void }) {
             disabled={answered}
             onChange={(e) => setTyped(e.target.value)}
             placeholder="Type your answer…"
-            className="w-full p-3 rounded-md border border-slate-700 bg-slate-800/60 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-emerald-600 disabled:opacity-60"
+            className="w-full p-3 rounded-md border border-slate-700 bg-slate-800/60 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-600 disabled:opacity-60"
           />
         </form>
       ) : (
@@ -207,7 +203,7 @@ export function Quiz({ onExit }: { onExit: () => void }) {
           type="button"
           onClick={submitMulti}
           disabled={selected.length === 0}
-          className="w-full py-3 rounded-md bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-medium"
+          className="w-full py-3 rounded-md bg-sky-600 hover:bg-sky-500 disabled:opacity-50 text-white font-medium"
         >
           Submit answer
         </button>
@@ -217,7 +213,7 @@ export function Quiz({ onExit }: { onExit: () => void }) {
           type="button"
           onClick={submitFill}
           disabled={typed.trim() === ''}
-          className="w-full py-3 rounded-md bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-medium"
+          className="w-full py-3 rounded-md bg-sky-600 hover:bg-sky-500 disabled:opacity-50 text-white font-medium"
         >
           Submit answer
         </button>
@@ -239,7 +235,7 @@ export function Quiz({ onExit }: { onExit: () => void }) {
           <button
             type="button"
             onClick={next}
-            className="w-full py-3 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-medium"
+            className="w-full py-3 rounded-md bg-sky-600 hover:bg-sky-500 text-white font-medium"
           >
             {index + 1 === deck.length ? 'See results' : 'Next question'}
           </button>

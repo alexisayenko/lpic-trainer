@@ -117,14 +117,18 @@ reflects the current source; deeper detail lives in
 - **Daily-count strip** — the 21-cell row in the dashboard header: per calendar
   day, the number of *unique* questions answered (`·` for none); not to be
   confused with the per-question 21-day strip.
-- **Mastery chip** — the indicator next to the strip (`MasteryChip`): a vertical
-  stack of downward chevrons tinted by bucket, one per 20 points (score/20 =
-  one chevron per remembered QuizDay slot); 0% shows a single faint chevron.
-- **Source chip** — the small origin badge (`SourceTag`) on each question row and
-  on the quiz card.
+- **Mastery chip** — the pennant-shaped SVG badge (`MasteryChip`) at the top
+  right of a question card: soft-outlined box (bucket-coloured border +
+  translucent fill) whose bottom edge repeats the chevron apex. Inside: one
+  downward chevron per 20 points (score/20 = one per remembered QuizDay slot),
+  an × for 0%, empty for unseen.
+- **Source tag** — the plain bracketed origin label (`SourceTag`, e.g.
+  `[Claude]`) under the question title, same style as the `[id]`.
 - **In-bar counters** — each topic-bar segment shows its question count inside
   the block (hidden when the segment is too narrow; the hover tooltip always
-  has it). Replaces the former portion-badge legend row.
+  has it). Replaces the former portion-badge legend row. Segments use the same
+  soft-outlined style as the chip: bucket-coloured border, translucent fill,
+  2px gaps, no background track.
 
 ## Sync
 

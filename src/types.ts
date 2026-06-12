@@ -57,12 +57,12 @@ export type MasteryBucket = (typeof MASTERY_BUCKETS)[number];
 /** One red→green ramp per bucket (hand-tuned, not a uniform Tailwind ladder):
  *  solid bar/pill background + tinted chip + plain text + on-colour text classes. */
 export const MASTERY_TINTS: Record<MasteryBucket, { bar: string; chip: string; text: string; on: string }> = {
-  0: { bar: 'bg-[#a4434b]', chip: 'bg-red-500/15 text-red-300 border-red-500/30', text: 'text-[#a4434b]', on: 'text-slate-200' },
-  20: { bar: 'bg-orange-600', chip: 'bg-orange-500/15 text-orange-600 border-orange-500/30', text: 'text-orange-600', on: 'text-slate-100' },
-  40: { bar: 'bg-amber-500', chip: 'bg-amber-500/15 text-amber-500 border-amber-500/30', text: 'text-amber-500', on: 'text-slate-900' },
-  60: { bar: 'bg-yellow-400', chip: 'bg-yellow-400/15 text-yellow-400 border-yellow-400/30', text: 'text-yellow-400', on: 'text-slate-900' },
-  80: { bar: 'bg-[#c4db00]', chip: 'bg-lime-400/15 text-[#c4db00] border-lime-400/30', text: 'text-[#c4db00]', on: 'text-slate-900' },
-  100: { bar: 'bg-green-700', chip: 'bg-green-700/15 text-green-700 border-green-700/30', text: 'text-green-700', on: 'text-slate-100' },
+  0: { bar: 'border border-[#a4434b] bg-[#a4434b]/25', chip: 'bg-red-500/15 text-red-300 border-red-500/30', text: 'text-[#a4434b]', on: 'text-red-300' },
+  20: { bar: 'border border-orange-600 bg-orange-600/25', chip: 'bg-orange-500/15 text-orange-600 border-orange-500/30', text: 'text-orange-600', on: 'text-orange-300' },
+  40: { bar: 'border border-amber-500 bg-amber-500/25', chip: 'bg-amber-500/15 text-amber-500 border-amber-500/30', text: 'text-amber-500', on: 'text-amber-200' },
+  60: { bar: 'border border-yellow-400 bg-yellow-400/25', chip: 'bg-yellow-400/15 text-yellow-400 border-yellow-400/30', text: 'text-yellow-400', on: 'text-yellow-200' },
+  80: { bar: 'border border-[#c4db00] bg-[#c4db00]/25', chip: 'bg-lime-400/15 text-[#c4db00] border-lime-400/30', text: 'text-[#c4db00]', on: 'text-lime-200' },
+  100: { bar: 'border border-green-700 bg-green-700/30', chip: 'bg-green-700/15 text-green-700 border-green-700/30', text: 'text-green-700', on: 'text-green-300' },
 };
 
 /** Quiz pool / dashboard filters. */
