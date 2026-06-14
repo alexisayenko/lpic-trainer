@@ -4,8 +4,8 @@
   "prompt": "After installing Dovecot, `ps ax` shows processes only as `dovecot/imap` and `dovecot/imap-login`. Which option associates each process with the username, peer IP address, and connection status?",
   "choices": [
     "`verbose_proctitle = yes` in the Dovecot configuration",
-    "`proc.all.show_status = 1` in sysctl.conf or /proc",
-    "`sys.ps.allow_descriptions = 1` in sysctl.conf or /proc",
+    "`proc.all.show_status = 1` in `sysctl.conf` or `/proc`",
+    "`sys.ps.allow_descriptions = 1` in `sysctl.conf` or `/proc`",
     "`--with-linux-extprocnames` for ./configure when building Dovecot",
     "`process_format = \"%u %I %s\"` in the Dovecot configuration"
   ],

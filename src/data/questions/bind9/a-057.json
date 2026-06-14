@@ -3,12 +3,12 @@
   "tool": "bind9",
   "prompt": "Patrick is looking at a BIND 9 zone file and comes across a record of the format \"`www IN A 192.168.1.5`\". Which of the following describes this DNS record?",
   "choices": [
-    "It is a reverse record mapping 192.168.1.5 to the hostname \"www\".",
-    "It is an address record mapping the hostname \"www\" to IP address 192.168.1.5.",
-    "It is a canonical name (alias) for 192.168.1.5.",
+    "It is a reverse record mapping `192.168.1.5` to the hostname \"www\".",
+    "It is an address record mapping the hostname \"www\" to IP address `192.168.1.5`.",
+    "It is a canonical name (alias) for `192.168.1.5`.",
     "It is a mail exchange record for the www host."
   ],
   "answerIndex": 1,
-  "explanation": "An A record is an address record; \"`www IN A 192.168.1.5`\" maps the hostname `www` to the IPv4 address 192.168.1.5.",
+  "explanation": "An A record is an address record; \"`www IN A 192.168.1.5`\" maps the hostname `www` to the IPv4 address `192.168.1.5`.",
   "origin": "linux-direct"
 }

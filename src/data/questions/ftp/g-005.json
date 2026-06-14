@@ -3,12 +3,12 @@
   "tool": "ftp",
   "prompt": "Stephanie, a system administrator, is trying to understand the difference between passive and active FTP modes. She's reading that passive mode is often more firewall-friendly for clients. In a passive FTP connection, which of the following happens?",
   "choices": [
-    "The server initiates the data connection to the client from port 20",
+    "The server initiates the data connection to the client from port `20`",
     "The client initiates both control and data connections to the server",
-    "Both control and data connections use port 21 on the server",
+    "Both control and data connections use port `21` on the server",
     "The client initiates the control connection and the server initiates the data connection"
   ],
   "answerIndex": 1,
-  "explanation": "In passive FTP, the client initiates both the control connection (typically to server port 21) and the data connection (to a random high-numbered port on the server).",
+  "explanation": "In passive FTP, the client initiates both the control connection (typically to server port `21`) and the data connection (to a random high-numbered port on the server).",
   "origin": "linux-direct"
 }

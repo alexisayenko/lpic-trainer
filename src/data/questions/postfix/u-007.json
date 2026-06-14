@@ -4,7 +4,7 @@
   "type": "multi",
   "prompt": "A mail server is found to be an open relay. Which actions help prevent open relaying while still receiving company mail? (Choose two.)",
   "choices": [
-    "Configure netfilter to block port 25 on the public network",
+    "Configure netfilter to block port `25` on the public network",
     "Configure Dovecot to support IMAP connectivity",
     "Restrict Postfix to only accept e-mail for domains hosted on this server",
     "Upgrade the mailbox format from mbox to maildir",

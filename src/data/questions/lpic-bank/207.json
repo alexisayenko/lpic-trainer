@@ -112,9 +112,9 @@
     "type": "single",
     "objective": "207.3",
     "difficulty": "scenario",
-    "prompt": "What is the main security benefit of running named in a chroot jail?",
+    "prompt": "What is the main security benefit of running `named` in a chroot jail?",
     "choices": [
-      "It limits filesystem damage if named is compromised",
+      "It limits filesystem damage if `named` is compromised",
       "It enables DNSSEC validation automatically",
       "It removes the need for zone transfers",
       "It forces all queries to be recursive"

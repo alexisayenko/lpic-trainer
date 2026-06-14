@@ -1,7 +1,7 @@
 {
   "id": "bind9-a058",
   "tool": "bind9",
-  "prompt": "Janet is editing the BIND zone file for \"techcorp.net\" to add a host named \"printer\" with IP 192.168.1.10. Which entries correctly add this host to the zone file and its corresponding reverse zone?",
+  "prompt": "Janet is editing the BIND zone file for \"techcorp.net\" to add a host named \"printer\" with IP `192.168.1.10`. Which entries correctly add this host to the zone file and its corresponding reverse zone?",
   "choices": [
     "`printer IN PTR 192.168.1.10` in the zone file; `10.1.168.192.in-addr.arpa. IN A printer.techcorp.net.` in the reverse zone",
     "`printer IN A 192.168.1.10` in the zone file; `10.1.168.192.in-addr.arpa. IN PTR printer.techcorp.net.` in the reverse zone",

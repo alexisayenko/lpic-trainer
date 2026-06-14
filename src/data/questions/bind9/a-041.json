@@ -1,7 +1,7 @@
 {
   "id": "bind9-a041",
   "tool": "bind9",
-  "prompt": "Patrick, a system administrator, wants to restrict zone transfers to a specific secondary DNS server with the IP address 192.168.0.10. Which configuration should he add to the `/etc/named.conf` file to achieve this?",
+  "prompt": "Patrick, a system administrator, wants to restrict zone transfers to a specific secondary DNS server with the IP address `192.168.0.10`. Which configuration should he add to the `/etc/named.conf` file to achieve this?",
   "choices": [
     "`allow-query { 192.168.0.10; };`",
     "`allow-transfer { 192.168.0.10; };`",

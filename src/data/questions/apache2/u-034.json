@@ -6,10 +6,10 @@
     "`mod_chroot` needs the absolute path to the chroot environment",
     "Apache cannot read `index.html` because it was not moved into the chroot",
     "Apache requires a VirtualHost directive when run from a chroot",
-    "Apache needs to start as root to bind to port 80",
+    "Apache needs to start as root to bind to port `80`",
     "A `LoadModule` line for `mod_chroot` must be added to httpd.conf"
   ],
   "answerIndex": 3,
-  "explanation": "Binding to a privileged port (80) requires starting as root; Apache then drops privileges to the configured user.",
+  "explanation": "Binding to a privileged port (`80`) requires starting as root; Apache then drops privileges to the configured user.",
   "origin": "ken-adams"
 }

@@ -3,13 +3,13 @@
   "tool": "apache2",
   "prompt": "When Apache is configured to use name-based virtual hosts:",
   "choices": [
-    "`NameVirtualHost *:80` indicates that all name-based virtual hosts will listen on port 80",
+    "`NameVirtualHost *:80` indicates that all name-based virtual hosts will listen on port `80`",
     "Each virtual host can service requests for a single hostname only",
     "You must configure a different IP address for each virtual host",
     "It is necessary to create a VirtualHost block for the main host",
     "A `Listen` directive is required for each virtual host"
   ],
   "answerIndex": 0,
-  "explanation": "`NameVirtualHost *:80` tells Apache that name-based virtual hosts share port 80 on all addresses.",
+  "explanation": "`NameVirtualHost *:80` tells Apache that name-based virtual hosts share port `80` on all addresses.",
   "origin": "ken-adams"
 }

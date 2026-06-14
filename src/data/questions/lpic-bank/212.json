@@ -125,7 +125,7 @@
     "type": "single",
     "objective": "212.3",
     "difficulty": "applied",
-    "prompt": "Which command forwards local TCP port 8080 to port 80 on 127.0.0.1 as seen from the remote host server.example.com?",
+    "prompt": "Which command forwards local TCP port `8080` to port `80` on `127.0.0.1` as seen from the remote host server.example.com?",
     "choices": [
       "`ssh -L 8080:127.0.0.1:80 server.example.com`",
       "`ssh -R 8080:127.0.0.1:80 server.example.com`",

@@ -10,6 +10,6 @@
     "This proxy cannot be used to access FTP servers listening on the standard port"
   ],
   "answerIndex": 4,
-  "explanation": "FTP's standard port (21) is not listed in `Safe_ports`, so `http_access deny !Safe_ports` blocks requests to FTP servers on that port.",
+  "explanation": "FTP's standard port (`21`) is not listed in `Safe_ports`, so `http_access deny !Safe_ports` blocks requests to FTP servers on that port.",
   "origin": "ken-adams"
 }

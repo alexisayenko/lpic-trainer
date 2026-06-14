@@ -1,7 +1,7 @@
 {
   "id": "squid-u007",
   "tool": "squid",
-  "prompt": "Only clients on the 192.168.1.0/24 network should be able to use the proxy. Which configuration section is correct?",
+  "prompt": "Only clients on the `192.168.1.0/24` network should be able to use the proxy. Which configuration section is correct?",
   "choices": [
     "`acl local src 192.168.1.0/24` then `http access allow local`",
     "`acl local src 192.168.1.0/24` then `http_access_allow = local`",

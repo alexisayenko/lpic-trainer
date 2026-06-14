@@ -1,7 +1,7 @@
 {
   "id": "ssh-f002",
   "tool": "ssh",
-  "prompt": "On a new server setup, Lisa realizes that the SSH daemon is listening on port 2222 instead of the default port 22. To confirm this, she decides to check the `/etc/ssh/sshd_config` file. Which line should she look for to verify the port number on which the SSH daemon is listening?",
+  "prompt": "On a new server setup, Lisa realizes that the SSH daemon is listening on port `2222` instead of the default port `22`. To confirm this, she decides to check the `/etc/ssh/sshd_config` file. Which line should she look for to verify the port number on which the SSH daemon is listening?",
   "choices": [
     "`ListenAddress 2222`",
     "`SSHPort 2222`",

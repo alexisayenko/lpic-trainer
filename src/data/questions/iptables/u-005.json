@@ -2,17 +2,17 @@
   "id": "iptables-u005",
   "tool": "iptables",
   "type": "multi",
-  "prompt": "How can you ensure that all access to normal sites (on port 80) on your local network goes through a proxy server? (Choose two.)",
+  "prompt": "How can you ensure that all access to normal sites (on port `80`) on your local network goes through a proxy server? (Choose two.)",
   "choices": [
-    "Use iptables on the router to block all outgoing port-80 traffic except from the proxy server",
+    "Use iptables on the router to block all outgoing port-`80` traffic except from the proxy server",
     "Use iptables on the router to redirect all proxy-server traffic directly to the Internet",
-    "Use iptables on the router to redirect all outgoing port-80 traffic to the proxy server, except the proxy server itself",
+    "Use iptables on the router to redirect all outgoing port-`80` traffic to the proxy server, except the proxy server itself",
     "Use iptables on the proxy server to redirect all port-80 traffic to the default proxy port"
   ],
   "answerIndices": [
     0,
     2
   ],
-  "explanation": "Block direct outbound port 80 except from the proxy, and redirect clients’ port-80 traffic to the proxy.",
+  "explanation": "Block direct outbound port `80` except from the proxy, and redirect clients’ port-`80` traffic to the proxy.",
   "origin": "ken-adams"
 }

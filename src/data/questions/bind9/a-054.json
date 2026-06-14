@@ -1,7 +1,7 @@
 {
   "id": "bind9-a054",
   "tool": "bind9",
-  "prompt": "Sarah wants to restrict zone transfers from her BIND 9 DNS server to a specific IP address (192.168.5.10). Which configuration entry would she add to her BIND configuration file?",
+  "prompt": "Sarah wants to restrict zone transfers from her BIND 9 DNS server to a specific IP address (`192.168.5.10`). Which configuration entry would she add to her BIND configuration file?",
   "choices": [
     "`allow-transfer { 192.168.5.10; };`",
     "`allow-query { 192.168.5.10; };`",

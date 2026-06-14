@@ -5,10 +5,10 @@
   "choices": [
     "It tells the DNS server to forward all queries to `named.192.168.1`.",
     "It tells the DNS server to use the `named.192.168.1` file to search for hostnames when given IP addresses.",
-    "It defines a caching-only zone for the 192.168.1.0 network.",
+    "It defines a caching-only zone for the `192.168.1.0` network.",
     "It tells the DNS server to transfer the 192.168.1 zone to a slave."
   ],
   "answerIndex": 1,
-  "explanation": "This block defines a reverse master zone; named uses the `named.192.168.1` file to resolve IP addresses in 192.168.1.0/24 back to hostnames.",
+  "explanation": "This block defines a reverse master zone; named uses the `named.192.168.1` file to resolve IP addresses in `192.168.1.0/24` back to hostnames.",
   "origin": "linux-direct"
 }

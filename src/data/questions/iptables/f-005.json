@@ -1,7 +1,7 @@
 {
   "id": "iptables-f005",
   "tool": "iptables",
-  "prompt": "You have been tasked with configuring a firewall on a Linux server to block incoming SSH traffic from a specific IP address 192.168.1.5. Which of the following iptables commands will accomplish this task?",
+  "prompt": "You have been tasked with configuring a firewall on a Linux server to block incoming SSH traffic from a specific IP address `192.168.1.5`. Which of the following iptables commands will accomplish this task?",
   "choices": [
     "`iptables -A INPUT -p tcp --dport 22 -d 192.168.1.5 -j DROP`",
     "`iptables -A FORWARD -p tcp --dport 22 -s 192.168.1.5 -j DROP`",
@@ -9,6 +9,6 @@
     "`iptables -A INPUT -p tcp --dport 22 -s 192.168.1.5 -j DROP`"
   ],
   "answerIndex": 3,
-  "explanation": "Appending a rule to the INPUT chain that matches TCP destination port 22 from source 192.168.1.5 with the DROP target blocks SSH traffic from that host.",
+  "explanation": "Appending a rule to the INPUT chain that matches TCP destination port `22` from source `192.168.1.5` with the DROP target blocks SSH traffic from that host.",
   "origin": "linux-direct"
 }

@@ -3,9 +3,9 @@
   "tool": "bind9",
   "prompt": "What word is missing from the following excerpt of a `named.conf` file? `____ friends { 10.10.0.0/24; 192.168.1.0/24; };` followed by `options { allow-query { friends; }; };`",
   "choices": [
-    "group",
-    "list",
-    "networks",
+    "`group`",
+    "`list`",
+    "`networks`",
     "`acl`"
   ],
   "answerIndex": 3,

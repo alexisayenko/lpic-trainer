@@ -3,12 +3,12 @@
   "tool": "apache2",
   "prompt": "What is the standard communication port for the HTTPS protocol?",
   "choices": [
-    "80",
-    "8080",
-    "443",
-    "143"
+    "`80`",
+    "`8080`",
+    "`443`",
+    "`143`"
   ],
   "answerIndex": 2,
-  "explanation": "HTTPS uses TCP port 443 by default.",
+  "explanation": "HTTPS uses TCP port `443` by default.",
   "origin": "ken-adams"
 }
