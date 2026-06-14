@@ -23,6 +23,11 @@ export default function App() {
 
   return (
     <div className="min-h-full bg-slate-900">
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-slate-900"
+        style={{ height: 'env(safe-area-inset-top)' }}
+      />
       <CloudSync />
       {screen === 'quiz' ? (
         <Quiz onExit={() => setScreen('home')} />
