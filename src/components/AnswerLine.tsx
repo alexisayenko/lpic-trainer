@@ -1,5 +1,6 @@
 import { MASTERY_TINTS, type AnswerRecord, type Question } from '../types';
 import { QuestionCardHeader } from './QuestionCardHeader';
+import { CodeText } from './CodeText';
 
 function correctAnswerText(q: Question): string {
   switch (q.type) {
@@ -35,11 +36,11 @@ export function AnswerLine({
         mastery={mastery}
         titleClassName="text-xs text-slate-500"
       />
-      <p className="mt-2 text-sm text-slate-200 leading-snug">{q.prompt}</p>
+      <p className="mt-2 text-sm text-slate-200 leading-snug"><CodeText text={q.prompt} /></p>
       {rec && !rec.correct && yours !== undefined && (
-        <p className={`mt-2 text-xs ${MASTERY_TINTS[0].text}`}>You answered: {yours}</p>
+        <p className={`mt-2 text-xs ${MASTERY_TINTS[0].text}`}>You answered: <CodeText text={yours} /></p>
       )}
-      {correctText && <p className="mt-1 text-xs text-emerald-300">Correct: {correctText}</p>}
+      {correctText && <p className="mt-1 text-xs text-emerald-300">Correct: <CodeText text={correctText} /></p>}
     </div>
   );
 }

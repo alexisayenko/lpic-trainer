@@ -5,6 +5,7 @@ import { attemptsByQuestion, attemptsFor, filterPool, lastByQuestion, orderByWea
 import { masteryOf } from '../lib/mastery';
 import { topicOf, type Question } from '../types';
 import { QuestionCardHeader } from './QuestionCardHeader';
+import { CodeText, Code } from './CodeText';
 
 const norm = (s: string) => s.trim().toLowerCase().replace(/\s+/g, ' ');
 
@@ -156,7 +157,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
         mastery={mastery}
         titleClassName="text-sm text-slate-400"
       />
-      <h2 className="text-xl text-slate-100 leading-snug">{q.prompt}</h2>
+      <h2 className="text-xl text-slate-100 leading-snug"><CodeText text={q.prompt} /></h2>
       {q.type === 'multi' && !answered && (
         <p className="text-xs text-slate-500 -mt-2">Select all that apply, then submit.</p>
       )}
@@ -191,7 +192,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
                 onClick={() => (q.type === 'multi' ? toggleMulti(i) : chooseSingle(i))}
                 className={`w-full text-left p-3 rounded-md border transition-colors ${choiceClass(i)}`}
               >
-                <span className="text-slate-200">{choices[i]}</span>
+                <span className="text-slate-200"><CodeText text={choices[i]} /></span>
               </button>
             </li>
           ))}
@@ -228,9 +229,9 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
           >
             <p className="font-medium text-slate-100">{lastCorrect ? 'Correct' : 'Incorrect'}</p>
             {q.type === 'fill' && (
-              <p className="text-sm text-emerald-300 mt-1">Answer: {q.answer}</p>
+              <p className="text-sm text-emerald-300 mt-1">Answer: <Code>{q.answer}</Code></p>
             )}
-            <p className="text-sm text-slate-300 mt-1">{q.explanation}</p>
+            <p className="text-sm text-slate-300 mt-1"><CodeText text={q.explanation} /></p>
           </div>
           <button
             type="button"
