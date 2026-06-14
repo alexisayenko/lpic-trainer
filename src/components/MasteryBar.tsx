@@ -24,7 +24,7 @@ export function MasteryBar({ total, buckets }: Readonly<{ total: number; buckets
 /** Thin counter-less variant used by the per-tool rows. */
 export function MiniMasteryBar({ total, buckets }: Readonly<{ total: number; buckets: Map<number, number> | undefined }>) {
   return (
-    <div className="flex h-2.5 flex-1 gap-0.5">
+    <div className="flex h-px flex-1 gap-0.5">
       {masterySegments(total, buckets).filter((seg) => seg.n > 0).map((seg) => (
         <div
           key={seg.key}
