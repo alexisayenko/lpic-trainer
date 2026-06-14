@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Capacitor } from '@capacitor/core';
 import App from './App';
+import '@fontsource/jetbrains-mono/400.css';
 import './index.css';
 
 if (Capacitor.isNativePlatform()) {
