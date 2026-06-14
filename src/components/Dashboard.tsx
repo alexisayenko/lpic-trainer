@@ -108,7 +108,7 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   }, [history]);
 
   return (
-    <div className="max-w-2xl mx-auto p-6 space-y-6">
+    <div className="max-w-2xl mx-auto px-3 py-6 space-y-6">
       <div className="space-y-2">
         <header className="flex items-start gap-4">
           <button type="button" onClick={() => setZoom(true)} className="shrink-0">
@@ -203,7 +203,7 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
 
       <div className="flex items-start gap-2">
         <span className="w-20 shrink-0 py-1.5 text-slate-300">Quiz size</span>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1">
           {[null, ...PRESETS].map((n) => (
             <ToggleChip
               key={n ?? 'all'}

@@ -28,7 +28,7 @@ export function AnswerLine({
   const yours =
     q.type === 'single' && rec?.pickedIndex != null ? q.choices[rec.pickedIndex] : undefined;
   return (
-    <div className="p-3 rounded-md border border-slate-700 bg-slate-800/20">
+    <div className="p-3 rounded-md bg-slate-800/40">
       <QuestionCardHeader
         q={q}
         attempts={attempts}

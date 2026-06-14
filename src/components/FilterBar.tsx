@@ -29,7 +29,7 @@ export function FilterBar({
     <div className="space-y-3">
       <div className="flex items-start gap-2">
         <span className="w-20 shrink-0 py-1.5 text-slate-300">Mastery</span>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1">
           {RESULT_FILTERS.map((f) => (
             <ToggleChip key={String(f)} on={resultFilter.includes(f)} onClick={() => toggleResultFilter(f)}>
               {RESULT_OPTION_LABELS[f]}
@@ -39,7 +39,7 @@ export function FilterBar({
       </div>
       <div className="flex items-start gap-2">
         <span className="w-20 shrink-0 py-1.5 text-slate-300">Source</span>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1">
           {ORIGINS.map((o) => (
             <ToggleChip key={o} on={sourceFilter.includes(o)} onClick={() => toggleSourceFilter(o)}>
               {ORIGIN_LABELS[o]}

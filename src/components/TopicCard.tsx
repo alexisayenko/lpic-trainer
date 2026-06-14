@@ -28,7 +28,7 @@ export function TopicCard({
   return (
     <li
       className={`rounded-md border overflow-hidden ${
-        selected ? 'border-sky-500 bg-sky-900/10' : 'border-slate-700'
+        selected ? 'border-sky-500 bg-sky-900/10' : 'border-transparent'
       }`}
     >
       <div
