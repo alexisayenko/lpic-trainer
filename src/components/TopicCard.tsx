@@ -50,8 +50,8 @@ export function TopicCard({
             {TOPIC_LABELS[topic]}
           </span>
           <span className="flex shrink-0 items-center gap-2">
-            <span className="text-sm text-slate-400">
-              answered {seen}/{total}
+            <span className="whitespace-nowrap text-sm text-slate-400">
+              <span className="hidden sm:inline">answered </span>{seen}/{total}
             </span>
             <button
               type="button"

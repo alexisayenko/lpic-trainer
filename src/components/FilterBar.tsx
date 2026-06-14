@@ -27,21 +27,25 @@ export function FilterBar({
 }>) {
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="w-20 text-slate-300">Mastery</span>
-        {RESULT_FILTERS.map((f) => (
-          <ToggleChip key={String(f)} on={resultFilter.includes(f)} onClick={() => toggleResultFilter(f)}>
-            {RESULT_OPTION_LABELS[f]}
-          </ToggleChip>
-        ))}
+      <div className="flex items-start gap-2">
+        <span className="w-20 shrink-0 py-1.5 text-slate-300">Mastery</span>
+        <div className="flex flex-wrap gap-2">
+          {RESULT_FILTERS.map((f) => (
+            <ToggleChip key={String(f)} on={resultFilter.includes(f)} onClick={() => toggleResultFilter(f)}>
+              {RESULT_OPTION_LABELS[f]}
+            </ToggleChip>
+          ))}
+        </div>
       </div>
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="w-20 text-slate-300">Source</span>
-        {ORIGINS.map((o) => (
-          <ToggleChip key={o} on={sourceFilter.includes(o)} onClick={() => toggleSourceFilter(o)}>
-            {ORIGIN_LABELS[o]}
-          </ToggleChip>
-        ))}
+      <div className="flex items-start gap-2">
+        <span className="w-20 shrink-0 py-1.5 text-slate-300">Source</span>
+        <div className="flex flex-wrap gap-2">
+          {ORIGINS.map((o) => (
+            <ToggleChip key={o} on={sourceFilter.includes(o)} onClick={() => toggleSourceFilter(o)}>
+              {ORIGIN_LABELS[o]}
+            </ToggleChip>
+          ))}
+        </div>
       </div>
       <label className="flex w-fit cursor-pointer items-center gap-2 text-sm text-slate-300">
         <input
@@ -50,7 +54,7 @@ export function FilterBar({
           onChange={(e) => setUnseenToday(e.target.checked)}
           className="h-4 w-4 accent-sky-500"
         />
-        <span>practice only questions unseen today or in the last 21h</span>
+        <span>Only questions unseen in the last 21h</span>
       </label>
     </div>
   );

@@ -112,7 +112,7 @@ export function QuestionCardHeader({
 }>) {
   const cells = dayCells(attempts ?? [], Date.now());
   return (
-    <div className="flex items-start gap-2 cursor-default">
+    <div className="relative flex cursor-default flex-col gap-1 pr-6 sm:flex-row sm:items-start sm:gap-2 sm:pr-0">
       <div className="flex-1">
         <div className={titleClassName}>{questionContext(q)}</div>
         <div className="mt-1 flex items-center gap-2 text-[10px] text-slate-500">
@@ -120,8 +120,8 @@ export function QuestionCardHeader({
           <span>[{q.id}]</span>
         </div>
       </div>
-      <span className="flex shrink-0 items-center gap-2">
-        <DayStrip cells={cells} />
+      <DayStrip cells={cells} />
+      <span className="absolute right-0 top-0 sm:static sm:shrink-0">
         <MasteryChip score={mastery ?? null} />
       </span>
     </div>

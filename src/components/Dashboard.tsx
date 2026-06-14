@@ -14,6 +14,7 @@ import { MasteryBar, MiniMasteryBar } from './MasteryBar';
 import { TopicCard } from './TopicCard';
 import { ToggleChip } from './ToggleChip';
 import { LogoZoom } from './LogoZoom';
+import { InfoMenu } from './InfoMenu';
 import { useDashboardStats } from './useDashboardStats';
 import logo from '../assets/logo.png';
 
@@ -109,33 +110,17 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   return (
     <div className="max-w-2xl mx-auto p-6 space-y-6">
       <div className="space-y-2">
-        <header className="flex flex-wrap items-center gap-4">
+        <header className="flex items-start gap-4">
           <button type="button" onClick={() => setZoom(true)} className="shrink-0">
             <img src={logo} alt="LPIC-2" className="h-14 w-14 rounded-md object-cover cursor-zoom-in" />
           </button>
-          <div className="flex-1">
-            <div
-              className="mb-1 flex items-center gap-0.5 font-mono text-[10px]"
-              aria-label={`Unique questions answered per day, last ${STRIP_DAYS} days`}
-            >
-              {dayCounts.map((d) => (
-                <span
-                  key={d.date}
-                  title={`${d.date}: ${d.n} unique`}
-                  className={`text-center rounded px-0.5 ${
-                    d.n ? 'bg-slate-700/60 text-slate-200' : 'text-slate-600'
-                  }`}
-                >
-                  {d.n || '·'}
-                </span>
-              ))}
-            </div>
-            <div className="flex items-baseline justify-between gap-4">
-              <h1 className="text-2xl font-semibold text-slate-100">LPIC-2 (Exam 202-450) Trainer</h1>
-              <span className="text-sm text-slate-400">
+          <div className="min-w-0 flex-1">
+            <h1 className="text-2xl font-semibold text-slate-100">
+              LPIC-2 (Exam 202-450) Trainer
+              <span className="float-right ml-3 mt-2 whitespace-nowrap text-sm font-normal text-slate-400">
                 answered {overall.seen}/{overall.total}
               </span>
-            </div>
+            </h1>
             {totalAttempts === 0 && (
               <p className="text-sm text-slate-400">
                 No answers yet — tick topics and start a quiz. {QUESTIONS.length} questions
@@ -144,6 +129,22 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
           </div>
         </header>
         {totalAttempts > 0 && <MasteryBar total={overall.total} buckets={overall.buckets} />}
+        <div
+          className="flex items-center gap-0.5 font-mono text-[10px]"
+          aria-label={`Unique questions answered per day, last ${STRIP_DAYS} days`}
+        >
+          {dayCounts.map((d) => (
+            <span
+              key={d.date}
+              title={`${d.date}: ${d.n} unique`}
+              className={`text-center rounded px-0.5 ${
+                d.n ? 'bg-slate-700/60 text-slate-200' : 'text-slate-600'
+              }`}
+            >
+              {d.n || '·'}
+            </span>
+          ))}
+        </div>
       </div>
 
       <FilterBar
@@ -200,19 +201,21 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
         ))}
       </ul>
 
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="w-20 text-slate-300">Quiz size</span>
-        {[null, ...PRESETS].map((n) => (
-          <ToggleChip
-            key={n ?? 'all'}
-            on={quizSize === n}
-            onClick={() => setQuizSize(n)}
-            disabled={n !== null && n > available}
-            className={n === null ? 'min-w-[4.75rem] text-center tabular-nums' : ''}
-          >
-            {n ?? `All (${available})`}
-          </ToggleChip>
-        ))}
+      <div className="flex items-start gap-2">
+        <span className="w-20 shrink-0 py-1.5 text-slate-300">Quiz size</span>
+        <div className="flex flex-wrap gap-2">
+          {[null, ...PRESETS].map((n) => (
+            <ToggleChip
+              key={n ?? 'all'}
+              on={quizSize === n}
+              onClick={() => setQuizSize(n)}
+              disabled={n !== null && n > available}
+              className={n === null ? 'min-w-[4.75rem] text-center tabular-nums' : ''}
+            >
+              {n ?? `All (${available})`}
+            </ToggleChip>
+          ))}
+        </div>
       </div>
 
       {canQuiz && (
@@ -226,11 +229,12 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
         </button>
       )}
 
-      <footer className="relative pt-4 pb-8 text-center text-xs text-slate-600">
-        <span>LPIC-2 (Exam 202-450) Trainer</span>
-        <span className="absolute bottom-8 right-0">
+      <footer className="space-y-2 pt-4 pb-8 text-xs text-slate-600">
+        <div className="flex items-start justify-between gap-4">
+          <InfoMenu />
           <Account />
-        </span>
+        </div>
+        <p className="text-center">LPIC-2 (Exam 202-450) Trainer</p>
       </footer>
 
       {zoom && <LogoZoom src={logo} alt="LPIC-2" onClose={() => setZoom(false)} />}
