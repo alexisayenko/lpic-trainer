@@ -112,7 +112,7 @@ Command, configuration, path, and code text inside `prompt`, `explanation`, and 
 
 Per-utility `notes.md` files hold reference/study material.
 
-The bank holds ~500 questions: the original two sets plus the objective-mapped `lpic-bank/` (GPT) and `lpic2book/` (original, from the open book) sets. Source/reference material under `docs/refs/` is git-ignored — copyrighted course PDFs are kept local, not published.
+The bank holds ~490 questions: the original two sets plus the objective-mapped `lpic-bank/` (GPT) and `lpic2book/` (original, from the open book) sets. Source/reference material under `docs/refs/` is git-ignored — copyrighted course PDFs are kept local, not published.
 
 ## Scope notes
 
