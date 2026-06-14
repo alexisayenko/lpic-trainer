@@ -70,8 +70,8 @@ export function masterySegments(total: number, buckets: Map<number, number> | un
   segments.unshift({
     key: 'unseen',
     n: unseen,
-    cls: 'border border-slate-500 bg-slate-500/25',
-    txt: 'text-slate-300',
+    cls: 'border border-slate-400 bg-slate-400/25',
+    txt: 'text-slate-200',
     score: null,
     title: `${unseen} unanswered`,
   });
