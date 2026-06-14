@@ -1,0 +1,15 @@
+{
+  "id": "apache2-u018",
+  "tool": "apache2",
+  "prompt": "Which Apache directive configures the site’s main directory from which it serves documents?",
+  "choices": [
+    "`UserDir`",
+    "`Location`",
+    "`DirectoryIndex`",
+    "`ServerRoot`",
+    "`DocumentRoot`"
+  ],
+  "answerIndex": 4,
+  "explanation": "`DocumentRoot` sets the directory whose contents are served for the site.",
+  "origin": "ken-adams"
+}

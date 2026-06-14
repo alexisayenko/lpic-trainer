@@ -1,0 +1,15 @@
+{
+  "id": "squid-u013",
+  "tool": "squid",
+  "prompt": "When setting up a Squid proxy, what would be a reason to limit `reply_body_max_size`?",
+  "choices": [
+    "Avoid overloading the `cache_mem`",
+    "Avoid attacks on the proxy access port",
+    "Prevent the user from transmitting large video or audio files",
+    "Prevent users from downloading files of a certain size",
+    "Set a limit on the number of requests to a single site"
+  ],
+  "answerIndex": 3,
+  "explanation": "`reply_body_max_size` caps the size of responses, preventing downloads larger than the limit.",
+  "origin": "ken-adams"
+}

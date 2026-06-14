@@ -1,0 +1,15 @@
+{
+  "id": "squid-u009",
+  "tool": "squid",
+  "prompt": "Users in the acl `sales_net` must be allowed to access the Internet at the times in the acl `sales_time`. What is the correct `http_access` directive?",
+  "choices": [
+    "`http_access sales_net sales_time`",
+    "`http_access allow sales_net sales_time`",
+    "`http_access allow sales_net and sales_time`",
+    "`allow http_access sales_net sales_time`",
+    "`http_access deny sales_time sales_net`"
+  ],
+  "answerIndex": 1,
+  "explanation": "Multiple ACLs on one `http_access allow` line are ANDed, so this permits `sales_net` only during `sales_time`.",
+  "origin": "ken-adams"
+}

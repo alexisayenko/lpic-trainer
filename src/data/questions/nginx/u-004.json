@@ -1,0 +1,14 @@
+{
+  "id": "nginx-u004",
+  "tool": "nginx",
+  "prompt": "With Nginx, which directive is used to proxy requests to a FastCGI application?",
+  "choices": [
+    "`proxy_fastcgi_pass`",
+    "`proxy_fastcgi`",
+    "`fastcgi_proxy`",
+    "`fastcgi_pass`"
+  ],
+  "answerIndex": 3,
+  "explanation": "`fastcgi_pass` forwards requests to a FastCGI backend such as PHP-FPM.",
+  "origin": "ken-adams"
+}

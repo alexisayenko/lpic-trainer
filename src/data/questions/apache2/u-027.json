@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u027",
+  "tool": "apache2",
+  "prompt": "A custom log record can be created in the Apache configuration with which directives?",
+  "choices": [
+    "`Log` and `Access`",
+    "`LogFormat` and `CustomLog`",
+    "`Syslog` and `LogFormat`",
+    "`LogError` and `Directory`"
+  ],
+  "answerIndex": 1,
+  "explanation": "`LogFormat` defines a named format and `CustomLog` writes a log using it.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "squid-u005",
+  "tool": "squid",
+  "prompt": "What type of ACL in Squid's configuration file is used for authentication purposes?",
+  "choices": [
+    "`auth_required`",
+    "`proxy_auth`",
+    "`proxyAuth`",
+    "`proxy_passwd`",
+    "`auth`"
+  ],
+  "answerIndex": 1,
+  "explanation": "`proxy_auth` is the ACL type that matches authenticated users.",
+  "origin": "ken-adams"
+}

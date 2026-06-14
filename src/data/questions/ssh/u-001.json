@@ -1,0 +1,15 @@
+{
+  "id": "ssh-u001",
+  "tool": "ssh",
+  "prompt": "Which local file's content must be transmitted to a remote SSH server in order to log into it using SSH keys?",
+  "choices": [
+    "`~/.ssh/known_hosts`",
+    "`~/.ssh/authorized_keys`",
+    "`~/.ssh/id_rsa.pub`",
+    "`~/.ssh/id_rsa`",
+    "`~/.ssh/config`"
+  ],
+  "answerIndex": 2,
+  "explanation": "The client's public key (`~/.ssh/id_rsa.pub`) is appended to the server's `~/.ssh/authorized_keys`.",
+  "origin": "ken-adams"
+}

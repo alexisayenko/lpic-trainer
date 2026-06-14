@@ -1,0 +1,15 @@
+{
+  "id": "postfix-u004",
+  "tool": "postfix",
+  "prompt": "In the main Postfix configuration file, how are service definitions continued on the next line?",
+  "choices": [
+    "The initial line must end with a backslash (`\\\\`)",
+    "The definition continues until all required fields are specified",
+    "The following line must begin with whitespace indentation",
+    "It is not possible; the definition must fit on one line",
+    "The following line must begin with a plus character (`+`)"
+  ],
+  "answerIndex": 2,
+  "explanation": "In Postfix configuration files a continuation line is indicated by starting it with whitespace.",
+  "origin": "ken-adams"
+}

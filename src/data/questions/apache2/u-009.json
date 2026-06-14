@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u009",
+  "tool": "apache2",
+  "prompt": "Which Apache configuration section defines a virtual domain?",
+  "choices": [
+    "`RootServer`",
+    "`VirtualHost`",
+    "`NameHost`",
+    "`ServerHost`"
+  ],
+  "answerIndex": 1,
+  "explanation": "A `<VirtualHost>` block defines a virtual host (virtual domain).",
+  "origin": "ken-adams"
+}

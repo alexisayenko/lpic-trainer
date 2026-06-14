@@ -1,0 +1,14 @@
+{
+  "id": "bind9-u003",
+  "tool": "bind9",
+  "prompt": "Where should the line `$TTL 86400` be placed in a BIND zone file?",
+  "choices": [
+    "Just before any A records are defined",
+    "In any zone file containing hints for the root servers",
+    "In the SOA record of the zone file",
+    "As the first line of the zone file"
+  ],
+  "answerIndex": 3,
+  "explanation": "`$TTL` sets the default record TTL and must appear as the first line of the zone file.",
+  "origin": "ken-adams"
+}

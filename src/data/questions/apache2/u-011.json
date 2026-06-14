@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u011",
+  "tool": "apache2",
+  "prompt": "What program adds users to an authorized-user database when Apache is configured to require authentication?",
+  "choices": [
+    "`htpasswd`",
+    "`apacheadd`",
+    "`passdb`",
+    "`htaccess`"
+  ],
+  "answerIndex": 0,
+  "explanation": "`htpasswd` creates and updates the user/password file used by Basic authentication.",
+  "origin": "ken-adams"
+}

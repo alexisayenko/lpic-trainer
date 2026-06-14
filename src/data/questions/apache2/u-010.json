@@ -1,0 +1,18 @@
+{
+  "id": "apache2-u010",
+  "tool": "apache2",
+  "type": "multi",
+  "prompt": "What information about HTTP transfers can you retrieve from log files on an Apache server? (Choose two.)",
+  "choices": [
+    "The name of the browser claimed by the client",
+    "The client computer’s IP address or host name",
+    "The route of network packets during the transfer",
+    "The size of the client’s web browser window"
+  ],
+  "answerIndices": [
+    0,
+    1
+  ],
+  "explanation": "Apache access logs can record the client’s User-Agent (browser) and its IP address/hostname; they cannot record packet routing or browser window size.",
+  "origin": "ken-adams"
+}

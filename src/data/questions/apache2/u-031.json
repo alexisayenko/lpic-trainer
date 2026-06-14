@@ -1,0 +1,15 @@
+{
+  "id": "apache2-u031",
+  "tool": "apache2",
+  "prompt": "When Apache uses name-based virtual hosts:",
+  "choices": [
+    "It starts several daemons (one per virtual host)",
+    "It is necessary to create a VirtualHost block for the primary host",
+    "Only ServerName and DocumentRoot may be used within a block",
+    "A different IP address must be configured for each virtual host",
+    "The Listen directive is ignored by the server"
+  ],
+  "answerIndex": 1,
+  "explanation": "With name-based vhosts, the first/primary host needs its own VirtualHost block too, or it is treated as the default.",
+  "origin": "ken-adams"
+}

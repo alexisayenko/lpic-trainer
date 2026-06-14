@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u019",
+  "tool": "apache2",
+  "prompt": "Which directive defines the path to the Apache configuration files?",
+  "choices": [
+    "`DocumentRoot`",
+    "`ServerRoot`",
+    "`ServerType`",
+    "`ConfigDir`"
+  ],
+  "answerIndex": 1,
+  "explanation": "`ServerRoot` is the base directory holding Apache’s configuration and binaries.",
+  "origin": "ken-adams"
+}

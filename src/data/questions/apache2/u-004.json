@@ -1,0 +1,15 @@
+{
+  "id": "apache2-u004",
+  "tool": "apache2",
+  "prompt": "Given this Apache configuration excerpt, which numbered line has incorrect syntax? `1: <VirtualHost *:80>` `2: ServerAdmin admin9@server.example.org` `3: DocumentRoot /home/http/admin` `4: ServerName admin.server.example.org` `5: DirectoryIndex index.php default.php` `6: ErrorLog logs/admin.server.example.org-error_log` `7: CustomLog logs/admin.server.example.org-access_log common` `8: </VirtualHost>`",
+  "choices": [
+    "1 and 4",
+    "1 and 5",
+    "1, 4 and 7",
+    "1",
+    "None, the configuration is valid"
+  ],
+  "answerIndex": 4,
+  "explanation": "Every directive shown is valid Apache configuration syntax, so there is no error.",
+  "origin": "ken-adams"
+}

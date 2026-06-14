@@ -1,0 +1,15 @@
+{
+  "id": "bind9-u002",
+  "tool": "bind9",
+  "prompt": "A zone file contains `$ORIGIN example.com` and `host2.example.org. IN A 198.51.100.102`, and is included with `zone \"example.com\" { type master; file \"db.example.com\"; };`. Which problem is contained in this configuration?",
+  "choices": [
+    "The zone cannot contain records for a name which is outside the zone's hierarchy",
+    "The zone statement must contain the `cross-zone-data yes;` statement",
+    "Names of records in a zone file cannot be fully qualified domain names",
+    "The `$ORIGIN` declaration cannot be used in zone files included for a specific zone name",
+    "An `A` record cannot contain an IPv4 address because its value must be a reverse DNS name"
+  ],
+  "answerIndex": 0,
+  "explanation": "A zone for `example.com` may only hold records within the `example.com` hierarchy; `host2.example.org.` lies outside it and is rejected.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "squid-u011",
+  "tool": "squid",
+  "prompt": "Which of the following is recommended to reduce Squid's disk resource consumption?",
+  "choices": [
+    "Reduce the size of `cache_dir` in the configuration file",
+    "Disable the registration of fully qualified domain names",
+    "Disable the use of access lists",
+    "Rotate the log files regularly",
+    "Reduce the number of child processes to be started"
+  ],
+  "answerIndex": 0,
+  "explanation": "Lowering the `cache_dir` size limits how much disk Squid uses for its cache.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "ldap-u001",
+  "tool": "ldap",
+  "prompt": "If there is no `access` directive, what is the default access setting for OpenLDAP?",
+  "choices": [
+    "`access to * by * read`",
+    "`access to * by anonymous none by * read`",
+    "`access to * by anonymous auth by * read`",
+    "`access to * by anonymous write by * read`"
+  ],
+  "answerIndex": 0,
+  "explanation": "When no `access`/`olcAccess` directive is configured, OpenLDAP grants read access to everyone (`access to * by * read`).",
+  "origin": "ken-adams"
+}

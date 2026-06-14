@@ -1,0 +1,14 @@
+{
+  "id": "ldap-u007",
+  "tool": "ldap",
+  "prompt": "Which statement is INCORRECT regarding the LDIF file format?",
+  "choices": [
+    "The LDIF file accepts any type of file encoding",
+    "It contains a `dn` line indicating where the following attributes are added",
+    "If an attribute contains binary data, specific handling is required",
+    "A blank line separates one entry from another"
+  ],
+  "answerIndex": 0,
+  "explanation": "LDIF is text restricted to UTF-8 (with base64 for binary), so \"any encoding\" is false.",
+  "origin": "ken-adams"
+}

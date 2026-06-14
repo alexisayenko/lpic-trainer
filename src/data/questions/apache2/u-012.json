@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u012",
+  "tool": "apache2",
+  "prompt": "You want to modify Apache settings for a single directory by placing a file in that directory. What should this file be named?",
+  "choices": [
+    "`.httpd`",
+    "`.apache`",
+    "`.apache-config`",
+    "`.htaccess`"
+  ],
+  "answerIndex": 3,
+  "explanation": "Per-directory overrides go in a `.htaccess` file (when `AllowOverride` permits them).",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "apache2-u025",
+  "tool": "apache2",
+  "type": "multi",
+  "prompt": "During startup, Apache reports it cannot resolve any VirtualHost entries. What could cause this? (Choose two.)",
+  "choices": [
+    "The VirtualHost directives are incorrect in httpd.conf",
+    "The Apache process died before the virtual hosts were configured",
+    "The network is up but name resolution is not running yet, so Apache cannot DNS-check the virtual hosts",
+    "The network is not yet configured, so Apache cannot DNS-check the virtual hosts"
+  ],
+  "answerIndices": [
+    2,
+    3
+  ],
+  "explanation": "If DNS or the network is not ready when Apache starts, it cannot resolve the virtual host names.",
+  "origin": "ken-adams"
+}

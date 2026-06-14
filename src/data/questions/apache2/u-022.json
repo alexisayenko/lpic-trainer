@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u022",
+  "tool": "apache2",
+  "prompt": "In which Apache context should SSL support be enabled?",
+  "choices": [
+    "In a `<VirtualHost>` directive",
+    "In an `SSLHost` directive",
+    "In a `<Directory />` block",
+    "In a `<Location>` block"
+  ],
+  "answerIndex": 0,
+  "explanation": "TLS is enabled per site, inside the relevant `<VirtualHost>` block.",
+  "origin": "ken-adams"
+}

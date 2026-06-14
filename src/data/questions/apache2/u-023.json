@@ -1,0 +1,19 @@
+{
+  "id": "apache2-u023",
+  "tool": "apache2",
+  "type": "multi",
+  "prompt": "Which of the following are log file directives commonly used in Apache? (Choose two.)",
+  "choices": [
+    "`ConfigLog`",
+    "`ErrorLog`",
+    "`CustomLog`",
+    "`VHostLog`",
+    "`ServerLog`"
+  ],
+  "answerIndices": [
+    1,
+    2
+  ],
+  "explanation": "`ErrorLog` records errors and `CustomLog` records requests in a configurable format.",
+  "origin": "ken-adams"
+}

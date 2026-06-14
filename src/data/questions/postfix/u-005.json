@@ -1,0 +1,15 @@
+{
+  "id": "postfix-u005",
+  "tool": "postfix",
+  "prompt": "Which command displays an overview of the Postfix queue content to help identify remote sites causing excessive mail traffic?",
+  "choices": [
+    "`queuequery`",
+    "`qshape`",
+    "`poststats`",
+    "`mailtraf`",
+    "`postmap`"
+  ],
+  "answerIndex": 1,
+  "explanation": "`qshape` summarizes the queue by domain and age, highlighting problematic destinations.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "bind9-u004",
+  "tool": "bind9",
+  "type": "multi",
+  "prompt": "Which of the following are alternative DNS software packages to BIND? (Choose two.)",
+  "choices": [
+    "`easydns`",
+    "`djbdns`",
+    "`dnstiny`",
+    "`superdns`",
+    "`dnsmasq`"
+  ],
+  "answerIndices": [
+    1,
+    4
+  ],
+  "explanation": "`djbdns` and `dnsmasq` are alternative DNS server implementations to BIND.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u030",
+  "tool": "apache2",
+  "prompt": "The `MinSpareServers` option defines:",
+  "choices": [
+    "The minimum number of virtual domains",
+    "The number of virtual servers",
+    "The minimum number of idle processes kept by Apache",
+    "The minimum number of idle threads kept by Apache"
+  ],
+  "answerIndex": 2,
+  "explanation": "`MinSpareServers` sets the minimum number of idle worker processes (prefork MPM) Apache keeps ready.",
+  "origin": "ken-adams"
+}

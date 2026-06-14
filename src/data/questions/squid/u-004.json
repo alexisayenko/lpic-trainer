@@ -1,0 +1,15 @@
+{
+  "id": "squid-u004",
+  "tool": "squid",
+  "prompt": "Which Squid configuration directive defines the authentication method to be used?",
+  "choices": [
+    "`proxy_auth`",
+    "`auth_mechanism`",
+    "`auth_param`",
+    "`auth_program`",
+    "`auth_method`"
+  ],
+  "answerIndex": 2,
+  "explanation": "`auth_param` configures the authentication scheme and helper program Squid uses.",
+  "origin": "ken-adams"
+}

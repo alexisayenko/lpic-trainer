@@ -1,0 +1,15 @@
+{
+  "id": "ldap-u002",
+  "tool": "ldap",
+  "prompt": "Which of the following is correct about this excerpt from an LDIF file? `dn: cn=PrintOperators,ou=Groups,o=IT,DC=mycompany,DC=example,DC=com`",
+  "choices": [
+    "`dn` is the relative distinguished name",
+    "`dn` is the domain name",
+    "`DC` is the delegation container",
+    "`cn` is the common name",
+    "`o` is the operator name"
+  ],
+  "answerIndex": 3,
+  "explanation": "`cn` is the common name. `dn` is the full distinguished name (not relative), `dc` is a domain component, and `o` is the organization.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "openvpn-u003",
+  "tool": "openvpn",
+  "prompt": "Which option in the client configuration tells OpenVPN to use a dynamic source port when connecting to a peer?",
+  "choices": [
+    "`dynamic-bind`",
+    "`nobind`",
+    "`src-port`",
+    "`remote`",
+    "`source-port`"
+  ],
+  "answerIndex": 1,
+  "explanation": "`nobind` makes the client not bind to a fixed local port, so a dynamic source port is used.",
+  "origin": "ken-adams"
+}

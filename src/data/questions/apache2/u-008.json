@@ -1,0 +1,15 @@
+{
+  "id": "apache2-u008",
+  "tool": "apache2",
+  "prompt": "Which line in the Apache configuration would allow only clients with a valid certificate to access the site?",
+  "choices": [
+    "`<IfModule libexec/ssl.c>`",
+    "`SSLRequire`",
+    "`SSLCA conf/ca.crl`",
+    "`SSLVerifyClient require`",
+    "`AuthType ssl`"
+  ],
+  "answerIndex": 3,
+  "explanation": "`SSLVerifyClient require` forces clients to present a valid certificate.",
+  "origin": "ken-adams"
+}

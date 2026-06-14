@@ -1,0 +1,19 @@
+{
+  "id": "openssl-u002",
+  "tool": "openssl",
+  "type": "multi",
+  "prompt": "Which subcommands of the `openssl` command are used in the process of generating a private key and a CSR? (Choose two.)",
+  "choices": [
+    "`req`",
+    "`csr`",
+    "`genrsa`",
+    "`genkey`",
+    "`gencsr`"
+  ],
+  "answerIndices": [
+    0,
+    2
+  ],
+  "explanation": "`genrsa` creates the private key and `req` creates the certificate signing request.",
+  "origin": "ken-adams"
+}

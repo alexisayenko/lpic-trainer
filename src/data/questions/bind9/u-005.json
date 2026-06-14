@@ -1,0 +1,15 @@
+{
+  "id": "bind9-u005",
+  "tool": "bind9",
+  "prompt": "Which is the simplest way to configure BIND to return a different version string for queries?",
+  "choices": [
+    "`version-string \"my version\"` in the configuration",
+    "`version = my version` in the configuration",
+    "Compile BIND with `--blur-version=my version`",
+    "`version \"my version\"` in the configuration",
+    "`version-bind \"my version\"` in the configuration"
+  ],
+  "answerIndex": 3,
+  "explanation": "Setting `version \"my version\";` in the options block overrides the version BIND reports.",
+  "origin": "ken-adams"
+}

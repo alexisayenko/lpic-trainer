@@ -1,0 +1,14 @@
+{
+  "id": "squid-u002",
+  "tool": "squid",
+  "prompt": "Which tool caches Web (HTTP) access by clients, improving performance on subsequent accesses to the same popular sites?",
+  "choices": [
+    "`Squid`",
+    "CGI",
+    "lynx",
+    "PHP"
+  ],
+  "answerIndex": 0,
+  "explanation": "`Squid` is a caching proxy that stores web content so repeat requests are served faster.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u013",
+  "tool": "apache2",
+  "prompt": "A security certificate is considered valid when:",
+  "choices": [
+    "The browser informs about the security of the website",
+    "The certificate has more than 128 bits of encryption",
+    "The connection is established with a known website",
+    "It is issued by a Certification Authority (CA) recognized by the browser"
+  ],
+  "answerIndex": 3,
+  "explanation": "A certificate is trusted when it is signed by a CA the browser already recognizes.",
+  "origin": "ken-adams"
+}

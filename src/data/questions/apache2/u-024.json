@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u024",
+  "tool": "apache2",
+  "prompt": "A restricted area authenticates users against `/srv/www/security/site-passwd`. Which command CHANGES the password of an existing user without losing data, when Basic authentication is used?",
+  "choices": [
+    "`htpasswd -n /srv/www/security/site-passwd user`",
+    "`htpasswd /srv/www/security/site-passwd user`",
+    "`htpasswd -D /srv/www/security/site-passwd user`",
+    "`htpasswd -c /srv/www/security/site-passwd user`"
+  ],
+  "answerIndex": 1,
+  "explanation": "`htpasswd <file> <user>` updates an existing user’s password; `-c` would recreate the file (losing data) and `-n` only prints to stdout.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "pam-sss-u005",
+  "tool": "pam-sss",
+  "prompt": "Which PAM module sets and unsets environment variables?",
+  "choices": [
+    "`pam-vars`",
+    "`pam_shell`",
+    "`pam_env`",
+    "`pam_set`",
+    "`pam_export`"
+  ],
+  "answerIndex": 2,
+  "explanation": "`pam_env` sets and unsets environment variables (from `/etc/security/pam_env.conf`).",
+  "origin": "ken-adams"
+}

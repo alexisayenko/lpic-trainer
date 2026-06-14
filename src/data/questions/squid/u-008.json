@@ -1,0 +1,15 @@
+{
+  "id": "squid-u008",
+  "tool": "squid",
+  "prompt": "The file /var/squid/url_blacklist lists URLs users may not access. What correctly creates an acl named blacklist based on this file?",
+  "choices": [
+    "`acl blacklist urlpath_regex /var/squid/url_blacklist`",
+    "`acl blacklist urlpath_regex \"/var/squid/url_blacklist\"`",
+    "`acl blacklist \"/var/squid/url_blacklist\"`",
+    "`acl urlpath_regex blacklist /var/squid/url_blacklist`",
+    "`acl blacklist file /var/squid/url_blacklist`"
+  ],
+  "answerIndex": 1,
+  "explanation": "A file of patterns is referenced by quoting its path: `acl blacklist urlpath_regex \"/var/squid/url_blacklist\"`.",
+  "origin": "ken-adams"
+}

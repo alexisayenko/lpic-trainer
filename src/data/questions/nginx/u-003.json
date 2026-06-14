@@ -1,0 +1,14 @@
+{
+  "id": "nginx-u003",
+  "tool": "nginx",
+  "prompt": "Which configuration block in Nginx is used to configure settings for a reverse proxy server?",
+  "choices": [
+    "`server`",
+    "`location`",
+    "`http`",
+    "`reverse`"
+  ],
+  "answerIndex": 1,
+  "explanation": "A `location` block holds the `proxy_pass` and related directives that implement reverse proxying.",
+  "origin": "ken-adams"
+}

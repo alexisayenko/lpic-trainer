@@ -1,0 +1,15 @@
+{
+  "id": "apache2-u006",
+  "tool": "apache2",
+  "prompt": "A directory `.htaccess` contains `AuthType Basic`, `AuthName \"Protected Directory\"`, `AuthUserFile /var/www/dir/.htpasswd`, `Require valid-user`, and the file `/var/www/dir/.htpasswd` contains `usera:S3cr3t`. Given everything is processed correctly, which statement about requests to the directory is true?",
+  "choices": [
+    "The browser prompts for a username and password but logins for `usera` do not work",
+    "Accessing the directory as `usera` raises HTTP error 442 (User Not Existent)",
+    "The web server delivers the directory content without requesting authentication",
+    "The user `usera` can access the site using the password `s3cr3t`",
+    "Requests are answered with HTTP error 500 (Internal Server Error)"
+  ],
+  "answerIndex": 3,
+  "explanation": "The directives form a valid Basic authentication setup, so `usera` can authenticate with the configured password and access the directory.",
+  "origin": "ken-adams"
+}

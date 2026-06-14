@@ -1,0 +1,14 @@
+{
+  "id": "squid-u012",
+  "tool": "squid",
+  "prompt": "What is a valid option for Squid to define a listening port?",
+  "choices": [
+    "`http_port 3128`",
+    "`http-listen-port = 3128`",
+    "`port = 3128`",
+    "`squid_port 3128`"
+  ],
+  "answerIndex": 0,
+  "explanation": "`http_port` sets the port on which Squid listens for client requests.",
+  "origin": "ken-adams"
+}

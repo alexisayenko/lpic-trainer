@@ -1,0 +1,14 @@
+{
+  "id": "pam-sss-u004",
+  "tool": "pam-sss",
+  "prompt": "Which alternative correctly disables user logins for all users except root?",
+  "choices": [
+    "The `pam_pwdb` module with `/etc/pwdv.conf`",
+    "The `pam_block` module with `/etc/login`",
+    "The `pam_deny` module with `/etc/deny`",
+    "The `pam_nologin` module with the `/etc/nologin` file"
+  ],
+  "answerIndex": 3,
+  "explanation": "When `/etc/nologin` exists, `pam_nologin` blocks logins for everyone except root.",
+  "origin": "ken-adams"
+}

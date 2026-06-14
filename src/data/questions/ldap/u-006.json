@@ -1,0 +1,20 @@
+{
+  "id": "ldap-u006",
+  "tool": "ldap",
+  "type": "multi",
+  "prompt": "Which values can be used in the OpenLDAP attribute `olcBackend` to specify a backend? (Choose three.)",
+  "choices": [
+    "`xml`",
+    "`text`",
+    "`bdb`",
+    "`passwd`",
+    "`ldap`"
+  ],
+  "answerIndices": [
+    2,
+    3,
+    4
+  ],
+  "explanation": "`bdb`, `passwd`, and `ldap` are valid OpenLDAP backends.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "dovecot-u002",
+  "tool": "dovecot",
+  "type": "multi",
+  "prompt": "Which authentication mechanisms are supported by Dovecot? (Choose three.)",
+  "choices": [
+    "`cram-md5`",
+    "`krb5`",
+    "`plain`",
+    "`digest-md5`",
+    "`ldap`"
+  ],
+  "answerIndices": [
+    0,
+    2,
+    3
+  ],
+  "explanation": "Dovecot supports SASL mechanisms such as `plain`, `cram-md5`, and `digest-md5` (`ldap` is a userdb/passdb, not a mechanism).",
+  "origin": "ken-adams"
+}

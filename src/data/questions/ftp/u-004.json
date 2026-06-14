@@ -1,0 +1,15 @@
+{
+  "id": "ftp-u004",
+  "tool": "ftp",
+  "prompt": "To prevent anonymous FTP users from listing uploaded file names, what precaution can be taken when creating an upload directory?",
+  "choices": [
+    "The directory must not have the write permission set",
+    "The directory must not have the read or execute permission set",
+    "The directory must not have the read permission set",
+    "The directory must not contain other directories",
+    "The directory must not have the execute permission set"
+  ],
+  "answerIndex": 2,
+  "explanation": "Removing read permission on the directory prevents listing its contents while still allowing uploads.",
+  "origin": "ken-adams"
+}

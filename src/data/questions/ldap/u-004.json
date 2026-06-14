@@ -1,0 +1,15 @@
+{
+  "id": "ldap-u004",
+  "tool": "ldap",
+  "prompt": "How is the LDAP administrator account configured when the `rootdn` and `rootpw` directives are not present in `slapd.conf`?",
+  "choices": [
+    "The default account `admin` with password `admin` is used",
+    "The account is defined in `/etc/ldap.secret`",
+    "The default account `admin` is used without a password",
+    "The account is defined by an ACL in `slapd.conf`",
+    "The account is defined in `/etc/ldap.root.conf`"
+  ],
+  "answerIndex": 3,
+  "explanation": "Without `rootdn`/`rootpw`, administrative access is governed by the access-control (ACL) rules in the configuration.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "pam-sss-u002",
+  "tool": "pam-sss",
+  "prompt": "How are PAM modules organized and stored?",
+  "choices": [
+    "As plain text files in `/etc/security/`",
+    "As statically linked binaries in `/etc/pam.d/bin/`",
+    "As dynamically linked binaries in `/usr/lib/pam/sbin/`",
+    "As shared object files within the `/lib/` directory hierarchy",
+    "As kernel modules under `/lib/modules/`"
+  ],
+  "answerIndex": 3,
+  "explanation": "PAM modules are shared object (`.so`) files installed under the `/lib/` (or `/lib64/`) security directory.",
+  "origin": "ken-adams"
+}

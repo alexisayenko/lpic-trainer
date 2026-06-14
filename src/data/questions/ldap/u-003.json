@@ -1,0 +1,15 @@
+{
+  "id": "ldap-u003",
+  "tool": "ldap",
+  "prompt": "Which set of entries does the following command return? `ldapsearch -x \"(|(cn=marie)(!(telephoneNumber=9*)))\"`",
+  "choices": [
+    "Entries that don't have a cn of marie or don't have a telephoneNumber that begins with 9",
+    "Entries that have a cn of marie or don't have a telephoneNumber beginning with 9",
+    "Entries that have a cn of marie or have a telephoneNumber beginning with 9",
+    "Entries that have a cn of marie and a telephoneNumber ending with 9",
+    "Entries that don't have a cn of marie and don't have a telephoneNumber beginning with 9"
+  ],
+  "answerIndex": 1,
+  "explanation": "The filter is an OR (`|`) of `cn=marie` and NOT (`!`) `telephoneNumber=9*`, i.e. entries whose cn is marie, or whose telephone number does not begin with 9.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "security-tools-u006",
+  "tool": "security-tools",
+  "type": "multi",
+  "prompt": "Which tools can be used to connect to and interact with remote TCP network services? (Choose two.)",
+  "choices": [
+    "`telnet`",
+    "`nc`",
+    "`netmap`",
+    "`cat`",
+    "`nettalk`"
+  ],
+  "answerIndices": [
+    0,
+    1
+  ],
+  "explanation": "`telnet` and `nc` (netcat) both open and interact with raw TCP connections.",
+  "origin": "ken-adams"
+}

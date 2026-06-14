@@ -1,0 +1,19 @@
+{
+  "id": "ssh-u005",
+  "tool": "ssh",
+  "type": "multi",
+  "prompt": "After running `ssh-keygen` and accepting the default values, which files are changed or created? (Choose two.)",
+  "choices": [
+    "`~/.ssh/id_rsa.crt`",
+    "`~/.ssh/id_rsa.pub`",
+    "`~/.ssh/id_rsa`",
+    "`~/.ssh/id_rsa.key`",
+    "`~/.ssh/id_rsa.prv`"
+  ],
+  "answerIndices": [
+    1,
+    2
+  ],
+  "explanation": "`ssh-keygen` writes the private key `~/.ssh/id_rsa` and the public key `~/.ssh/id_rsa.pub`.",
+  "origin": "ken-adams"
+}

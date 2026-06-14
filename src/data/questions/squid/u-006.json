@@ -1,0 +1,14 @@
+{
+  "id": "squid-u006",
+  "tool": "squid",
+  "prompt": "In the Squid configuration, the `http_access` entry is intended to:",
+  "choices": [
+    "Control HTTP access to an ACL",
+    "Define the proxy access port",
+    "Identify the HTTP access server",
+    "Release user access"
+  ],
+  "answerIndex": 0,
+  "explanation": "`http_access` allows or denies requests based on previously defined ACLs.",
+  "origin": "ken-adams"
+}

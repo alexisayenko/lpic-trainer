@@ -1,0 +1,15 @@
+{
+  "id": "samba-u001",
+  "tool": "samba",
+  "prompt": "In which CIFS share must printer drivers be placed to allow Point'n'Print driver deployment on Windows?",
+  "choices": [
+    "`pnpdrivers$`",
+    "The share named in `print driver share` within each printable share",
+    "`NETLOGON`",
+    "`print$`",
+    "`winx64drv$`"
+  ],
+  "answerIndex": 3,
+  "explanation": "Windows clients download printer drivers from the special `print$` share.",
+  "origin": "ken-adams"
+}

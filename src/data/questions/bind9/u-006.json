@@ -1,0 +1,15 @@
+{
+  "id": "bind9-u006",
+  "tool": "bind9",
+  "prompt": "What records must be inserted into a zone file to use round-robin load distribution for a web server?",
+  "choices": [
+    "`www.example.org. 60 IN RR 192.168.1.1; 192.168.1.2; 192.168.1.3`",
+    "Several `A` records for the same name: `www.example.org. 60 IN A 192.168.1.1`, `... IN A 192.168.1.2`, `... IN A 192.168.1.3`",
+    "`www.example.org. 60 IN A 192.168.1.1; 192.168.1.2; 192.168.1.3`",
+    "`www.example.org. 60 IN RR 192.168.1:3`",
+    "`www.example.org. 60 IN A 192.168.1-3`"
+  ],
+  "answerIndex": 1,
+  "explanation": "Round-robin is achieved with multiple `A` records sharing the same name; BIND rotates their order in responses.",
+  "origin": "ken-adams"
+}

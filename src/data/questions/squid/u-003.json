@@ -1,0 +1,14 @@
+{
+  "id": "squid-u003",
+  "tool": "squid",
+  "prompt": "Which Squid configuration keyword is used to define networks and times when a service can be accessed?",
+  "choices": [
+    "permit",
+    "allow",
+    "http_allow",
+    "`acl`"
+  ],
+  "answerIndex": 3,
+  "explanation": "`acl` defines access control lists (by network, time, etc.) that `http_access` rules then act on.",
+  "origin": "ken-adams"
+}

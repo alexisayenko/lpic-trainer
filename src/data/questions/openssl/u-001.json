@@ -1,0 +1,15 @@
+{
+  "id": "openssl-u001",
+  "tool": "openssl",
+  "prompt": "Which tool can be used to create a Certificate Signing Request (CSR) to run an Apache server with HTTPS?",
+  "choices": [
+    "`httpsgen`",
+    "`openssl`",
+    "`apachectl`",
+    "`certgen`",
+    "`csrtool`"
+  ],
+  "answerIndex": 1,
+  "explanation": "`openssl` generates the private keys and CSRs used for TLS certificates.",
+  "origin": "ken-adams"
+}

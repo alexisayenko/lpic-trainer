@@ -1,0 +1,19 @@
+{
+  "id": "bind9-u007",
+  "tool": "bind9",
+  "type": "multi",
+  "prompt": "A DNS server has the IP address 192.168.0.1. Which of the following must be applied to a client to use this DNS server? (Choose two.)",
+  "choices": [
+    "Run `bind nameserver 192.168.0.1`",
+    "Add `nameserver 192.168.0.1` to `/etc/resolv.conf`",
+    "Ensure the `dns` service is listed in the `hosts` entry in `/etc/nsswitch.conf`",
+    "Run `route add nameserver 192.168.0.1`",
+    "Run `ifconfig eth0 nameserver 192.168.0.1`"
+  ],
+  "answerIndices": [
+    1,
+    2
+  ],
+  "explanation": "List the server in `/etc/resolv.conf` and make sure `/etc/nsswitch.conf` uses `dns` for host lookups.",
+  "origin": "ken-adams"
+}

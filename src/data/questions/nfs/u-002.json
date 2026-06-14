@@ -1,0 +1,19 @@
+{
+  "id": "nfs-u002",
+  "tool": "nfs",
+  "type": "multi",
+  "prompt": "Which of the following options are valid in `/etc/exports`? (Choose two.)",
+  "choices": [
+    "`ro`",
+    "`uid`",
+    "`norootsquash`",
+    "`rootsquash`",
+    "`rw`"
+  ],
+  "answerIndices": [
+    0,
+    4
+  ],
+  "explanation": "`ro` and `rw` set read-only or read-write access; the squash options are written `root_squash`/`no_root_squash`.",
+  "origin": "ken-adams"
+}

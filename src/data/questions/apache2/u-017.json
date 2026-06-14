@@ -1,0 +1,19 @@
+{
+  "id": "apache2-u017",
+  "tool": "apache2",
+  "type": "multi",
+  "prompt": "Why are different IP addresses recommended when hosting multiple HTTPS virtual hosts? (Choose two.)",
+  "choices": [
+    "Apache caches SSL keys based on the IP address",
+    "The Server Name Indication extension for TLS is not universally supported",
+    "The SSL key is linked to a specific IP address when issued by the CA",
+    "This is only needed when more than one virtual host generates dynamic content",
+    "The SSL connection is established before the virtual host name is known to the server"
+  ],
+  "answerIndices": [
+    1,
+    4
+  ],
+  "explanation": "Without SNI (which is not universally supported), the TLS handshake completes before the requested host name is known, so each HTTPS vhost needs its own IP.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "openvpn-u004",
+  "tool": "openvpn",
+  "prompt": "Which OpenVPN option makes the server forward packets between VPN clients itself instead of passing them to the host for further processing?",
+  "choices": [
+    "`client-to-client`",
+    "`grant-client-traffic`",
+    "`client-pass`",
+    "`client-router`",
+    "`inter-client-traffic`"
+  ],
+  "answerIndex": 0,
+  "explanation": "`client-to-client` lets OpenVPN route traffic directly between connected clients internally.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "pam-sss-u003",
+  "tool": "pam-sss",
+  "prompt": "Which PAM module lets the administrator use a file listing users and groups with limits on the system resources available to them?",
+  "choices": [
+    "`pam_unix`",
+    "`pam_limits`",
+    "`pam_filter`",
+    "`pam_listfile`"
+  ],
+  "answerIndex": 1,
+  "explanation": "`pam_limits` applies resource limits from `/etc/security/limits.conf` (and `limits.d`).",
+  "origin": "ken-adams"
+}

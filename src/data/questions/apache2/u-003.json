@@ -1,0 +1,19 @@
+{
+  "id": "apache2-u003",
+  "tool": "apache2",
+  "type": "multi",
+  "prompt": "A `/srv/www/default/html/restricted/.htaccess` contains `AuthType Basic`, `AuthUserFile /srv/www/security/site-passwd`, `AuthName Restricted`, `Require valid-user`, `Order deny,allow`, `Deny from all`, `Allow from 10.1.2.0/24`, `Satisfy any`; `DocumentRoot` is `/srv/www/default/html`. Select the two true statements.",
+  "choices": [
+    "Clients on the `10.1.2.0/24` network will not need to authenticate to access `http://server/restricted/`",
+    "Apache grants access only to authenticated users connecting from `10.1.2.0/24`",
+    "This works only if `/srv/www/default/html/restricted/` is configured with `AllowOverride AuthConfig Limit`",
+    "The `Satisfy` directive can be removed without changing Apache's behavior for this directory",
+    "Apache requires authentication for every client requesting `http://server/restricted/`"
+  ],
+  "answerIndices": [
+    0,
+    2
+  ],
+  "explanation": "`Satisfy any` means meeting either the host rule (`Allow from 10.1.2.0/24`) or the user rule is sufficient, so clients on that network skip authentication. The `.htaccess` only takes effect if the directory permits `AllowOverride AuthConfig Limit`.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "apache2-u029",
+  "tool": "apache2",
+  "type": "multi",
+  "prompt": "Which statements about the `Alias` and `Redirect` directives in Apache are true? (Choose two.)",
+  "choices": [
+    "`Alias` is not a valid configuration directive",
+    "`Alias` can only reference files under `DocumentRoot`",
+    "`Redirect` works with regular expressions",
+    "`Redirect` is handled on the client side",
+    "`Alias` is handled on the server side"
+  ],
+  "answerIndices": [
+    3,
+    4
+  ],
+  "explanation": "`Alias` maps a URL to a path server-side; `Redirect` returns an HTTP redirect that the client follows.",
+  "origin": "ken-adams"
+}

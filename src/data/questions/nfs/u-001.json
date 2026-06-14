@@ -1,0 +1,14 @@
+{
+  "id": "nfs-u001",
+  "tool": "nfs",
+  "prompt": "Which service belongs to NFSv4 and does not exist in NFSv3?",
+  "choices": [
+    "`rpc.mountd`",
+    "`rpc.statd`",
+    "`rpc.idmapd`",
+    "`nfsd`"
+  ],
+  "answerIndex": 2,
+  "explanation": "`rpc.idmapd` maps NFSv4 user/group names to IDs and is specific to NFSv4.",
+  "origin": "ken-adams"
+}

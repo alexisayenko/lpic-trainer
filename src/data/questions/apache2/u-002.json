@@ -1,0 +1,15 @@
+{
+  "id": "apache2-u002",
+  "tool": "apache2",
+  "prompt": "Considering this `httpd.conf` excerpt, select the correct answer: `<Location> AllowOverride AuthConfig Indexes </Location>`",
+  "choices": [
+    "The `Indexes` directive allows other index-related directives such as `DirectoryIndex`",
+    "The excerpt is incorrect, as `AllowOverride` cannot be used with indexes since they cannot be replaced",
+    "The snippet is incorrect, because `AllowOverride` cannot be used within a `<Location>` section",
+    "The `AuthConfig` allows other authentication directives such as `AuthType`",
+    "The `.htaccess` `AuthConfig` and `Indexes` directives are replaced by those in `httpd.conf`"
+  ],
+  "answerIndex": 2,
+  "explanation": "`AllowOverride` is only valid in a `<Directory>` context; using it inside `<Location>` is a configuration error.",
+  "origin": "ken-adams"
+}

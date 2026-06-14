@@ -1,0 +1,15 @@
+{
+  "id": "pam-sss-u001",
+  "tool": "pam-sss",
+  "prompt": "In a PAM configuration file, which is true about the `required` control flag?",
+  "choices": [
+    "The module must succeed for the facility to succeed, but all remaining modules of the same type are still invoked",
+    "The module is not critical and its result is unimportant",
+    "If the module fails, no more modules of the same type are invoked",
+    "The module must succeed, and on failure control returns immediately to the application",
+    "If the module succeeds, no more modules of the same type are invoked"
+  ],
+  "answerIndex": 0,
+  "explanation": "A `required` module must succeed for the stack to succeed, but the remaining modules of that type are still processed (failure is not reported until the end).",
+  "origin": "ken-adams"
+}

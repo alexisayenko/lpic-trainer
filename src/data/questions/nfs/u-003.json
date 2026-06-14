@@ -1,0 +1,15 @@
+{
+  "id": "nfs-u003",
+  "tool": "nfs",
+  "prompt": "Which statement is true regarding the NFSv4 pseudo file system on the NFS server?",
+  "choices": [
+    "It must be called `/exports`",
+    "It is defined by the option `Nfsv4-Root` in `/etc/pathmapd.conf`",
+    "It usually contains bind mounts of the directory trees to be exported",
+    "It must be a dedicated partition on the server",
+    "It usually contains symlinks to the directory trees to be exported"
+  ],
+  "answerIndex": 2,
+  "explanation": "The NFSv4 pseudo file system typically uses bind mounts to assemble the exported directory trees under a single root.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "ldap-u005",
+  "tool": "ldap",
+  "prompt": "Which command is used to change user passwords in an OpenLDAP directory?",
+  "choices": [
+    "`olppasswd`",
+    "`ldpasswd`",
+    "`setent`",
+    "`ldappasswd`",
+    "`ldapchpw`"
+  ],
+  "answerIndex": 3,
+  "explanation": "`ldappasswd` sets or changes the password of an LDAP entry.",
+  "origin": "ken-adams"
+}

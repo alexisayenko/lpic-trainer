@@ -1,0 +1,15 @@
+{
+  "id": "host-u003",
+  "tool": "host",
+  "prompt": "Which tool provides DNS information in the following format? `www.example.com has address 172.25.25.55` and `www.example.com has IPv6 address fdb4:8fbc:36e1::101f`",
+  "choices": [
+    "`named-checkzone`",
+    "`nslookup`",
+    "`named-checkconf`",
+    "`host`",
+    "`dig`"
+  ],
+  "answerIndex": 3,
+  "explanation": "The `host` command reports lookups in the `<name> has address <ip>` form (and `has IPv6 address` for AAAA records).",
+  "origin": "ken-adams"
+}

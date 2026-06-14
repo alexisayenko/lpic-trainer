@@ -1,0 +1,14 @@
+{
+  "id": "bind9-u001",
+  "tool": "bind9",
+  "prompt": "What word is missing from the following excerpt of a `named.conf` file? `____ friends { 10.10.0.0/24; 192.168.1.0/24; };` followed by `options { allow-query { friends; }; };`",
+  "choices": [
+    "group",
+    "list",
+    "networks",
+    "`acl`"
+  ],
+  "answerIndex": 3,
+  "explanation": "The `acl` statement defines a named address-match list (here `friends`) that can then be referenced in options such as `allow-query`.",
+  "origin": "ken-adams"
+}

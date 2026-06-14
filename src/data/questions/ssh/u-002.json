@@ -1,0 +1,19 @@
+{
+  "id": "ssh-u002",
+  "tool": "ssh",
+  "type": "multi",
+  "prompt": "Which lines in the sshd configuration file should, if present, be changed to increase the security of the server? (Choose two.)",
+  "choices": [
+    "`PermitEmptyPasswords no`",
+    "`Protocol 2,1`",
+    "`Port 22`",
+    "`IgnoreRhosts yes`",
+    "`PermitRootLogin yes`"
+  ],
+  "answerIndices": [
+    1,
+    4
+  ],
+  "explanation": "`Protocol 2,1` enables the insecure SSHv1 protocol and `PermitRootLogin yes` allows direct root login; both weaken security.",
+  "origin": "ken-adams"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "dhcp-u008",
+  "tool": "dhcp",
+  "prompt": "Which statement in the ISC DHCPD configuration specifies whether an address pool can be used by nodes that have a corresponding `host` section?",
+  "choices": [
+    "`identified-nodes`",
+    "`unmatched-hwaddr`",
+    "`unconfigured-hosts`",
+    "`unknown-clients`",
+    "`missing-peers`"
+  ],
+  "answerIndex": 3,
+  "explanation": "`allow`/`deny unknown-clients` controls whether nodes without a matching `host` declaration may use the pool.",
+  "origin": "ken-adams"
+}

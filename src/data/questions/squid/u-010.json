@@ -1,0 +1,15 @@
+{
+  "id": "squid-u010",
+  "tool": "squid",
+  "prompt": "Which of the following is NOT a valid ACL type when configuring Squid?",
+  "choices": [
+    "`url_regex`",
+    "`dstdomain`",
+    "`src`",
+    "`time`",
+    "`source`"
+  ],
+  "answerIndex": 4,
+  "explanation": "The source-IP ACL type is `src`, not `source`.",
+  "origin": "ken-adams"
+}

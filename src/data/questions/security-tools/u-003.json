@@ -1,0 +1,14 @@
+{
+  "id": "security-tools-u003",
+  "tool": "security-tools",
+  "prompt": "What is the name of the network security scanner project that is, at its core, a server with a set of network vulnerability tests?",
+  "choices": [
+    "Wireshark",
+    "Smartscan",
+    "NetMap",
+    "OpenVAS"
+  ],
+  "answerIndex": 3,
+  "explanation": "OpenVAS is a vulnerability scanner built around a server running network vulnerability tests.",
+  "origin": "ken-adams"
+}

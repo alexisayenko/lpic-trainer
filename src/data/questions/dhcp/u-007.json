@@ -1,0 +1,15 @@
+{
+  "id": "dhcp-u007",
+  "tool": "dhcp",
+  "prompt": "A host named `lpi` with MAC address `08:00:2b:4c:59:23` should always be assigned the IP `192.168.1.2` by an ISC DHCP server. Which configuration achieves this?",
+  "choices": [
+    "`host lpi { hardware-ethernet 08:00:2b:4c:59:23; fixed-address 192.168.1.2; }`",
+    "`host lpi { mac=08:00:2b:4c:59:23; ip=192.168.1.2; }`",
+    "`host lpi = 08:00:2b:4c:59:23 192.168.1.2`",
+    "`host lpi { hardware ethernet 08:00:2b:4c:59:23; fixed-address 192.168.1.2; }`",
+    "`host lpi { hardware-address 08:00:2b:4c:59:23; fixed-ip 192.168.1.2; }`"
+  ],
+  "answerIndex": 3,
+  "explanation": "An ISC DHCP reservation uses `hardware ethernet <MAC>;` and `fixed-address <IP>;` inside a `host` block.",
+  "origin": "ken-adams"
+}

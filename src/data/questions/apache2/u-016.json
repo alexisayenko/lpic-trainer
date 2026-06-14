@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u016",
+  "tool": "apache2",
+  "prompt": "A server has two interfaces: local `eth0` (172.24.21.78) and Internet `eth1` (10.203.17.26). Which directive ensures your name-based virtual hosts are defined only on the local network?",
+  "choices": [
+    "`NameVirtualHost 172.24.21.78`",
+    "`VirtualHostOnly eth0`",
+    "`ExcludeVirtualHosts 10.203.17.26`",
+    "`Bind eth0`"
+  ],
+  "answerIndex": 0,
+  "explanation": "`NameVirtualHost` bound to the local IP restricts name-based virtual hosting to that address.",
+  "origin": "ken-adams"
+}

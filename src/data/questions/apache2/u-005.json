@@ -1,0 +1,15 @@
+{
+  "id": "apache2-u005",
+  "tool": "apache2",
+  "prompt": "An Apache virtual host was configured for `www.example.com` and `www2.example.com` using `<VirtualHost *:80>` with two `ServerName` lines (`ServerName www.example.com` and `ServerName www2.example.com`). The file is processed without error, but requests to both names are not handled correctly. What should be changed?",
+  "choices": [
+    "The configuration must be split into two `<VirtualHost>` sections since each may only have one name",
+    "Only one `ServerName` declaration may exist, but additional names can be declared with `ServerAlias`",
+    "The port in the opening `<VirtualHost>` tag must be appended to the `ServerName` values",
+    "Both names must be placed as comma-separated values in one `ServerName` declaration",
+    "Both names must be listed in the opening `<VirtualHost>` tag"
+  ],
+  "answerIndex": 1,
+  "explanation": "A virtual host may have only one `ServerName`; additional hostnames are declared with the `ServerAlias` directive.",
+  "origin": "ken-adams"
+}

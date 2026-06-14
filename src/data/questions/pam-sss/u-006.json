@@ -1,0 +1,14 @@
+{
+  "id": "pam-sss-u006",
+  "tool": "pam-sss",
+  "prompt": "Which of the following lines is valid in a configuration file in `/etc/pam.d/`?",
+  "choices": [
+    "`auth required:pam_unix.so(try_first_pass nullok)`",
+    "`auth required pam_unix.so try_first_pass nullok`",
+    "`auth pam_unix.so(required try_first_pass nullok)`",
+    "`auth try_first_pass nullok, require pam_unix.so`"
+  ],
+  "answerIndex": 1,
+  "explanation": "A pam.d line is `<type> <control> <module> [args]`, e.g. `auth required pam_unix.so try_first_pass nullok`.",
+  "origin": "ken-adams"
+}

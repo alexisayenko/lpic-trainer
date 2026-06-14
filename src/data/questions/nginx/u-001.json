@@ -1,0 +1,15 @@
+{
+  "id": "nginx-u001",
+  "tool": "nginx",
+  "prompt": "When configuring a reverse proxy with Nginx, which keyword is missing from this configuration? `location / { ____ http://proxiedserver:8080; }`",
+  "choices": [
+    "`proxy_pass`",
+    "`reverse_proxy`",
+    "`forward_to`",
+    "`proxy_reverse`",
+    "`remote_proxy`"
+  ],
+  "answerIndex": 0,
+  "explanation": "`proxy_pass http://backend;` forwards requests from the `location` block to the upstream server.",
+  "origin": "ken-adams"
+}

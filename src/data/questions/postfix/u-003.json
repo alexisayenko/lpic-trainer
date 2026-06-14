@@ -1,0 +1,15 @@
+{
+  "id": "postfix-u003",
+  "tool": "postfix",
+  "prompt": "A company accepts e-mail for two domains for all of its users on a Postfix server. Which configuration option should be updated?",
+  "choices": [
+    "`mydomains`",
+    "`mydomain`",
+    "`mylocations`",
+    "`mydestinations`",
+    "`myhosts`"
+  ],
+  "answerIndex": 3,
+  "explanation": "`mydestination` lists the domains for which the server accepts mail as final destination.",
+  "origin": "ken-adams"
+}

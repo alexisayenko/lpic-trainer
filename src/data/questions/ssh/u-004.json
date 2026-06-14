@@ -1,0 +1,14 @@
+{
+  "id": "ssh-u004",
+  "tool": "ssh",
+  "prompt": "To allow X connections to be forwarded from or through an SSH server, which keyword must be set to `yes` in the sshd configuration file?",
+  "choices": [
+    "`ForwardingAllow`",
+    "`X11Forwarding`",
+    "`X11ForwardingAllow`",
+    "`AllowForwarding`"
+  ],
+  "answerIndex": 1,
+  "explanation": "`X11Forwarding yes` enables X11 forwarding through the SSH server.",
+  "origin": "ken-adams"
+}

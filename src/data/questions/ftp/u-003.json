@@ -1,0 +1,18 @@
+{
+  "id": "ftp-u003",
+  "tool": "ftp",
+  "type": "multi",
+  "prompt": "Which FTP names are recognized as anonymous users in vsftpd when `anonymous_enable=YES`? (Choose two.)",
+  "choices": [
+    "`nobody`",
+    "`guest`",
+    "`ftp`",
+    "`anonymous`"
+  ],
+  "answerIndices": [
+    2,
+    3
+  ],
+  "explanation": "`ftp` and `anonymous` are both accepted as the anonymous login name.",
+  "origin": "ken-adams"
+}

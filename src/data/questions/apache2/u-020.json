@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u020",
+  "tool": "apache2",
+  "prompt": "Which Apache directive enables support for the HTTPS protocol?",
+  "choices": [
+    "`SSLEnable`",
+    "`HTTPSEnable`",
+    "`HTTPSEngine`",
+    "`SSLEngine`"
+  ],
+  "answerIndex": 3,
+  "explanation": "`SSLEngine on` enables TLS/SSL for the virtual host.",
+  "origin": "ken-adams"
+}

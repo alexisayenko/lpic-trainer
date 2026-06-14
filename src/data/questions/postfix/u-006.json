@@ -1,0 +1,14 @@
+{
+  "id": "postfix-u006",
+  "tool": "postfix",
+  "prompt": "Which Postfix parameter modifies only the sender address and not the recipient address?",
+  "choices": [
+    "`alias_rewrite_maps`",
+    "`sender_rewrite_maps`",
+    "`sender_canonical_maps`",
+    "`alias_maps`"
+  ],
+  "answerIndex": 2,
+  "explanation": "`sender_canonical_maps` rewrites sender addresses only.",
+  "origin": "ken-adams"
+}

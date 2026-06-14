@@ -1,0 +1,19 @@
+{
+  "id": "apache2-u001",
+  "tool": "apache2",
+  "type": "multi",
+  "prompt": "Select the two correct statements about this `httpd.conf` excerpt: `<Directory /var/web/dir1> <Files private.html> Order allow,deny; Deny from all </Files> </Directory>`",
+  "choices": [
+    "It denies access to `private.html` in `/var/web/dir1` and any of its subdirectories",
+    "It denies `/var/web/dir1/private.html` but allows `/var/web/dir1/subdir2/private.html`",
+    "It only allows access to `private.html` in `/var/web/dir1`",
+    "It allows any file called `private.html` in `/var/web/dir1` but denies any other file",
+    "It allows access to `/var/web/private.html` if it exists"
+  ],
+  "answerIndices": [
+    0,
+    4
+  ],
+  "explanation": "`<Files>` matches by basename throughout the directory and its subdirectories, so every `private.html` under `/var/web/dir1` is denied; `/var/web/private.html` lies outside that directory and is unaffected.",
+  "origin": "ken-adams"
+}

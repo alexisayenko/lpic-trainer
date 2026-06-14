@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u021",
+  "tool": "apache2",
+  "prompt": "An Apache server includes `VirtualDocumentRoot /var/httpd/%-2/%-1`. For a request to `http://www.luna.edu/index.htm`, which file is served?",
+  "choices": [
+    "`/var/httpd/www/luna/edu/index.htm`",
+    "`/var/httpd/www/luna/index.htm`",
+    "`/var/httpd/luna/www/index.htm`",
+    "`/var/httpd/luna/edu/index.htm`"
+  ],
+  "answerIndex": 3,
+  "explanation": "`%-1` is the last domain component (`edu`) and `%-2` the second-to-last (`luna`), giving `/var/httpd/luna/edu/index.htm`.",
+  "origin": "ken-adams"
+}

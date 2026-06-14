@@ -1,0 +1,14 @@
+{
+  "id": "openvpn-u001",
+  "tool": "openvpn",
+  "prompt": "What is the standard port used by OpenVPN?",
+  "choices": [
+    "500",
+    "1194",
+    "1723",
+    "4500"
+  ],
+  "answerIndex": 1,
+  "explanation": "OpenVPN uses port 1194 by default (UDP or TCP).",
+  "origin": "ken-adams"
+}

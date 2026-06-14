@@ -1,0 +1,15 @@
+{
+  "id": "apache2-u028",
+  "tool": "apache2",
+  "prompt": "Which Apache directive allows the use of external configuration files named by the `AccessFileName` directive (e.g. `.htaccess`)?",
+  "choices": [
+    "`AllowOverride`",
+    "`AllowAccessFile`",
+    "`AllowExternalConfig`",
+    "`IncludeAccessFile`",
+    "`AllowConfig`"
+  ],
+  "answerIndex": 0,
+  "explanation": "`AllowOverride` controls whether (and which) `.htaccess` directives are honored.",
+  "origin": "ken-adams"
+}

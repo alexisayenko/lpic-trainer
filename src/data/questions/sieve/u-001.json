@@ -1,0 +1,15 @@
+{
+  "id": "sieve-u001",
+  "tool": "sieve",
+  "prompt": "When are Sieve filters usually applied to an email?",
+  "choices": [
+    "When the email is delivered to a mailbox",
+    "When the email is relayed by an SMTP server",
+    "When the email is sent to the first server by an MUA",
+    "When the email is received by an SMTP smarthost",
+    "When the email is retrieved by an MUA"
+  ],
+  "answerIndex": 0,
+  "explanation": "Sieve runs at final delivery (by the MDA/LDA), as the message is filed into a mailbox.",
+  "origin": "ken-adams"
+}

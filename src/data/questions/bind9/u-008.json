@@ -1,0 +1,15 @@
+{
+  "id": "bind9-u008",
+  "tool": "bind9",
+  "prompt": "What is the purpose of DANE?",
+  "choices": [
+    "Verify the integrity of name information retrieved via DNS",
+    "Allow secure dynamic DNS updates",
+    "Provide a way to verify the association of X.509 certificates to DNS host names",
+    "Invalidate cached name information to speed up updates",
+    "Discover which servers offer a specific service within a DNS domain"
+  ],
+  "answerIndex": 2,
+  "explanation": "DANE (DNS-based Authentication of Named Entities) binds TLS certificates to DNS names via TLSA records secured by DNSSEC.",
+  "origin": "ken-adams"
+}

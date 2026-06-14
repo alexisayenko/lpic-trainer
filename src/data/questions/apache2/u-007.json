@@ -1,0 +1,14 @@
+{
+  "id": "apache2-u007",
+  "tool": "apache2",
+  "prompt": "Which Apache directive is used to specify the RSA private key that was used to generate the SSL certificate for the server?",
+  "choices": [
+    "`SSLPrivateKeyFile`",
+    "`SSLKeyFile`",
+    "`SSLCertificateKeyFile`",
+    "`SSLRSAKeyFile`"
+  ],
+  "answerIndex": 2,
+  "explanation": "`SSLCertificateKeyFile` points Apache to the private key matching the server certificate.",
+  "origin": "ken-adams"
+}

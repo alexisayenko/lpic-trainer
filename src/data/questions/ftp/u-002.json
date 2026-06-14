@@ -1,0 +1,15 @@
+{
+  "id": "ftp-u002",
+  "tool": "ftp",
+  "prompt": "Which Linux user does vsftpd use to perform file system operations for anonymous FTP users?",
+  "choices": [
+    "The Linux user `root`, restricted to globally readable/writable files",
+    "The Linux user that runs the vsftpd process",
+    "The Linux user that owns the root FTP directory",
+    "The Linux user with the same name used to log in anonymously",
+    "The Linux user specified in the configuration option `ftp_username`"
+  ],
+  "answerIndex": 4,
+  "explanation": "Anonymous access maps to the account named by `ftp_username` (default `ftp`).",
+  "origin": "ken-adams"
+}

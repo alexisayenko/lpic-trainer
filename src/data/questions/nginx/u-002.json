@@ -1,0 +1,14 @@
+{
+  "id": "nginx-u002",
+  "tool": "nginx",
+  "prompt": "When reverse-proxying through Nginx, which keyword passes the `Host` header from the original request to the proxied server? `{ ____ Host $host; }`",
+  "choices": [
+    "`proxy_set_header`",
+    "`proxy_pass_header`",
+    "`proxy_forward_header`",
+    "`proxy_header`"
+  ],
+  "answerIndex": 0,
+  "explanation": "`proxy_set_header Host $host;` sets the `Host` header sent to the upstream server to the value from the client request.",
+  "origin": "ken-adams"
+}
