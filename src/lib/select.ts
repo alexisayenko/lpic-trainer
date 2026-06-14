@@ -59,40 +59,57 @@ export function filterPool(
   });
 }
 
-/**
- * Order questions so studying targets weak spots first:
- *   unseen  >  last answer was wrong  >  previously answered correctly.
- * Ties are broken randomly so repeated quizzes vary.
- */
-export function orderByWeakness(
-  pool: Question[],
-  last: Map<string, AnswerRecord>,
-  rng: () => number = Math.random,
-): Question[] {
-  const weight = (q: Question): number => {
-    const rec = last.get(q.id);
-    if (!rec) return 3; // unseen
-    return rec.correct ? 1 : 2; // known correct vs. got it wrong last time
-  };
-
-  return [...pool]
-    .map((q) => ({ q, score: weight(q) + rng() }))
-    .sort((a, b) => b.score - a.score)
-    .map((x) => x.q);
+/** Fisher–Yates shuffled copy of `arr`. The deck draws from a filtered pool with
+ *  this alone, so question selection and order depend only on the user's filters. */
+export function shuffle<T>(arr: readonly T[], rng: () => number = Math.random): T[] {
+  const out = [...arr];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
 }
 
 /** Fisher–Yates shuffled copy of `0..n-1`, used to randomise choice display order. */
 export function shuffledIndices(n: number, rng: () => number = Math.random): number[] {
-  const order = Array.from({ length: n }, (_, i) => i);
-  for (let i = order.length - 1; i > 0; i--) {
-    const j = Math.floor(rng() * (i + 1));
-    [order[i], order[j]] = [order[j], order[i]];
-  }
-  return order;
+  return shuffle(Array.from({ length: n }, (_, i) => i), rng);
 }
 
-/** Take the first `size` questions, or all when `size` is null/too large. */
-export function pickDeck(ordered: Question[], size: number | null): Question[] {
-  if (size === null || size >= ordered.length) return ordered;
-  return ordered.slice(0, Math.max(1, size));
+/**
+ * Sample `size` items balanced across the group each one belongs to, then return
+ * them in random order. Groups are drawn round-robin (random group order, random
+ * within each group), so the deck spreads as evenly as possible over the groups
+ * present in `items`:
+ *   - `size` < group count → that many distinct groups, one item each;
+ *   - `size` ≥ group count → an equal share per group (±1), with slots from
+ *     exhausted groups redistributed to the rest;
+ *   - `size` null or ≥ item count → every item.
+ */
+export function balancedSample<T>(
+  items: readonly T[],
+  size: number | null,
+  groupOf: (item: T) => string,
+  rng: () => number = Math.random,
+): T[] {
+  const groups = new Map<string, T[]>();
+  for (const it of items) {
+    const arr = groups.get(groupOf(it));
+    if (arr) arr.push(it);
+    else groups.set(groupOf(it), [it]);
+  }
+  const buckets = shuffle([...groups.values()], rng).map((g) => shuffle(g, rng));
+  const target = size === null ? items.length : Math.min(Math.max(1, size), items.length);
+
+  const out: T[] = [];
+  for (let cursor = 0; out.length < target; cursor++) {
+    let drew = false;
+    for (const bucket of buckets) {
+      if (cursor >= bucket.length) continue;
+      out.push(bucket[cursor]);
+      drew = true;
+      if (out.length >= target) break;
+    }
+    if (!drew) break; // every bucket exhausted
+  }
+  return shuffle(out, rng);
 }

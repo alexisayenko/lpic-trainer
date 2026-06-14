@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
-import { attemptsByQuestion, attemptsFor, filterPool, lastByQuestion, orderByWeakness, pickDeck, shuffledIndices } from '../lib/select';
+import { attemptsByQuestion, attemptsFor, balancedSample, filterPool, shuffledIndices } from '../lib/select';
 import { masteryOf } from '../lib/mastery';
 import { topicOf, type Question } from '../types';
 import { QuestionCardHeader } from './QuestionCardHeader';
@@ -33,10 +33,8 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
         })
       : QUESTIONS;
     const snapshot = useStore.getState().history;
-    const last = lastByQuestion(snapshot);
     const pool = filterPool(topicPool, attemptsByQuestion(snapshot), resultFilter, sourceFilter, unseenToday, Date.now());
-    const ordered = orderByWeakness(pool, last);
-    return pickDeck(ordered, quizSize);
+    return balancedSample(pool, quizSize, (q) => topicOf(q) ?? '?');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTopics, quizSize, resultFilter, sourceFilter, unseenToday]);
 
