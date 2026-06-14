@@ -9,5 +9,5 @@
     "`:0 * ^Subject.*Report | mail -s Reports`"
   ],
   "answerIndex": 2,
-  "explanation": "The rule in option D begins with `:0:`, which indicates a locking mechanism. The `*` denotes a condition line, and `^Subject.*Report` matches emails with the word \"Report\" in the subject. The action `~/Reports/` specifies that matching emails should be stored in the \"Reports\" directory within the user's home directory."
+  "explanation": "This rule starts with `:0:`, where the trailing colon adds a lockfile. The `*` introduces the condition `^Subject.*Report`, matching messages with Report in the subject, and the action `~/Reports/` delivers them to the Reports directory in the home folder."
 }

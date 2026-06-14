@@ -3,11 +3,11 @@
   "tool": "openvpn",
   "prompt": "Sarah, a network administrator, has set up OpenVPN for her company. She wants to ensure that all the client traffic, including all the network traffic, should go through the VPN. Which directive should she include in the OpenVPN client configuration to achieve this?",
   "choices": [
-    "`push \"redirect-gateway\"`",
+    "`redirect-gateway def1`",
     "`client-to-client`",
     "`route-nopull`",
     "`topology subnet`"
   ],
   "answerIndex": 0,
-  "explanation": "The directive \"`push 'redirect-gateway'`\" in the OpenVPN server configuration file ensures that the client reroutes all its traffic, including web-traffic, through the VPN."
+  "explanation": "On the client, `redirect-gateway def1` reroutes all client traffic through the VPN. (`push \"redirect-gateway\"` is the server-side directive that pushes this to clients.)"
 }

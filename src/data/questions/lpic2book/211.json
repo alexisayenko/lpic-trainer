@@ -1,20 +1,291 @@
 [
-  {"id":"book-211-001","tool":"postfix","type":"single","objective":"211.1","difficulty":"recall","prompt":"Which Postfix `main.cf` parameter defines the list of domains for which this server considers itself the final destination?","choices":["`relay_domains`","`mydestination`","`myorigin`","`relayhost`"],"answerIndex":1,"explanation":"`mydestination` lists the domains for which Postfix accepts mail as the final delivery point."},
-  {"id":"book-211-002","tool":"postfix","type":"single","objective":"211.1","difficulty":"applied","prompt":"An admin wants all outgoing mail handed off to the ISP's server mail.example.com instead of being delivered directly. Which setting accomplishes this?","choices":["`mydestination = mail.example.com`","`myorigin = mail.example.com`","`relayhost = mail.example.com`","`virtual_alias_maps = mail.example.com`"],"answerIndex":2,"explanation":"`relayhost` forwards outbound mail through the named host rather than delivering it directly over the internet."},
-  {"id":"book-211-003","tool":"postfix","type":"single","objective":"211.1","difficulty":"recall","prompt":"Which parameter controls the domain that appears as the sender domain on locally originated outgoing mail?","choices":["`myorigin`","`mydestination`","`mydomain`","`smtp_helo_name`"],"answerIndex":0,"explanation":"`myorigin` sets the domain shown as the origin on mail sent from the local machine."},
-  {"id":"book-211-004","tool":"postfix","type":"single","objective":"211.1","difficulty":"applied","prompt":"After editing `/etc/aliases` to add a new local redirect, which command rebuilds the indexed alias database?","choices":["`postmap /etc/aliases`","`newaliases`","`postfix reload`","`aliases -r`"],"answerIndex":1,"explanation":"`newaliases` regenerates the binary aliases database from the `/etc/aliases` text file."},
-  {"id":"book-211-005","tool":"postfix","type":"single","objective":"211.1","difficulty":"applied","prompt":"Which command displays Postfix's built-in default values for all configuration parameters?","choices":["`postconf -n`","`postconf -d`","`postconf -e`","`postfix check`"],"answerIndex":1,"explanation":"`postconf -d` prints the compiled-in default settings regardless of what is in `main.cf`."},
-  {"id":"book-211-006","tool":"postfix","type":"single","objective":"211.1","difficulty":"scenario","prompt":"An admin sets `smtpd_tls_security_level = encrypt`. What is the practical effect on inbound SMTP connections?","choices":["STARTTLS is announced but remains optional","STARTTLS announcements are disabled entirely","STARTTLS is required before mail is accepted","Mail is rejected unless a client certificate is presented"],"answerIndex":2,"explanation":"The `encrypt` level mandates STARTTLS, refusing to accept mail over unencrypted connections."},
-  {"id":"book-211-007","tool":"postfix","type":"single","objective":"211.1","difficulty":"recall","prompt":"Which parameter points Postfix at a lookup table that maps virtual addresses to local or other recipients?","choices":["`virtual_alias_maps`","`alias_maps`","`mydestination`","`canonical_maps`"],"answerIndex":0,"explanation":"`virtual_alias_maps` references the table used to translate virtual addresses into their real recipients."},
-  {"id":"book-211-008","tool":"postfix","type":"single","objective":"211.1","difficulty":"applied","prompt":"After populating `/etc/postfix/virtual`, which command builds the hashed database Postfix reads at runtime?","choices":["`newaliases`","`postconf /etc/postfix/virtual`","`postmap /etc/postfix/virtual`","`postqueue -p`"],"answerIndex":2,"explanation":"`postmap` creates the indexed hash file from the virtual mapping source file."},
-  {"id":"book-211-009","tool":"postfix","type":"single","objective":"211.1","difficulty":"applied","prompt":"Which command lists the messages currently waiting in the Postfix mail queue?","choices":["`mailq`","`postconf -p`","`postsuper -d`","`newaliases -q`"],"answerIndex":0,"explanation":"`mailq` (equivalent to `postqueue -p`) shows the contents of the deferred and active mail queue."},
-  {"id":"book-211-010","tool":"postfix","type":"single","objective":"211.1","difficulty":"scenario","prompt":"To stop attackers from probing valid mailboxes via the SMTP VRFY command, which `main.cf` line should be added?","choices":["`smtpd_vrfy = no`","`disable_vrfy_command = yes`","`smtpd_reject_vrfy = yes`","`vrfy_command = disabled`"],"answerIndex":1,"explanation":"`disable_vrfy_command = yes` turns off VRFY so recipient addresses cannot be enumerated."},
-  {"id":"book-211-011","tool":"postfix","type":"single","objective":"211.1","difficulty":"recall","prompt":"In which directory does Postfix keep its mail queue subdirectories?","choices":["`/etc/postfix/queue`","`/var/mail/postfix`","`/var/spool/postfix`","`/var/log/postfix`"],"answerIndex":2,"explanation":"Postfix stores its queue files under `/var/spool/postfix`."},
-  {"id":"book-211-012","tool":"postfix","type":"multi","objective":"211.1","difficulty":"applied","prompt":"Which of the following are valid values for `smtpd_tls_security_level`?","choices":["`none`","`may`","`encrypt`","`force`","`always`"],"answerIndices":[0,1,2],"explanation":"`none`, `may`, and `encrypt` are recognized `smtpd_tls_security_level` settings, while `force` and `always` are not."},
-  {"id":"book-211-013","tool":"postfix","type":"multi","objective":"211.1","difficulty":"scenario","prompt":"Which actions are appropriate after changing parameters in `/etc/postfix/main.cf` so the running server uses them?","choices":["`postfix reload`","`systemctl restart postfix`","`newaliases`","`postmap main.cf`","`postqueue -f`"],"answerIndices":[0,1],"explanation":"Reloading or restarting Postfix applies `main.cf` changes, whereas the other commands serve unrelated purposes."},
-  {"id":"book-211-014","tool":"sieve","type":"single","objective":"211.2","difficulty":"recall","prompt":"Which Sieve action silently deletes a message without notifying the sender?","choices":["`reject`","`discard`","`redirect`","`keep`"],"answerIndex":1,"explanation":"`discard` quietly drops the message with no bounce or notification."},
-  {"id":"book-211-015","tool":"sieve","type":"single","objective":"211.2","difficulty":"applied","prompt":"Which Sieve action delivers a message into a specific named mailbox folder?","choices":["`keep`","`fileinto`","`redirect`","`stop`"],"answerIndex":1,"explanation":"`fileinto` stores the message in the mailbox folder given as its argument."},
-  {"id":"book-211-016","tool":"sieve","type":"multi","objective":"211.2","difficulty":"applied","prompt":"Which of the following are Sieve actions (as opposed to tests or control structures)?","choices":["`keep`","`redirect`","`anyof`","`stop`","`header`"],"answerIndices":[0,1,3],"explanation":"`keep`, `redirect`, and `stop` are actions, while `anyof` and `header` are test commands."},
-  {"id":"book-211-017","tool":"sieve","type":"fill","objective":"211.2","difficulty":"recall","prompt":"Which Sieve action forwards an incoming message on to another email address given as its argument?","answer":"redirect","explanation":"`redirect` sends the message to the address supplied as its argument."},
-  {"id":"book-211-018","tool":"dovecot","type":"fill","objective":"211.3","difficulty":"applied","prompt":"Which Dovecot setting, when set to `yes`, blocks cleartext password logins on unencrypted connections? (parameter name only)","answer":"disable_plaintext_auth","explanation":"`disable_plaintext_auth = yes` refuses plaintext authentication unless the connection is secured by SSL/TLS."}
+  {
+    "id": "book-211-001",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "recall",
+    "prompt": "Which Postfix `main.cf` parameter defines the list of domains for which this server considers itself the final destination?",
+    "choices": [
+      "`relay_domains`",
+      "`mydestination`",
+      "`myorigin`",
+      "`relayhost`"
+    ],
+    "answerIndex": 1,
+    "explanation": "`mydestination` lists the domains for which Postfix accepts mail as the final delivery point."
+  },
+  {
+    "id": "book-211-002",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "applied",
+    "prompt": "An admin wants all outgoing mail handed off to the ISP's server mail.example.com instead of being delivered directly. Which setting accomplishes this?",
+    "choices": [
+      "`mydestination = mail.example.com`",
+      "`myorigin = mail.example.com`",
+      "`relayhost = mail.example.com`",
+      "`virtual_alias_maps = mail.example.com`"
+    ],
+    "answerIndex": 2,
+    "explanation": "`relayhost` forwards outbound mail through the named host rather than delivering it directly over the internet."
+  },
+  {
+    "id": "book-211-003",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "recall",
+    "prompt": "Which parameter controls the domain that appears as the sender domain on locally originated outgoing mail?",
+    "choices": [
+      "`myorigin`",
+      "`mydestination`",
+      "`mydomain`",
+      "`smtp_helo_name`"
+    ],
+    "answerIndex": 0,
+    "explanation": "`myorigin` sets the domain shown as the origin on mail sent from the local machine."
+  },
+  {
+    "id": "book-211-004",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "applied",
+    "prompt": "After editing `/etc/aliases` to add a new local redirect, which command rebuilds the indexed alias database?",
+    "choices": [
+      "`postmap /etc/aliases`",
+      "`newaliases`",
+      "`postfix reload`",
+      "`aliases -r`"
+    ],
+    "answerIndex": 1,
+    "explanation": "`newaliases` regenerates the binary aliases database from the `/etc/aliases` text file."
+  },
+  {
+    "id": "book-211-005",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "applied",
+    "prompt": "Which command displays Postfix's built-in default values for all configuration parameters?",
+    "choices": [
+      "`postconf -n`",
+      "`postconf -d`",
+      "`postconf -e`",
+      "`postfix check`"
+    ],
+    "answerIndex": 1,
+    "explanation": "`postconf -d` prints the compiled-in default settings regardless of what is in `main.cf`."
+  },
+  {
+    "id": "book-211-006",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "scenario",
+    "prompt": "An admin sets `smtpd_tls_security_level = encrypt`. What is the practical effect on inbound SMTP connections?",
+    "choices": [
+      "STARTTLS is announced but remains optional",
+      "STARTTLS announcements are disabled entirely",
+      "STARTTLS is required before mail is accepted",
+      "Mail is rejected unless a client certificate is presented"
+    ],
+    "answerIndex": 2,
+    "explanation": "The `encrypt` level mandates STARTTLS, refusing to accept mail over unencrypted connections."
+  },
+  {
+    "id": "book-211-007",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "recall",
+    "prompt": "Which parameter points Postfix at a lookup table that maps virtual addresses to local or other recipients?",
+    "choices": [
+      "`virtual_alias_maps`",
+      "`alias_maps`",
+      "`mydestination`",
+      "`canonical_maps`"
+    ],
+    "answerIndex": 0,
+    "explanation": "`virtual_alias_maps` references the table used to translate virtual addresses into their real recipients."
+  },
+  {
+    "id": "book-211-008",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "applied",
+    "prompt": "After populating `/etc/postfix/virtual`, which command builds the hashed database Postfix reads at runtime?",
+    "choices": [
+      "`newaliases`",
+      "`postconf /etc/postfix/virtual`",
+      "`postmap /etc/postfix/virtual`",
+      "`postqueue -p`"
+    ],
+    "answerIndex": 2,
+    "explanation": "`postmap` creates the indexed hash file from the virtual mapping source file."
+  },
+  {
+    "id": "book-211-009",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "applied",
+    "prompt": "Which command lists the messages currently waiting in the Postfix mail queue?",
+    "choices": [
+      "`mailq`",
+      "`postconf -p`",
+      "`postsuper -d`",
+      "`newaliases -q`"
+    ],
+    "answerIndex": 0,
+    "explanation": "`mailq` (equivalent to `postqueue -p`) shows the contents of the deferred and active mail queue."
+  },
+  {
+    "id": "book-211-010",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "scenario",
+    "prompt": "To stop attackers from probing valid mailboxes via the SMTP VRFY command, which `main.cf` line should be added?",
+    "choices": [
+      "`smtpd_vrfy = no`",
+      "`disable_vrfy_command = yes`",
+      "`smtpd_reject_vrfy = yes`",
+      "`vrfy_command = disabled`"
+    ],
+    "answerIndex": 1,
+    "explanation": "`disable_vrfy_command = yes` turns off VRFY so recipient addresses cannot be enumerated."
+  },
+  {
+    "id": "book-211-011",
+    "tool": "postfix",
+    "type": "single",
+    "objective": "211.1",
+    "difficulty": "recall",
+    "prompt": "In which directory does Postfix keep its mail queue subdirectories?",
+    "choices": [
+      "`/etc/postfix/queue`",
+      "`/var/mail/postfix`",
+      "`/var/spool/postfix`",
+      "`/var/log/postfix`"
+    ],
+    "answerIndex": 2,
+    "explanation": "Postfix stores its queue files under `/var/spool/postfix`."
+  },
+  {
+    "id": "book-211-012",
+    "tool": "postfix",
+    "type": "multi",
+    "objective": "211.1",
+    "difficulty": "applied",
+    "prompt": "Which of the following are valid values for `smtpd_tls_security_level`?",
+    "choices": [
+      "`none`",
+      "`may`",
+      "`encrypt`",
+      "`force`",
+      "`always`"
+    ],
+    "answerIndices": [
+      0,
+      1,
+      2
+    ],
+    "explanation": "`none`, `may`, and `encrypt` are recognized `smtpd_tls_security_level` settings, while `force` and `always` are not."
+  },
+  {
+    "id": "book-211-013",
+    "tool": "postfix",
+    "type": "multi",
+    "objective": "211.1",
+    "difficulty": "scenario",
+    "prompt": "Which actions are appropriate after changing parameters in `/etc/postfix/main.cf` so the running server uses them?",
+    "choices": [
+      "`postfix reload`",
+      "`systemctl restart postfix`",
+      "`newaliases`",
+      "`postmap main.cf`",
+      "`postqueue -f`"
+    ],
+    "answerIndices": [
+      0,
+      1
+    ],
+    "explanation": "Reloading or restarting Postfix applies `main.cf` changes, whereas the other commands serve unrelated purposes."
+  },
+  {
+    "id": "book-211-014",
+    "tool": "sieve",
+    "type": "single",
+    "objective": "211.2",
+    "difficulty": "recall",
+    "prompt": "Which Sieve action silently deletes a message without notifying the sender?",
+    "choices": [
+      "`reject`",
+      "`discard`",
+      "`redirect`",
+      "`keep`"
+    ],
+    "answerIndex": 1,
+    "explanation": "`discard` quietly drops the message with no bounce or notification."
+  },
+  {
+    "id": "book-211-015",
+    "tool": "sieve",
+    "type": "single",
+    "objective": "211.2",
+    "difficulty": "applied",
+    "prompt": "Which Sieve action delivers a message into a specific named mailbox folder?",
+    "choices": [
+      "`keep`",
+      "`fileinto`",
+      "`redirect`",
+      "`stop`"
+    ],
+    "answerIndex": 1,
+    "explanation": "`fileinto` stores the message in the mailbox folder given as its argument."
+  },
+  {
+    "id": "book-211-016",
+    "tool": "sieve",
+    "type": "multi",
+    "objective": "211.2",
+    "difficulty": "applied",
+    "prompt": "Which of the following are Sieve actions (as opposed to tests or control structures)?",
+    "choices": [
+      "`keep`",
+      "`redirect`",
+      "`anyof`",
+      "`stop`",
+      "`header`"
+    ],
+    "answerIndices": [
+      0,
+      1
+    ],
+    "explanation": "`keep` and `redirect` are actions. `stop` is a control command, while `anyof` and `header` are tests."
+  },
+  {
+    "id": "book-211-017",
+    "tool": "sieve",
+    "type": "fill",
+    "objective": "211.2",
+    "difficulty": "recall",
+    "prompt": "Which Sieve action forwards an incoming message on to another email address given as its argument?",
+    "answer": "redirect",
+    "explanation": "`redirect` sends the message to the address supplied as its argument."
+  },
+  {
+    "id": "book-211-018",
+    "tool": "dovecot",
+    "type": "fill",
+    "objective": "211.3",
+    "difficulty": "applied",
+    "prompt": "Which Dovecot setting, when set to `yes`, blocks cleartext password logins on unencrypted connections? (parameter name only)",
+    "answer": "disable_plaintext_auth",
+    "explanation": "`disable_plaintext_auth = yes` refuses plaintext authentication unless the connection is secured by SSL/TLS."
+  }
 ]

@@ -8,6 +8,6 @@
     "`samba`",
     "`winbindd`"
   ],
-  "answerIndex": 2,
-  "explanation": "The `samba` daemon (the Samba AD service) handles domain controller functionality and file server membership in an Active Directory domain."
+  "answerIndex": 3,
+  "explanation": "The `winbindd` daemon resolves users and groups from the Active Directory domain, so it handles a file server membership in an AD domain. The `samba` daemon is used when running Samba itself as an AD domain controller."
 }

@@ -4,10 +4,10 @@
   "prompt": "Alice, a system administrator, is configuring a Samba server and wants to ensure that Windows user `winuser1` gets mapped to Linux user `linuxuser1` when accessing the Samba shares. Which of the following configuration directives in the `smb.conf` file would Alice use to achieve this?",
   "choices": [
     "`map users = /etc/samba/user.map`",
-    "`user map = /etc/samba/user.map`",
+    "`username map = /etc/samba/user.map`",
     "`map file = /etc/samba/user.map`",
     "`passwd map = /etc/samba/user.map`"
   ],
   "answerIndex": 1,
-  "explanation": "The `user map` (username map) directive points to a file that maps Windows usernames to Linux usernames for Samba access."
+  "explanation": "The `username map` directive in `smb.conf` points to a file that maps Windows usernames to Linux usernames."
 }

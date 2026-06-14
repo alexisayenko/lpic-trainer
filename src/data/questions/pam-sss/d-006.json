@@ -1,7 +1,7 @@
 {
   "id": "pam-sss-d006",
   "tool": "pam-sss",
-  "prompt": "A system administrator discovers that the system is not referencing individual PAM configuration files in the `/etc/pam.d/` directory, even though they exist. Before escalating the issue, the administrator should first check which file that might override these individual configurations?",
+  "prompt": "A system administrator wants to review the legacy single-file PAM configuration that applies only when the per-service files in `/etc/pam.d/` are absent. Which file is that?",
   "choices": [
     "`/etc/pam.d/passwd`",
     "`/etc/security/pam_env.conf`",
@@ -9,5 +9,5 @@
     "`/etc/nsswitch.conf`"
   ],
   "answerIndex": 2,
-  "explanation": "The `/etc/pam.conf` file provides PAM configuration for all services and, when present, can override or take precedence over the individual per-service files in `/etc/pam.d/`."
+  "explanation": "`/etc/pam.conf` is the legacy global PAM configuration file. It is used only when `/etc/pam.d/` does not exist; when the `/etc/pam.d/` directory is present it takes precedence and `/etc/pam.conf` is ignored."
 }
