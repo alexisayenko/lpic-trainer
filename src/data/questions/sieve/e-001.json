@@ -9,5 +9,6 @@
     "`if size :under 5120 && address :is \"from\" \"*.trustedpartner.com\" { fileinto \"Large Attachments\"; }`"
   ],
   "answerIndex": 1,
-  "explanation": "The rule files messages from the trustedpartner.com domain larger than 5 MB (`size :over 5M`) into the \"Large Attachments\" folder with `fileinto`. A bare number in `size :over` is bytes, so the `M` suffix is needed for megabytes."
+  "explanation": "The rule files messages from the trustedpartner.com domain larger than 5 MB (`size :over 5M`) into the \"Large Attachments\" folder with `fileinto`. A bare number in `size :over` is bytes, so the `M` suffix is needed for megabytes.",
+  "origin": "linux-direct"
 }

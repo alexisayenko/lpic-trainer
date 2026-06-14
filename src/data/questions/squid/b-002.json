@@ -9,5 +9,6 @@
     "`acl blocked_domains port`"
   ],
   "answerIndex": 1,
-  "explanation": "An `acl` with the `dstdomain` type matches the destination domain of a request, allowing specific domains to be blocked when combined with an `http_access deny` rule."
+  "explanation": "An `acl` with the `dstdomain` type matches the destination domain of a request, allowing specific domains to be blocked when combined with an `http_access deny` rule.",
+  "origin": "linux-direct"
 }

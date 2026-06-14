@@ -9,5 +9,6 @@
     "`openssl rsa -in server.key -des3 -out server.key`"
   ],
   "answerIndex": 2,
-  "explanation": "The `-nodes` option (\"No DES\") tells `openssl` not to encrypt the generated private key, so it is created without a passphrase."
+  "explanation": "The `-nodes` option (\"No DES\") tells `openssl` not to encrypt the generated private key, so it is created without a passphrase.",
+  "origin": "linux-direct"
 }

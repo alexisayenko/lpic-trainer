@@ -9,5 +9,6 @@
     "`LogLevel`"
   ],
   "answerIndex": 1,
-  "explanation": "The `LogFormat` directive is used in Apache to define the format of the log entries. By adjusting the format and the variables used within, administrators can control the level of detail and information they capture in the log files."
+  "explanation": "The `LogFormat` directive is used in Apache to define the format of the log entries. By adjusting the format and the variables used within, administrators can control the level of detail and information they capture in the log files.",
+  "origin": "linux-direct"
 }

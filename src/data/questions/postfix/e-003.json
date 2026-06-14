@@ -9,5 +9,6 @@
     "`postfix reload`"
   ],
   "answerIndex": 0,
-  "explanation": "The command `postqueue -f` is used in Postfix to flush (process and deliver) mail that is queued up. It's useful in scenarios where mail has been stuck or delayed in the queue and needs to be processed immediately."
+  "explanation": "The command `postqueue -f` is used in Postfix to flush (process and deliver) mail that is queued up. It's useful in scenarios where mail has been stuck or delayed in the queue and needs to be processed immediately.",
+  "origin": "linux-direct"
 }

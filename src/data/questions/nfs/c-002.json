@@ -9,5 +9,6 @@
     "`/etc/nfs.conf`"
   ],
   "answerIndex": 1,
-  "explanation": "`/etc/fstab` defines filesystems and their mount options for the client, so NFS mount options placed there are applied every time the share is mounted."
+  "explanation": "`/etc/fstab` defines filesystems and their mount options for the client, so NFS mount options placed there are applied every time the share is mounted.",
+  "origin": "linux-direct"
 }

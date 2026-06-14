@@ -9,5 +9,6 @@
     "`/data 10.10.10.*(rw)`"
   ],
   "answerIndex": 0,
-  "explanation": "The `/etc/exports` file specifies the directories to be shared by the NFS server and their permissions. To restrict access to a specific subnet, you should include the subnet in CIDR notation followed by the desired permissions."
+  "explanation": "The `/etc/exports` file specifies the directories to be shared by the NFS server and their permissions. To restrict access to a specific subnet, you should include the subnet in CIDR notation followed by the desired permissions.",
+  "origin": "linux-direct"
 }

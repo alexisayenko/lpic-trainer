@@ -9,5 +9,6 @@
     "Courier is a webmail front end that depends on a separate mail server"
   ],
   "answerIndex": 0,
-  "explanation": "Courier is a unified mail server that integrates IMAP, POP3, and SMTP services under a single server, making it suitable when a single integrated solution is required."
+  "explanation": "Courier is a unified mail server that integrates IMAP, POP3, and SMTP services under a single server, making it suitable when a single integrated solution is required.",
+  "origin": "linux-direct"
 }

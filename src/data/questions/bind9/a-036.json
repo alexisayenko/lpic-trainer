@@ -9,5 +9,6 @@
     "A forward-only configuration can host more authoritative zones."
   ],
   "answerIndex": 0,
-  "explanation": "A forward-only server passes queries to a forwarder that likely already has answers cached, so it is often faster than performing full recursion itself."
+  "explanation": "A forward-only server passes queries to a forwarder that likely already has answers cached, so it is often faster than performing full recursion itself.",
+  "origin": "linux-direct"
 }

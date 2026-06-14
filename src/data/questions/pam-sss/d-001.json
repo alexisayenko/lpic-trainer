@@ -9,5 +9,6 @@
     "`pam_unix`"
   ],
   "answerIndex": 0,
-  "explanation": "The `pam_listfile` module allows the system to deny or allow services based on an arbitrary file. Elena can use this module to specify a file containing a list of users or groups that should be denied SSH access."
+  "explanation": "The `pam_listfile` module allows the system to deny or allow services based on an arbitrary file. Elena can use this module to specify a file containing a list of users or groups that should be denied SSH access.",
+  "origin": "linux-direct"
 }

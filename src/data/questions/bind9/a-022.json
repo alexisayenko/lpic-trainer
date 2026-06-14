@@ -9,5 +9,6 @@
     "The example.net zone has no responsible person defined."
   ],
   "answerIndex": 1,
-  "explanation": "In the SOA record the second field is the responsible person's email with the first dot replaced by @, so `fred.example.com.` means `fred@example.com`."
+  "explanation": "In the SOA record the second field is the responsible person's email with the first dot replaced by @, so `fred.example.com.` means `fred@example.com`.",
+  "origin": "linux-direct"
 }

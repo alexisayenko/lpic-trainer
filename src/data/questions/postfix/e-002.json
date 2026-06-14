@@ -9,5 +9,6 @@
     "`inet_interfaces`"
   ],
   "answerIndex": 2,
-  "explanation": "The `mynetworks` parameter in Postfix defines which IP address ranges are trusted by your server and are allowed to relay mail without authentication. Adjusting this to limit which networks can relay through your server will help reduce the risk of your server being abused for spam relay."
+  "explanation": "The `mynetworks` parameter in Postfix defines which IP address ranges are trusted by your server and are allowed to relay mail without authentication. Adjusting this to limit which networks can relay through your server will help reduce the risk of your server being abused for spam relay.",
+  "origin": "linux-direct"
 }

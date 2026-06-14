@@ -9,5 +9,6 @@
     "`if header :contains \"from\" \"@newsletter.com\" { discard; }`"
   ],
   "answerIndex": 0,
-  "explanation": "The `header :contains \"from\" \"@newsletter.com\"` test matches messages from the newsletter.com domain, and `fileinto \"Newsletters\"` moves them into the Newsletters folder."
+  "explanation": "The `header :contains \"from\" \"@newsletter.com\"` test matches messages from the newsletter.com domain, and `fileinto \"Newsletters\"` moves them into the Newsletters folder.",
+  "origin": "linux-direct"
 }

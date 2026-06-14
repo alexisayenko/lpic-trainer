@@ -9,5 +9,6 @@
     "`ServerAdmin`"
   ],
   "answerIndex": 1,
-  "explanation": "The `ServerTokens` directive determines if the server response header sent back to clients includes a description of the generic OS-type of the server, as well as information about compiled-in modules. By setting it to `Prod`, only the product name (Apache) is sent."
+  "explanation": "The `ServerTokens` directive determines if the server response header sent back to clients includes a description of the generic OS-type of the server, as well as information about compiled-in modules. By setting it to `Prod`, only the product name (Apache) is sent.",
+  "origin": "linux-direct"
 }

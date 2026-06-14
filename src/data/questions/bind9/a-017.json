@@ -9,5 +9,6 @@
     "`rndc-confgen`"
   ],
   "answerIndex": 1,
-  "explanation": "`dnssec-keygen` generates the cryptographic key pairs (KSK and ZSK) used to sign zones for DNSSEC."
+  "explanation": "`dnssec-keygen` generates the cryptographic key pairs (KSK and ZSK) used to sign zones for DNSSEC.",
+  "origin": "linux-direct"
 }

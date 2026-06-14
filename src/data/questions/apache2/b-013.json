@@ -9,5 +9,6 @@
     "`openssl verify`"
   ],
   "answerIndex": 0,
-  "explanation": "The `openssl x509` command parses and displays the contents of an X.509 certificate in a human-readable format."
+  "explanation": "The `openssl x509` command parses and displays the contents of an X.509 certificate in a human-readable format.",
+  "origin": "linux-direct"
 }

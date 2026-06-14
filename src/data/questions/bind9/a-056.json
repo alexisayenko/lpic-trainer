@@ -9,5 +9,6 @@
     "`masterfile-format compressed;`"
   ],
   "answerIndex": 1,
-  "explanation": "The `masterfile-format` directive determines the format of the master files. The `raw` format is essentially a binary format which is often faster for `named` to load on startup than the `text` format."
+  "explanation": "The `masterfile-format` directive determines the format of the master files. The `raw` format is essentially a binary format which is often faster for `named` to load on startup than the `text` format.",
+  "origin": "linux-direct"
 }

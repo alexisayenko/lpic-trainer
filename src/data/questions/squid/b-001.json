@@ -9,5 +9,6 @@
     "`acl network port`"
   ],
   "answerIndex": 1,
-  "explanation": "An `acl` with the `src` type matches client source IP addresses or networks; it defines which networks are permitted to use the Squid service when paired with an `http_access` rule."
+  "explanation": "An `acl` with the `src` type matches client source IP addresses or networks; it defines which networks are permitted to use the Squid service when paired with an `http_access` rule.",
+  "origin": "linux-direct"
 }

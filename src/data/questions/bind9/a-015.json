@@ -9,5 +9,6 @@
     "`logging`"
   ],
   "answerIndex": 1,
-  "explanation": "The \"`directory`\" statement that sets the working directory for zone files is defined in the `options` section of `named.conf`."
+  "explanation": "The \"`directory`\" statement that sets the working directory for zone files is defined in the `options` section of `named.conf`.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "Enable the `winbindd` daemon"
   ],
   "answerIndex": 0,
-  "explanation": "Setting `unix password sync = yes` in `smb.conf` causes Samba to update the UNIX password whenever the Samba password is changed via `smbpasswd`."
+  "explanation": "Setting `unix password sync = yes` in `smb.conf` causes Samba to update the UNIX password whenever the Samba password is changed via `smbpasswd`.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`/etc/sssd/`"
   ],
   "answerIndex": 0,
-  "explanation": "The `/etc/pam.d/` directory holds per-service PAM configuration files, including the file for SSH, which can be modified to integrate two-factor authentication."
+  "explanation": "The `/etc/pam.d/` directory holds per-service PAM configuration files, including the file for SSH, which can be modified to integrate two-factor authentication.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`showmount -e`"
   ],
   "answerIndex": 1,
-  "explanation": "The `exportfs` command is used to maintain the table of exported file systems. The `-a` option exports or unexports all directories, and the `-r` option reexports all directories, allowing the changes in `/etc/exports` to take effect without a full restart of the NFS server."
+  "explanation": "The `exportfs` command is used to maintain the table of exported file systems. The `-a` option exports or unexports all directories, and the `-r` option reexports all directories, allowing the changes in `/etc/exports` to take effect without a full restart of the NFS server.",
+  "origin": "linux-direct"
 }

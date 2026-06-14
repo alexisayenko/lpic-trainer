@@ -9,5 +9,6 @@
     "`verbose_auth = yes`"
   ],
   "answerIndex": 2,
-  "explanation": "The `auth_verbose = yes` directive in `dovecot.conf` enables verbose logging of authentication attempts, including failures, helping administrators monitor login problems."
+  "explanation": "The `auth_verbose = yes` directive in `dovecot.conf` enables verbose logging of authentication attempts, including failures, helping administrators monitor login problems.",
+  "origin": "linux-direct"
 }

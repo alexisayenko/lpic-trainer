@@ -9,5 +9,6 @@
     "`openssl genrsa -out server.key 2048 -days 365`"
   ],
   "answerIndex": 1,
-  "explanation": "The `-x509` option produces a self-signed certificate and `-days 365` sets its validity period to 365 days, while `-newkey` generates the accompanying private key."
+  "explanation": "The `-x509` option produces a self-signed certificate and `-days 365` sets its validity period to 365 days, while `-newkey` generates the accompanying private key.",
+  "origin": "linux-direct"
 }

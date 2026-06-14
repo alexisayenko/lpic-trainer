@@ -9,5 +9,6 @@
     "`htdigest`"
   ],
   "answerIndex": 1,
-  "explanation": "The `htpasswd` utility is provided by Apache to manage user files for basic authentication. This utility can be used to create and update the flat-files used to store usernames and their encrypted passwords, usually stored in a `.htpasswd` file."
+  "explanation": "The `htpasswd` utility is provided by Apache to manage user files for basic authentication. This utility can be used to create and update the flat-files used to store usernames and their encrypted passwords, usually stored in a `.htpasswd` file.",
+  "origin": "linux-direct"
 }

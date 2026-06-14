@@ -13,7 +13,7 @@
       "`relayhost`"
     ],
     "answerIndex": 1,
-    "explanation": "`mydestination` lists the domains for which Postfix accepts mail as the final delivery point."
+    "explanation": "`mydestination` lists the domains for which Postfix accepts mail as the final delivery point.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-002",
@@ -29,7 +29,7 @@
       "`virtual_alias_maps = mail.example.com`"
     ],
     "answerIndex": 2,
-    "explanation": "`relayhost` forwards outbound mail through the named host rather than delivering it directly over the internet."
+    "explanation": "`relayhost` forwards outbound mail through the named host rather than delivering it directly over the internet.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-003",
@@ -45,7 +45,7 @@
       "`smtp_helo_name`"
     ],
     "answerIndex": 0,
-    "explanation": "`myorigin` sets the domain shown as the origin on mail sent from the local machine."
+    "explanation": "`myorigin` sets the domain shown as the origin on mail sent from the local machine.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-004",
@@ -61,7 +61,7 @@
       "`aliases -r`"
     ],
     "answerIndex": 1,
-    "explanation": "`newaliases` regenerates the binary aliases database from the `/etc/aliases` text file."
+    "explanation": "`newaliases` regenerates the binary aliases database from the `/etc/aliases` text file.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-005",
@@ -77,7 +77,7 @@
       "`postfix check`"
     ],
     "answerIndex": 1,
-    "explanation": "`postconf -d` prints the compiled-in default settings regardless of what is in `main.cf`."
+    "explanation": "`postconf -d` prints the compiled-in default settings regardless of what is in `main.cf`.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-006",
@@ -93,7 +93,7 @@
       "Mail is rejected unless a client certificate is presented"
     ],
     "answerIndex": 2,
-    "explanation": "The `encrypt` level mandates STARTTLS, refusing to accept mail over unencrypted connections."
+    "explanation": "The `encrypt` level mandates STARTTLS, refusing to accept mail over unencrypted connections.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-007",
@@ -109,7 +109,7 @@
       "`canonical_maps`"
     ],
     "answerIndex": 0,
-    "explanation": "`virtual_alias_maps` references the table used to translate virtual addresses into their real recipients."
+    "explanation": "`virtual_alias_maps` references the table used to translate virtual addresses into their real recipients.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-008",
@@ -125,7 +125,7 @@
       "`postqueue -p`"
     ],
     "answerIndex": 2,
-    "explanation": "`postmap` creates the indexed hash file from the virtual mapping source file."
+    "explanation": "`postmap` creates the indexed hash file from the virtual mapping source file.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-009",
@@ -141,7 +141,7 @@
       "`newaliases -q`"
     ],
     "answerIndex": 0,
-    "explanation": "`mailq` (equivalent to `postqueue -p`) shows the contents of the deferred and active mail queue."
+    "explanation": "`mailq` (equivalent to `postqueue -p`) shows the contents of the deferred and active mail queue.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-010",
@@ -157,7 +157,7 @@
       "`vrfy_command = disabled`"
     ],
     "answerIndex": 1,
-    "explanation": "`disable_vrfy_command = yes` turns off VRFY so recipient addresses cannot be enumerated."
+    "explanation": "`disable_vrfy_command = yes` turns off VRFY so recipient addresses cannot be enumerated.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-011",
@@ -173,7 +173,7 @@
       "`/var/log/postfix`"
     ],
     "answerIndex": 2,
-    "explanation": "Postfix stores its queue files under `/var/spool/postfix`."
+    "explanation": "Postfix stores its queue files under `/var/spool/postfix`.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-012",
@@ -194,7 +194,7 @@
       1,
       2
     ],
-    "explanation": "`none`, `may`, and `encrypt` are recognized `smtpd_tls_security_level` settings, while `force` and `always` are not."
+    "explanation": "`none`, `may`, and `encrypt` are recognized `smtpd_tls_security_level` settings, while `force` and `always` are not.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-013",
@@ -214,7 +214,7 @@
       0,
       1
     ],
-    "explanation": "Reloading or restarting Postfix applies `main.cf` changes, whereas the other commands serve unrelated purposes."
+    "explanation": "Reloading or restarting Postfix applies `main.cf` changes, whereas the other commands serve unrelated purposes.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-014",
@@ -230,7 +230,7 @@
       "`keep`"
     ],
     "answerIndex": 1,
-    "explanation": "`discard` quietly drops the message with no bounce or notification."
+    "explanation": "`discard` quietly drops the message with no bounce or notification.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-015",
@@ -246,7 +246,7 @@
       "`stop`"
     ],
     "answerIndex": 1,
-    "explanation": "`fileinto` stores the message in the mailbox folder given as its argument."
+    "explanation": "`fileinto` stores the message in the mailbox folder given as its argument.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-016",
@@ -266,7 +266,7 @@
       0,
       1
     ],
-    "explanation": "`keep` and `redirect` are actions. `stop` is a control command, while `anyof` and `header` are tests."
+    "explanation": "`keep` and `redirect` are actions. `stop` is a control command, while `anyof` and `header` are tests.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-017",
@@ -276,7 +276,7 @@
     "difficulty": "recall",
     "prompt": "Which Sieve action forwards an incoming message on to another email address given as its argument?",
     "answer": "redirect",
-    "explanation": "`redirect` sends the message to the address supplied as its argument."
+    "explanation": "`redirect` sends the message to the address supplied as its argument.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-018",
@@ -286,6 +286,6 @@
     "difficulty": "applied",
     "prompt": "Which Dovecot setting, when set to `yes`, blocks cleartext password logins on unencrypted connections? (parameter name only)",
     "answer": "disable_plaintext_auth",
-    "explanation": "`disable_plaintext_auth = yes` refuses plaintext authentication unless the connection is secured by SSL/TLS."
+    "explanation": "`disable_plaintext_auth = yes` refuses plaintext authentication unless the connection is secured by SSL/TLS.","origin":"claude-lpic2book"
   }
 ]

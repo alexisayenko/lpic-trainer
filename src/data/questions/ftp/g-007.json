@@ -9,5 +9,6 @@
     "The data connection uses the same port as the control connection"
   ],
   "answerIndex": 1,
-  "explanation": "In active FTP, after the control connection is established (client initiates a connection to server port 21), the server initiates the data connection to the client from its port 20."
+  "explanation": "In active FTP, after the control connection is established (client initiates a connection to server port 21), the server initiates the data connection to the client from its port 20.",
+  "origin": "linux-direct"
 }

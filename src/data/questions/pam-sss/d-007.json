@@ -9,5 +9,6 @@
     "`/etc/pam.d/myapp`"
   ],
   "answerIndex": 1,
-  "explanation": "The `/etc/pam.conf` file provides PAM configuration for all services in a single centralized file, which can be used instead of the per-service files under `/etc/pam.d/`."
+  "explanation": "The `/etc/pam.conf` file provides PAM configuration for all services in a single centralized file, which can be used instead of the per-service files under `/etc/pam.d/`.",
+  "origin": "linux-direct"
 }

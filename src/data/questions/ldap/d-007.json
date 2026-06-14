@@ -9,5 +9,6 @@
     "`ldapadd johndoe.ldif -S`"
   ],
   "answerIndex": 0,
-  "explanation": "The `ldapadd` command is used to add entries to the LDAP directory. The `-f` option specifies the LDIF file that contains the LDAP entries to be added. The `-W` option prompts for the LDAP directory password, ensuring security."
+  "explanation": "The `ldapadd` command is used to add entries to the LDAP directory. The `-f` option specifies the LDIF file that contains the LDAP entries to be added. The `-W` option prompts for the LDAP directory password, ensuring security.",
+  "origin": "linux-direct"
 }

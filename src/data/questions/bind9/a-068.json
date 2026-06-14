@@ -9,5 +9,6 @@
     "`/var/named/named.conf`"
   ],
   "answerIndex": 1,
-  "explanation": "`/etc/named.conf` is the primary BIND configuration file on a Linux system."
+  "explanation": "`/etc/named.conf` is the primary BIND configuration file on a Linux system.",
+  "origin": "linux-direct"
 }

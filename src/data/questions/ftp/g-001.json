@@ -9,5 +9,6 @@
     "`pure-ftpd -j`"
   ],
   "answerIndex": 0,
-  "explanation": "The `-l unix` option for `pure-ftpd` enables Unix authentication, so only clients with a valid system user account can connect to the FTP server."
+  "explanation": "The `-l unix` option for `pure-ftpd` enables Unix authentication, so only clients with a valid system user account can connect to the FTP server.",
+  "origin": "linux-direct"
 }

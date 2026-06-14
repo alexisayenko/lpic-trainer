@@ -9,5 +9,6 @@
     "`ssh -V sshd`"
   ],
   "answerIndex": 2,
-  "explanation": "Running `sshd -V` prints the version of the installed OpenSSH server daemon."
+  "explanation": "Running `sshd -V` prints the version of the installed OpenSSH server daemon.",
+  "origin": "linux-direct"
 }

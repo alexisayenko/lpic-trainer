@@ -9,5 +9,6 @@
     "`/data (server1=ro)(server2=rw)`"
   ],
   "answerIndex": 1,
-  "explanation": "The `/etc/exports` file defines the directories that are exported to remote hosts and specifies options. The correct syntax for specifying multiple hosts with different permissions is by separating them with a comma and enclosing the permissions in parentheses."
+  "explanation": "The `/etc/exports` file defines the directories that are exported to remote hosts and specifies options. The correct syntax for specifying multiple hosts with different permissions is by separating them with a comma and enclosing the permissions in parentheses.",
+  "origin": "linux-direct"
 }

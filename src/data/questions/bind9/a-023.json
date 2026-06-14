@@ -9,5 +9,6 @@
     "A PTR record for `dns1.imbrium.luna.edu.`"
   ],
   "answerIndex": 1,
-  "explanation": "Delegating the imbrium subdomain to `dns1.imbrium.luna.edu.` requires a glue A record for that name server so resolvers can find its IP address."
+  "explanation": "Delegating the imbrium subdomain to `dns1.imbrium.luna.edu.` requires a glue A record for that name server so resolvers can find its IP address.",
+  "origin": "linux-direct"
 }

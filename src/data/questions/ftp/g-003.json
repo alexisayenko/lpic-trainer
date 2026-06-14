@@ -9,5 +9,6 @@
     "`hide_ids`"
   ],
   "answerIndex": 1,
-  "explanation": "Setting `chroot_local_user=YES` in the `vsftpd.conf` file ensures that local users will be 'chroot jailed' and confined to their home directories, preventing them from seeing files outside their home directory, including the files of other users."
+  "explanation": "Setting `chroot_local_user=YES` in the `vsftpd.conf` file ensures that local users will be 'chroot jailed' and confined to their home directories, preventing them from seeing files outside their home directory, including the files of other users.",
+  "origin": "linux-direct"
 }

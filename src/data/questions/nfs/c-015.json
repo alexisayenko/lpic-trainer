@@ -9,5 +9,6 @@
     "`exportfs` subtree checking"
   ],
   "answerIndex": 1,
-  "explanation": "NFSv4 supports Access Control Lists (ACLs), which allow finer-grained permission control than the traditional owner/group/other UNIX permission model."
+  "explanation": "NFSv4 supports Access Control Lists (ACLs), which allow finer-grained permission control than the traditional owner/group/other UNIX permission model.",
+  "origin": "linux-direct"
 }

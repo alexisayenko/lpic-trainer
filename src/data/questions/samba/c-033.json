@@ -9,5 +9,6 @@
     "`samba-tool domain demote`"
   ],
   "answerIndex": 1,
-  "explanation": "`samba-tool domain classicupgrade` migrates a classical NT4-style domain to a Samba Active Directory domain."
+  "explanation": "`samba-tool domain classicupgrade` migrates a classical NT4-style domain to a Samba Active Directory domain.",
+  "origin": "linux-direct"
 }

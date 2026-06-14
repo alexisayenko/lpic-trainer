@@ -9,5 +9,6 @@
     "`server.conf`"
   ],
   "answerIndex": 1,
-  "explanation": "The primary configuration file for the Apache 2.4 HTTP Server is `httpd.conf`. This file is the starting point for all configuration and is the file most administrators will edit to change global settings. \"`apache2.conf`\" might be present in some Debian-based distributions, but the default primary configuration file for Apache 2.4 is \"`httpd.conf`\"."
+  "explanation": "The primary configuration file for the Apache 2.4 HTTP Server is `httpd.conf`. This file is the starting point for all configuration and is the file most administrators will edit to change global settings. \"`apache2.conf`\" might be present in some Debian-based distributions, but the default primary configuration file for Apache 2.4 is \"`httpd.conf`\".",
+  "origin": "linux-direct"
 }

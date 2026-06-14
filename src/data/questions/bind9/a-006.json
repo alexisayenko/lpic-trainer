@@ -9,5 +9,6 @@
     "TSIG is configured only on the client resolver."
   ],
   "answerIndex": 2,
-  "explanation": "TSIG relies on time-stamped signatures, so servers using TSIG must have synchronized clocks for transaction signatures to validate."
+  "explanation": "TSIG relies on time-stamped signatures, so servers using TSIG must have synchronized clocks for transaction signatures to validate.",
+  "origin": "linux-direct"
 }

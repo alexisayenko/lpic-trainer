@@ -9,5 +9,6 @@
     "In the `allow-transfer` statement"
   ],
   "answerIndex": 1,
-  "explanation": "The `forwarders` statement lists upstream servers to which the internal server passes queries it cannot resolve locally."
+  "explanation": "The `forwarders` statement lists upstream servers to which the internal server passes queries it cannot resolve locally.",
+  "origin": "linux-direct"
 }

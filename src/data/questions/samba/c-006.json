@@ -9,5 +9,6 @@
     "`mount -t cifs //192.168.2.15 /mnt/projects/Projects`"
   ],
   "answerIndex": 1,
-  "explanation": "The CIFS mount syntax is `mount -t cifs //server/share /mountpoint`, so the UNC path comes before the local directory."
+  "explanation": "The CIFS mount syntax is `mount -t cifs //server/share /mountpoint`, so the UNC path comes before the local directory.",
+  "origin": "linux-direct"
 }

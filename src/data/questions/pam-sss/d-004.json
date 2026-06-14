@@ -9,5 +9,6 @@
     "`services`"
   ],
   "answerIndex": 2,
-  "explanation": "The `id_provider` directive ensures that the sssd daemon fetches user data and authentication from the specified source; setting it to `ldap` directs SSSD to use an LDAP server."
+  "explanation": "The `id_provider` directive ensures that the sssd daemon fetches user data and authentication from the specified source; setting it to `ldap` directs SSSD to use an LDAP server.",
+  "origin": "linux-direct"
 }

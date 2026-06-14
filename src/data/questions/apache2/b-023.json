@@ -9,5 +9,6 @@
     "`httpd_log`"
   ],
   "answerIndex": 1,
-  "explanation": "The `access_log` records all client requests served by Apache, including the requesting IP address, so it is the file to inspect for request counts from a given IP."
+  "explanation": "The `access_log` records all client requests served by Apache, including the requesting IP address, so it is the file to inspect for request counts from a given IP.",
+  "origin": "linux-direct"
 }

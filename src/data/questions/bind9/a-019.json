@@ -9,5 +9,6 @@
     "The `nobody` account shared with all other daemons"
   ],
   "answerIndex": 1,
-  "explanation": "BIND should run under a dedicated, unprivileged server-specific system account (such as the '`named`' user) so a compromise cannot escalate privileges."
+  "explanation": "BIND should run under a dedicated, unprivileged server-specific system account (such as the '`named`' user) so a compromise cannot escalate privileges.",
+  "origin": "linux-direct"
 }

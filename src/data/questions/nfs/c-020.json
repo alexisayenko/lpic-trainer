@@ -9,5 +9,6 @@
     "`/proc/mounts`"
   ],
   "answerIndex": 1,
-  "explanation": "`/etc/hosts.deny` is the TCP Wrappers file used to deny access to services for specific hosts or IP addresses."
+  "explanation": "`/etc/hosts.deny` is the TCP Wrappers file used to deny access to services for specific hosts or IP addresses.",
+  "origin": "linux-direct"
 }

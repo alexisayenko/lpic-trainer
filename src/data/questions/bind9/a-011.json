@@ -9,5 +9,6 @@
     "The server listens for queries only on `192.168.0.4`."
   ],
   "answerIndex": 1,
-  "explanation": "With forwarders set and \"`forward first`\", if the server cannot answer locally it forwards a recursive query to the listed forwarder `192.168.0.4`."
+  "explanation": "With forwarders set and \"`forward first`\", if the server cannot answer locally it forwards a recursive query to the listed forwarder `192.168.0.4`.",
+  "origin": "linux-direct"
 }

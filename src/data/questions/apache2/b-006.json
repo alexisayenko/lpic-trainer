@@ -9,5 +9,6 @@
     "`SSLCertificateFile` for the server certificate, `SSLCipherSuite` for the private key, `SSLCACertificateFile` for the intermediate CA"
   ],
   "answerIndex": 2,
-  "explanation": "In Apache version 2.4.8 and above, the best practice is to concatenate the server certificate and intermediate CA certificate into one file and then specify that file using the `SSLCertificateFile` directive."
+  "explanation": "In Apache version 2.4.8 and above, the best practice is to concatenate the server certificate and intermediate CA certificate into one file and then specify that file using the `SSLCertificateFile` directive.",
+  "origin": "linux-direct"
 }

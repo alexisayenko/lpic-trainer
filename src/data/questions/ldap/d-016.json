@@ -9,5 +9,6 @@
     "`ldapsearch -LLL -D \"(ou=Sales)\" mail`"
   ],
   "answerIndex": 1,
-  "explanation": "The `ldapsearch` command is used to search and retrieve directory entries from the LDAP server. The `-x` option stands for simple authentication and security. `-LLL` suppresses the printing of the LDIF version, comments, and search result reference. The search filter `(ou=Sales)` filters only those in the \"Sales\" department, and specifying `mail` at the end only retrieves the email attribute."
+  "explanation": "The `ldapsearch` command is used to search and retrieve directory entries from the LDAP server. The `-x` option stands for simple authentication and security. `-LLL` suppresses the printing of the LDIF version, comments, and search result reference. The search filter `(ou=Sales)` filters only those in the \"Sales\" department, and specifying `mail` at the end only retrieves the email attribute.",
+  "origin": "linux-direct"
 }

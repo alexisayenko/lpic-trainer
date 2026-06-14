@@ -9,5 +9,6 @@
     "`/var/lib/bind/`"
   ],
   "answerIndex": 1,
-  "explanation": "By default BIND stores its zone files under `/var/named/`."
+  "explanation": "By default BIND stores its zone files under `/var/named/`.",
+  "origin": "linux-direct"
 }

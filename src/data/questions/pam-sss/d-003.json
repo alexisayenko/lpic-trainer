@@ -9,5 +9,6 @@
     "`enumerate`"
   ],
   "answerIndex": 1,
-  "explanation": "The `cache_credentials` directive in `sssd.conf` caches user credentials for faster subsequent logins and allows authentication when the main source is temporarily unavailable."
+  "explanation": "The `cache_credentials` directive in `sssd.conf` caches user credentials for faster subsequent logins and allows authentication when the main source is temporarily unavailable.",
+  "origin": "linux-direct"
 }

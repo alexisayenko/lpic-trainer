@@ -9,5 +9,6 @@
     "Delegate authority for a subdomain."
   ],
   "answerIndex": 0,
-  "explanation": "A PTR record provides reverse DNS resolution, mapping an IP address back to a hostname."
+  "explanation": "A PTR record provides reverse DNS resolution, mapping an IP address back to a hostname.",
+  "origin": "linux-direct"
 }

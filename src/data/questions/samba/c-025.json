@@ -9,5 +9,6 @@
     "`mountd`"
   ],
   "answerIndex": 2,
-  "explanation": "`winbindd` handles domain membership and resolves users and groups from a Windows domain, enabling seamless authentication."
+  "explanation": "`winbindd` handles domain membership and resolves users and groups from a Windows domain, enabling seamless authentication.",
+  "origin": "linux-direct"
 }

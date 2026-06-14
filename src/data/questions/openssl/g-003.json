@@ -9,5 +9,6 @@
     "`openssl genrsa -des3 -out privateKey.key 2048`"
   ],
   "answerIndex": 1,
-  "explanation": "The `-x509` option makes `openssl req` output a self-signed certificate instead of a CSR, so a private key and a self-signed certificate are produced in a single command."
+  "explanation": "The `-x509` option makes `openssl req` output a self-signed certificate instead of a CSR, so a private key and a self-signed certificate are produced in a single command.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`Listen 2222`"
   ],
   "answerIndex": 2,
-  "explanation": "The `Port` directive in `/etc/ssh/sshd_config` specifies the port number on which the SSH daemon listens for connections."
+  "explanation": "The `Port` directive in `/etc/ssh/sshd_config` specifies the port number on which the SSH daemon listens for connections.",
+  "origin": "linux-direct"
 }

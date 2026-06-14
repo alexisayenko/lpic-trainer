@@ -9,5 +9,6 @@
     "`sshd-keygen -t rsa`"
   ],
   "answerIndex": 0,
-  "explanation": "`ssh-keygen -t rsa` generates a new RSA key pair, creating a private key and a matching `.pub` public key file."
+  "explanation": "`ssh-keygen -t rsa` generates a new RSA key pair, creating a private key and a matching `.pub` public key file.",
+  "origin": "linux-direct"
 }

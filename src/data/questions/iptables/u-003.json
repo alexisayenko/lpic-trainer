@@ -9,5 +9,6 @@
     "`ip6tables -A INPUT -p udp --sport 80 -s 2001:db8::1 -j ACCEPT`"
   ],
   "answerIndex": 2,
-  "explanation": "Incoming IPv6 traffic is allowed in the `INPUT` chain of `ip6tables`, matching the source address with `-s` and destination port 80, with the `ACCEPT` target."
+  "explanation": "Incoming IPv6 traffic is allowed in the `INPUT` chain of `ip6tables`, matching the source address with `-s` and destination port 80, with the `ACCEPT` target.",
+  "origin": "ken-adams"
 }

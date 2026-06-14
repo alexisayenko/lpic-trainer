@@ -9,5 +9,6 @@
     "`log file = /var/log/samba/%I.log`"
   ],
   "answerIndex": 1,
-  "explanation": "The `%m` substitution variable expands to the client's NetBIOS machine name, so `log file = /var/log/samba/%m.log` gives each machine its own log file."
+  "explanation": "The `%m` substitution variable expands to the client's NetBIOS machine name, so `log file = /var/log/samba/%m.log` gives each machine its own log file.",
+  "origin": "linux-direct"
 }

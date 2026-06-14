@@ -9,5 +9,6 @@
     "`/etc/dovecot/dovecot-version.conf`"
   ],
   "answerIndex": 2,
-  "explanation": "The primary configuration file for Dovecot is `/etc/dovecot/dovecot.conf`. It typically contains the version information at the beginning of the file, especially if it's an unaltered default file."
+  "explanation": "The primary configuration file for Dovecot is `/etc/dovecot/dovecot.conf`. It typically contains the version information at the beginning of the file, especially if it's an unaltered default file.",
+  "origin": "linux-direct"
 }

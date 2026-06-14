@@ -9,5 +9,6 @@
     "`mod_authz_host`"
   ],
   "answerIndex": 1,
-  "explanation": "The `mod_access_compat` module provides compatibility with the access control directives used in Apache 2.2, making it easier to upgrade configurations to Apache 2.4 without having to rewrite all access control configurations immediately."
+  "explanation": "The `mod_access_compat` module provides compatibility with the access control directives used in Apache 2.2, making it easier to upgrade configurations to Apache 2.4 without having to rewrite all access control configurations immediately.",
+  "origin": "linux-direct"
 }

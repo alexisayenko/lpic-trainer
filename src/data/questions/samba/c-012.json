@@ -9,5 +9,6 @@
     "Type the password interactively each time, which is mandatory"
   ],
   "answerIndex": 1,
-  "explanation": "Using `-o credentials=/path/to/credfile` keeps the username and password in a protected file rather than exposing them on the command line and in the process list."
+  "explanation": "Using `-o credentials=/path/to/credfile` keeps the username and password in a protected file rather than exposing them on the command line and in the process list.",
+  "origin": "linux-direct"
 }

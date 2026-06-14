@@ -9,5 +9,6 @@
     "The module must succeed for authentication to continue, but later modules are still evaluated"
   ],
   "answerIndex": 0,
-  "explanation": "The \"`sufficient`\" control flag means that if the module succeeds, the authentication process skips any subsequent modules and grants access; if it fails, the result is ignored and processing continues."
+  "explanation": "The \"`sufficient`\" control flag means that if the module succeeds, the authentication process skips any subsequent modules and grants access; if it fails, the result is ignored and processing continues.",
+  "origin": "linux-direct"
 }

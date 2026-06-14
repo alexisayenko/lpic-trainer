@@ -9,5 +9,6 @@
     "`.htusers`"
   ],
   "answerIndex": 1,
-  "explanation": "The `.htpasswd` file is used to store usernames and their encrypted passwords. This file is commonly used with the `Require` directive in the `.htaccess` file or the main Apache configuration file to define user-based access restrictions."
+  "explanation": "The `.htpasswd` file is used to store usernames and their encrypted passwords. This file is commonly used with the `Require` directive in the `.htaccess` file or the main Apache configuration file to define user-based access restrictions.",
+  "origin": "linux-direct"
 }

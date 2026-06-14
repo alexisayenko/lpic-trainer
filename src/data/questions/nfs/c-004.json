@@ -9,5 +9,6 @@
     "`showmount --no-headers`"
   ],
   "answerIndex": 1,
-  "explanation": "The `showmount` command is used to query the status of the NFS server. Using the `-a` option, the administrator can see a list of all clients that have mounted the server's exports, along with the directories they have mounted."
+  "explanation": "The `showmount` command is used to query the status of the NFS server. Using the `-a` option, the administrator can see a list of all clients that have mounted the server's exports, along with the directories they have mounted.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`AllowFrom`"
   ],
   "answerIndex": 2,
-  "explanation": "The `Bind` option restricts Pure-FTPd to listen on a specific IP address (and optionally port) instead of all interfaces."
+  "explanation": "The `Bind` option restricts Pure-FTPd to listen on a specific IP address (and optionally port) instead of all interfaces.",
+  "origin": "linux-direct"
 }

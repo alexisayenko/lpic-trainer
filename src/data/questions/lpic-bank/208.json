@@ -8,6 +8,7 @@
     "prompt": "Which filename is commonly used for per-directory Apache overrides when `AllowOverride` permits them?",
     "answer": ".htaccess",
     "explanation": "`.htaccess` is Apache's per-directory distributed configuration file.",
+    "origin": "gpt-deep-research",
     "source": "https://httpd.apache.org/docs/2.4/configuring.html"
   },
   {
@@ -20,6 +21,7 @@
     "choices": ["`AuthName`", "`AuthUserFile`", "`AuthGroupFile`", "`RequireUser`"],
     "answerIndex": 1,
     "explanation": "`AuthUserFile` points Apache Basic authentication at the password file created with `htpasswd`.",
+    "origin": "gpt-deep-research",
     "source": "https://httpd.apache.org/docs/2.4/howto/auth.html"
   },
   {
@@ -31,6 +33,7 @@
     "prompt": "Complete the `apachectl` subcommand that checks Apache configuration syntax without starting the server: `apachectl ____`",
     "answer": "configtest",
     "explanation": "`apachectl configtest` performs a syntax check of Apache configuration files.",
+    "origin": "gpt-deep-research",
     "source": "https://httpd.apache.org/docs/2.4/configuring.html"
   },
   {
@@ -43,6 +46,7 @@
     "choices": ["`MaxRequestWorkers`", "`ServerTokens`", "`DirectoryIndex`", "`TimeoutLimit`"],
     "answerIndex": 0,
     "explanation": "`MaxRequestWorkers` sets the limit on simultaneous requests Apache will serve.",
+    "origin": "gpt-deep-research",
     "source": "https://httpd.apache.org/docs/2.4/mod/mpm_common.html"
   },
   {
@@ -55,6 +59,7 @@
     "choices": ["`ServerName`", "`ServerAliasPath`", "`ListenName`", "`DocumentRoot`"],
     "answerIndex": 0,
     "explanation": "Apache uses `ServerName` and related virtual-host matching rules to select the correct vhost for a request hostname.",
+    "origin": "gpt-deep-research",
     "source": "https://httpd.apache.org/docs/2.4/"
   },
   {
@@ -67,6 +72,7 @@
     "choices": ["`SSLEngine`", "`SSLProtocol`", "`TLSEngine`", "`SSLStart`"],
     "answerIndex": 0,
     "explanation": "`mod_ssl` enables HTTPS processing in a vhost with `SSLEngine on`.",
+    "origin": "gpt-deep-research",
     "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
   },
   {
@@ -78,6 +84,7 @@
     "prompt": "Which Apache directive points to the server's private key file in an HTTPS virtual host?",
     "answer": "SSLCertificateKeyFile",
     "explanation": "`SSLCertificateKeyFile` identifies the private key file used by an HTTPS virtual host.",
+    "origin": "gpt-deep-research",
     "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
   },
   {
@@ -90,6 +97,7 @@
     "choices": ["`SSLProtocol`", "`ServerSignature`", "`SSLCipherSuite`", "`TraceEnable`"],
     "answerIndices": [0, 2],
     "explanation": "`SSLProtocol` controls allowed protocol versions and `SSLCipherSuite` controls allowed ciphers.",
+    "origin": "gpt-deep-research",
     "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
   },
   {
@@ -102,6 +110,7 @@
     "choices": ["SNI", "ALPN", "OCSP stapling", "HSTS"],
     "answerIndex": 0,
     "explanation": "Server Name Indication lets the client send the requested hostname during TLS setup so the server can choose the correct certificate.",
+    "origin": "gpt-deep-research",
     "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
   },
   {
@@ -113,6 +122,7 @@
     "prompt": "Which Squid directive evaluates access rules after ACLs are defined?",
     "answer": "http_access",
     "explanation": "Squid access decisions are made with `http_access` rules that reference named ACLs.",
+    "origin": "gpt-deep-research",
     "source": "https://www.squid-cache.org/Doc/config/acl/"
   },
   {
@@ -125,6 +135,7 @@
     "choices": ["`acl`", "`cache_peer`", "`http_port`", "`forwarded_for`"],
     "answerIndex": 0,
     "explanation": "Squid creates named ACLs with the `acl` directive, then reuses those names in access rules.",
+    "origin": "gpt-deep-research",
     "source": "https://www.squid-cache.org/Doc/config/acl/"
   },
   {
@@ -142,6 +153,7 @@
     ],
     "answerIndex": 0,
     "explanation": "Squid checks access-list rules in written order and stops at the first match.",
+    "origin": "gpt-deep-research",
     "source": "https://wiki.squid-cache.org/SquidFaq/SquidAcl"
   },
   {
@@ -154,6 +166,7 @@
     "choices": ["`proxy_pass`", "`rewrite_pass`", "`fastcgi_root`", "`upstream_pass`"],
     "answerIndex": 0,
     "explanation": "nginx acts as a reverse proxy by sending requests onward with `proxy_pass`.",
+    "origin": "gpt-deep-research",
     "source": "https://nginx.org/en/docs/beginners_guide.html"
   },
   {
@@ -165,6 +178,7 @@
     "prompt": "Complete the Nginx switch that tests configuration syntax: `nginx ____`",
     "answer": "-t",
     "explanation": "`nginx -t` checks configuration syntax before reload or restart.",
+    "origin": "gpt-deep-research",
     "source": "https://nginx.org/en/docs/beginners_guide.html"
   },
   {
@@ -177,6 +191,7 @@
     "choices": ["`server_name`", "`listen_name`", "`host_name`", "`name_server`"],
     "answerIndex": 0,
     "explanation": "Nginx chooses the matching virtual server primarily from the `server_name` value and request host.",
+    "origin": "gpt-deep-research",
     "source": "https://nginx.org/en/docs/beginners_guide.html"
   }
 ]

@@ -9,5 +9,6 @@
     "`rpcbind`"
   ],
   "answerIndex": 1,
-  "explanation": "`smbd` is the daemon that handles SMB/CIFS requests from clients and serves files and printers."
+  "explanation": "`smbd` is the daemon that handles SMB/CIFS requests from clients and serves files and printers.",
+  "origin": "linux-direct"
 }

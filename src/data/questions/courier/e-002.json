@@ -9,5 +9,6 @@
     "`/etc/courier/courierd`"
   ],
   "answerIndex": 1,
-  "explanation": "Courier provides an extensible authentication mechanism, and when using MySQL for authentication, the `/etc/courier/authmysqlrc` configuration file is used to define parameters related to the MySQL database, such as connection details, database name, table names, and queries."
+  "explanation": "Courier provides an extensible authentication mechanism, and when using MySQL for authentication, the `/etc/courier/authmysqlrc` configuration file is used to define parameters related to the MySQL database, such as connection details, database name, table names, and queries.",
+  "origin": "linux-direct"
 }

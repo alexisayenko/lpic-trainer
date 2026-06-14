@@ -9,5 +9,6 @@
     "Set `net.ipv4.ip_forward=1` with `sysctl -w` at each login"
   ],
   "answerIndex": 1,
-  "explanation": "Setting `net.ipv4.ip_forward` to `1` in `/etc/sysctl.conf` makes the kernel apply the parameter persistently at every boot."
+  "explanation": "Setting `net.ipv4.ip_forward` to `1` in `/etc/sysctl.conf` makes the kernel apply the parameter persistently at every boot.",
+  "origin": "linux-direct"
 }

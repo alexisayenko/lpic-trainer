@@ -9,5 +9,6 @@
     "`nmblookup`"
   ],
   "answerIndex": 1,
-  "explanation": "`smbstatus` reports on current Samba connections, including connected clients, open files, and locked files."
+  "explanation": "`smbstatus` reports on current Samba connections, including connected clients, open files, and locked files.",
+  "origin": "linux-direct"
 }

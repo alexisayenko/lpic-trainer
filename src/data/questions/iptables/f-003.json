@@ -9,5 +9,6 @@
     "`service iptables save`"
   ],
   "answerIndex": 1,
-  "explanation": "`iptables-save` dumps the current ruleset to stdout; redirecting it to `/etc/iptables/rules.v4` stores the rules where they are restored at boot on Debian-based systems."
+  "explanation": "`iptables-save` dumps the current ruleset to stdout; redirecting it to `/etc/iptables/rules.v4` stores the rules where they are restored at boot on Debian-based systems.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`security = server`"
   ],
   "answerIndex": 1,
-  "explanation": "The `security = user` mode in Samba requires users to provide a valid username and password to access the shared folders. Each user will be authenticated against the local password database or another specified backend."
+  "explanation": "The `security = user` mode in Samba requires users to provide a valid username and password to access the shared folders. Each user will be authenticated against the local password database or another specified backend.",
+  "origin": "linux-direct"
 }

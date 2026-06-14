@@ -9,5 +9,6 @@
     "`if header :contains \"from\" \"admin@example.com\" && address :count \"to\" 5 { ... }`"
   ],
   "answerIndex": 0,
-  "explanation": "The relational comparator `address :count \"gt\" :all \"to\" \"5\"` (RFC 5231) is true when the message was sent to more than 5 recipients; with the from-address check it matches mail from admin@example.com to over 5 recipients."
+  "explanation": "The relational comparator `address :count \"gt\" :all \"to\" \"5\"` (RFC 5231) is true when the message was sent to more than 5 recipients; with the from-address check it matches mail from admin@example.com to over 5 recipients.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`ldappasswd -x \"uid=msmith,ou=users,dc=corp,dc=net\"`"
   ],
   "answerIndex": 2,
-  "explanation": "The `ldappasswd` tool allows administrators to modify an LDAP user's password. By using the `-A` option, Mike will be prompted for the old password before he's allowed to set a new one, ensuring that only those who know the current password can change it."
+  "explanation": "The `ldappasswd` tool allows administrators to modify an LDAP user's password. By using the `-A` option, Mike will be prompted for the old password before he's allowed to set a new one, ensuring that only those who know the current password can change it.",
+  "origin": "linux-direct"
 }

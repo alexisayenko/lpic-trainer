@@ -9,5 +9,6 @@
     "`mod_ssl`"
   ],
   "answerIndex": 1,
-  "explanation": "`mod_auth_basic` provides HTTP Basic authentication, allowing access to a directory to be restricted to authenticated users."
+  "explanation": "`mod_auth_basic` provides HTTP Basic authentication, allowing access to a directory to be restricted to authenticated users.",
+  "origin": "linux-direct"
 }

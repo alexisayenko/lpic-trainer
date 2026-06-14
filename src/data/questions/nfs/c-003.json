@@ -9,5 +9,6 @@
     "`statd`"
   ],
   "answerIndex": 1,
-  "explanation": "The `mountd` server is responsible for managing mount requests from NFS clients. It checks the requested mount against the list specified in `/etc/exports` and grants or denies the mount based on this list."
+  "explanation": "The `mountd` server is responsible for managing mount requests from NFS clients. It checks the requested mount against the list specified in `/etc/exports` and grants or denies the mount based on this list.",
+  "origin": "linux-direct"
 }

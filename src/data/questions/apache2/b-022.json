@@ -9,5 +9,6 @@
     "`Allow from group`"
   ],
   "answerIndex": 1,
-  "explanation": "The `Require group` directive restricts access to a directory to users who belong to one of the named groups defined in the `AuthGroupFile`."
+  "explanation": "The `Require group` directive restricts access to a directory to users who belong to one of the named groups defined in the `AuthGroupFile`.",
+  "origin": "linux-direct"
 }

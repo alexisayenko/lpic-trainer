@@ -9,5 +9,6 @@
     "`Require /path/to/user.passwd` and `AuthGroupFile /path/to/group.passwd`"
   ],
   "answerIndex": 1,
-  "explanation": "`AuthUserFile` points Apache to the file of usernames and encrypted passwords, while `AuthGroupFile` points to the file mapping users to groups for group-based authentication."
+  "explanation": "`AuthUserFile` points Apache to the file of usernames and encrypted passwords, while `AuthGroupFile` points to the file mapping users to groups for group-based authentication.",
+  "origin": "linux-direct"
 }

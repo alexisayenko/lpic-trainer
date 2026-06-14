@@ -9,5 +9,6 @@
     "`net ads join`"
   ],
   "answerIndex": 1,
-  "explanation": "`net ads info` displays information about the Active Directory domain the server is a member of."
+  "explanation": "`net ads info` displays information about the Active Directory domain the server is a member of.",
+  "origin": "linux-direct"
 }

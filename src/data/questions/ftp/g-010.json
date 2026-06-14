@@ -9,5 +9,6 @@
     "`secure_chroot_dir=YES`"
   ],
   "answerIndex": 1,
-  "explanation": "Setting `chroot_local_user=YES` in `vsftpd.conf` places local users in a chroot jail confined to their home directories, preventing them from browsing files above their home directory."
+  "explanation": "Setting `chroot_local_user=YES` in `vsftpd.conf` places local users in a chroot jail confined to their home directories, preventing them from browsing files above their home directory.",
+  "origin": "linux-direct"
 }

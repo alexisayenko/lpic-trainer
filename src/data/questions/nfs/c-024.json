@@ -9,5 +9,6 @@
     "`exportfs`"
   ],
   "answerIndex": 1,
-  "explanation": "`nfsstat` displays statistics about NFS client and server activity, useful for verifying NFS server status and request handling."
+  "explanation": "`nfsstat` displays statistics about NFS client and server activity, useful for verifying NFS server status and request handling.",
+  "origin": "linux-direct"
 }

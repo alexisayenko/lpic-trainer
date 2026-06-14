@@ -9,5 +9,6 @@
     "`service named flush`"
   ],
   "answerIndex": 1,
-  "explanation": "Sending the HUP signal to named (`killall -HUP named`) causes it to reread its configuration and zone files; `rndc reload` achieves the same."
+  "explanation": "Sending the HUP signal to named (`killall -HUP named`) causes it to reread its configuration and zone files; `rndc reload` achieves the same.",
+  "origin": "linux-direct"
 }

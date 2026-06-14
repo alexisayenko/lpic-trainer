@@ -9,5 +9,6 @@
     "Compressing zone files for faster transfers."
   ],
   "answerIndex": 1,
-  "explanation": "DNSSEC adds cryptographic signatures to DNS data, providing authentication and integrity of DNS zones rather than encryption."
+  "explanation": "DNSSEC adds cryptographic signatures to DNS data, providing authentication and integrity of DNS zones rather than encryption.",
+  "origin": "linux-direct"
 }

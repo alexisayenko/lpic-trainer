@@ -9,5 +9,6 @@
     "`kill -s SIGUSR1 2798`"
   ],
   "answerIndex": 1,
-  "explanation": "Sending SIGHUP to the named process (`kill -s SIGHUP 2798`) makes BIND reread its configuration and zone files."
+  "explanation": "Sending SIGHUP to the named process (`kill -s SIGHUP 2798`) makes BIND reread its configuration and zone files.",
+  "origin": "linux-direct"
 }

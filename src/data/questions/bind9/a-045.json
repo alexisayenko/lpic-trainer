@@ -9,5 +9,6 @@
     "Run both servers in a chroot jail."
   ],
   "answerIndex": 1,
-  "explanation": "Transaction Signatures (TSIG) are a way to secure DNS updates and zone transfers. TSIG allows for transaction-level authentication using shared secret keys. By using TSIG, Michelle can ensure that zone transfers between her primary and secondary DNS servers are authenticated and secure."
+  "explanation": "Transaction Signatures (TSIG) are a way to secure DNS updates and zone transfers. TSIG allows for transaction-level authentication using shared secret keys. By using TSIG, Michelle can ensure that zone transfers between her primary and secondary DNS servers are authenticated and secure.",
+  "origin": "linux-direct"
 }

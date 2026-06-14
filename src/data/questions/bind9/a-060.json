@@ -9,5 +9,6 @@
     "`forward`"
   ],
   "answerIndex": 1,
-  "explanation": "A secondary server hosts a zone with \"`type slave;`\", which obtains its data from a master via zone transfer."
+  "explanation": "A secondary server hosts a zone with \"`type slave;`\", which obtains its data from a master via zone transfer.",
+  "origin": "linux-direct"
 }

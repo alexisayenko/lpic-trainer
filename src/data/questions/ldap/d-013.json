@@ -9,5 +9,6 @@
     "Running `ldapsearch` with the `-W` option"
   ],
   "answerIndex": 1,
-  "explanation": "The `ldappasswd` utility is the recommended tool for changing the password of an LDAP entry, as it handles password hashing and updates securely."
+  "explanation": "The `ldappasswd` utility is the recommended tool for changing the password of an LDAP entry, as it handles password hashing and updates securely.",
+  "origin": "linux-direct"
 }

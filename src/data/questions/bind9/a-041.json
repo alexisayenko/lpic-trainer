@@ -9,5 +9,6 @@
     "`masters { 192.168.0.10; };`"
   ],
   "answerIndex": 1,
-  "explanation": "The `allow-transfer { 192.168.0.10; };` statement restricts zone transfers so only that secondary server may request them."
+  "explanation": "The `allow-transfer { 192.168.0.10; };` statement restricts zone transfers so only that secondary server may request them.",
+  "origin": "linux-direct"
 }

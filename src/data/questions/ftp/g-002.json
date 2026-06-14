@@ -9,5 +9,6 @@
     "`pure-ftpd -L`"
   ],
   "answerIndex": 1,
-  "explanation": "The `-c` option (`--maxclientsnumber`) sets the maximum number of simultaneous clients. `-C` (`--maxclientsperip`) limits connections per IP, not the total."
+  "explanation": "The `-c` option (`--maxclientsnumber`) sets the maximum number of simultaneous clients. `-C` (`--maxclientsperip`) limits connections per IP, not the total.",
+  "origin": "linux-direct"
 }

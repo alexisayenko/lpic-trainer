@@ -9,5 +9,6 @@
     "`dnssec-verify`"
   ],
   "answerIndex": 1,
-  "explanation": "`named-checkzone` checks the syntax and integrity of a zone file without loading it into the running server."
+  "explanation": "`named-checkzone` checks the syntax and integrity of a zone file without loading it into the running server.",
+  "origin": "linux-direct"
 }

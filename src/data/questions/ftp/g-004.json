@@ -9,5 +9,6 @@
     "`RequireValidShell`"
   ],
   "answerIndex": 2,
-  "explanation": "By setting `DefaultRoot ~` in the `proftpd.conf` file, every user will be confined to their home directory upon login. The tilde (`~`) is a shorthand for the user's home directory."
+  "explanation": "By setting `DefaultRoot ~` in the `proftpd.conf` file, every user will be confined to their home directory upon login. The tilde (`~`) is a shorthand for the user's home directory.",
+  "origin": "linux-direct"
 }

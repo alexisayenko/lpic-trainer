@@ -9,5 +9,6 @@
     "Zone keys cannot be used to sign records."
   ],
   "answerIndex": 1,
-  "explanation": "`dnssec-keygen` produces zone key files containing both a public and a private key component used for signing the zone."
+  "explanation": "`dnssec-keygen` produces zone key files containing both a public and a private key component used for signing the zone.",
+  "origin": "linux-direct"
 }

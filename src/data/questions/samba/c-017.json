@@ -9,5 +9,6 @@
     "`interfaces = 192.168.1.177 only`"
   ],
   "answerIndex": 1,
-  "explanation": "The original `host allow` only permitted the single host 192.168.1.100 from the wired subnet; allowing the whole `192.168.1.0/255.255.255.0` subnet lets the 192.168.1.177 workstation connect."
+  "explanation": "The original `host allow` only permitted the single host 192.168.1.100 from the wired subnet; allowing the whole `192.168.1.0/255.255.255.0` subnet lets the 192.168.1.177 workstation connect.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`$DEFAULT 7200`"
   ],
   "answerIndex": 1,
-  "explanation": "The `$TTL` directive sets the default Time-to-Live for records in the zone; \"`$TTL 7200`\" sets it to 7200 seconds."
+  "explanation": "The `$TTL` directive sets the default Time-to-Live for records in the zone; \"`$TTL 7200`\" sets it to 7200 seconds.",
+  "origin": "linux-direct"
 }

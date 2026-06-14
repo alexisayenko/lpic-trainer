@@ -9,5 +9,6 @@
     "Replace the MX record with a CNAME to fred."
   ],
   "answerIndex": 1,
-  "explanation": "Adding an A record for `mailhost` pointing at fred's IP address makes the existing MX target resolve to fred without changing the MX record."
+  "explanation": "Adding an A record for `mailhost` pointing at fred's IP address makes the existing MX target resolve to fred without changing the MX record.",
+  "origin": "linux-direct"
 }

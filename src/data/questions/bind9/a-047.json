@@ -9,5 +9,6 @@
     "The `rndc.key` file."
   ],
   "answerIndex": 1,
-  "explanation": "`dnssec-signzone` takes the zone's database (zone) file as input and produces a signed version containing the DNSSEC resource records."
+  "explanation": "`dnssec-signzone` takes the zone's database (zone) file as input and produces a signed version containing the DNSSEC resource records.",
+  "origin": "linux-direct"
 }

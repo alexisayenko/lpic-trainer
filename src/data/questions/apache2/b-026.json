@@ -9,5 +9,6 @@
     "`.htauth`"
   ],
   "answerIndex": 1,
-  "explanation": "The `.htaccess` file is commonly used in Apache to specify directory-level configurations. When setting up basic authentication, directives like `AuthType`, `AuthName`, `AuthUserFile` (which points to the `.htpasswd` file), and `Require` are typically placed in this file."
+  "explanation": "The `.htaccess` file is commonly used in Apache to specify directory-level configurations. When setting up basic authentication, directives like `AuthType`, `AuthName`, `AuthUserFile` (which points to the `.htpasswd` file), and `Require` are typically placed in this file.",
+  "origin": "linux-direct"
 }

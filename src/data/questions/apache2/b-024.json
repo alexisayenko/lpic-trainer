@@ -9,5 +9,6 @@
     "`SetHandler default-handler`"
   ],
   "answerIndex": 1,
-  "explanation": "`AddType application/x-httpd-php .php` associates the `.php` extension with the PHP handler so Apache passes the files to the PHP module instead of serving them as plain text."
+  "explanation": "`AddType application/x-httpd-php .php` associates the `.php` extension with the PHP handler so Apache passes the files to the PHP module instead of serving them as plain text.",
+  "origin": "linux-direct"
 }

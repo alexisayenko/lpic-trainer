@@ -9,5 +9,6 @@
     "Split-horizon DNS."
   ],
   "answerIndex": 1,
-  "explanation": "DANE (DNS-based Authentication of Named Entities) allows administrators to specify which TLS certificate is valid for a specific service in their domain by using the DNS system, protected by DNSSEC. This ensures clients connect using only valid and specified certificates."
+  "explanation": "DANE (DNS-based Authentication of Named Entities) allows administrators to specify which TLS certificate is valid for a specific service in their domain by using the DNS system, protected by DNSSEC. This ensures clients connect using only valid and specified certificates.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`security = share`"
   ],
   "answerIndex": 2,
-  "explanation": "`security = ads` makes the Samba server join an Active Directory domain and authenticate users against the AD domain controller."
+  "explanation": "`security = ads` makes the Samba server join an Active Directory domain and authenticate users against the AD domain controller.",
+  "origin": "linux-direct"
 }

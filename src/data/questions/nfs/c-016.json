@@ -9,5 +9,6 @@
     "`noac`"
   ],
   "answerIndex": 1,
-  "explanation": "The `hard` and `soft` options determine the client's behavior when the server is not responding. When using the `hard` option, the NFS client will continue to retry the request (such as read or write) indefinitely until the server responds. This helps in cases where there might be temporary network or server issues. On the other hand, the `soft` option will cause the client to fail after a set number of retries."
+  "explanation": "The `hard` and `soft` options determine the client's behavior when the server is not responding. When using the `hard` option, the NFS client will continue to retry the request (such as read or write) indefinitely until the server responds. This helps in cases where there might be temporary network or server issues. On the other hand, the `soft` option will cause the client to fail after a set number of retries.",
+  "origin": "linux-direct"
 }

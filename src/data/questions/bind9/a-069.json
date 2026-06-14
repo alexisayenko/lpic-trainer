@@ -9,5 +9,6 @@
     "In `/etc/named.conf` using the \"`file`\" directive"
   ],
   "answerIndex": 1,
-  "explanation": "The working directory for `named` is set with the \"`directory`\" directive in the options block of `/etc/named.conf`."
+  "explanation": "The working directory for `named` is set with the \"`directory`\" directive in the options block of `/etc/named.conf`.",
+  "origin": "linux-direct"
 }

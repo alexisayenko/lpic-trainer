@@ -9,5 +9,6 @@
     "`/etc/hosts.deny`"
   ],
   "answerIndex": 2,
-  "explanation": "`/proc/mounts` is a kernel-maintained file listing all currently mounted filesystems, including active NFS mounts."
+  "explanation": "`/proc/mounts` is a kernel-maintained file listing all currently mounted filesystems, including active NFS mounts.",
+  "origin": "linux-direct"
 }

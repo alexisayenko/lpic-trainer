@@ -9,5 +9,6 @@
     "`host -6 example.com`"
   ],
   "answerIndex": 1,
-  "explanation": "The AAAA record type holds IPv6 addresses; `host -t AAAA` queries the DNS server for the domain's IPv6 address."
+  "explanation": "The AAAA record type holds IPv6 addresses; `host -t AAAA` queries the DNS server for the domain's IPv6 address.",
+  "origin": "ken-adams"
 }

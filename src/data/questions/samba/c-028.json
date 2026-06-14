@@ -9,5 +9,6 @@
     "`net rpc shutdown`"
   ],
   "answerIndex": 0,
-  "explanation": "`net rpc share` lists the shares currently available on the Samba server."
+  "explanation": "`net rpc share` lists the shares currently available on the Samba server.",
+  "origin": "linux-direct"
 }

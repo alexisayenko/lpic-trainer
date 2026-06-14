@@ -9,5 +9,6 @@
     "`smtp_host_lookup`"
   ],
   "answerIndex": 1,
-  "explanation": "The `smtp_fallback_relay` parameter defines an alternate relay host that Postfix uses when delivery through the primary relay or destination fails."
+  "explanation": "The `smtp_fallback_relay` parameter defines an alternate relay host that Postfix uses when delivery through the primary relay or destination fails.",
+  "origin": "linux-direct"
 }

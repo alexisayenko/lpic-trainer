@@ -9,5 +9,6 @@
     "`TraceEnable`"
   ],
   "answerIndex": 2,
-  "explanation": "The `ServerTokens` directive controls how much information about the server is included in the HTTP response header; setting it to `Prod` sends only the product name."
+  "explanation": "The `ServerTokens` directive controls how much information about the server is included in the HTTP response header; setting it to `Prod` sends only the product name.",
+  "origin": "linux-direct"
 }

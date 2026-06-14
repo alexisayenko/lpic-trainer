@@ -9,5 +9,6 @@
     "It restricts queries to clients in `/home/sam/bind`."
   ],
   "answerIndex": 1,
-  "explanation": "The `directory` option sets the working directory; relative zone-file paths in `named.conf` are resolved from `/home/sam/bind`."
+  "explanation": "The `directory` option sets the working directory; relative zone-file paths in `named.conf` are resolved from `/home/sam/bind`.",
+  "origin": "linux-direct"
 }

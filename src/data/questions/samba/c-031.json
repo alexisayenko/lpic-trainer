@@ -9,5 +9,6 @@
     "`smbclient -c file-server`"
   ],
   "answerIndex": 1,
-  "explanation": "The `-L` option of `smbclient` lists the shares available on the specified server."
+  "explanation": "The `-L` option of `smbclient` lists the shares available on the specified server.",
+  "origin": "linux-direct"
 }

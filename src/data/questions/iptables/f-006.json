@@ -9,5 +9,6 @@
     "`iptables -A OUTPUT -p udp --dport 443 -d 10.0.0.5 -j REJECT`"
   ],
   "answerIndex": 0,
-  "explanation": "A rule on the `OUTPUT` chain matching TCP destination port 443 to destination 10.0.0.5 with a `DROP` target blocks outgoing HTTPS traffic to that host."
+  "explanation": "A rule on the `OUTPUT` chain matching TCP destination port 443 to destination 10.0.0.5 with a `DROP` target blocks outgoing HTTPS traffic to that host.",
+  "origin": "linux-direct"
 }

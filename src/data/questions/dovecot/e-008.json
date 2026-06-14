@@ -9,5 +9,6 @@
     "`ssl_min_protocol = SSLv3`"
   ],
   "answerIndex": 0,
-  "explanation": "The `ssl_protocols` directive controls which SSL/TLS protocols Dovecot accepts; prefixing a protocol with `!` disables it, so `ssl_protocols = !SSLv3` disables SSLv3."
+  "explanation": "The `ssl_protocols` directive controls which SSL/TLS protocols Dovecot accepts; prefixing a protocol with `!` disables it, so `ssl_protocols = !SSLv3` disables SSLv3.",
+  "origin": "linux-direct"
 }

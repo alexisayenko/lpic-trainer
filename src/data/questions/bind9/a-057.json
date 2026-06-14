@@ -9,5 +9,6 @@
     "It is a mail exchange record for the www host."
   ],
   "answerIndex": 1,
-  "explanation": "An A record is an address record; \"`www IN A 192.168.1.5`\" maps the hostname `www` to the IPv4 address 192.168.1.5."
+  "explanation": "An A record is an address record; \"`www IN A 192.168.1.5`\" maps the hostname `www` to the IPv4 address 192.168.1.5.",
+  "origin": "linux-direct"
 }

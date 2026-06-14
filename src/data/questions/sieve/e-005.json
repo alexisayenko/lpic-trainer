@@ -9,5 +9,6 @@
     "`* ^From:.*Alert && * ^Subject:.*@example.com`"
   ],
   "answerIndex": 1,
-  "explanation": "Option B correctly sets up two conditions. The first condition `^Subject:.*Alert` checks if the email subject contains the word \"Alert\", while the second condition `^From:.*@example.com` checks if the email is from the domain \"example.com\". The `&&` is used to ensure both conditions are met."
+  "explanation": "Option B correctly sets up two conditions. The first condition `^Subject:.*Alert` checks if the email subject contains the word \"Alert\", while the second condition `^From:.*@example.com` checks if the email is from the domain \"example.com\". The `&&` is used to ensure both conditions are met.",
+  "origin": "linux-direct"
 }

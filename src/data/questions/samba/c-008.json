@@ -9,5 +9,6 @@
     "It forces clients to use Kerberos authentication exclusively"
   ],
   "answerIndex": 0,
-  "explanation": "The `encrypt passwords = yes` setting tells Samba to negotiate encrypted password authentication so passwords are not sent in clear text over the network."
+  "explanation": "The `encrypt passwords = yes` setting tells Samba to negotiate encrypted password authentication so passwords are not sent in clear text over the network.",
+  "origin": "linux-direct"
 }

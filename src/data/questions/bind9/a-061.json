@@ -9,5 +9,6 @@
     "`mailto:admin@example.net`"
   ],
   "answerIndex": 1,
-  "explanation": "In the SOA record the responsible person's email is written with the @ replaced by a dot, so `admin@example.net` becomes `admin.example.net`."
+  "explanation": "In the SOA record the responsible person's email is written with the @ replaced by a dot, so `admin@example.net` becomes `admin.example.net`.",
+  "origin": "linux-direct"
 }

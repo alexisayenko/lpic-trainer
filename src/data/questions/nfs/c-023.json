@@ -9,5 +9,6 @@
     "`subtree_check`"
   ],
   "answerIndex": 2,
-  "explanation": "`no_root_squash` disables the default root-squashing, so the root user on a client keeps root privileges on the exported share instead of being mapped to the anonymous user."
+  "explanation": "`no_root_squash` disables the default root-squashing, so the root user on a client keeps root privileges on the exported share instead of being mapped to the anonymous user.",
+  "origin": "linux-direct"
 }

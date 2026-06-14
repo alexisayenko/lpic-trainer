@@ -9,5 +9,6 @@
     "`nslookup -type=A example.org`"
   ],
   "answerIndex": 1,
-  "explanation": "The `nslookup` command is used to query DNS servers for domain name or IP address mappings. The `-type` option is used to specify the type of DNS record one wishes to query for."
+  "explanation": "The `nslookup` command is used to query DNS servers for domain name or IP address mappings. The `-type` option is used to specify the type of DNS record one wishes to query for.",
+  "origin": "ken-adams"
 }

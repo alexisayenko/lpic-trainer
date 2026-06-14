@@ -9,5 +9,6 @@
     "`net rpc password`"
   ],
   "answerIndex": 1,
-  "explanation": "`smbpasswd` is used to change a user's SMB password in the Samba password database."
+  "explanation": "`smbpasswd` is used to change a user's SMB password in the Samba password database.",
+  "origin": "linux-direct"
 }

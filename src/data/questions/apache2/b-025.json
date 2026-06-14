@@ -9,5 +9,6 @@
     "`WebRoot`"
   ],
   "answerIndex": 1,
-  "explanation": "The `DocumentRoot` directive sets the directory from which Apache serves files for that virtual host."
+  "explanation": "The `DocumentRoot` directive sets the directory from which Apache serves files for that virtual host.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "Because it logs every DHCP packet received"
   ],
   "answerIndex": 0,
-  "explanation": "The `dhcpd.leases` file is append-only, accumulating historic lease entries until it is periodically rewritten, which can make it larger than expected."
+  "explanation": "The `dhcpd.leases` file is append-only, accumulating historic lease entries until it is periodically rewritten, which can make it larger than expected.",
+  "origin": "ken-adams"
 }

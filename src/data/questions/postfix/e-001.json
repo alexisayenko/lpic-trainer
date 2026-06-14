@@ -9,5 +9,6 @@
     "`/etc/aliases`"
   ],
   "answerIndex": 1,
-  "explanation": "The primary configuration file for Postfix is `/etc/postfix/main.cf`. This file contains most of the global settings for Postfix, including relay control parameters such as `mynetworks` and `relay_domains`."
+  "explanation": "The primary configuration file for Postfix is `/etc/postfix/main.cf`. This file contains most of the global settings for Postfix, including relay control parameters such as `mynetworks` and `relay_domains`.",
+  "origin": "linux-direct"
 }

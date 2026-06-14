@@ -9,5 +9,6 @@
     "`ldappasswd`"
   ],
   "answerIndex": 0,
-  "explanation": "The `ldapsearch` utility is used to search and retrieve directory entries from an LDAP directory."
+  "explanation": "The `ldapsearch` utility is used to search and retrieve directory entries from an LDAP directory.",
+  "origin": "linux-direct"
 }

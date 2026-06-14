@@ -9,5 +9,6 @@
     "uses DNSSEC signing."
   ],
   "answerIndex": 1,
-  "explanation": "The `in-addr.arpa` domain is used for reverse DNS resolution, mapping IPv4 addresses back to hostnames."
+  "explanation": "The `in-addr.arpa` domain is used for reverse DNS resolution, mapping IPv4 addresses back to hostnames.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`dig myorg.com db.myorg`"
   ],
   "answerIndex": 1,
-  "explanation": "The `named-checkzone` utility checks the syntax and integrity of a zone file. The correct syntax is `named-checkzone [zone-name] [zonefile]`."
+  "explanation": "The `named-checkzone` utility checks the syntax and integrity of a zone file. The correct syntax is `named-checkzone [zone-name] [zonefile]`.",
+  "origin": "linux-direct"
 }

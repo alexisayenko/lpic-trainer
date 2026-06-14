@@ -9,5 +9,6 @@
     "`if header :contains \"Subject\" \"free offer\" { discard; }`"
   ],
   "answerIndex": 0,
-  "explanation": "The `header :contains \"Subject\" \"free offer\"` test matches messages whose subject contains the phrase, and `fileinto \"Promotions\"` moves them to the Promotions mailbox."
+  "explanation": "The `header :contains \"Subject\" \"free offer\"` test matches messages whose subject contains the phrase, and `fileinto \"Promotions\"` moves them to the Promotions mailbox.",
+  "origin": "linux-direct"
 }

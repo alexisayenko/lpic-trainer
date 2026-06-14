@@ -9,5 +9,6 @@
     "The server can only host a single zone."
   ],
   "answerIndex": 1,
-  "explanation": "Split DNS (split-horizon) presents different views of a zone to internal versus external clients, so resolution can differ by the requester's location."
+  "explanation": "Split DNS (split-horizon) presents different views of a zone to internal versus external clients, so resolution can differ by the requester's location.",
+  "origin": "linux-direct"
 }

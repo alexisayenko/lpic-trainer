@@ -9,5 +9,6 @@
     "`* ! ^From:boss@example.org ! ^Subject:.*FYI`"
   ],
   "answerIndex": 1,
-  "explanation": "Option A correctly sets up the desired conditions. The first condition `^From:boss@example.org` checks for emails from Peter's boss, while the second condition prefixed with `!` ensures the subject does not contain \"FYI\"."
+  "explanation": "Option A correctly sets up the desired conditions. The first condition `^From:boss@example.org` checks for emails from Peter's boss, while the second condition prefixed with `!` ensures the subject does not contain \"FYI\".",
+  "origin": "linux-direct"
 }

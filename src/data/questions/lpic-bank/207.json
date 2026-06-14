@@ -8,6 +8,7 @@
     "prompt": "Which BIND utility checks `named.conf` syntax before you reload named?",
     "answer": "named-checkconf",
     "explanation": "`named-checkconf` validates `named.conf` syntax before the daemon loads the configuration.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/latest/chapter4.html"
   },
   {
@@ -20,6 +21,7 @@
     "choices": ["`directory`", "`rootdir`", "`working-directory`", "`basepath`"],
     "answerIndex": 0,
     "explanation": "The `directory` statement defines the base directory for relative paths in BIND configuration.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/latest/chapter3.html"
   },
   {
@@ -32,6 +34,7 @@
     "choices": ["`rndc reload`", "`kill -9 $(pidof named)`", "`host -r localhost`", "`dig @localhost reload`"],
     "answerIndex": 0,
     "explanation": "`rndc` is the runtime control utility for named, and `reload` requests the server to reload changed data.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/v9.20.7/"
   },
   {
@@ -44,6 +47,7 @@
     "choices": ["`logging`", "`controls`", "`statistics`", "`server`"],
     "answerIndex": 0,
     "explanation": "BIND logging is configured in the `logging` clause with `channel` and `category` statements.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/latest/chapter3.html"
   },
   {
@@ -56,6 +60,7 @@
     "choices": ["`PTR`", "`CNAME`", "`MX`", "`SRV`"],
     "answerIndex": 0,
     "explanation": "Reverse DNS zones map addresses to names with `PTR` records.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/latest/chapter3.html"
   },
   {
@@ -67,6 +72,7 @@
     "prompt": "Which BIND utility validates a zone file's syntax and consistency?",
     "answer": "named-checkzone",
     "explanation": "`named-checkzone` checks a zone file for syntax and consistency problems.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/latest/chapter4.html"
   },
   {
@@ -79,6 +85,7 @@
     "choices": ["`serial`", "`refresh`", "`retry`", "`expire`"],
     "answerIndex": 0,
     "explanation": "The SOA `serial` is the version counter secondaries compare when deciding whether to transfer a newer zone.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/latest/chapter3.html"
   },
   {
@@ -96,6 +103,7 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Delegation uses `NS` records, and in-bailiwick child nameservers also need glue address records in the parent zone.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/latest/chapter3.html"
   },
   {
@@ -113,6 +121,7 @@
     ],
     "answerIndex": 0,
     "explanation": "A chroot jail restricts the process view of the filesystem and reduces the impact of compromise.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/latest/"
   },
   {
@@ -124,6 +133,7 @@
     "prompt": "Which BIND utility signs a zone after keys exist?",
     "answer": "dnssec-signzone",
     "explanation": "`dnssec-signzone` signs a zone using DNSSEC keys produced for that zone.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/latest/dnssec-guide.html"
   },
   {
@@ -136,6 +146,7 @@
     "choices": ["TSIG", "DANE", "CAA", "SPF"],
     "answerIndex": 0,
     "explanation": "TSIG provides transaction signatures for authenticating DNS message exchange between servers.",
+    "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/stable/chapter6.html"
   }
 ]

@@ -9,5 +9,6 @@
     "`if size :over 5000000 { fileinto \"@bulkmailers.com\"; }`"
   ],
   "answerIndex": 0,
-  "explanation": "The script first checks that the message is from the bulkmailers.com domain, then nests a `size :over 5000000` test so that only messages larger than 5MB are discarded."
+  "explanation": "The script first checks that the message is from the bulkmailers.com domain, then nests a `size :over 5000000` test so that only messages larger than 5MB are discarded.",
+  "origin": "linux-direct"
 }

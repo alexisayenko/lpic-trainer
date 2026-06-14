@@ -9,5 +9,6 @@
     "SSL disables the Host header, so all virtual hosts share one certificate."
   ],
   "answerIndex": 0,
-  "explanation": "Traditional SSL, before the introduction of SNI, necessitated the use of a distinct IP address for each SSL certificate. As a result, it wasn't compatible with name-based virtual hosting, which allows multiple domain names to be hosted on a single IP address."
+  "explanation": "Traditional SSL, before the introduction of SNI, necessitated the use of a distinct IP address for each SSL certificate. As a result, it wasn't compatible with name-based virtual hosting, which allows multiple domain names to be hosted on a single IP address.",
+  "origin": "linux-direct"
 }

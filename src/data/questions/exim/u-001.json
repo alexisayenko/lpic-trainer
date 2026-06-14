@@ -9,5 +9,6 @@
     "Qmail"
   ],
   "answerIndex": 1,
-  "explanation": "Exim is known for its flexibility and is often cited as easier to configure than Sendmail, especially for complex mail setups. Exim can be tailored to various needs and is renowned for its extensive feature set."
+  "explanation": "Exim is known for its flexibility and is often cited as easier to configure than Sendmail, especially for complex mail setups. Exim can be tailored to various needs and is renowned for its extensive feature set.",
+  "origin": "ken-adams"
 }

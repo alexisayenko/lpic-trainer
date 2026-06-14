@@ -9,5 +9,6 @@
     "`/etc/named.log`"
   ],
   "answerIndex": 1,
-  "explanation": "By default BIND logs to syslog, which on most systems writes to `/var/log/messages`, the place to look for name resolution errors."
+  "explanation": "By default BIND logs to syslog, which on most systems writes to `/var/log/messages`, the place to look for name resolution errors.",
+  "origin": "linux-direct"
 }

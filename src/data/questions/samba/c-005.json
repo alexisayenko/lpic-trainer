@@ -9,5 +9,6 @@
     "`/var/log/cifs/`"
   ],
   "answerIndex": 1,
-  "explanation": "On a default Samba installation, log files are stored in the `/var/log/samba/` directory."
+  "explanation": "On a default Samba installation, log files are stored in the `/var/log/samba/` directory.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`/etc/apache2/apache2.conf`"
   ],
   "answerIndex": 0,
-  "explanation": "On Debian-based systems the default SSL virtual host is shipped as `/etc/apache2/sites-available/default-ssl.conf`, enabled with `a2ensite`."
+  "explanation": "On Debian-based systems the default SSL virtual host is shipped as `/etc/apache2/sites-available/default-ssl.conf`, enabled with `a2ensite`.",
+  "origin": "linux-direct"
 }

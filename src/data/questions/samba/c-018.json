@@ -9,5 +9,6 @@
     "`winbindd`"
   ],
   "answerIndex": 3,
-  "explanation": "The `winbindd` daemon resolves users and groups from the Active Directory domain, so it handles a file server membership in an AD domain. The `samba` daemon is used when running Samba itself as an AD domain controller."
+  "explanation": "The `winbindd` daemon resolves users and groups from the Active Directory domain, so it handles a file server membership in an AD domain. The `samba` daemon is used when running Samba itself as an AD domain controller.",
+  "origin": "linux-direct"
 }

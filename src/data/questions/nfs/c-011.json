@@ -9,5 +9,6 @@
     "TCP Wrappers only consults `/etc/hosts.deny` when `/etc/hosts.allow` is empty."
   ],
   "answerIndex": 1,
-  "explanation": "TCP Wrappers checks `/etc/hosts.allow` first and `/etc/hosts.deny` second; the first matching rule determines the outcome, and access is granted if no rule matches."
+  "explanation": "TCP Wrappers checks `/etc/hosts.allow` first and `/etc/hosts.deny` second; the first matching rule determines the outcome, and access is granted if no rule matches.",
+  "origin": "linux-direct"
 }

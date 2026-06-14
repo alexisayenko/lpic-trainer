@@ -9,5 +9,6 @@
     "`ldappasswd -x \"uid=jdoe,ou=people,dc=example,dc=com\"`"
   ],
   "answerIndex": 2,
-  "explanation": "The `ldappasswd` command is utilized to change the password of an LDAP entry. The `-S` option prompts the user to enter the new password interactively twice (once for the new password and once for confirmation), which aligns with Lucy's requirement."
+  "explanation": "The `ldappasswd` command is utilized to change the password of an LDAP entry. The `-S` option prompts the user to enter the new password interactively twice (once for the new password and once for confirmation), which aligns with Lucy's requirement.",
+  "origin": "linux-direct"
 }

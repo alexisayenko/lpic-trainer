@@ -9,5 +9,6 @@
     "`tls_key_file`"
   ],
   "answerIndex": 1,
-  "explanation": "The `ssl_key` parameter in Dovecot specifies the path to the private key used for TLS communication; `ssl_cert` specifies the corresponding certificate."
+  "explanation": "The `ssl_key` parameter in Dovecot specifies the path to the private key used for TLS communication; `ssl_cert` specifies the corresponding certificate.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`linus IN CNAME 192.168.17.198`"
   ],
   "answerIndex": 0,
-  "explanation": "An A record \"`linus IN A 192.168.17.198`\" in the example.com zone maps the host linus to that IPv4 address."
+  "explanation": "An A record \"`linus IN A 192.168.17.198`\" in the example.com zone maps the host linus to that IPv4 address.",
+  "origin": "linux-direct"
 }

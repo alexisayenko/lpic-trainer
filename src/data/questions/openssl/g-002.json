@@ -9,5 +9,6 @@
     "`openssl x509 -req -days 365 -in server.csr -out server.crt`"
   ],
   "answerIndex": 2,
-  "explanation": "The command `openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr` serves multiple purposes. It generates a new private key using the RSA algorithm and a corresponding Certificate Signing Request (CSR). The `-nodes` option ensures the private key is not encrypted with a passphrase."
+  "explanation": "The command `openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr` serves multiple purposes. It generates a new private key using the RSA algorithm and a corresponding Certificate Signing Request (CSR). The `-nodes` option ensures the private key is not encrypted with a passphrase.",
+  "origin": "linux-direct"
 }

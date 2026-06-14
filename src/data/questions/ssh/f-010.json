@@ -9,5 +9,6 @@
     "`AcceptUsers`"
   ],
   "answerIndex": 2,
-  "explanation": "The `AllowUsers` directive in the `/etc/ssh/sshd_config` file provides a whitespace-separated list of user names that are allowed to log in. Any user not in this list will be denied SSH access. By setting this directive and omitting \"alison\" from the list, Mike can prevent her from accessing the system via SSH."
+  "explanation": "The `AllowUsers` directive in the `/etc/ssh/sshd_config` file provides a whitespace-separated list of user names that are allowed to log in. Any user not in this list will be denied SSH access. By setting this directive and omitting \"alison\" from the list, Mike can prevent her from accessing the system via SSH.",
+  "origin": "linux-direct"
 }

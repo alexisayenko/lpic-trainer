@@ -9,5 +9,6 @@
     "`deny-transfer {...;};`"
   ],
   "answerIndex": 1,
-  "explanation": "The `blackhole` statement lists addresses from which the server will neither accept queries nor send replies."
+  "explanation": "The `blackhole` statement lists addresses from which the server will neither accept queries nor send replies.",
+  "origin": "linux-direct"
 }

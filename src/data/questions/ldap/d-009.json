@@ -9,5 +9,6 @@
     "`ldapdelete -x -b \"cn=admin,dc=example,dc=com\" -S`"
   ],
   "answerIndex": 1,
-  "explanation": "To delete an entry using `ldapdelete`, you need to bind to the LDAP directory using the bind DN and then specify the DN of the entry you want to delete. The `-x` option ensures the use of simple authentication. The `-W` option prompts David for the password associated with the bind DN."
+  "explanation": "To delete an entry using `ldapdelete`, you need to bind to the LDAP directory using the bind DN and then specify the DN of the entry you want to delete. The `-x` option ensures the use of simple authentication. The `-W` option prompts David for the password associated with the bind DN.",
+  "origin": "linux-direct"
 }

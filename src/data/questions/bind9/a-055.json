@@ -9,5 +9,6 @@
     "The directive needs an absolute path argument."
   ],
   "answerIndex": 1,
-  "explanation": "The `masterfile-format` directive specifies the format in which master files are written by BIND. Valid values are `text` or `raw`. There isn't a value named `compressed`."
+  "explanation": "The `masterfile-format` directive specifies the format in which master files are written by BIND. Valid values are `text` or `raw`. There isn't a value named `compressed`.",
+  "origin": "linux-direct"
 }

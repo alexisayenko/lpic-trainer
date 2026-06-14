@@ -9,5 +9,6 @@
     "`/etc/hosts.deny`"
   ],
   "answerIndex": 1,
-  "explanation": "The `/etc/ssh/sshd_config` is the OpenSSH server configuration file. By editing this file and adding a directive such as `DenyUsers johndoe`, Tom can deny SSH access to the user \"johndoe\"."
+  "explanation": "The `/etc/ssh/sshd_config` is the OpenSSH server configuration file. By editing this file and adding a directive such as `DenyUsers johndoe`, Tom can deny SSH access to the user \"johndoe\".",
+  "origin": "linux-direct"
 }

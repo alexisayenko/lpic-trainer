@@ -9,5 +9,6 @@
     "`ssh user@server -p id_newkey`"
   ],
   "answerIndex": 0,
-  "explanation": "The `-i` option tells the `ssh` client which identity (private key) file to use for public-key authentication."
+  "explanation": "The `-i` option tells the `ssh` client which identity (private key) file to use for public-key authentication.",
+  "origin": "linux-direct"
 }

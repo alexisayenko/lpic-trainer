@@ -9,5 +9,6 @@
     "It forces the server to use forwarders for every query."
   ],
   "answerIndex": 1,
-  "explanation": "The `recursion no;` directive means the DNS server will only provide answers for zones for which it is authoritative and will not perform recursive queries on behalf of clients."
+  "explanation": "The `recursion no;` directive means the DNS server will only provide answers for zones for which it is authoritative and will not perform recursive queries on behalf of clients.",
+  "origin": "linux-direct"
 }

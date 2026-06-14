@@ -9,5 +9,6 @@
     "`ssh_known_hosts`"
   ],
   "answerIndex": 1,
-  "explanation": "`ssh_host_rsa_key` contains the server's private RSA host key; the matching public key is stored in `ssh_host_rsa_key.pub`."
+  "explanation": "`ssh_host_rsa_key` contains the server's private RSA host key; the matching public key is stored in `ssh_host_rsa_key.pub`.",
+  "origin": "linux-direct"
 }

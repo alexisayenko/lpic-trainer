@@ -9,5 +9,6 @@
     "`dh`"
   ],
   "answerIndex": 2,
-  "explanation": "The `ca` directive in the OpenVPN configuration file specifies the Certificate Authority (CA) certificate file used to verify peer certificates."
+  "explanation": "The `ca` directive in the OpenVPN configuration file specifies the Certificate Authority (CA) certificate file used to verify peer certificates.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "The server allows zone transfers only to localhost."
   ],
   "answerIndex": 1,
-  "explanation": "Binding only to the loopback addresses 127.0.0.1 and ::1 means the server is reachable only from the local machine."
+  "explanation": "Binding only to the loopback addresses 127.0.0.1 and ::1 means the server is reachable only from the local machine.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`ldapremove -x \"uid=alice,ou=users,dc=example,dc=com\"`"
   ],
   "answerIndex": 0,
-  "explanation": "The `ldapdelete` command is used to remove entries from the LDAP directory. The DN of the entry to be deleted is provided as an argument. The `-x` option specifies the use of simple authentication instead of SASL."
+  "explanation": "The `ldapdelete` command is used to remove entries from the LDAP directory. The DN of the entry to be deleted is provided as an argument. The `-x` option specifies the use of simple authentication instead of SASL.",
+  "origin": "linux-direct"
 }

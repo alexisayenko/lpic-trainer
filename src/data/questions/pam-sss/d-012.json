@@ -9,5 +9,6 @@
     "`users: files ldap`"
   ],
   "answerIndex": 0,
-  "explanation": "The line `passwd: files ldap` in `nsswitch.conf` directs the system to retrieve user information from local files first and then from an LDAP server."
+  "explanation": "The line `passwd: files ldap` in `nsswitch.conf` directs the system to retrieve user information from local files first and then from an LDAP server.",
+  "origin": "linux-direct"
 }

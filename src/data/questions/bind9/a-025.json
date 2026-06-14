@@ -9,5 +9,6 @@
     "It tells the DNS server to transfer the 192.168.1 zone to a slave."
   ],
   "answerIndex": 1,
-  "explanation": "This block defines a reverse master zone; named uses the `named.192.168.1` file to resolve IP addresses in 192.168.1.0/24 back to hostnames."
+  "explanation": "This block defines a reverse master zone; named uses the `named.192.168.1` file to resolve IP addresses in 192.168.1.0/24 back to hostnames.",
+  "origin": "linux-direct"
 }

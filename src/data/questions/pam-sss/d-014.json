@@ -9,5 +9,6 @@
     "`[pam]` section and `id_provider` directive"
   ],
   "answerIndex": 1,
-  "explanation": "The LDAP server's URI is typically defined in the `sssd.conf` file under a domain section (e.g., `[domain/default]`) with the directive `ldap_uri`. It's crucial to ensure this URI points to the correct LDAP server and that the server is reachable for authentication to work."
+  "explanation": "The LDAP server's URI is typically defined in the `sssd.conf` file under a domain section (e.g., `[domain/default]`) with the directive `ldap_uri`. It's crucial to ensure this URI points to the correct LDAP server and that the server is reachable for authentication to work.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`if header :contains \"to\" \"noreply@mydomain.com\" { fileinto \"Rejected\"; }`"
   ],
   "answerIndex": 2,
-  "explanation": "The rule tests the \"to\" address against noreply@mydomain.com and uses the `reject` action to refuse the message and notify the sender."
+  "explanation": "The rule tests the \"to\" address against noreply@mydomain.com and uses the `reject` action to refuse the message and notify the sender.",
+  "origin": "linux-direct"
 }

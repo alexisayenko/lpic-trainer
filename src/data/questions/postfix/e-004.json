@@ -9,5 +9,6 @@
     "`access`"
   ],
   "answerIndex": 2,
-  "explanation": "`main.cf` is the primary Postfix configuration file and holds the `mynetworks` parameter, which defines the networks allowed to relay mail through the server."
+  "explanation": "`main.cf` is the primary Postfix configuration file and holds the `mynetworks` parameter, which defines the networks allowed to relay mail through the server.",
+  "origin": "linux-direct"
 }

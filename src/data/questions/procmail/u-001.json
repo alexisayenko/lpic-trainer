@@ -9,5 +9,6 @@
     "`/etc/procmail/user.rc`"
   ],
   "answerIndex": 1,
-  "explanation": "The per-user procmail configuration is stored in the `.procmailrc` file in the user's home directory."
+  "explanation": "The per-user procmail configuration is stored in the `.procmailrc` file in the user's home directory.",
+  "origin": "ken-adams"
 }

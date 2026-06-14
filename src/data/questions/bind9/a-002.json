@@ -9,5 +9,6 @@
     "`dns.conf`"
   ],
   "answerIndex": 0,
-  "explanation": "`named.conf` (commonly `/etc/named.conf` or `/etc/bind/named.conf`) is the primary configuration file for the BIND name server daemon."
+  "explanation": "`named.conf` (commonly `/etc/named.conf` or `/etc/bind/named.conf`) is the primary configuration file for the BIND name server daemon.",
+  "origin": "linux-direct"
 }

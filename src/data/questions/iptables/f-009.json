@@ -9,5 +9,6 @@
     "`iptables -F INPUT`"
   ],
   "answerIndex": 1,
-  "explanation": "`iptables -P INPUT DROP` sets the default policy of the `INPUT` chain to `DROP`, blocking all incoming traffic while leaving the `OUTPUT` chain unaffected."
+  "explanation": "`iptables -P INPUT DROP` sets the default policy of the `INPUT` chain to `DROP`, blocking all incoming traffic while leaving the `OUTPUT` chain unaffected.",
+  "origin": "linux-direct"
 }

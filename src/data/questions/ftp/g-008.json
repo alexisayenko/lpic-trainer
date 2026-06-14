@@ -9,5 +9,6 @@
     "`write_enable=YES`"
   ],
   "answerIndex": 1,
-  "explanation": "The `anon_upload_enable=YES` directive in `vsftpd.conf` allows anonymous users to upload files; uploaded files are owned by the configured upload user and are not world-readable, so they can be reviewed before being made public."
+  "explanation": "The `anon_upload_enable=YES` directive in `vsftpd.conf` allows anonymous users to upload files; uploaded files are owned by the configured upload user and are not world-readable, so they can be reviewed before being made public.",
+  "origin": "linux-direct"
 }

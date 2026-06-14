@@ -9,5 +9,6 @@
     "`type forward;`"
   ],
   "answerIndex": 2,
-  "explanation": "A zone with \"`type hint;`\" references the root name servers (`named.ca`) and is used by a caching-only server to bootstrap recursion."
+  "explanation": "A zone with \"`type hint;`\" references the root name servers (`named.ca`) and is used by a caching-only server to bootstrap recursion.",
+  "origin": "linux-direct"
 }

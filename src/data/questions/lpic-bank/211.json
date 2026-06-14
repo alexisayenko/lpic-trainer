@@ -8,6 +8,7 @@
     "prompt": "Which sendmail-compatible command rebuilds the aliases database from `/etc/aliases`?",
     "answer": "newaliases",
     "explanation": "`newaliases` rebuilds the local alias database used by Postfix local delivery.",
+    "origin": "gpt-deep-research",
     "source": "https://www.postfix.org/aliases.5.html"
   },
   {
@@ -20,6 +21,7 @@
     "choices": ["`relayhost`", "`mydestination`", "`alias_maps`", "`home_mailbox`"],
     "answerIndex": 0,
     "explanation": "`relayhost` forces Postfix to send remote mail through the specified next-hop relay.",
+    "origin": "gpt-deep-research",
     "source": "https://www.postfix.org/BASIC_CONFIGURATION_README.html"
   },
   {
@@ -32,6 +34,7 @@
     "choices": ["`mydestination`", "`mynetworks`", "`inet_interfaces`", "`virtual_alias_maps`"],
     "answerIndex": 0,
     "explanation": "`mydestination` defines the domains for which Postfix is the final destination for local delivery.",
+    "origin": "gpt-deep-research",
     "source": "https://www.postfix.org/BASIC_CONFIGURATION_README.html"
   },
   {
@@ -44,6 +47,7 @@
     "choices": ["`virtual_alias_maps`", "`relay_recipient_maps`", "`canonical_maps`", "`fallback_transport`"],
     "answerIndex": 0,
     "explanation": "`virtual_alias_maps` controls address rewriting for virtual alias recipients and domains.",
+    "origin": "gpt-deep-research",
     "source": "https://www.postfix.org/VIRTUAL_README.html"
   },
   {
@@ -56,6 +60,7 @@
     "choices": ["`smtpd_tls_security_level`", "`smtp_tls_security_level`", "`smtpd_sasl_auth_enable`", "`smtp_use_tls`"],
     "answerIndex": 0,
     "explanation": "`smtpd_tls_security_level` is the server-side setting for inbound SMTP TLS policy in Postfix.",
+    "origin": "gpt-deep-research",
     "source": "https://www.postfix.org/postfix-tls.1.html"
   },
   {
@@ -68,6 +73,7 @@
     "choices": ["`fileinto`", "`keep`", "`stop`", "`vacation`"],
     "answerIndex": 0,
     "explanation": "The Sieve `fileinto` action delivers mail to a specified mailbox rather than leaving it in the default mailbox.",
+    "origin": "gpt-deep-research",
     "source": "https://www.rfc-editor.org/rfc/rfc5228"
   },
   {
@@ -80,6 +86,7 @@
     "choices": ["`fileinto`", "`keep`", "`redirect`", "`stop`"],
     "answerIndices": [0, 2],
     "explanation": "`fileinto` stores mail in another mailbox and `redirect` forwards mail to another recipient.",
+    "origin": "gpt-deep-research",
     "source": "https://www.rfc-editor.org/rfc/rfc5228"
   },
   {
@@ -92,6 +99,7 @@
     "choices": ["`vacation`", "`reject`", "`imapflags`", "`copy`"],
     "answerIndex": 0,
     "explanation": "Dovecot Pigeonhole implements the `vacation` extension for automatic reply behavior.",
+    "origin": "gpt-deep-research",
     "source": "https://doc.dovecot.org/main/howto/sieve.html"
   },
   {
@@ -104,6 +112,7 @@
     "choices": ["`ssl = yes`", "`tls = on`", "`protocols = imaps pop3s`", "`disable_plaintext_auth = no`"],
     "answerIndex": 0,
     "explanation": "Dovecot requires `ssl = yes` globally before it will listen on the SSL service ports.",
+    "origin": "gpt-deep-research",
     "source": "https://doc.dovecot.org/2.3/configuration_manual/dovecot_ssl_configuration/"
   },
   {
@@ -115,6 +124,7 @@
     "prompt": "Which Dovecot command prints the current nondefault configuration?",
     "answer": "doveconf -n",
     "explanation": "`doveconf` is used to inspect effective Dovecot configuration, and `-n` shows nondefault settings.",
+    "origin": "gpt-deep-research",
     "source": "https://doc.dovecot.org/main/core/man/doveconf.1.html"
   },
   {
@@ -127,6 +137,7 @@
     "choices": ["`disable_plaintext_auth = yes`", "`auth_plain = off`", "`ssl = required`", "`imap_plaintext = no`"],
     "answerIndex": 0,
     "explanation": "Dovecot recommends `disable_plaintext_auth = yes` to prevent password exposure on unencrypted sessions.",
+    "origin": "gpt-deep-research",
     "source": "https://doc.dovecot.org/2.3/configuration_manual/quick_configuration/"
   }
 ]

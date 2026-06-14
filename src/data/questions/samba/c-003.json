@@ -9,5 +9,6 @@
     "`winbindd.log`"
   ],
   "answerIndex": 2,
-  "explanation": "Logs for the nmbd daemon are written to `nmbd.log` (also seen as `log.nmbd`) within `/var/log/samba/`."
+  "explanation": "Logs for the nmbd daemon are written to `nmbd.log` (also seen as `log.nmbd`) within `/var/log/samba/`.",
+  "origin": "linux-direct"
 }

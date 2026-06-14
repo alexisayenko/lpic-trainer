@@ -9,5 +9,6 @@
     "iptables logging is written through the loopback interface"
   ],
   "answerIndex": 0,
-  "explanation": "Many applications rely on the loopback (localhost) interface for inter-process communication, so traffic to localhost must be explicitly allowed when the default `INPUT` policy is `DROP`."
+  "explanation": "Many applications rely on the loopback (localhost) interface for inter-process communication, so traffic to localhost must be explicitly allowed when the default `INPUT` policy is `DROP`.",
+  "origin": "linux-direct"
 }

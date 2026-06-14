@@ -9,5 +9,6 @@
     "`ldapsearch -b \"dc=example,dc=com\" -f \"uid=john\" all`"
   ],
   "answerIndex": 1,
-  "explanation": "The `ldapsearch` utility is utilized to search entries in the LDAP directory. The `-x` flag indicates the use of simple authentication. The `-b` flag specifies the base DN from where the search should begin. The filter `\"uid=john\"` retrieves entries that match the user \"john\". With no attributes listed, all attributes are returned."
+  "explanation": "The `ldapsearch` utility is utilized to search entries in the LDAP directory. The `-x` flag indicates the use of simple authentication. The `-b` flag specifies the base DN from where the search should begin. The filter `\"uid=john\"` retrieves entries that match the user \"john\". With no attributes listed, all attributes are returned.",
+  "origin": "linux-direct"
 }

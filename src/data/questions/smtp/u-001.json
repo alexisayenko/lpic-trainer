@@ -9,5 +9,6 @@
     "`DATA`"
   ],
   "answerIndex": 2,
-  "explanation": "The `MAIL FROM` command in an SMTP session specifies the email address of the message sender."
+  "explanation": "The `MAIL FROM` command in an SMTP session specifies the email address of the message sender.",
+  "origin": "ken-adams"
 }

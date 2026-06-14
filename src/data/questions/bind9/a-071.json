@@ -9,5 +9,6 @@
     "It is the hostname of the example.com slave server."
   ],
   "answerIndex": 1,
-  "explanation": "In a zone block the file value such as \"`db.example.com`\" names the zone data (database) file for the example.com domain."
+  "explanation": "In a zone block the file value such as \"`db.example.com`\" names the zone data (database) file for the example.com domain.",
+  "origin": "linux-direct"
 }

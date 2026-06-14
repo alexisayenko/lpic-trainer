@@ -9,5 +9,6 @@
     "`ldapadd -W devgroup.ldif`"
   ],
   "answerIndex": 2,
-  "explanation": "The `ldapadd` command is used to add entries to the LDAP directory. The `-f` option specifies the input LDIF file. The `-x` option is used for simple authentication instead of SASL, which is the default."
+  "explanation": "The `ldapadd` command is used to add entries to the LDAP directory. The `-f` option specifies the input LDIF file. The `-x` option is used for simple authentication instead of SASL, which is the default.",
+  "origin": "linux-direct"
 }

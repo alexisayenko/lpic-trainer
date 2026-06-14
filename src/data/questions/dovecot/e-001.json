@@ -9,5 +9,6 @@
     "`doveconf --get mail_location`"
   ],
   "answerIndex": 0,
-  "explanation": "By using `doveconf` followed by the parameter name, such as `doveconf mail_location`, you can retrieve the effective value for that specific parameter."
+  "explanation": "By using `doveconf` followed by the parameter name, such as `doveconf mail_location`, you can retrieve the effective value for that specific parameter.",
+  "origin": "linux-direct"
 }

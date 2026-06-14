@@ -9,5 +9,6 @@
     "`apache2` on Debian-based and `apache` on CentOS"
   ],
   "answerIndex": 1,
-  "explanation": "On Debian-based systems the Apache service is named `apache2`, while on CentOS (and other Red Hat-based systems) it is named `httpd`."
+  "explanation": "On Debian-based systems the Apache service is named `apache2`, while on CentOS (and other Red Hat-based systems) it is named `httpd`.",
+  "origin": "linux-direct"
 }

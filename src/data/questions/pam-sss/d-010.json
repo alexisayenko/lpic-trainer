@@ -9,5 +9,6 @@
     "`/etc/pam.d/su`"
   ],
   "answerIndex": 2,
-  "explanation": "The `/etc/pam.d/passwd` file governs the PAM rules applied when users change their passwords, so password quality requirements should be enforced there."
+  "explanation": "The `/etc/pam.d/passwd` file governs the PAM rules applied when users change their passwords, so password quality requirements should be enforced there.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`ldappasswd`"
   ],
   "answerIndex": 0,
-  "explanation": "The `ldapmodify` utility is used to modify existing entries in the LDAP directory, such as changing a user's email address attribute."
+  "explanation": "The `ldapmodify` utility is used to modify existing entries in the LDAP directory, such as changing a user's email address attribute.",
+  "origin": "linux-direct"
 }

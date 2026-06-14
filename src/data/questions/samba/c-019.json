@@ -9,5 +9,6 @@
     "`security = domain`"
   ],
   "answerIndex": 2,
-  "explanation": "`security = share` allows access without per-user authentication, which is appropriate for a guest printer service."
+  "explanation": "`security = share` allows access without per-user authentication, which is appropriate for a guest printer service.",
+  "origin": "linux-direct"
 }

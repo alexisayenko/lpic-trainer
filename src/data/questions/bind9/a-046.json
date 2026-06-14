@@ -9,5 +9,6 @@
     "`dns:x:1000:1000:DNS Admin:/home/dns:/bin/bash`"
   ],
   "answerIndex": 1,
-  "explanation": "The entry `named:x:125:129:DNS BIND User:/var/named:/bin/false` indicates a dedicated non-root user for BIND. Its `/bin/false` login shell prevents shell access, enhancing security."
+  "explanation": "The entry `named:x:125:129:DNS BIND User:/var/named:/bin/false` indicates a dedicated non-root user for BIND. Its `/bin/false` login shell prevents shell access, enhancing security.",
+  "origin": "linux-direct"
 }

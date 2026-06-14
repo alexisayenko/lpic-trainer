@@ -9,5 +9,6 @@
     "`listen-on { 192.168.5.10; };`"
   ],
   "answerIndex": 0,
-  "explanation": "The `allow-transfer { 192.168.5.10; };` statement limits zone transfers so only that IP address may request them."
+  "explanation": "The `allow-transfer { 192.168.5.10; };` statement limits zone transfers so only that IP address may request them.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`smtpd_enforce_tls = yes`"
   ],
   "answerIndex": 2,
-  "explanation": "Setting `smtpd_tls_security_level = mandatory` forces Postfix to require TLS encryption for all incoming SMTP connections, rejecting any connection that does not use TLS."
+  "explanation": "Setting `smtpd_tls_security_level = mandatory` forces Postfix to require TLS encryption for all incoming SMTP connections, rejecting any connection that does not use TLS.",
+  "origin": "linux-direct"
 }

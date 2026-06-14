@@ -9,5 +9,6 @@
     "`/etc/apache2/extra/`"
   ],
   "answerIndex": 2,
-  "explanation": "On Debian-based systems, Apache2 has a structure wherein configuration files placed in the `/etc/apache2/conf-enabled/` directory are loaded automatically by Apache. It allows administrators to keep the main configuration file uncluttered and manage additional configurations separately."
+  "explanation": "On Debian-based systems, Apache2 has a structure wherein configuration files placed in the `/etc/apache2/conf-enabled/` directory are loaded automatically by Apache. It allows administrators to keep the main configuration file uncluttered and manage additional configurations separately.",
+  "origin": "linux-direct"
 }

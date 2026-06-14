@@ -9,5 +9,6 @@
     "Add the intermediate certificates to `SSLCertificateKeyFile`"
   ],
   "answerIndex": 2,
-  "explanation": "In Apache version 2.4.8 and later, the `SSLCertificateChainFile` directive is deprecated. Instead, to specify the server certificate and the certificate chain, the server certificate and all necessary intermediate certificates should be concatenated into a single file and then specified in the `SSLCertificateFile` directive."
+  "explanation": "In Apache version 2.4.8 and later, the `SSLCertificateChainFile` directive is deprecated. Instead, to specify the server certificate and the certificate chain, the server certificate and all necessary intermediate certificates should be concatenated into a single file and then specified in the `SSLCertificateFile` directive.",
+  "origin": "linux-direct"
 }

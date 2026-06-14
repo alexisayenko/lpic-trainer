@@ -9,5 +9,6 @@
     "`redirect;`"
   ],
   "answerIndex": 1,
-  "explanation": "The `discard` action silently deletes a message without notifying the sender, unlike `reject` which sends a bounce-back."
+  "explanation": "The `discard` action silently deletes a message without notifying the sender, unlike `reject` which sends a bounce-back.",
+  "origin": "linux-direct"
 }

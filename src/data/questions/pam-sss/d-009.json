@@ -9,5 +9,6 @@
     "It stores compiled PAM module binaries for `myapp`"
   ],
   "answerIndex": 1,
-  "explanation": "A file in `/etc/pam.d/` named after a service defines the PAM rules for that specific application; the `myapp` file defines the PAM rules for the application named \"myapp\"."
+  "explanation": "A file in `/etc/pam.d/` named after a service defines the PAM rules for that specific application; the `myapp` file defines the PAM rules for the application named \"myapp\".",
+  "origin": "linux-direct"
 }

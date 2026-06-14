@@ -9,5 +9,6 @@
     "It removes the need to configure `named.conf`."
   ],
   "answerIndex": 1,
-  "explanation": "A chroot jail confines BIND to a restricted directory tree, so a compromised or malfunctioning `named` process cannot reach or harm the rest of the system."
+  "explanation": "A chroot jail confines BIND to a restricted directory tree, so a compromised or malfunctioning `named` process cannot reach or harm the rest of the system.",
+  "origin": "linux-direct"
 }

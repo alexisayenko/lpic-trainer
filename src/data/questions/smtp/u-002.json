@@ -9,5 +9,6 @@
     "Syntax error in command"
   ],
   "answerIndex": 1,
-  "explanation": "The SMTP status code 220 is the initial greeting indicating that the mail service is ready to proceed."
+  "explanation": "The SMTP status code 220 is the initial greeting indicating that the mail service is ready to proceed.",
+  "origin": "ken-adams"
 }

@@ -9,5 +9,6 @@
     "`doveconf -u johndoe uid`"
   ],
   "answerIndex": 1,
-  "explanation": "The `doveadm search` command queries a user's mailbox; `doveadm search -u johndoe uid` returns the current UIDs of the mails in johndoe's mailbox."
+  "explanation": "The `doveadm search` command queries a user's mailbox; `doveadm search -u johndoe uid` returns the current UIDs of the mails in johndoe's mailbox.",
+  "origin": "linux-direct"
 }

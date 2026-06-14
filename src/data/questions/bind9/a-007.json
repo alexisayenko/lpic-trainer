@@ -9,5 +9,6 @@
     "`algorithm hmac-md5 { key server.example.com; secret skrKc4DoTzi/takI1Pi7JZA==; };`"
   ],
   "answerIndex": 0,
-  "explanation": "A TSIG key block names the key and specifies the algorithm and secret: `key.server.example.com. { algorithm hmac-md5; secret \"skrKc4DoTzi/takI1Pi7JZA==\"; };`"
+  "explanation": "A TSIG key block names the key and specifies the algorithm and secret: `key.server.example.com. { algorithm hmac-md5; secret \"skrKc4DoTzi/takI1Pi7JZA==\"; };`",
+  "origin": "linux-direct"
 }

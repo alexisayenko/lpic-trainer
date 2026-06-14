@@ -9,5 +9,6 @@
     "`nmblookup`"
   ],
   "answerIndex": 1,
-  "explanation": "`testparm` checks an `smb.conf` configuration file for internal correctness without affecting the running service."
+  "explanation": "`testparm` checks an `smb.conf` configuration file for internal correctness without affecting the running service.",
+  "origin": "linux-direct"
 }

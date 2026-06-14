@@ -9,5 +9,6 @@
     "`/var/lib/dns`"
   ],
   "answerIndex": 1,
-  "explanation": "On systems running BIND, zone files are normally stored under `/var/named`."
+  "explanation": "On systems running BIND, zone files are normally stored under `/var/named`.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`SOA`"
   ],
   "answerIndex": 1,
-  "explanation": "The `MX` (Mail Exchange) record identifies the mail server responsible for accepting email for the domain."
+  "explanation": "The `MX` (Mail Exchange) record identifies the mail server responsible for accepting email for the domain.",
+  "origin": "linux-direct"
 }

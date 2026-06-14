@@ -9,5 +9,6 @@
     "`/etc/aliases`"
   ],
   "answerIndex": 1,
-  "explanation": "The `main.cf` file holds the global parameters that control the operation of the Postfix mail system."
+  "explanation": "The `main.cf` file holds the global parameters that control the operation of the Postfix mail system.",
+  "origin": "ken-adams"
 }

@@ -9,5 +9,6 @@
     "To compress zone files for faster transfers"
   ],
   "answerIndex": 1,
-  "explanation": "DNSSEC's primary purpose is to ensure the authenticity and integrity of DNS data through cryptographic signatures."
+  "explanation": "DNSSEC's primary purpose is to ensure the authenticity and integrity of DNS data through cryptographic signatures.",
+  "origin": "linux-direct"
 }

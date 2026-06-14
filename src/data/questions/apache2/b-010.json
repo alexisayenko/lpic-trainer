@@ -9,5 +9,6 @@
     "`SSLProtocol TLSv1.2` only"
   ],
   "answerIndex": 1,
-  "explanation": "The `SSLProtocol` directive is used to specify which SSL/TLS protocols are allowed. The correct configuration to allow all protocols except SSLv2 and SSLv3 is `SSLProtocol all -SSLv2 -SSLv3`."
+  "explanation": "The `SSLProtocol` directive is used to specify which SSL/TLS protocols are allowed. The correct configuration to allow all protocols except SSLv2 and SSLv3 is `SSLProtocol all -SSLv2 -SSLv3`.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`include \"/path/to/zonefile\";`"
   ],
   "answerIndex": 1,
-  "explanation": "Within a zone block, the \"`file`\" directive specifies the path to that zone's data file, e.g. `file \"/path/to/zonefile\";`."
+  "explanation": "Within a zone block, the \"`file`\" directive specifies the path to that zone's data file, e.g. `file \"/path/to/zonefile\";`.",
+  "origin": "linux-direct"
 }

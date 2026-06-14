@@ -9,5 +9,6 @@
     "`mail_location = maildir`"
   ],
   "answerIndex": 1,
-  "explanation": "The `protocols` directive lists the protocols Dovecot enables; if `protocols = imap` is still present in `dovecot.conf`, the IMAP protocol remains active."
+  "explanation": "The `protocols` directive lists the protocols Dovecot enables; if `protocols = imap` is still present in `dovecot.conf`, the IMAP protocol remains active.",
+  "origin": "linux-direct"
 }

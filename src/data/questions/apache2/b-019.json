@@ -9,5 +9,6 @@
     "`apachectl -k graceful`"
   ],
   "answerIndex": 0,
-  "explanation": "`apachectl -t` (also `apachectl configtest`) checks the Apache configuration files for syntax errors without restarting the server."
+  "explanation": "`apachectl -t` (also `apachectl configtest`) checks the Apache configuration files for syntax errors without restarting the server.",
+  "origin": "linux-direct"
 }

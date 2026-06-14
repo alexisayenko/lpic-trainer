@@ -9,5 +9,6 @@
     "`named-checkzone`"
   ],
   "answerIndex": 2,
-  "explanation": "`nslookup` offers an interactive mode in which you can issue successive queries and change options at a prompt."
+  "explanation": "`nslookup` offers an interactive mode in which you can issue successive queries and change options at a prompt.",
+  "origin": "linux-direct"
 }

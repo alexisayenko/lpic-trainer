@@ -9,5 +9,6 @@
     "`exportfs -u`"
   ],
   "answerIndex": 2,
-  "explanation": "`exportfs -l` displays the current list of exported file systems on the NFS server."
+  "explanation": "`exportfs -l` displays the current list of exported file systems on the NFS server.",
+  "origin": "linux-direct"
 }

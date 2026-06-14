@@ -9,5 +9,6 @@
     "It marks the mapping as case-insensitive"
   ],
   "answerIndex": 1,
-  "explanation": "A line beginning with `!` in the `username map` file tells Samba to stop processing the rest of the file once that entry matches — there is no fall-through to later mappings."
+  "explanation": "A line beginning with `!` in the `username map` file tells Samba to stop processing the rest of the file once that entry matches — there is no fall-through to later mappings.",
+  "origin": "linux-direct"
 }

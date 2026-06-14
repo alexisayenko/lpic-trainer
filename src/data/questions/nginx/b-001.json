@@ -9,5 +9,6 @@
     "`real_ip_header X-Real-IP $remote_addr;`"
   ],
   "answerIndex": 1,
-  "explanation": "The `proxy_set_header` directive sets a header on the request passed to the upstream server; `proxy_set_header X-Real-IP $remote_addr` forwards the original client IP address."
+  "explanation": "The `proxy_set_header` directive sets a header on the request passed to the upstream server; `proxy_set_header X-Real-IP $remote_addr` forwards the original client IP address.",
+  "origin": "linux-direct"
 }

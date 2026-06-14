@@ -9,5 +9,6 @@
     "`/etc/hosts.allow`"
   ],
   "answerIndex": 1,
-  "explanation": "`/etc/exports` is the file where exported directories and their options, including those used by NFSv3 clients, are defined on the NFS server."
+  "explanation": "`/etc/exports` is the file where exported directories and their options, including those used by NFSv3 clients, are defined on the NFS server.",
+  "origin": "linux-direct"
 }

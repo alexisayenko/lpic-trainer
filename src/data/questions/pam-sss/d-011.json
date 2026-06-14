@@ -9,5 +9,6 @@
     "Passwords should be stored only in the LDAP directory, never on the local system"
   ],
   "answerIndex": 1,
-  "explanation": "This is not a recommended practice; encrypted passwords should be stored in `/etc/shadow` instead, which is readable only by privileged accounts."
+  "explanation": "This is not a recommended practice; encrypted passwords should be stored in `/etc/shadow` instead, which is readable only by privileged accounts.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`Ciphers v2`"
   ],
   "answerIndex": 0,
-  "explanation": "The directive `Protocol` in the `/etc/ssh/sshd_config` file specifies the version of the SSH protocol the server should use. By setting it to `Protocol 2`, Amy ensures that only version 2 of the SSH protocol is used, which is more secure than version 1."
+  "explanation": "The directive `Protocol` in the `/etc/ssh/sshd_config` file specifies the version of the SSH protocol the server should use. By setting it to `Protocol 2`, Amy ensures that only version 2 of the SSH protocol is used, which is more secure than version 1.",
+  "origin": "linux-direct"
 }

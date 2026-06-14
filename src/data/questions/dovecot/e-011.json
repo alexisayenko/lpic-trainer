@@ -9,5 +9,6 @@
     "`mail_protocols = secure`"
   ],
   "answerIndex": 0,
-  "explanation": "Setting `ssl = required` enforces encrypted connections for secure retrieval, while `protocols = imap pop3` enables both the IMAP and POP3 protocols."
+  "explanation": "Setting `ssl = required` enforces encrypted connections for secure retrieval, while `protocols = imap pop3` enables both the IMAP and POP3 protocols.",
+  "origin": "linux-direct"
 }

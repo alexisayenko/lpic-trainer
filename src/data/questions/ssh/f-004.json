@@ -9,5 +9,6 @@
     "`DenyGroups sshusers`"
   ],
   "answerIndex": 1,
-  "explanation": "The `AllowGroups` directive limits SSH login to users who are members of the listed groups; only members of `sshusers` would be permitted."
+  "explanation": "The `AllowGroups` directive limits SSH login to users who are members of the listed groups; only members of `sshusers` would be permitted.",
+  "origin": "linux-direct"
 }

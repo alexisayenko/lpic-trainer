@@ -9,5 +9,6 @@
     "`doveconf mailbox vsize -A`"
   ],
   "answerIndex": 0,
-  "explanation": "The command `doveadm mailbox status \"messages vsize\" \"*\" -A` provides the status, including message count and size (`vsize`), of all mailboxes for all users. This is useful when you want to monitor and sort mailboxes based on their size."
+  "explanation": "The command `doveadm mailbox status \"messages vsize\" \"*\" -A` provides the status, including message count and size (`vsize`), of all mailboxes for all users. This is useful when you want to monitor and sort mailboxes based on their size.",
+  "origin": "linux-direct"
 }

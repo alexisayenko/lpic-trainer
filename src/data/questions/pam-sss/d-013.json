@@ -9,5 +9,6 @@
     "`services = ldap, pam`"
   ],
   "answerIndex": 2,
-  "explanation": "When configuring SSSD for LDAP authentication, the `nss` service is responsible for retrieving user information (like getting user and group details), while the `pam` service manages authentication. Therefore, both `nss` and `pam` should be defined under the `services` directive in the `sssd.conf` file for LDAP authentication."
+  "explanation": "When configuring SSSD for LDAP authentication, the `nss` service is responsible for retrieving user information (like getting user and group details), while the `pam` service manages authentication. Therefore, both `nss` and `pam` should be defined under the `services` directive in the `sssd.conf` file for LDAP authentication.",
+  "origin": "linux-direct"
 }

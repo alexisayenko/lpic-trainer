@@ -9,5 +9,6 @@
     "`rndc retransfer example.com`"
   ],
   "answerIndex": 1,
-  "explanation": "The `rndc reload example.com` command reloads a specific zone without affecting other zones, an efficient approach when changes are isolated to one zone."
+  "explanation": "The `rndc reload example.com` command reloads a specific zone without affecting other zones, an efficient approach when changes are isolated to one zone.",
+  "origin": "linux-direct"
 }

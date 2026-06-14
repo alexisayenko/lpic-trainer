@@ -9,5 +9,6 @@
     "It blocks all queries from those two IP addresses."
   ],
   "answerIndex": 2,
-  "explanation": "The `allow-transfer` directive lists the hosts permitted to request zone transfers, so this server is a master or slave allowing transfers to those two computers."
+  "explanation": "The `allow-transfer` directive lists the hosts permitted to request zone transfers, so this server is a master or slave allowing transfers to those two computers.",
+  "origin": "linux-direct"
 }

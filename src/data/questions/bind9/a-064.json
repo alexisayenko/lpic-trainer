@@ -9,5 +9,6 @@
     "`zones.conf`"
   ],
   "answerIndex": 1,
-  "explanation": "`named.conf` is the primary BIND configuration file and holds the global server settings, typically in its options block."
+  "explanation": "`named.conf` is the primary BIND configuration file and holds the global server settings, typically in its options block.",
+  "origin": "linux-direct"
 }

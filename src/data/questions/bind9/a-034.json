@@ -9,5 +9,6 @@
     "Using the `listen-on` statement `{...;};` in the named configuration file."
   ],
   "answerIndex": 1,
-  "explanation": "The `allow-query` statement restricts which hosts or networks may send queries to the server."
+  "explanation": "The `allow-query` statement restricts which hosts or networks may send queries to the server.",
+  "origin": "linux-direct"
 }

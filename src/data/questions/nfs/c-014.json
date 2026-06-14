@@ -9,5 +9,6 @@
     "NFSv4 no longer supports access control and relies solely on UNIX permissions."
   ],
   "answerIndex": 1,
-  "explanation": "One of the major architectural changes between NFSv3 and NFSv4 is the integration of the mount protocol in NFSv4. This eliminates the need for a separate `mountd` service, which was required in NFSv3."
+  "explanation": "One of the major architectural changes between NFSv3 and NFSv4 is the integration of the mount protocol in NFSv4. This eliminates the need for a separate `mountd` service, which was required in NFSv3.",
+  "origin": "linux-direct"
 }

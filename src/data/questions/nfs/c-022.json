@@ -9,5 +9,6 @@
     "`exportfs`"
   ],
   "answerIndex": 1,
-  "explanation": "`showmount` queries the NFS server to display exported directories and the clients that have access to them."
+  "explanation": "`showmount` queries the NFS server to display exported directories and the clients that have access to them.",
+  "origin": "linux-direct"
 }

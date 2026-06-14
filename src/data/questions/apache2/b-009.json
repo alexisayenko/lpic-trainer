@@ -9,5 +9,6 @@
     "`SSLCipherSuite LOW`"
   ],
   "answerIndex": 1,
-  "explanation": "Setting `SSLCipherSuite HIGH` restricts Apache to only strong (high-encryption) ciphers and avoids known weak ones."
+  "explanation": "Setting `SSLCipherSuite HIGH` restricts Apache to only strong (high-encryption) ciphers and avoids known weak ones.",
+  "origin": "linux-direct"
 }

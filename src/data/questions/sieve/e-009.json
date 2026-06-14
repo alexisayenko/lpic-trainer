@@ -9,5 +9,6 @@
     "`addflag \"Newsletters\";`"
   ],
   "answerIndex": 2,
-  "explanation": "The `fileinto` action moves a message into the specified folder; since it cancels the implicit `keep`, the message no longer appears in the inbox."
+  "explanation": "The `fileinto` action moves a message into the specified folder; since it cancels the implicit `keep`, the message no longer appears in the inbox.",
+  "origin": "linux-direct"
 }

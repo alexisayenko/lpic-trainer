@@ -9,5 +9,6 @@
     "`rndc querylog`"
   ],
   "answerIndex": 1,
-  "explanation": "The `rndc reload` command makes `named` reread its configuration and changed zone files without restarting the service."
+  "explanation": "The `rndc reload` command makes `named` reread its configuration and changed zone files without restarting the service.",
+  "origin": "linux-direct"
 }

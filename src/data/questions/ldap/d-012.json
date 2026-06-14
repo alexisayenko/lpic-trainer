@@ -9,5 +9,6 @@
     "LDAP cannot be used in `nsswitch.conf` and the line is ignored"
   ],
   "answerIndex": 1,
-  "explanation": "The configuration line `hosts: files dns ldap` in the `nsswitch.conf` file indicates the order in which the system should perform host lookups. If a workstation is not supposed to use LDAP for host information, including it in the `hosts` line might cause unnecessary delays if the DNS lookup fails or is slow, and the system then tries an LDAP lookup."
+  "explanation": "The configuration line `hosts: files dns ldap` in the `nsswitch.conf` file indicates the order in which the system should perform host lookups. If a workstation is not supposed to use LDAP for host information, including it in the `hosts` line might cause unnecessary delays if the DNS lookup fails or is slow, and the system then tries an LDAP lookup.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "The `/etc/hosts` file."
   ],
   "answerIndex": 1,
-  "explanation": "TSIG keys are defined in `key {}` blocks in the `named.conf` file, so Carl should compare the `named.conf` files on both servers."
+  "explanation": "TSIG keys are defined in `key {}` blocks in the `named.conf` file, so Carl should compare the `named.conf` files on both servers.",
+  "origin": "linux-direct"
 }

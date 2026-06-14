@@ -8,6 +8,7 @@
     "prompt": "What is the DHCP server lease database filename?",
     "answer": "dhcpd.leases",
     "explanation": "`dhcpd` stores persistent lease state in the `dhcpd.leases` database file.",
+    "origin": "gpt-deep-research",
     "source": "https://manpages.debian.org/jessie/isc-dhcp-server/dhcpd.leases.5.en.html"
   },
   {
@@ -25,6 +26,7 @@
     ],
     "answerIndex": 0,
     "explanation": "The `range` statement defines the dynamic address pool served within a subnet.",
+    "origin": "gpt-deep-research",
     "source": "https://kb.isc.org/docs/isc-dhcp-41-manual-pages-dhcpdconf"
   },
   {
@@ -42,6 +44,7 @@
     ],
     "answerIndex": 0,
     "explanation": "ISC DHCP requires the relayed subnet to be declared even when leases are not served directly on a local interface.",
+    "origin": "gpt-deep-research",
     "source": "https://kb.isc.org/docs/aa-00274"
   },
   {
@@ -54,6 +57,7 @@
     "choices": ["`pam_unix`", "`pam_sss`", "`pam_limits`", "`pam_listfile`"],
     "answerIndex": 0,
     "explanation": "`pam_unix` provides local UNIX authentication using the system password databases.",
+    "origin": "gpt-deep-research",
     "source": "https://www.man7.org/linux/man-pages/man8/PAM.8.html"
   },
   {
@@ -65,6 +69,7 @@
     "prompt": "Complete the NSS line for SSSD-backed user lookups: `passwd: files ____`",
     "answer": "sss",
     "explanation": "`nsswitch.conf` uses the `sss` source token to query identities through SSSD.",
+    "origin": "gpt-deep-research",
     "source": "https://www.man7.org/linux/man-pages/man5/nsswitch.conf.5.html"
   },
   {
@@ -82,6 +87,7 @@
     ],
     "answerIndex": 0,
     "explanation": "Linux-PAM prefers per-service files in `/etc/pam.d` and ignores `/etc/pam.conf` when that directory exists.",
+    "origin": "gpt-deep-research",
     "source": "https://www.man7.org/linux/man-pages/man5/pam.d.5.html"
   },
   {
@@ -99,6 +105,7 @@
     ],
     "answerIndex": 0,
     "explanation": "`pam_limits` is used as a session module to impose resource limits at login time.",
+    "origin": "gpt-deep-research",
     "source": "https://www.man7.org/linux/man-pages/man8/pam_limits.8.html"
   },
   {
@@ -110,6 +117,7 @@
     "prompt": "Which OpenLDAP client utility queries directory entries from the shell?",
     "answer": "ldapsearch",
     "explanation": "`ldapsearch` is the shell-accessible LDAP search tool.",
+    "origin": "gpt-deep-research",
     "source": "https://www.openldap.org/software//man.cgi?query=ldapsearch"
   },
   {
@@ -122,6 +130,7 @@
     "choices": ["`ldappasswd`", "`ldapdelete`", "`ldapadd`", "`ldapsearch`"],
     "answerIndex": 0,
     "explanation": "`ldappasswd` is the dedicated LDAP client utility for changing directory passwords.",
+    "origin": "gpt-deep-research",
     "source": "https://www.man7.org/linux/man-pages/man1/ldappasswd.1.html"
   },
   {
@@ -134,6 +143,7 @@
     "choices": ["`ldapadd`", "`ldapdelete`", "`ldappasswd`", "`slapcat`"],
     "answerIndex": 0,
     "explanation": "`ldapadd` reads LDIF and adds entries to the directory through LDAP operations.",
+    "origin": "gpt-deep-research",
     "source": "https://www.openldap.org/software//man.cgi?query=ldapadd"
   },
   {
@@ -145,6 +155,7 @@
     "prompt": "In LDIF, which attribute name starts the distinguished-name line for an entry?",
     "answer": "dn",
     "explanation": "LDIF entry records begin with a `dn` field that names the entry's distinguished name.",
+    "origin": "gpt-deep-research",
     "source": "https://www.man7.org/linux/man-pages/man5/ldif.5.html"
   },
   {
@@ -157,6 +168,7 @@
     "choices": ["`slapadd`", "`slapcat`", "`slapindex`", "`ldapadd`"],
     "answerIndex": 0,
     "explanation": "`slapadd` imports LDIF straight into the directory database and is intended for offline loading.",
+    "origin": "gpt-deep-research",
     "source": "https://www.openldap.org/doc/admin24/"
   },
   {
@@ -169,6 +181,7 @@
     "choices": ["`slapcat`", "`slapadd`", "`slapindex`", "`ldapdelete`"],
     "answerIndex": 0,
     "explanation": "`slapcat` exports OpenLDAP database contents in LDIF form.",
+    "origin": "gpt-deep-research",
     "source": "https://www.openldap.org/doc/admin24/"
   },
   {
@@ -180,6 +193,7 @@
     "prompt": "Give the LDIF line that declares a modification operation instead of a plain entry add.",
     "answer": "changetype: modify",
     "explanation": "LDIF change records identify modification operations with the `changetype: modify` line.",
+    "origin": "gpt-deep-research",
     "source": "https://www.man7.org/linux/man-pages/man5/ldif.5.html"
   },
   {
@@ -197,6 +211,7 @@
     ],
     "answerIndex": 0,
     "explanation": "OpenLDAP recommends changing `cn=config` through LDAP operations instead of editing stored LDIF files directly.",
+    "origin": "gpt-deep-research",
     "source": "https://www.openldap.org/doc/admin24/slapdconf2.html"
   }
 ]

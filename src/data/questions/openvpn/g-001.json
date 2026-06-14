@@ -9,5 +9,6 @@
     "`topology subnet`"
   ],
   "answerIndex": 0,
-  "explanation": "On the client, `redirect-gateway def1` reroutes all client traffic through the VPN. (`push \"redirect-gateway\"` is the server-side directive that pushes this to clients.)"
+  "explanation": "On the client, `redirect-gateway def1` reroutes all client traffic through the VPN. (`push \"redirect-gateway\"` is the server-side directive that pushes this to clients.)",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "To restrict logins to clients connecting over IPv6"
   ],
   "answerIndex": 1,
-  "explanation": "The `UseIPv6` directive in `proftpd.conf` controls whether the ProFTPd server enables or disables support for IPv6."
+  "explanation": "The `UseIPv6` directive in `proftpd.conf` controls whether the ProFTPd server enables or disables support for IPv6.",
+  "origin": "linux-direct"
 }

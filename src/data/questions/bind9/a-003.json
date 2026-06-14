@@ -9,5 +9,6 @@
     "The DNS server runs entirely in kernel space."
   ],
   "answerIndex": 1,
-  "explanation": "A DNS jail or cage runs the name server in an isolated chroot environment, separated from the rest of the filesystem and system."
+  "explanation": "A DNS jail or cage runs the name server in an isolated chroot environment, separated from the rest of the filesystem and system.",
+  "origin": "linux-direct"
 }

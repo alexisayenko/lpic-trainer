@@ -9,5 +9,6 @@
     "Set `security = user` and point to `/etc/shadow`"
   ],
   "answerIndex": 1,
-  "explanation": "Samba uses its own encrypted password database; it is not possible for Samba to check CIFS passwords directly against `/etc/passwd` and `/etc/shadow`."
+  "explanation": "Samba uses its own encrypted password database; it is not possible for Samba to check CIFS passwords directly against `/etc/passwd` and `/etc/shadow`.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`ldapsearch -b \"dc=tech,dc=net\" \"(mail=@techcorp.com)\" cn mail`"
   ],
   "answerIndex": 2,
-  "explanation": "The `ldapsearch` command is used to search the LDAP directory. In this scenario, `-x` enables simple authentication. `-b \"dc=tech,dc=net\"` specifies the search base. The search filter `(mail=*@techcorp.com)` will match all entries with the specified email domain. Lastly, `cn mail` ensures that the results only display the user's full name (`cn`) and email address (`mail`)."
+  "explanation": "The `ldapsearch` command is used to search the LDAP directory. In this scenario, `-x` enables simple authentication. `-b \"dc=tech,dc=net\"` specifies the search base. The search filter `(mail=*@techcorp.com)` will match all entries with the specified email domain. Lastly, `cn mail` ensures that the results only display the user's full name (`cn`) and email address (`mail`).",
+  "origin": "linux-direct"
 }

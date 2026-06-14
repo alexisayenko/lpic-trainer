@@ -9,5 +9,6 @@
     "`guest ok=no`"
   ],
   "answerIndex": 0,
-  "explanation": "`writeable=no` is the inverse synonym of `read only=yes`; both make a share read-only."
+  "explanation": "`writeable=no` is the inverse synonym of `read only=yes`; both make a share read-only.",
+  "origin": "linux-direct"
 }

@@ -9,5 +9,6 @@
     "`nmblookup`"
   ],
   "answerIndex": 1,
-  "explanation": "`smbclient` is a client that can connect to an SMB/CIFS server, making it suitable for testing a user's authentication against the Samba server."
+  "explanation": "`smbclient` is a client that can connect to an SMB/CIFS server, making it suitable for testing a user's authentication against the Samba server.",
+  "origin": "linux-direct"
 }

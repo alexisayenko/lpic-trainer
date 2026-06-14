@@ -9,5 +9,6 @@
     "`example.com. IN NS mail.example.com`"
   ],
   "answerIndex": 1,
-  "explanation": "The MX (Mail Exchange) record specifies the mail server responsible for accepting email for a domain. The number 10 is the priority, with lower numbers indicating higher priority."
+  "explanation": "The MX (Mail Exchange) record specifies the mail server responsible for accepting email for a domain. The number 10 is the priority, with lower numbers indicating higher priority.",
+  "origin": "linux-direct"
 }

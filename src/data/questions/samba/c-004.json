@@ -9,5 +9,6 @@
     "`smbmount //smb-server/Backup /mnt/backup -o admin:secretpass`"
   ],
   "answerIndex": 0,
-  "explanation": "CIFS shares are mounted with `mount -t cifs`; credentials are supplied via the `-o` `username=` and `password=` options."
+  "explanation": "CIFS shares are mounted with `mount -t cifs`; credentials are supplied via the `-o` `username=` and `password=` options.",
+  "origin": "linux-direct"
 }

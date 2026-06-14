@@ -9,5 +9,6 @@
     "Weak passwords on the DNS administration account."
   ],
   "answerIndex": 1,
-  "explanation": "DNSSEC is primarily designed to protect against DNS spoofing or cache poisoning attacks. It provides a way to ensure the authenticity and integrity of DNS data by signing DNS data with cryptographic signatures."
+  "explanation": "DNSSEC is primarily designed to protect against DNS spoofing or cache poisoning attacks. It provides a way to ensure the authenticity and integrity of DNS data by signing DNS data with cryptographic signatures.",
+  "origin": "linux-direct"
 }

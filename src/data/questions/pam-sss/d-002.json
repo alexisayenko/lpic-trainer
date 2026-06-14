@@ -9,5 +9,6 @@
     "`pam_tally2`"
   ],
   "answerIndex": 1,
-  "explanation": "The `pam_cracklib` module in PAM is responsible for enforcing password complexity rules. This can include requirements such as minimum lengths, ensuring a certain number of uppercase and lowercase letters, and more."
+  "explanation": "The `pam_cracklib` module in PAM is responsible for enforcing password complexity rules. This can include requirements such as minimum lengths, ensuring a certain number of uppercase and lowercase letters, and more.",
+  "origin": "linux-direct"
 }

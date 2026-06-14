@@ -9,5 +9,6 @@
     "`ldapsearch -x \"dc=example,dc=com\" (objectClass=user) cn mail`"
   ],
   "answerIndex": 0,
-  "explanation": "The `ldapsearch` command is used to query the LDAP directory. The `-x` flag stands for simple authentication. The `-b \"dc=example,dc=com\"` specifies the search base. The search filter `(objectClass=person)` filters only person object entries, and specifying `cn mail` at the end ensures that only the \"`cn`\" and \"`mail`\" attributes are returned."
+  "explanation": "The `ldapsearch` command is used to query the LDAP directory. The `-x` flag stands for simple authentication. The `-b \"dc=example,dc=com\"` specifies the search base. The search filter `(objectClass=person)` filters only person object entries, and specifying `cn mail` at the end ensures that only the \"`cn`\" and \"`mail`\" attributes are returned.",
+  "origin": "linux-direct"
 }

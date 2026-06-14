@@ -9,5 +9,6 @@
     "`apachectl reload`"
   ],
   "answerIndex": 1,
-  "explanation": "On CentOS the Apache service is named `httpd`, so it is restarted with `systemctl restart httpd`."
+  "explanation": "On CentOS the Apache service is named `httpd`, so it is restarted with `systemctl restart httpd`.",
+  "origin": "linux-direct"
 }

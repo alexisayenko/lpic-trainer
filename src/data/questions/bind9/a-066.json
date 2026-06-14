@@ -9,5 +9,6 @@
     "Knot DNS"
   ],
   "answerIndex": 1,
-  "explanation": "dnsmasq is a lightweight, easy-to-configure DNS forwarder and DHCP server, designed to provide DNS and optionally DHCP to a small network."
+  "explanation": "dnsmasq is a lightweight, easy-to-configure DNS forwarder and DHCP server, designed to provide DNS and optionally DHCP to a small network.",
+  "origin": "linux-direct"
 }

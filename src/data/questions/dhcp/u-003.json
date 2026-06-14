@@ -9,5 +9,6 @@
     "`/var/lib/dhcp/clients`"
   ],
   "answerIndex": 2,
-  "explanation": "The `dhcpd.leases` file records all leases issued by the DHCP server, including MAC addresses, IP addresses, and lease start and end times."
+  "explanation": "The `dhcpd.leases` file records all leases issued by the DHCP server, including MAC addresses, IP addresses, and lease start and end times.",
+  "origin": "ken-adams"
 }

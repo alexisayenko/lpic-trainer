@@ -9,5 +9,6 @@
     "Your server's clock is out of sync."
   ],
   "answerIndex": 0,
-  "explanation": "A local caching DNS server speeds up repeat lookups, so it helps when the upstream ISP server works but is slow; it cannot fix configuration errors."
+  "explanation": "A local caching DNS server speeds up repeat lookups, so it helps when the upstream ISP server works but is slow; it cannot fix configuration errors.",
+  "origin": "linux-direct"
 }

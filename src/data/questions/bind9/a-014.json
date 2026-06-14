@@ -9,5 +9,6 @@
     "All zone transfers will be disabled."
   ],
   "answerIndex": 1,
-  "explanation": "The \"`rndc flush`\" command clears the server's cache, discarding cached resource records."
+  "explanation": "The \"`rndc flush`\" command clears the server's cache, discarding cached resource records.",
+  "origin": "linux-direct"
 }

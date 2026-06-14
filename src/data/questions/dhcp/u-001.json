@@ -9,5 +9,6 @@
     "`allocate`"
   ],
   "answerIndex": 0,
-  "explanation": "The `range` directive in `dhcpd.conf` defines the pool of IP addresses the DHCP server can dynamically assign to clients."
+  "explanation": "The `range` directive in `dhcpd.conf` defines the pool of IP addresses the DHCP server can dynamically assign to clients.",
+  "origin": "ken-adams"
 }

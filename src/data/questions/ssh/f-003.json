@@ -9,5 +9,6 @@
     "`RootLogin disabled`"
   ],
   "answerIndex": 0,
-  "explanation": "The `PermitRootLogin` directive, set to `no`, prevents the root user from logging in directly over SSH."
+  "explanation": "The `PermitRootLogin` directive, set to `no`, prevents the root user from logging in directly over SSH.",
+  "origin": "linux-direct"
 }

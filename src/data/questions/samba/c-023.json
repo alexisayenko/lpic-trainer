@@ -9,5 +9,6 @@
     "`[#confidential]`"
   ],
   "answerIndex": 2,
-  "explanation": "Appending a `$` to the share name, as in `[confidential$]`, creates a hidden share that does not appear in browse lists, like a Windows administrative share."
+  "explanation": "Appending a `$` to the share name, as in `[confidential$]`, creates a hidden share that does not appear in browse lists, like a Windows administrative share.",
+  "origin": "linux-direct"
 }

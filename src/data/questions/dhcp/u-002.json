@@ -9,5 +9,6 @@
     "`host-identifier`"
   ],
   "answerIndex": 1,
-  "explanation": "The `fixed-address` directive, used within a `host` declaration that matches a client's MAC address, assigns a constant IP address to that machine."
+  "explanation": "The `fixed-address` directive, used within a `host` declaration that matches a client's MAC address, assigns a constant IP address to that machine.",
+  "origin": "ken-adams"
 }

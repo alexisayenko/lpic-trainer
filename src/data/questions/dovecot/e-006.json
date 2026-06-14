@@ -9,5 +9,6 @@
     "`reject`"
   ],
   "answerIndex": 1,
-  "explanation": "The `vacation` extension in Dovecot Sieve allows users to set up automatic out-of-office or vacation replies. It's designed to inform senders that the recipient is currently unavailable."
+  "explanation": "The `vacation` extension in Dovecot Sieve allows users to set up automatic out-of-office or vacation replies. It's designed to inform senders that the recipient is currently unavailable.",
+  "origin": "linux-direct"
 }

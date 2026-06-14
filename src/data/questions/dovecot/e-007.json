@@ -9,5 +9,6 @@
     "`/etc/dovecot/imap.conf`"
   ],
   "answerIndex": 2,
-  "explanation": "The `/etc/dovecot/dovecot.conf` is the main configuration file for Dovecot. Within this file, administrators can specify or comment out the protocols they want to enable or disable, respectively."
+  "explanation": "The `/etc/dovecot/dovecot.conf` is the main configuration file for Dovecot. Within this file, administrators can specify or comment out the protocols they want to enable or disable, respectively.",
+  "origin": "linux-direct"
 }

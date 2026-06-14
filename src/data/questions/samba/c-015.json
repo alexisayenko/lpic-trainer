@@ -9,5 +9,6 @@
     "`samba-tool`"
   ],
   "answerIndex": 1,
-  "explanation": "`smbd` is the Server Message Block daemon that handles file and printer access and serves incoming SMB connections."
+  "explanation": "`smbd` is the Server Message Block daemon that handles file and printer access and serves incoming SMB connections.",
+  "origin": "linux-direct"
 }

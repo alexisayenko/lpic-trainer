@@ -8,6 +8,7 @@
     "prompt": "Which procfs file's value must be 1 to enable IPv4 forwarding?",
     "answer": "/proc/sys/net/ipv4/ip_forward",
     "explanation": "IPv4 packet forwarding is enabled through the `ip_forward` control in `/proc/sys/net/ipv4`.",
+    "origin": "gpt-deep-research",
     "source": "https://www.lpi.org/our-certifications/exam-201-202-objectives/"
   },
   {
@@ -20,6 +21,7 @@
     "choices": ["`MASQUERADE`", "`REDIRECT`", "`REJECT`", "`CHECKSUM`"],
     "answerIndex": 0,
     "explanation": "`MASQUERADE` is the NAT target intended for dynamic-address source NAT on outgoing interfaces.",
+    "origin": "gpt-deep-research",
     "source": "https://www.man7.org/linux/man-pages/man8/iptables-extensions.8.html"
   },
   {
@@ -32,6 +34,7 @@
     "choices": ["`10.0.0.0/8`", "`203.0.113.0/24`", "`fc00::/7`", "`2001:db8::/32`"],
     "answerIndices": [0, 2],
     "explanation": "`10.0.0.0/8` is IPv4 private space and `fc00::/7` is the IPv6 Unique Local Address block.",
+    "origin": "gpt-deep-research",
     "source": "https://www.lpi.org/our-certifications/exam-201-202-objectives/"
   },
   {
@@ -49,6 +52,7 @@
     ],
     "answerIndex": 0,
     "explanation": "Destination NAT for inbound traffic is normally applied in the nat table's PREROUTING chain.",
+    "origin": "gpt-deep-research",
     "source": "https://netfilter.org/documentation/HOWTO/NAT-HOWTO.txt"
   },
   {
@@ -61,6 +65,7 @@
     "choices": ["`anonymous_enable=YES`", "`anon_access=YES`", "`guest_enable=YES`", "`public_enable=YES`"],
     "answerIndex": 0,
     "explanation": "`anonymous_enable` controls whether the anonymous and ftp logins are accepted by vsftpd.",
+    "origin": "gpt-deep-research",
     "source": "https://security.appspot.com/vsftpd/vsftpd_conf.html"
   },
   {
@@ -73,6 +78,7 @@
     "choices": ["`write_enable=YES`", "`anon_upload_enable=YES`", "`local_enable=YES`", "`chroot_local_user=YES`"],
     "answerIndices": [0, 1],
     "explanation": "vsftpd requires `write_enable` plus `anon_upload_enable` for anonymous uploads to work.",
+    "origin": "gpt-deep-research",
     "source": "https://security.appspot.com/vsftpd/vsftpd_conf.html"
   },
   {
@@ -85,6 +91,7 @@
     "choices": ["The client", "The server", "Whichever side won the control connection", "A firewall helper"],
     "answerIndex": 0,
     "explanation": "In passive FTP the server listens for the data connection and the client initiates it.",
+    "origin": "gpt-deep-research",
     "source": "https://www.lpi.org/our-certifications/exam-201-202-objectives/"
   },
   {
@@ -96,6 +103,7 @@
     "prompt": "What is the default OpenSSH daemon configuration file path?",
     "answer": "/etc/ssh/sshd_config",
     "explanation": "sshd reads daemon configuration from `/etc/ssh/sshd_config` by default.",
+    "origin": "gpt-deep-research",
     "source": "https://man.openbsd.org/sshd_config"
   },
   {
@@ -108,6 +116,7 @@
     "choices": ["`PermitRootLogin no`", "`PasswordAuthentication no`", "`AllowUsers root`", "`PubkeyAuthentication no`"],
     "answerIndex": 0,
     "explanation": "`PermitRootLogin` controls whether root can log in directly via SSH.",
+    "origin": "gpt-deep-research",
     "source": "https://man.openbsd.org/sshd_config"
   },
   {
@@ -125,6 +134,7 @@
     ],
     "answerIndex": 0,
     "explanation": "The `ssh -L` form creates a local forward from a local port to a remote-side destination.",
+    "origin": "gpt-deep-research",
     "source": "https://man.openbsd.org/ssh"
   },
   {
@@ -137,6 +147,7 @@
     "choices": ["`PubkeyAuthentication yes`", "`PasswordAuthentication no`", "`PermitRootLogin yes`", "`Protocol 1`"],
     "answerIndices": [0, 1],
     "explanation": "Key-only login requires public-key auth enabled and password authentication disabled.",
+    "origin": "gpt-deep-research",
     "source": "https://man.openbsd.org/sshd_config"
   },
   {
@@ -148,6 +159,7 @@
     "prompt": "Which signal name causes sshd to reread `sshd_config`?",
     "answer": "SIGHUP",
     "explanation": "sshd rereads its configuration file when it receives a hangup signal.",
+    "origin": "gpt-deep-research",
     "source": "https://man.openbsd.org/sshd.8"
   },
   {
@@ -160,6 +172,7 @@
     "choices": ["`nmap`", "fail2ban", "`nc`", "`telnetd`"],
     "answerIndex": 0,
     "explanation": "Nmap is the network mapper and security scanning tool used for port and service discovery.",
+    "origin": "gpt-deep-research",
     "source": "https://svn.nmap.org/nmap/docs/nmap.1"
   },
   {
@@ -172,6 +185,7 @@
     "choices": ["`nc`", "`nmap`", "fail2ban", "OpenVAS"],
     "answerIndex": 0,
     "explanation": "`nc` opens arbitrary TCP or UDP connections and is commonly used for quick reachability tests.",
+    "origin": "gpt-deep-research",
     "source": "https://man.openbsd.org/nc.1"
   },
   {
@@ -183,6 +197,7 @@
     "prompt": "Fail2Ban recommends placing site-specific local jail overrides in which file?",
     "answer": "jail.local",
     "explanation": "Fail2Ban recommends keeping customizations in `.local` files, with `jail.local` overriding `jail.conf` defaults.",
+    "origin": "gpt-deep-research",
     "source": "https://manpages.debian.org/bookworm/fail2ban/jail.conf.5"
   },
   {
@@ -195,6 +210,7 @@
     "choices": ["OpenVAS", "`telnet`", "Snort", "`nc`"],
     "answerIndices": [0, 2],
     "explanation": "The objective explicitly calls out OpenVAS and Snort as awareness items in security-task tooling.",
+    "origin": "gpt-deep-research",
     "source": "https://www.lpi.org/our-certifications/exam-201-202-objectives/"
   },
   {
@@ -207,6 +223,7 @@
     "choices": ["`dev tun`", "`dev tap`", "`dev net`", "`dev vpn`"],
     "answerIndex": 0,
     "explanation": "OpenVPN uses `tun` for routed IP tunnels and `tap` for Ethernet bridging setups.",
+    "origin": "gpt-deep-research",
     "source": "https://openvpn.net/community-docs/creating-configuration-files-for-server-and-clients.html"
   },
   {
@@ -218,6 +235,7 @@
     "prompt": "Which OpenVPN client option tells the client not to bind a fixed local port before connecting?",
     "answer": "nobind",
     "explanation": "`nobind` prevents the OpenVPN client from binding a specific local port before connection.",
+    "origin": "gpt-deep-research",
     "source": "https://openvpn.net/community-docs/community-articles/openvpn-2-4-manual.html"
   },
   {
@@ -230,6 +248,7 @@
     "choices": ["`remote`", "`server`", "`port`", "`proto`"],
     "answerIndex": 0,
     "explanation": "The `remote` directive names the server endpoint the OpenVPN client should connect to.",
+    "origin": "gpt-deep-research",
     "source": "https://openvpn.net/community-docs/community-articles/openvpn-2-4-manual.html"
   }
 ]

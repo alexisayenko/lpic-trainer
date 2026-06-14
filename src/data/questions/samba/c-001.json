@@ -9,5 +9,6 @@
     "`/etc/samba/global.conf`"
   ],
   "answerIndex": 0,
-  "explanation": "`smb.conf` is the main Samba configuration file, containing the `[global]` section and per-share sections."
+  "explanation": "`smb.conf` is the main Samba configuration file, containing the `[global]` section and per-share sections.",
+  "origin": "linux-direct"
 }

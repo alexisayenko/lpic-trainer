@@ -9,5 +9,6 @@
     "`/etc/nsswitch.conf`"
   ],
   "answerIndex": 2,
-  "explanation": "`/etc/pam.conf` is the legacy global PAM configuration file. It is used only when `/etc/pam.d/` does not exist; when the `/etc/pam.d/` directory is present it takes precedence and `/etc/pam.conf` is ignored."
+  "explanation": "`/etc/pam.conf` is the legacy global PAM configuration file. It is used only when `/etc/pam.d/` does not exist; when the `/etc/pam.d/` directory is present it takes precedence and `/etc/pam.conf` is ignored.",
+  "origin": "linux-direct"
 }
