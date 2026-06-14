@@ -5,6 +5,7 @@ import { daysBack, startOfLocalDay } from './dates';
 export const DAY_GAP = 21 * 3_600_000; // attempts ≥ this far apart AND on different local dates are different QuizDays
 const WINDOW_MS = 21 * 86_400_000; // forgetting window, measured from now
 const SLOTS = 5; // last N QuizDays scored; missing slots count as wrong
+const RECENT_WRONG_CAP = 40; // ceiling when the most recent practiced day was wrong
 
 /** Days shown in the per-question strip (matches the mastery WINDOW_MS). */
 export const STRIP_DAYS = 21;
@@ -47,7 +48,12 @@ export function masteryOf(attempts: AnswerRecord[], now: number): number | null 
 
   const last = quizDays.slice(-SLOTS);
   const correct = last.filter(Boolean).length;
-  return Math.round((correct / SLOTS) * 100);
+  const score = Math.round((correct / SLOTS) * 100);
+
+  // A recent failure caps the score: if the most recent practiced day was wrong,
+  // the question isn't mastered no matter how many older days were correct.
+  const recentWrong = last.length > 0 && !last[last.length - 1];
+  return recentWrong ? Math.min(score, RECENT_WRONG_CAP) : score;
 }
 
 export interface MasterySegment {
@@ -67,7 +73,8 @@ export function masterySegments(total: number, buckets: Map<number, number> | un
     return { key: `m${score}`, n, cls: t.bar, txt: t.on, score, title: `${n} × ${score}%` };
   });
   const unseen = total - segments.reduce((acc, seg) => acc + seg.n, 0);
-  segments.unshift({
+  // Unanswered sits just after the failing (0) segment, matching RESULT_FILTERS.
+  segments.splice(1, 0, {
     key: 'unseen',
     n: unseen,
     cls: 'border border-slate-400 bg-slate-400/25',

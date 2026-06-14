@@ -72,12 +72,14 @@ export type ResultSelection = ResultOption[];
 /** Selected origins; empty array matches nothing. */
 export type SourceSelection = Origin[];
 
-export const RESULT_FILTERS: ResultOption[] = ['unseen', ...MASTERY_BUCKETS];
+// Failing (0) before unanswered, then the rest of the ramp — order used for the
+// filter chips and progress bars (the mastery-bar segment order matches).
+export const RESULT_FILTERS: ResultOption[] = [MASTERY_BUCKETS[0], 'unseen', ...MASTERY_BUCKETS.slice(1)];
 
 /** Display labels for result options ('unseen' is the persisted value, "unanswered" the UI word). */
 export const RESULT_OPTION_LABELS: Record<ResultOption, string> = {
   unseen: 'unanswered',
-  0: '0',
+  0: 'failing',
   20: '20',
   40: '40',
   60: '60',
