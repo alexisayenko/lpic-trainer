@@ -3,11 +3,11 @@
   "tool": "courier",
   "prompt": "A systems administrator is planning to implement authentication for Courier mail services using MySQL. Which of the following configuration files is essential to set up and define the connection parameters to the MySQL database for authentication?",
   "choices": [
-    "/etc/courier/authdaemonrc",
-    "/etc/courier/authmysqlrc",
-    "/etc/courier/imapd",
-    "/etc/courier/courierd"
+    "`/etc/courier/authdaemonrc`",
+    "`/etc/courier/authmysqlrc`",
+    "`/etc/courier/imapd`",
+    "`/etc/courier/courierd`"
   ],
   "answerIndex": 1,
-  "explanation": "Courier provides an extensible authentication mechanism, and when using MySQL for authentication, the /etc/courier/authmysqlrc configuration file is used to define parameters related to the MySQL database, such as connection details, database name, table names, and queries."
+  "explanation": "Courier provides an extensible authentication mechanism, and when using MySQL for authentication, the `/etc/courier/authmysqlrc` configuration file is used to define parameters related to the MySQL database, such as connection details, database name, table names, and queries."
 }

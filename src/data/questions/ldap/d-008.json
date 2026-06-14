@@ -1,13 +1,13 @@
 {
   "id": "ldap-d008",
   "tool": "ldap",
-  "prompt": "Mike, an experienced system administrator, is updating an LDAP user's password. He wants to use ldappasswd and also wants to ensure that he's prompted for the old password before setting a new one. Which command should he execute to achieve this?",
+  "prompt": "Mike, an experienced system administrator, is updating an LDAP user's password. He wants to use `ldappasswd` and also wants to ensure that he's prompted for the old password before setting a new one. Which command should he execute to achieve this?",
   "choices": [
-    "ldappasswd -S \"uid=msmith,ou=users,dc=corp,dc=net\"",
-    "ldappasswd -W \"uid=msmith,ou=users,dc=corp,dc=net\"",
-    "ldappasswd -A \"uid=msmith,ou=users,dc=corp,dc=net\"",
-    "ldappasswd -x \"uid=msmith,ou=users,dc=corp,dc=net\""
+    "`ldappasswd -S \"uid=msmith,ou=users,dc=corp,dc=net\"`",
+    "`ldappasswd -W \"uid=msmith,ou=users,dc=corp,dc=net\"`",
+    "`ldappasswd -A \"uid=msmith,ou=users,dc=corp,dc=net\"`",
+    "`ldappasswd -x \"uid=msmith,ou=users,dc=corp,dc=net\"`"
   ],
   "answerIndex": 2,
-  "explanation": "The ldappasswd tool allows administrators to modify an LDAP user's password. By using the -A option, Mike will be prompted for the old password before he's allowed to set a new one, ensuring that only those who know the current password can change it."
+  "explanation": "The `ldappasswd` tool allows administrators to modify an LDAP user's password. By using the `-A` option, Mike will be prompted for the old password before he's allowed to set a new one, ensuring that only those who know the current password can change it."
 }

@@ -1,13 +1,13 @@
 {
   "id": "pam-sss-d013",
   "tool": "pam-sss",
-  "prompt": "Your organization is implementing SSSD for LDAP authentication on Linux servers. One of the system administrators is trying to decide which service to configure within the sssd.conf file. Which service should they configure to utilize LDAP for user information?",
+  "prompt": "Your organization is implementing SSSD for LDAP authentication on Linux servers. One of the system administrators is trying to decide which service to configure within the `sssd.conf` file. Which service should they configure to utilize LDAP for user information?",
   "choices": [
-    "services = nss",
-    "services = pam",
-    "services = nss, pam",
-    "services = ldap, pam"
+    "`services = nss`",
+    "`services = pam`",
+    "`services = nss, pam`",
+    "`services = ldap, pam`"
   ],
   "answerIndex": 2,
-  "explanation": "When configuring SSSD for LDAP authentication, the nss service is responsible for retrieving user information (like getting user and group details), while the pam service manages authentication. Therefore, both nss and pam should be defined under the services directive in the sssd.conf file for LDAP authentication."
+  "explanation": "When configuring SSSD for LDAP authentication, the `nss` service is responsible for retrieving user information (like getting user and group details), while the `pam` service manages authentication. Therefore, both `nss` and `pam` should be defined under the `services` directive in the `sssd.conf` file for LDAP authentication."
 }

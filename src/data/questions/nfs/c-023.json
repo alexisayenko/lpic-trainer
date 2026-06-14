@@ -1,13 +1,13 @@
 {
   "id": "nfs-c023",
   "tool": "nfs",
-  "prompt": "An administrator is optimizing an NFS server for clients using NFS version 3. Which of the following options in the /etc/exports file ensures that a particular share is exported using NFS version 3?",
+  "prompt": "An administrator is optimizing an NFS server for clients using NFS version 3. Which of the following options in the `/etc/exports` file ensures that a particular share is exported using NFS version 3?",
   "choices": [
-    "sync",
-    "nfsvers=3",
-    "no_root_squash",
-    "subtree_check"
+    "`sync`",
+    "`nfsvers=3`",
+    "`no_root_squash`",
+    "`subtree_check`"
   ],
   "answerIndex": 1,
-  "explanation": "The nfsvers=3 option in the /etc/exports file ensures that a particular share is exported using NFS version 3. While it doesn't directly control the number of concurrent requests, it ensures that the share is using version 3, which might have limitations compared to newer versions."
+  "explanation": "The `nfsvers=3` option in the `/etc/exports` file ensures that a particular share is exported using NFS version 3. While it doesn't directly control the number of concurrent requests, it ensures that the share is using version 3, which might have limitations compared to newer versions."
 }

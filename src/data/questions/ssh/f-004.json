@@ -1,13 +1,13 @@
 {
   "id": "ssh-f004",
   "tool": "ssh",
-  "prompt": "Raj wants to restrict SSH access only to users who are members of the sshusers group. Which directive in the /etc/ssh/sshd_config file should he modify to implement this restriction?",
+  "prompt": "Raj wants to restrict SSH access only to users who are members of the `sshusers` group. Which directive in the `/etc/ssh/sshd_config` file should he modify to implement this restriction?",
   "choices": [
-    "AllowUsers sshusers",
-    "AllowGroups sshusers",
-    "PermitGroups sshusers",
-    "DenyGroups sshusers"
+    "`AllowUsers sshusers`",
+    "`AllowGroups sshusers`",
+    "`PermitGroups sshusers`",
+    "`DenyGroups sshusers`"
   ],
   "answerIndex": 1,
-  "explanation": "The AllowGroups directive limits SSH login to users who are members of the listed groups; only members of sshusers would be permitted."
+  "explanation": "The `AllowGroups` directive limits SSH login to users who are members of the listed groups; only members of `sshusers` would be permitted."
 }

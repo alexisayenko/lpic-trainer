@@ -1,13 +1,13 @@
 {
   "id": "bind9-a011",
   "tool": "bind9",
-  "prompt": "Given a BIND9 options block with \"forwarders {192.168.0.4;};\" and \"forward first;\", which of the following is true?",
+  "prompt": "Given a BIND9 options block with \"`forwarders {192.168.0.4;};`\" and \"`forward first;`\", which of the following is true?",
   "choices": [
     "The server refuses all recursive queries.",
-    "If the server does not know the answer to a query, it sends a recursive query to 192.168.0.4.",
-    "The server transfers its zones to 192.168.0.4.",
-    "The server listens for queries only on 192.168.0.4."
+    "If the server does not know the answer to a query, it sends a recursive query to `192.168.0.4`.",
+    "The server transfers its zones to `192.168.0.4`.",
+    "The server listens for queries only on `192.168.0.4`."
   ],
   "answerIndex": 1,
-  "explanation": "With forwarders set and \"forward first\", if the server cannot answer locally it forwards a recursive query to the listed forwarder 192.168.0.4."
+  "explanation": "With forwarders set and \"`forward first`\", if the server cannot answer locally it forwards a recursive query to the listed forwarder `192.168.0.4`."
 }

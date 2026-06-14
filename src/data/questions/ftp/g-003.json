@@ -1,13 +1,13 @@
 {
   "id": "ftp-g003",
   "tool": "ftp",
-  "prompt": "Jenna, a system administrator, is configuring the vsftpd server on her Linux machine. She wants to ensure that users cannot see the files of other users. Which configuration directive in the vsftpd.conf file should Jenna modify?",
+  "prompt": "Jenna, a system administrator, is configuring the vsftpd server on her Linux machine. She wants to ensure that users cannot see the files of other users. Which configuration directive in the `vsftpd.conf` file should Jenna modify?",
   "choices": [
-    "local_enable",
-    "chroot_local_user",
-    "userlist_deny",
-    "hide_ids"
+    "`local_enable`",
+    "`chroot_local_user`",
+    "`userlist_deny`",
+    "`hide_ids`"
   ],
   "answerIndex": 1,
-  "explanation": "Setting chroot_local_user=YES in the vsftpd.conf file ensures that local users will be 'chroot jailed' and confined to their home directories, preventing them from seeing files outside their home directory, including the files of other users."
+  "explanation": "Setting `chroot_local_user=YES` in the `vsftpd.conf` file ensures that local users will be 'chroot jailed' and confined to their home directories, preventing them from seeing files outside their home directory, including the files of other users."
 }

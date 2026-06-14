@@ -3,11 +3,11 @@
   "tool": "apache2",
   "prompt": "You have installed the PHP module on your Apache server, but PHP pages are not being rendered and are instead being displayed as plain text. Which directive should you verify in the Apache configuration to ensure PHP pages are processed by the PHP module?",
   "choices": [
-    "AddHandler text/html .php",
-    "AddType application/x-httpd-php .php",
-    "DirectoryIndex index.php",
-    "SetHandler default-handler"
+    "`AddHandler text/html .php`",
+    "`AddType application/x-httpd-php .php`",
+    "`DirectoryIndex index.php`",
+    "`SetHandler default-handler`"
   ],
   "answerIndex": 1,
-  "explanation": "AddType application/x-httpd-php .php associates the .php extension with the PHP handler so Apache passes the files to the PHP module instead of serving them as plain text."
+  "explanation": "`AddType application/x-httpd-php .php` associates the `.php` extension with the PHP handler so Apache passes the files to the PHP module instead of serving them as plain text."
 }

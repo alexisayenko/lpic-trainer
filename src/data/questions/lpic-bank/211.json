@@ -5,9 +5,9 @@
     "type": "fill",
     "objective": "211.1",
     "difficulty": "recall",
-    "prompt": "Which sendmail-compatible command rebuilds the aliases database from /etc/aliases?",
+    "prompt": "Which sendmail-compatible command rebuilds the aliases database from `/etc/aliases`?",
     "answer": "newaliases",
-    "explanation": "newaliases rebuilds the local alias database used by Postfix local delivery.",
+    "explanation": "`newaliases` rebuilds the local alias database used by Postfix local delivery.",
     "source": "https://www.postfix.org/aliases.5.html"
   },
   {
@@ -17,9 +17,9 @@
     "objective": "211.1",
     "difficulty": "applied",
     "prompt": "Which Postfix parameter routes all nonlocal outbound mail through a smarthost?",
-    "choices": ["relayhost", "mydestination", "alias_maps", "home_mailbox"],
+    "choices": ["`relayhost`", "`mydestination`", "`alias_maps`", "`home_mailbox`"],
     "answerIndex": 0,
-    "explanation": "relayhost forces Postfix to send remote mail through the specified next-hop relay.",
+    "explanation": "`relayhost` forces Postfix to send remote mail through the specified next-hop relay.",
     "source": "https://www.postfix.org/BASIC_CONFIGURATION_README.html"
   },
   {
@@ -29,9 +29,9 @@
     "objective": "211.1",
     "difficulty": "applied",
     "prompt": "Which Postfix parameter lists domains that this host accepts as final local delivery destinations?",
-    "choices": ["mydestination", "mynetworks", "inet_interfaces", "virtual_alias_maps"],
+    "choices": ["`mydestination`", "`mynetworks`", "`inet_interfaces`", "`virtual_alias_maps`"],
     "answerIndex": 0,
-    "explanation": "mydestination defines the domains for which Postfix is the final destination for local delivery.",
+    "explanation": "`mydestination` defines the domains for which Postfix is the final destination for local delivery.",
     "source": "https://www.postfix.org/BASIC_CONFIGURATION_README.html"
   },
   {
@@ -41,9 +41,9 @@
     "objective": "211.1",
     "difficulty": "applied",
     "prompt": "Which Postfix parameter points to maps used to rewrite one address to another for virtual aliases?",
-    "choices": ["virtual_alias_maps", "relay_recipient_maps", "canonical_maps", "fallback_transport"],
+    "choices": ["`virtual_alias_maps`", "`relay_recipient_maps`", "`canonical_maps`", "`fallback_transport`"],
     "answerIndex": 0,
-    "explanation": "virtual_alias_maps controls address rewriting for virtual alias recipients and domains.",
+    "explanation": "`virtual_alias_maps` controls address rewriting for virtual alias recipients and domains.",
     "source": "https://www.postfix.org/VIRTUAL_README.html"
   },
   {
@@ -53,9 +53,9 @@
     "objective": "211.1",
     "difficulty": "applied",
     "prompt": "Which Postfix parameter controls the TLS security level offered by the Postfix SMTP server?",
-    "choices": ["smtpd_tls_security_level", "smtp_tls_security_level", "smtpd_sasl_auth_enable", "smtp_use_tls"],
+    "choices": ["`smtpd_tls_security_level`", "`smtp_tls_security_level`", "`smtpd_sasl_auth_enable`", "`smtp_use_tls`"],
     "answerIndex": 0,
-    "explanation": "smtpd_tls_security_level is the server-side setting for inbound SMTP TLS policy in Postfix.",
+    "explanation": "`smtpd_tls_security_level` is the server-side setting for inbound SMTP TLS policy in Postfix.",
     "source": "https://www.postfix.org/postfix-tls.1.html"
   },
   {
@@ -65,9 +65,9 @@
     "objective": "211.2",
     "difficulty": "recall",
     "prompt": "Which standard Sieve action files a message into a named mailbox instead of keeping it in INBOX?",
-    "choices": ["fileinto", "keep", "stop", "vacation"],
+    "choices": ["`fileinto`", "`keep`", "`stop`", "`vacation`"],
     "answerIndex": 0,
-    "explanation": "The Sieve fileinto action delivers mail to a specified mailbox rather than leaving it in the default mailbox.",
+    "explanation": "The Sieve `fileinto` action delivers mail to a specified mailbox rather than leaving it in the default mailbox.",
     "source": "https://www.rfc-editor.org/rfc/rfc5228"
   },
   {
@@ -77,9 +77,9 @@
     "objective": "211.2",
     "difficulty": "applied",
     "prompt": "Which TWO Sieve actions explicitly deliver mail somewhere other than the default INBOX?",
-    "choices": ["fileinto", "keep", "redirect", "stop"],
+    "choices": ["`fileinto`", "`keep`", "`redirect`", "`stop`"],
     "answerIndices": [0, 2],
-    "explanation": "fileinto stores mail in another mailbox and redirect forwards mail to another recipient.",
+    "explanation": "`fileinto` stores mail in another mailbox and `redirect` forwards mail to another recipient.",
     "source": "https://www.rfc-editor.org/rfc/rfc5228"
   },
   {
@@ -89,9 +89,9 @@
     "objective": "211.2",
     "difficulty": "scenario",
     "prompt": "Which Sieve extension is used for automatic out-of-office replies in Dovecot Pigeonhole?",
-    "choices": ["vacation", "reject", "imapflags", "copy"],
+    "choices": ["`vacation`", "`reject`", "`imapflags`", "`copy`"],
     "answerIndex": 0,
-    "explanation": "Dovecot Pigeonhole implements the vacation extension for automatic reply behavior.",
+    "explanation": "Dovecot Pigeonhole implements the `vacation` extension for automatic reply behavior.",
     "source": "https://doc.dovecot.org/main/howto/sieve.html"
   },
   {
@@ -101,9 +101,9 @@
     "objective": "211.3",
     "difficulty": "applied",
     "prompt": "Which global Dovecot setting must be enabled so the service listens on implicit SSL ports such as IMAPS and POP3S?",
-    "choices": ["ssl = yes", "tls = on", "protocols = imaps pop3s", "disable_plaintext_auth = no"],
+    "choices": ["`ssl = yes`", "`tls = on`", "`protocols = imaps pop3s`", "`disable_plaintext_auth = no`"],
     "answerIndex": 0,
-    "explanation": "Dovecot requires ssl = yes globally before it will listen on the SSL service ports.",
+    "explanation": "Dovecot requires `ssl = yes` globally before it will listen on the SSL service ports.",
     "source": "https://doc.dovecot.org/2.3/configuration_manual/dovecot_ssl_configuration/"
   },
   {
@@ -114,7 +114,7 @@
     "difficulty": "applied",
     "prompt": "Which Dovecot command prints the current nondefault configuration?",
     "answer": "doveconf -n",
-    "explanation": "doveconf is used to inspect effective Dovecot configuration, and -n shows nondefault settings.",
+    "explanation": "`doveconf` is used to inspect effective Dovecot configuration, and `-n` shows nondefault settings.",
     "source": "https://doc.dovecot.org/main/core/man/doveconf.1.html"
   },
   {
@@ -124,9 +124,9 @@
     "objective": "211.3",
     "difficulty": "scenario",
     "prompt": "Which Dovecot setting blocks plaintext logins unless SSL or a non-plaintext authentication method is used?",
-    "choices": ["disable_plaintext_auth = yes", "auth_plain = off", "ssl = required", "imap_plaintext = no"],
+    "choices": ["`disable_plaintext_auth = yes`", "`auth_plain = off`", "`ssl = required`", "`imap_plaintext = no`"],
     "answerIndex": 0,
-    "explanation": "Dovecot recommends disable_plaintext_auth = yes to prevent password exposure on unencrypted sessions.",
+    "explanation": "Dovecot recommends `disable_plaintext_auth = yes` to prevent password exposure on unencrypted sessions.",
     "source": "https://doc.dovecot.org/2.3/configuration_manual/quick_configuration/"
   }
 ]

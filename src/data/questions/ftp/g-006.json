@@ -1,7 +1,7 @@
 {
   "id": "ftp-g006",
   "tool": "ftp",
-  "prompt": "Carlos, a system administrator, is reviewing the ProFTPd configuration and notices the directive UseIPv6. What would be the purpose of adjusting this directive?",
+  "prompt": "Carlos, a system administrator, is reviewing the ProFTPd configuration and notices the directive `UseIPv6`. What would be the purpose of adjusting this directive?",
   "choices": [
     "To bind the server to a specific IPv6 address",
     "To enable or disable the support for IPv6",
@@ -9,5 +9,5 @@
     "To restrict logins to clients connecting over IPv6"
   ],
   "answerIndex": 1,
-  "explanation": "The UseIPv6 directive in proftpd.conf controls whether the ProFTPd server enables or disables support for IPv6."
+  "explanation": "The `UseIPv6` directive in `proftpd.conf` controls whether the ProFTPd server enables or disables support for IPv6."
 }

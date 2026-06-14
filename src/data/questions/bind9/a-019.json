@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "What is the most secure account to use to run BIND?",
   "choices": [
-    "root",
+    "`root`",
     "A server-specific system account",
     "The administrator's personal login account",
-    "The nobody account shared with all other daemons"
+    "The `nobody` account shared with all other daemons"
   ],
   "answerIndex": 1,
-  "explanation": "BIND should run under a dedicated, unprivileged server-specific system account (such as the 'named' user) so a compromise cannot escalate privileges."
+  "explanation": "BIND should run under a dedicated, unprivileged server-specific system account (such as the '`named`' user) so a compromise cannot escalate privileges."
 }

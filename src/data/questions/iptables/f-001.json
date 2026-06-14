@@ -3,11 +3,11 @@
   "tool": "iptables",
   "prompt": "Alex wants to enable IP forwarding on his Linux-based router so that it can forward packets between interfaces. Which command will he use to enable IP forwarding temporarily (until the next reboot)?",
   "choices": [
-    "sysctl -w net.ipv4.ip_forward=1",
-    "iptables -A FORWARD -j ACCEPT",
-    "sysctl net.ipv4.ip_forward",
-    "modprobe ip_forward"
+    "`sysctl -w net.ipv4.ip_forward=1`",
+    "`iptables -A FORWARD -j ACCEPT`",
+    "`sysctl net.ipv4.ip_forward`",
+    "`modprobe ip_forward`"
   ],
   "answerIndex": 0,
-  "explanation": "sysctl -w net.ipv4.ip_forward=1 sets the kernel parameter at runtime; the change is not persistent and is lost on reboot."
+  "explanation": "`sysctl -w net.ipv4.ip_forward=1` sets the kernel parameter at runtime; the change is not persistent and is lost on reboot."
 }

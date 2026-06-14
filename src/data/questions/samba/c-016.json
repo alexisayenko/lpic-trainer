@@ -1,13 +1,13 @@
 {
   "id": "samba-c016",
   "tool": "samba",
-  "prompt": "Which of the following Samba configuration parameters is functionally identical to the parameter read only=yes?",
+  "prompt": "Which of the following Samba configuration parameters is functionally identical to the parameter `read only=yes`?",
   "choices": [
-    "writeable=no",
-    "writeable=yes",
-    "public=no",
-    "guest ok=no"
+    "`writeable=no`",
+    "`writeable=yes`",
+    "`public=no`",
+    "`guest ok=no`"
   ],
   "answerIndex": 0,
-  "explanation": "writeable=no is the inverse synonym of read only=yes; both make a share read-only."
+  "explanation": "`writeable=no` is the inverse synonym of `read only=yes`; both make a share read-only."
 }

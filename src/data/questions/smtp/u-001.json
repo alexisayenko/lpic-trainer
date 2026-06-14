@@ -3,11 +3,11 @@
   "tool": "smtp",
   "prompt": "Tom, an IT specialist, is manually testing the SMTP communication between two mail servers. He needs to specify the sender's email address. Which SMTP command should Tom use?",
   "choices": [
-    "RCPT TO",
-    "HELO",
-    "MAIL FROM",
-    "DATA"
+    "`RCPT TO`",
+    "`HELO`",
+    "`MAIL FROM`",
+    "`DATA`"
   ],
   "answerIndex": 2,
-  "explanation": "The MAIL FROM command in an SMTP session specifies the email address of the message sender."
+  "explanation": "The `MAIL FROM` command in an SMTP session specifies the email address of the message sender."
 }

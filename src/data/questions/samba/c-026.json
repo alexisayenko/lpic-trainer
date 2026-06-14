@@ -3,11 +3,11 @@
   "tool": "samba",
   "prompt": "The system administrator needs to update the Samba password for a user named \"john\" to ensure he can access shared resources using his new credentials. Which tool should the administrator use to change the Samba-specific password for this user?",
   "choices": [
-    "passwd",
-    "smbpasswd",
-    "smbclient",
-    "net rpc password"
+    "`passwd`",
+    "`smbpasswd`",
+    "`smbclient`",
+    "`net rpc password`"
   ],
   "answerIndex": 1,
-  "explanation": "smbpasswd is used to change a user's SMB password in the Samba password database."
+  "explanation": "`smbpasswd` is used to change a user's SMB password in the Samba password database."
 }

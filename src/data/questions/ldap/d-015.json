@@ -3,11 +3,11 @@
   "tool": "ldap",
   "prompt": "Rachel, a systems administrator, wants to modify the email address of a user named \"jane.smith\" in her company's LDAP directory. Which LDAP utility should Rachel use to accomplish this task?",
   "choices": [
-    "ldapmodify",
-    "ldapadd",
-    "ldapsearch",
-    "ldappasswd"
+    "`ldapmodify`",
+    "`ldapadd`",
+    "`ldapsearch`",
+    "`ldappasswd`"
   ],
   "answerIndex": 0,
-  "explanation": "The ldapmodify utility is used to modify existing entries in the LDAP directory, such as changing a user's email address attribute."
+  "explanation": "The `ldapmodify` utility is used to modify existing entries in the LDAP directory, such as changing a user's email address attribute."
 }

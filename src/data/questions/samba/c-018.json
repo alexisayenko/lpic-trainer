@@ -3,11 +3,11 @@
   "tool": "samba",
   "prompt": "Which of the following Samba services handles the membership of a file server in an Active Directory domain?",
   "choices": [
-    "nmbd",
-    "smbd",
-    "samba",
-    "winbindd"
+    "`nmbd`",
+    "`smbd`",
+    "`samba`",
+    "`winbindd`"
   ],
   "answerIndex": 2,
-  "explanation": "The samba daemon (the Samba AD service) handles domain controller functionality and file server membership in an Active Directory domain."
+  "explanation": "The `samba` daemon (the Samba AD service) handles domain controller functionality and file server membership in an Active Directory domain."
 }

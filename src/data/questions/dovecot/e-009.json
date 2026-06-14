@@ -1,13 +1,13 @@
 {
   "id": "dovecot-e009",
   "tool": "dovecot",
-  "prompt": "To improve the performance of the Dovecot server, you decide to modify the dovecot.conf file to disable some unnecessary protocols. After editing the file, you notice that IMAP is still working. Which of the following configurations in the dovecot.conf could be the reason IMAP is still enabled?",
+  "prompt": "To improve the performance of the Dovecot server, you decide to modify the `dovecot.conf` file to disable some unnecessary protocols. After editing the file, you notice that IMAP is still working. Which of the following configurations in the `dovecot.conf` could be the reason IMAP is still enabled?",
   "choices": [
-    "ssl = required",
-    "protocols = imap",
-    "auth_verbose = yes",
-    "mail_location = maildir"
+    "`ssl = required`",
+    "`protocols = imap`",
+    "`auth_verbose = yes`",
+    "`mail_location = maildir`"
   ],
   "answerIndex": 1,
-  "explanation": "The protocols directive lists the protocols Dovecot enables; if protocols = imap is still present in dovecot.conf, the IMAP protocol remains active."
+  "explanation": "The `protocols` directive lists the protocols Dovecot enables; if `protocols = imap` is still present in `dovecot.conf`, the IMAP protocol remains active."
 }

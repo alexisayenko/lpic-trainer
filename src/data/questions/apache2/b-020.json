@@ -1,13 +1,13 @@
 {
   "id": "apache2-b020",
   "tool": "apache2",
-  "prompt": "You are working as an administrator for a small company. They've asked you to add a new user named \"john\" and set a password for him for HTTP basic authentication on their website. Which command would you use to add this user to an existing password file users.passwd without overwriting the file?",
+  "prompt": "You are working as an administrator for a small company. They've asked you to add a new user named \"john\" and set a password for him for HTTP basic authentication on their website. Which command would you use to add this user to an existing password file `users.passwd` without overwriting the file?",
   "choices": [
-    "htpasswd -c users.passwd john",
-    "htpasswd users.passwd john",
-    "htpasswd -n john users.passwd",
-    "htpasswd -D users.passwd john"
+    "`htpasswd -c users.passwd john`",
+    "`htpasswd users.passwd john`",
+    "`htpasswd -n john users.passwd`",
+    "`htpasswd -D users.passwd john`"
   ],
   "answerIndex": 1,
-  "explanation": "htpasswd users.passwd john adds or updates the user john in an existing password file; the -c flag would be omitted because -c creates a new file and overwrites any existing one."
+  "explanation": "`htpasswd users.passwd john` adds or updates the user `john` in an existing password file; the `-c` flag would be omitted because `-c` creates a new file and overwrites any existing one."
 }

@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "Natasha implements a split configuration in BIND with an internal DNS server for local resolution and an external server for other queries. Where should she add the address of the external server in the internal server's configuration so unresolved queries are passed to it?",
   "choices": [
-    "In the masters statement",
-    "In the forwarders statement",
-    "In the also-notify statement",
-    "In the allow-transfer statement"
+    "In the `masters` statement",
+    "In the `forwarders` statement",
+    "In the `also-notify` statement",
+    "In the `allow-transfer` statement"
   ],
   "answerIndex": 1,
-  "explanation": "The forwarders statement lists upstream servers to which the internal server passes queries it cannot resolve locally."
+  "explanation": "The `forwarders` statement lists upstream servers to which the internal server passes queries it cannot resolve locally."
 }

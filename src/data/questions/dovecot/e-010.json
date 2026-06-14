@@ -1,13 +1,13 @@
 {
   "id": "dovecot-e010",
   "tool": "dovecot",
-  "prompt": "As the new system administrator in a company, you are tasked with the responsibility of checking the current version of Dovecot running on a server. You have a hunch that the configuration file might give you this information. Which of the following files in the /etc/dovecot/ directory should you inspect to get the version of Dovecot?",
+  "prompt": "As the new system administrator in a company, you are tasked with the responsibility of checking the current version of Dovecot running on a server. You have a hunch that the configuration file might give you this information. Which of the following files in the `/etc/dovecot/` directory should you inspect to get the version of Dovecot?",
   "choices": [
-    "/etc/dovecot/version",
-    "/etc/dovecot/conf.d/10-master.conf",
-    "/etc/dovecot/dovecot.conf",
-    "/etc/dovecot/dovecot-version.conf"
+    "`/etc/dovecot/version`",
+    "`/etc/dovecot/conf.d/10-master.conf`",
+    "`/etc/dovecot/dovecot.conf`",
+    "`/etc/dovecot/dovecot-version.conf`"
   ],
   "answerIndex": 2,
-  "explanation": "The primary configuration file for Dovecot is /etc/dovecot/dovecot.conf. It typically contains the version information at the beginning of the file, especially if it's an unaltered default file."
+  "explanation": "The primary configuration file for Dovecot is `/etc/dovecot/dovecot.conf`. It typically contains the version information at the beginning of the file, especially if it's an unaltered default file."
 }

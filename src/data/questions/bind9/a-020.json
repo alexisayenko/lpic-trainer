@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "Which of the following are types of legal records in a DNS zone file? (Choose 2 that apply.)",
   "choices": [
-    "CNAME and MX",
-    "TXT and HUP",
-    "PTR and FLUSH",
-    "SOA and RELOAD"
+    "`CNAME` and `MX`",
+    "`TXT` and `HUP`",
+    "`PTR` and `FLUSH`",
+    "`SOA` and `RELOAD`"
   ],
   "answerIndex": 0,
-  "explanation": "CNAME (canonical name alias) and MX (mail exchange) are valid DNS resource record types found in zone files."
+  "explanation": "`CNAME` (canonical name alias) and `MX` (mail exchange) are valid DNS resource record types found in zone files."
 }

@@ -1,13 +1,13 @@
 {
   "id": "pam-sss-d003",
   "tool": "pam-sss",
-  "prompt": "Martin, a network administrator, wants to ensure that sssd on his Linux server caches user credentials for faster subsequent logins, even when the main authentication source is temporarily unavailable. Which configuration directive in sssd.conf should Martin ensure is set appropriately?",
+  "prompt": "Martin, a network administrator, wants to ensure that sssd on his Linux server caches user credentials for faster subsequent logins, even when the main authentication source is temporarily unavailable. Which configuration directive in `sssd.conf` should Martin ensure is set appropriately?",
   "choices": [
-    "id_provider",
-    "cache_credentials",
-    "ldap_uri",
-    "enumerate"
+    "`id_provider`",
+    "`cache_credentials`",
+    "`ldap_uri`",
+    "`enumerate`"
   ],
   "answerIndex": 1,
-  "explanation": "The cache_credentials directive in sssd.conf caches user credentials for faster subsequent logins and allows authentication when the main source is temporarily unavailable."
+  "explanation": "The `cache_credentials` directive in `sssd.conf` caches user credentials for faster subsequent logins and allows authentication when the main source is temporarily unavailable."
 }

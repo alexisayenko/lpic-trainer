@@ -1,13 +1,13 @@
 {
   "id": "samba-c030",
   "tool": "samba",
-  "prompt": "Chloe wants her Samba server to be part of an Active Directory (AD) domain and authenticate users using the AD domain controller. Which of the following configurations should she set in the smb.conf file to achieve this?",
+  "prompt": "Chloe wants her Samba server to be part of an Active Directory (AD) domain and authenticate users using the AD domain controller. Which of the following configurations should she set in the `smb.conf` file to achieve this?",
   "choices": [
-    "security = user",
-    "security = domain",
-    "security = ads",
-    "security = share"
+    "`security = user`",
+    "`security = domain`",
+    "`security = ads`",
+    "`security = share`"
   ],
   "answerIndex": 2,
-  "explanation": "security = ads makes the Samba server join an Active Directory domain and authenticate users against the AD domain controller."
+  "explanation": "`security = ads` makes the Samba server join an Active Directory domain and authenticate users against the AD domain controller."
 }

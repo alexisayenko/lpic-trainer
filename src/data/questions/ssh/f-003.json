@@ -1,13 +1,13 @@
 {
   "id": "ssh-f003",
   "tool": "ssh",
-  "prompt": "Jasmine wishes to prevent root logins via SSH on her server for added security. Which configuration directive should she modify in the sshd_config file?",
+  "prompt": "Jasmine wishes to prevent root logins via SSH on her server for added security. Which configuration directive should she modify in the `sshd_config` file?",
   "choices": [
-    "PermitRootLogin no",
-    "PermitRootAccess no",
-    "AllowRootLogin no",
-    "RootLogin disabled"
+    "`PermitRootLogin no`",
+    "`PermitRootAccess no`",
+    "`AllowRootLogin no`",
+    "`RootLogin disabled`"
   ],
   "answerIndex": 0,
-  "explanation": "The PermitRootLogin directive, set to no, prevents the root user from logging in directly over SSH."
+  "explanation": "The `PermitRootLogin` directive, set to `no`, prevents the root user from logging in directly over SSH."
 }

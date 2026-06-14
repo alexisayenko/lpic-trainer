@@ -1,13 +1,13 @@
 {
   "id": "samba-c029",
   "tool": "samba",
-  "prompt": "The IT manager wants to ensure the company's Samba server has joined the correct Active Directory (AD) domain. Which subcommand of the net tool can be used by the administrator to display information about the current AD domain membership?",
+  "prompt": "The IT manager wants to ensure the company's Samba server has joined the correct Active Directory (AD) domain. Which subcommand of the `net` tool can be used by the administrator to display information about the current AD domain membership?",
   "choices": [
-    "net rpc info",
-    "net ads info",
-    "net ads testjoin",
-    "net ads join"
+    "`net rpc info`",
+    "`net ads info`",
+    "`net ads testjoin`",
+    "`net ads join`"
   ],
   "answerIndex": 1,
-  "explanation": "net ads info displays information about the Active Directory domain the server is a member of."
+  "explanation": "`net ads info` displays information about the Active Directory domain the server is a member of."
 }

@@ -5,9 +5,9 @@
     "type": "fill",
     "objective": "208.1",
     "difficulty": "recall",
-    "prompt": "Which filename is commonly used for per-directory Apache overrides when AllowOverride permits them?",
+    "prompt": "Which filename is commonly used for per-directory Apache overrides when `AllowOverride` permits them?",
     "answer": ".htaccess",
-    "explanation": ".htaccess is Apache's per-directory distributed configuration file.",
+    "explanation": "`.htaccess` is Apache's per-directory distributed configuration file.",
     "source": "https://httpd.apache.org/docs/2.4/configuring.html"
   },
   {
@@ -16,10 +16,10 @@
     "type": "single",
     "objective": "208.1",
     "difficulty": "applied",
-    "prompt": "Which Apache directive points Basic authentication at the password file created with htpasswd?",
-    "choices": ["AuthName", "AuthUserFile", "AuthGroupFile", "RequireUser"],
+    "prompt": "Which Apache directive points Basic authentication at the password file created with `htpasswd`?",
+    "choices": ["`AuthName`", "`AuthUserFile`", "`AuthGroupFile`", "`RequireUser`"],
     "answerIndex": 1,
-    "explanation": "AuthUserFile points Apache Basic authentication at the password file created with htpasswd.",
+    "explanation": "`AuthUserFile` points Apache Basic authentication at the password file created with `htpasswd`.",
     "source": "https://httpd.apache.org/docs/2.4/howto/auth.html"
   },
   {
@@ -28,9 +28,9 @@
     "type": "fill",
     "objective": "208.1",
     "difficulty": "applied",
-    "prompt": "Complete the apachectl subcommand that checks Apache configuration syntax without starting the server: apachectl ____",
+    "prompt": "Complete the `apachectl` subcommand that checks Apache configuration syntax without starting the server: `apachectl ____`",
     "answer": "configtest",
-    "explanation": "apachectl configtest performs a syntax check of Apache configuration files.",
+    "explanation": "`apachectl configtest` performs a syntax check of Apache configuration files.",
     "source": "https://httpd.apache.org/docs/2.4/configuring.html"
   },
   {
@@ -40,9 +40,9 @@
     "objective": "208.1",
     "difficulty": "applied",
     "prompt": "Which Apache directive limits the number of simultaneous requests that can be served?",
-    "choices": ["MaxRequestWorkers", "ServerTokens", "DirectoryIndex", "TimeoutLimit"],
+    "choices": ["`MaxRequestWorkers`", "`ServerTokens`", "`DirectoryIndex`", "`TimeoutLimit`"],
     "answerIndex": 0,
-    "explanation": "MaxRequestWorkers sets the limit on simultaneous requests Apache will serve.",
+    "explanation": "`MaxRequestWorkers` sets the limit on simultaneous requests Apache will serve.",
     "source": "https://httpd.apache.org/docs/2.4/mod/mpm_common.html"
   },
   {
@@ -51,10 +51,10 @@
     "type": "single",
     "objective": "208.1",
     "difficulty": "scenario",
-    "prompt": "In a name-based Apache virtual host on port 80, which directive identifies the hostname that must match the HTTP Host header?",
-    "choices": ["ServerName", "ServerAliasPath", "ListenName", "DocumentRoot"],
+    "prompt": "In a name-based Apache virtual host on port 80, which directive identifies the hostname that must match the HTTP `Host` header?",
+    "choices": ["`ServerName`", "`ServerAliasPath`", "`ListenName`", "`DocumentRoot`"],
     "answerIndex": 0,
-    "explanation": "Apache uses ServerName and related virtual-host matching rules to select the correct vhost for a request hostname.",
+    "explanation": "Apache uses `ServerName` and related virtual-host matching rules to select the correct vhost for a request hostname.",
     "source": "https://httpd.apache.org/docs/2.4/"
   },
   {
@@ -63,10 +63,10 @@
     "type": "single",
     "objective": "208.2",
     "difficulty": "recall",
-    "prompt": "Which directive must be set to on inside an Apache HTTPS virtual host to enable TLS processing?",
-    "choices": ["SSLEngine", "SSLProtocol", "TLSEngine", "SSLStart"],
+    "prompt": "Which directive must be set to `on` inside an Apache HTTPS virtual host to enable TLS processing?",
+    "choices": ["`SSLEngine`", "`SSLProtocol`", "`TLSEngine`", "`SSLStart`"],
     "answerIndex": 0,
-    "explanation": "mod_ssl enables HTTPS processing in a vhost with SSLEngine on.",
+    "explanation": "`mod_ssl` enables HTTPS processing in a vhost with `SSLEngine on`.",
     "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
   },
   {
@@ -77,7 +77,7 @@
     "difficulty": "recall",
     "prompt": "Which Apache directive points to the server's private key file in an HTTPS virtual host?",
     "answer": "SSLCertificateKeyFile",
-    "explanation": "SSLCertificateKeyFile identifies the private key file used by an HTTPS virtual host.",
+    "explanation": "`SSLCertificateKeyFile` identifies the private key file used by an HTTPS virtual host.",
     "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
   },
   {
@@ -87,9 +87,9 @@
     "objective": "208.2",
     "difficulty": "applied",
     "prompt": "Which TWO Apache directives are used specifically to disable weak protocol versions and weak cipher suites?",
-    "choices": ["SSLProtocol", "ServerSignature", "SSLCipherSuite", "TraceEnable"],
+    "choices": ["`SSLProtocol`", "`ServerSignature`", "`SSLCipherSuite`", "`TraceEnable`"],
     "answerIndices": [0, 2],
-    "explanation": "SSLProtocol controls allowed protocol versions and SSLCipherSuite controls allowed ciphers.",
+    "explanation": "`SSLProtocol` controls allowed protocol versions and `SSLCipherSuite` controls allowed ciphers.",
     "source": "https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html"
   },
   {
@@ -112,7 +112,7 @@
     "difficulty": "recall",
     "prompt": "Which Squid directive evaluates access rules after ACLs are defined?",
     "answer": "http_access",
-    "explanation": "Squid access decisions are made with http_access rules that reference named ACLs.",
+    "explanation": "Squid access decisions are made with `http_access` rules that reference named ACLs.",
     "source": "https://www.squid-cache.org/Doc/config/acl/"
   },
   {
@@ -122,9 +122,9 @@
     "objective": "208.3",
     "difficulty": "recall",
     "prompt": "Which Squid directive defines a named access-list element such as a source network or destination domain?",
-    "choices": ["acl", "cache_peer", "http_port", "forwarded_for"],
+    "choices": ["`acl`", "`cache_peer`", "`http_port`", "`forwarded_for`"],
     "answerIndex": 0,
-    "explanation": "Squid creates named ACLs with the acl directive, then reuses those names in access rules.",
+    "explanation": "Squid creates named ACLs with the `acl` directive, then reuses those names in access rules.",
     "source": "https://www.squid-cache.org/Doc/config/acl/"
   },
   {
@@ -133,12 +133,12 @@
     "type": "single",
     "objective": "208.3",
     "difficulty": "scenario",
-    "prompt": "How does Squid evaluate http_access rules?",
+    "prompt": "How does Squid evaluate `http_access` rules?",
     "choices": [
       "Top to bottom; the first matching rule decides",
       "Bottom to top; the last matching rule decides",
       "All matching rules are merged and the most specific wins",
-      "Rules are ignored unless auth_param is defined"
+      "Rules are ignored unless `auth_param` is defined"
     ],
     "answerIndex": 0,
     "explanation": "Squid checks access-list rules in written order and stops at the first match.",
@@ -151,9 +151,9 @@
     "objective": "208.4",
     "difficulty": "applied",
     "prompt": "Which Nginx directive inside a location block forwards requests to an upstream backend server?",
-    "choices": ["proxy_pass", "rewrite_pass", "fastcgi_root", "upstream_pass"],
+    "choices": ["`proxy_pass`", "`rewrite_pass`", "`fastcgi_root`", "`upstream_pass`"],
     "answerIndex": 0,
-    "explanation": "nginx acts as a reverse proxy by sending requests onward with proxy_pass.",
+    "explanation": "nginx acts as a reverse proxy by sending requests onward with `proxy_pass`.",
     "source": "https://nginx.org/en/docs/beginners_guide.html"
   },
   {
@@ -162,9 +162,9 @@
     "type": "fill",
     "objective": "208.4",
     "difficulty": "applied",
-    "prompt": "Complete the Nginx switch that tests configuration syntax: nginx ____",
+    "prompt": "Complete the Nginx switch that tests configuration syntax: `nginx ____`",
     "answer": "-t",
-    "explanation": "nginx -t checks configuration syntax before reload or restart.",
+    "explanation": "`nginx -t` checks configuration syntax before reload or restart.",
     "source": "https://nginx.org/en/docs/beginners_guide.html"
   },
   {
@@ -174,9 +174,9 @@
     "objective": "208.4",
     "difficulty": "scenario",
     "prompt": "Which Nginx directive is used to select the virtual server by requested hostname?",
-    "choices": ["server_name", "listen_name", "host_name", "name_server"],
+    "choices": ["`server_name`", "`listen_name`", "`host_name`", "`name_server`"],
     "answerIndex": 0,
-    "explanation": "Nginx chooses the matching virtual server primarily from the server_name value and request host.",
+    "explanation": "Nginx chooses the matching virtual server primarily from the `server_name` value and request host.",
     "source": "https://nginx.org/en/docs/beginners_guide.html"
   }
 ]

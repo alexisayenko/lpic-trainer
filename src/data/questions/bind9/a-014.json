@@ -1,7 +1,7 @@
 {
   "id": "bind9-a014",
   "tool": "bind9",
-  "prompt": "A Linux system administrator runs \"rndc flush\" at a root command prompt on a computer running a DNS server. What will be the effect?",
+  "prompt": "A Linux system administrator runs \"`rndc flush`\" at a root command prompt on a computer running a DNS server. What will be the effect?",
   "choices": [
     "The DNS server's zone files will be deleted.",
     "The DNS server caches will be cleared.",
@@ -9,5 +9,5 @@
     "All zone transfers will be disabled."
   ],
   "answerIndex": 1,
-  "explanation": "The \"rndc flush\" command clears the server's cache, discarding cached resource records."
+  "explanation": "The \"`rndc flush`\" command clears the server's cache, discarding cached resource records."
 }

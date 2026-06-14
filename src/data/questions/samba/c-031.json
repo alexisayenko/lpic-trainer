@@ -1,13 +1,13 @@
 {
   "id": "samba-c031",
   "tool": "samba",
-  "prompt": "While troubleshooting a connectivity issue with a remote Samba server, the administrator decides to use the smbclient tool to list all available shares on the server named file-server. Which of the following commands will accomplish this?",
+  "prompt": "While troubleshooting a connectivity issue with a remote Samba server, the administrator decides to use the `smbclient` tool to list all available shares on the server named file-server. Which of the following commands will accomplish this?",
   "choices": [
-    "smbclient -U file-server",
-    "smbclient -L file-server",
-    "smbclient -I file-server",
-    "smbclient -c file-server"
+    "`smbclient -U file-server`",
+    "`smbclient -L file-server`",
+    "`smbclient -I file-server`",
+    "`smbclient -c file-server`"
   ],
   "answerIndex": 1,
-  "explanation": "The -L option of smbclient lists the shares available on the specified server."
+  "explanation": "The `-L` option of `smbclient` lists the shares available on the specified server."
 }

@@ -1,13 +1,13 @@
 {
   "id": "samba-c033",
   "tool": "samba",
-  "prompt": "The company's IT department decided to migrate from a classical NT4-style domain to an Active Directory domain using Samba. Which samba-tool subcommand will allow the administrator to execute this domain migration?",
+  "prompt": "The company's IT department decided to migrate from a classical NT4-style domain to an Active Directory domain using Samba. Which `samba-tool` subcommand will allow the administrator to execute this domain migration?",
   "choices": [
-    "samba-tool domain provision",
-    "samba-tool domain classicupgrade",
-    "samba-tool domain join",
-    "samba-tool domain demote"
+    "`samba-tool domain provision`",
+    "`samba-tool domain classicupgrade`",
+    "`samba-tool domain join`",
+    "`samba-tool domain demote`"
   ],
   "answerIndex": 1,
-  "explanation": "samba-tool domain classicupgrade migrates a classical NT4-style domain to a Samba Active Directory domain."
+  "explanation": "`samba-tool domain classicupgrade` migrates a classical NT4-style domain to a Samba Active Directory domain."
 }

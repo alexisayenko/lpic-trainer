@@ -1,13 +1,13 @@
 {
   "id": "ssh-f010",
   "tool": "ssh",
-  "prompt": "Mike, an IT security specialist, wants to ensure that a specific user, \"alison\", cannot access the system via SSH. Besides using the DenyUsers directive, which other directive can he use to achieve this by specifying a list of users who are allowed to access?",
+  "prompt": "Mike, an IT security specialist, wants to ensure that a specific user, \"alison\", cannot access the system via SSH. Besides using the `DenyUsers` directive, which other directive can he use to achieve this by specifying a list of users who are allowed to access?",
   "choices": [
-    "PermitUsers",
-    "AllowGroups",
-    "AllowUsers",
-    "AcceptUsers"
+    "`PermitUsers`",
+    "`AllowGroups`",
+    "`AllowUsers`",
+    "`AcceptUsers`"
   ],
   "answerIndex": 2,
-  "explanation": "The AllowUsers directive in the /etc/ssh/sshd_config file provides a whitespace-separated list of user names that are allowed to log in. Any user not in this list will be denied SSH access. By setting this directive and omitting \"alison\" from the list, Mike can prevent her from accessing the system via SSH."
+  "explanation": "The `AllowUsers` directive in the `/etc/ssh/sshd_config` file provides a whitespace-separated list of user names that are allowed to log in. Any user not in this list will be denied SSH access. By setting this directive and omitting \"alison\" from the list, Mike can prevent her from accessing the system via SSH."
 }

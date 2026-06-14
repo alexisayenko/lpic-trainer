@@ -3,11 +3,11 @@
   "tool": "pam-sss",
   "prompt": "Your security team has asked for the implementation of two-factor authentication for SSH logins on all servers. After some research, you decide to use PAM to integrate SSH with Google Authenticator. In which directory would you expect to find PAM configuration files that can be modified to implement this?",
   "choices": [
-    "/etc/pam.d/",
-    "/etc/security/",
-    "/etc/ssh/",
-    "/etc/sssd/"
+    "`/etc/pam.d/`",
+    "`/etc/security/`",
+    "`/etc/ssh/`",
+    "`/etc/sssd/`"
   ],
   "answerIndex": 0,
-  "explanation": "The /etc/pam.d/ directory holds per-service PAM configuration files, including the file for SSH, which can be modified to integrate two-factor authentication."
+  "explanation": "The `/etc/pam.d/` directory holds per-service PAM configuration files, including the file for SSH, which can be modified to integrate two-factor authentication."
 }

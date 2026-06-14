@@ -3,11 +3,11 @@
   "tool": "openssl",
   "prompt": "As part of improving security for a new e-commerce website, the server administrator decides to implement SSL on the Apache server. Which of the following tools is commonly used to generate a Certificate Signing Request (CSR) to obtain an SSL certificate from a Certificate Authority?",
   "choices": [
-    "openssl req",
-    "openssl ca",
-    "openssl x509",
-    "openssl verify"
+    "`openssl req`",
+    "`openssl ca`",
+    "`openssl x509`",
+    "`openssl verify`"
   ],
   "answerIndex": 0,
-  "explanation": "The openssl req command is the standard tool used to generate a Certificate Signing Request (CSR) for obtaining an SSL certificate from a Certificate Authority."
+  "explanation": "The `openssl req` command is the standard tool used to generate a Certificate Signing Request (CSR) for obtaining an SSL certificate from a Certificate Authority."
 }

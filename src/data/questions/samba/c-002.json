@@ -1,13 +1,13 @@
 {
   "id": "samba-c002",
   "tool": "samba",
-  "prompt": "After making changes to the Samba configuration file, an administrator wishes to verify the syntax of /etc/samba/smb.conf without starting or restarting the Samba service. Which utility should they use to check the syntax of this configuration file?",
+  "prompt": "After making changes to the Samba configuration file, an administrator wishes to verify the syntax of `/etc/samba/smb.conf` without starting or restarting the Samba service. Which utility should they use to check the syntax of this configuration file?",
   "choices": [
-    "smbstatus",
-    "testparm",
-    "smbcontrol",
-    "nmblookup"
+    "`smbstatus`",
+    "`testparm`",
+    "`smbcontrol`",
+    "`nmblookup`"
   ],
   "answerIndex": 1,
-  "explanation": "testparm checks an smb.conf configuration file for internal correctness without affecting the running service."
+  "explanation": "`testparm` checks an `smb.conf` configuration file for internal correctness without affecting the running service."
 }

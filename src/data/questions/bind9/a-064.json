@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "In the BIND 9.x configuration, which file is primarily responsible for global server settings?",
   "choices": [
-    "resolv.conf",
-    "named.conf",
-    "rndc.conf",
-    "zones.conf"
+    "`resolv.conf`",
+    "`named.conf`",
+    "`rndc.conf`",
+    "`zones.conf`"
   ],
   "answerIndex": 1,
-  "explanation": "named.conf is the primary BIND configuration file and holds the global server settings, typically in its options block."
+  "explanation": "`named.conf` is the primary BIND configuration file and holds the global server settings, typically in its options block."
 }

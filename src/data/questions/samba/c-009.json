@@ -1,7 +1,7 @@
 {
   "id": "samba-c009",
   "tool": "samba",
-  "prompt": "Bob, another system administrator, has been given the task to manage Samba users' mappings. In the user.map file, he found an entry !admin = root. He is uncertain about the ! character before the Windows username. What does the ! character signify in the mapping file?",
+  "prompt": "Bob, another system administrator, has been given the task to manage Samba users' mappings. In the `user.map` file, he found an entry `!admin = root`. He is uncertain about the `!` character before the Windows username. What does the `!` character signify in the mapping file?",
   "choices": [
     "It comments out the mapping line so it is ignored",
     "It means the Windows user will have administrative privileges on Samba",
@@ -9,5 +9,5 @@
     "It marks the mapping as case-insensitive"
   ],
   "answerIndex": 1,
-  "explanation": "In the username map file the ! character before an entry indicates that the Windows user gains administrative privileges on Samba."
+  "explanation": "In the username map file the `!` character before an entry indicates that the Windows user gains administrative privileges on Samba."
 }

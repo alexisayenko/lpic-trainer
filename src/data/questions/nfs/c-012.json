@@ -3,11 +3,11 @@
   "tool": "nfs",
   "prompt": "An NFS client wants to mount a remote share but wants to ensure that if the share becomes inaccessible or the server fails, the operations will return an error immediately rather than hanging. Which of the following mount options should be used?",
   "choices": [
-    "hard",
-    "soft",
-    "intr",
-    "bg"
+    "`hard`",
+    "`soft`",
+    "`intr`",
+    "`bg`"
   ],
   "answerIndex": 1,
-  "explanation": "The soft option for NFS mounts specifies that if the server doesn't respond, the NFS client will report an error after a certain number of retry attempts, rather than hanging indefinitely. This means operations will return an error if the NFS server becomes unreachable."
+  "explanation": "The `soft` option for NFS mounts specifies that if the server doesn't respond, the NFS client will report an error after a certain number of retry attempts, rather than hanging indefinitely. This means operations will return an error if the NFS server becomes unreachable."
 }

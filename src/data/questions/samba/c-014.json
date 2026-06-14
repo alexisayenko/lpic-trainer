@@ -3,11 +3,11 @@
   "tool": "samba",
   "prompt": "Melanie, a systems administrator, is troubleshooting a Samba 4 issue on a Linux server. She wants to test the authentication process of a particular user against the Samba server. Which of the following Samba 4 utilities should Melanie use to accomplish this?",
   "choices": [
-    "testparm",
-    "smbclient",
-    "smbstatus",
-    "nmblookup"
+    "`testparm`",
+    "`smbclient`",
+    "`smbstatus`",
+    "`nmblookup`"
   ],
   "answerIndex": 1,
-  "explanation": "smbclient is a client that can connect to an SMB/CIFS server, making it suitable for testing a user's authentication against the Samba server."
+  "explanation": "`smbclient` is a client that can connect to an SMB/CIFS server, making it suitable for testing a user's authentication against the Samba server."
 }

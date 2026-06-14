@@ -3,11 +3,11 @@
   "tool": "ftp",
   "prompt": "Miguel, a seasoned network engineer, has been tasked with restricting FTP access to only a specific IP range using Pure-FTPd. Which configuration option should he use?",
   "choices": [
-    "TrustedGateway",
-    "LimitRecursion",
-    "Bind",
-    "AllowFrom"
+    "`TrustedGateway`",
+    "`LimitRecursion`",
+    "`Bind`",
+    "`AllowFrom`"
   ],
   "answerIndex": 2,
-  "explanation": "The Bind option in the Pure-FTPd configuration allows the server to listen only on a specified IP address. By binding the server to an IP address within the desired range, Miguel can restrict FTP access to that specific IP range."
+  "explanation": "The `Bind` option in the Pure-FTPd configuration allows the server to listen only on a specified IP address. By binding the server to an IP address within the desired range, Miguel can restrict FTP access to that specific IP range."
 }

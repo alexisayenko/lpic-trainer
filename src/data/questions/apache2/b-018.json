@@ -3,11 +3,11 @@
   "tool": "apache2",
   "prompt": "A web administrator working on a Debian-based system notices that the default service name for the Apache web server seems different than what he used on a CentOS system. Which of the following represents the default service names for Apache on Debian-based and CentOS systems, respectively?",
   "choices": [
-    "httpd on Debian-based and apache2 on CentOS",
-    "apache2 on Debian-based and httpd on CentOS",
-    "apache on Debian-based and httpd on CentOS",
-    "apache2 on Debian-based and apache on CentOS"
+    "`httpd` on Debian-based and `apache2` on CentOS",
+    "`apache2` on Debian-based and `httpd` on CentOS",
+    "`apache` on Debian-based and `httpd` on CentOS",
+    "`apache2` on Debian-based and `apache` on CentOS"
   ],
   "answerIndex": 1,
-  "explanation": "On Debian-based systems the Apache service is named apache2, while on CentOS (and other Red Hat-based systems) it is named httpd."
+  "explanation": "On Debian-based systems the Apache service is named `apache2`, while on CentOS (and other Red Hat-based systems) it is named `httpd`."
 }

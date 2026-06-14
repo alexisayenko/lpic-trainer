@@ -3,11 +3,11 @@
   "tool": "sieve",
   "prompt": "As a mail system administrator, you need to filter incoming email messages that contain the words \"free offer\" in their subject and move them to the \"Promotions\" mailbox. Which Sieve rule accomplishes this task?",
   "choices": [
-    "if header :contains \"Subject\" \"free offer\" { fileinto \"Promotions\"; }",
-    "if header :matches \"Subject\" \"free offer\" { redirect \"Promotions\"; }",
-    "if address :is \"Subject\" \"free offer\" { fileinto \"Promotions\"; }",
-    "if header :contains \"Subject\" \"free offer\" { discard; }"
+    "`if header :contains \"Subject\" \"free offer\" { fileinto \"Promotions\"; }`",
+    "`if header :matches \"Subject\" \"free offer\" { redirect \"Promotions\"; }`",
+    "`if address :is \"Subject\" \"free offer\" { fileinto \"Promotions\"; }`",
+    "`if header :contains \"Subject\" \"free offer\" { discard; }`"
   ],
   "answerIndex": 0,
-  "explanation": "The header :contains \"Subject\" \"free offer\" test matches messages whose subject contains the phrase, and fileinto \"Promotions\" moves them to the Promotions mailbox."
+  "explanation": "The `header :contains \"Subject\" \"free offer\"` test matches messages whose subject contains the phrase, and `fileinto \"Promotions\"` moves them to the Promotions mailbox."
 }

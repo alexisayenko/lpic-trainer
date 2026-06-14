@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "Janet is editing the BIND zone file for \"techcorp.net\" to add a host named \"printer\" with IP 192.168.1.10. Which entries correctly add this host to the zone file and its corresponding reverse zone?",
   "choices": [
-    "printer IN PTR 192.168.1.10 in the zone file; 10.1.168.192.in-addr.arpa. IN A printer.techcorp.net. in the reverse zone",
-    "printer IN A 192.168.1.10 in the zone file; 10.1.168.192.in-addr.arpa. IN PTR printer.techcorp.net. in the reverse zone",
-    "printer IN CNAME 192.168.1.10 in the zone file; printer.techcorp.net. IN PTR 10.1.168.192 in the reverse zone",
-    "192.168.1.10 IN A printer in the zone file; printer IN PTR 10.1.168.192.in-addr.arpa. in the reverse zone"
+    "`printer IN PTR 192.168.1.10` in the zone file; `10.1.168.192.in-addr.arpa. IN A printer.techcorp.net.` in the reverse zone",
+    "`printer IN A 192.168.1.10` in the zone file; `10.1.168.192.in-addr.arpa. IN PTR printer.techcorp.net.` in the reverse zone",
+    "`printer IN CNAME 192.168.1.10` in the zone file; `printer.techcorp.net. IN PTR 10.1.168.192` in the reverse zone",
+    "`192.168.1.10 IN A printer` in the zone file; `printer IN PTR 10.1.168.192.in-addr.arpa.` in the reverse zone"
   ],
   "answerIndex": 1,
-  "explanation": "The forward zone needs an A record (printer IN A 192.168.1.10) and the reverse zone needs a PTR record (10.1.168.192.in-addr.arpa. IN PTR printer.techcorp.net.)."
+  "explanation": "The forward zone needs an A record (`printer IN A 192.168.1.10`) and the reverse zone needs a PTR record (`10.1.168.192.in-addr.arpa. IN PTR printer.techcorp.net.`)."
 }

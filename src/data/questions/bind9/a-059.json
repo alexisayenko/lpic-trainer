@@ -3,10 +3,10 @@
   "tool": "bind9",
   "prompt": "Mike wants to specify that the mail server for his domain example.com is mail.example.com. Which resource record should he use in the zone file?",
   "choices": [
-    "example.com. IN A mail.example.com",
-    "example.com. IN MX 10 mail.example.com",
-    "example.com. IN CNAME mail.example.com",
-    "example.com. IN NS mail.example.com"
+    "`example.com. IN A mail.example.com`",
+    "`example.com. IN MX 10 mail.example.com`",
+    "`example.com. IN CNAME mail.example.com`",
+    "`example.com. IN NS mail.example.com`"
   ],
   "answerIndex": 1,
   "explanation": "The MX (Mail Exchange) record specifies the mail server responsible for accepting email for a domain. The number 10 is the priority, with lower numbers indicating higher priority."

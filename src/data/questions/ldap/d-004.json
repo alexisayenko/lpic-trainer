@@ -1,13 +1,13 @@
 {
   "id": "ldap-d004",
   "tool": "ldap",
-  "prompt": "Tom, a systems engineer, wants to query his LDAP server to retrieve all user entries under the \"dc=example,dc=com\" base, but he only wants to get the \"cn\" and \"mail\" attributes for each user. Which command should he execute?",
+  "prompt": "Tom, a systems engineer, wants to query his LDAP server to retrieve all user entries under the \"`dc=example,dc=com`\" base, but he only wants to get the \"`cn`\" and \"`mail`\" attributes for each user. Which command should he execute?",
   "choices": [
-    "ldapsearch -x -b \"dc=example,dc=com\" (objectClass=person) cn mail",
-    "ldapsearch -x -D \"dc=example,dc=com\" (objectClass=person) cn mail",
-    "ldapsearch -b \"dc=example,dc=com\" -f person cn mail",
-    "ldapsearch -x \"dc=example,dc=com\" (objectClass=user) cn mail"
+    "`ldapsearch -x -b \"dc=example,dc=com\" (objectClass=person) cn mail`",
+    "`ldapsearch -x -D \"dc=example,dc=com\" (objectClass=person) cn mail`",
+    "`ldapsearch -b \"dc=example,dc=com\" -f person cn mail`",
+    "`ldapsearch -x \"dc=example,dc=com\" (objectClass=user) cn mail`"
   ],
   "answerIndex": 0,
-  "explanation": "The ldapsearch command is used to query the LDAP directory. The -x flag stands for simple authentication. The -b \"dc=example,dc=com\" specifies the search base. The search filter (objectClass=person) filters only person object entries, and specifying cn mail at the end ensures that only the \"cn\" and \"mail\" attributes are returned."
+  "explanation": "The `ldapsearch` command is used to query the LDAP directory. The `-x` flag stands for simple authentication. The `-b \"dc=example,dc=com\"` specifies the search base. The search filter `(objectClass=person)` filters only person object entries, and specifying `cn mail` at the end ensures that only the \"`cn`\" and \"`mail`\" attributes are returned."
 }

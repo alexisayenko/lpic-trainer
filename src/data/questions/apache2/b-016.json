@@ -3,11 +3,11 @@
   "tool": "apache2",
   "prompt": "An administrator working on a CentOS server wants to restart the Apache service. However, she can't remember the correct service name on CentOS. Which command should she use to correctly restart the Apache service?",
   "choices": [
-    "systemctl restart apache2",
-    "systemctl restart httpd",
-    "service apache restart",
-    "apachectl reload"
+    "`systemctl restart apache2`",
+    "`systemctl restart httpd`",
+    "`service apache restart`",
+    "`apachectl reload`"
   ],
   "answerIndex": 1,
-  "explanation": "On CentOS the Apache service is named httpd, so it is restarted with systemctl restart httpd."
+  "explanation": "On CentOS the Apache service is named `httpd`, so it is restarted with `systemctl restart httpd`."
 }

@@ -3,11 +3,11 @@
   "tool": "apache2",
   "prompt": "Anna is configuring an Apache web server to support HTTPS. She has acquired a server certificate, a private key, and an intermediate CA certificate from a Certificate Authority. She wants to ensure a proper SSL setup. In which directives should Anna specify the server certificate, the private key, and the intermediate CA certificate respectively?",
   "choices": [
-    "SSLCertificateFile for the server certificate, SSLCertificateKeyFile for the private key, SSLCertificateChainFile for the intermediate CA",
-    "SSLCACertificateFile for the server certificate, SSLCertificateKeyFile for the private key, SSLCertificateFile for the intermediate CA",
-    "SSLCertificateFile for server certificate concatenated with intermediate CA, SSLCertificateKeyFile for private key, no directive needed for intermediate CA separately",
-    "SSLCertificateFile for the server certificate, SSLCipherSuite for the private key, SSLCACertificateFile for the intermediate CA"
+    "`SSLCertificateFile` for the server certificate, `SSLCertificateKeyFile` for the private key, `SSLCertificateChainFile` for the intermediate CA",
+    "`SSLCACertificateFile` for the server certificate, `SSLCertificateKeyFile` for the private key, `SSLCertificateFile` for the intermediate CA",
+    "`SSLCertificateFile` for server certificate concatenated with intermediate CA, `SSLCertificateKeyFile` for private key, no directive needed for intermediate CA separately",
+    "`SSLCertificateFile` for the server certificate, `SSLCipherSuite` for the private key, `SSLCACertificateFile` for the intermediate CA"
   ],
   "answerIndex": 2,
-  "explanation": "In Apache version 2.4.8 and above, the best practice is to concatenate the server certificate and intermediate CA certificate into one file and then specify that file using the SSLCertificateFile directive."
+  "explanation": "In Apache version 2.4.8 and above, the best practice is to concatenate the server certificate and intermediate CA certificate into one file and then specify that file using the `SSLCertificateFile` directive."
 }

@@ -3,11 +3,11 @@
   "tool": "dovecot",
   "prompt": "Alex is configuring a Dovecot server for his organization. He needs to ensure that the server supports secure email retrieval using both IMAP and POP3. What should he make sure to enable in the Dovecot configuration to achieve this?",
   "choices": [
-    "ssl = required and protocols = imap pop3",
-    "protocols = imap only",
-    "ssl = no and protocols = imap pop3",
-    "mail_protocols = secure"
+    "`ssl = required` and `protocols = imap pop3`",
+    "`protocols = imap` only",
+    "`ssl = no` and `protocols = imap pop3`",
+    "`mail_protocols = secure`"
   ],
   "answerIndex": 0,
-  "explanation": "Setting ssl = required enforces encrypted connections for secure retrieval, while protocols = imap pop3 enables both the IMAP and POP3 protocols."
+  "explanation": "Setting `ssl = required` enforces encrypted connections for secure retrieval, while `protocols = imap pop3` enables both the IMAP and POP3 protocols."
 }

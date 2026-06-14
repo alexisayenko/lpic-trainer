@@ -3,11 +3,11 @@
   "tool": "nfs",
   "prompt": "A system administrator is configuring an NFS server. He is aware that for NFS versions 2 and 3, a certain service is vital for the proper mapping of RPC services to ports on the server. Which service is responsible for this task in older NFS versions?",
   "choices": [
-    "mountd",
-    "portmapper",
-    "nfsd",
-    "lockd"
+    "`mountd`",
+    "`portmapper`",
+    "`nfsd`",
+    "`lockd`"
   ],
   "answerIndex": 1,
-  "explanation": "For NFS versions 2 and 3, portmapper is the service responsible for mapping RPC services to ports. It acts as a management service to ensure that requests to various RPC services, like NFS and others, get directed to the correct ports."
+  "explanation": "For NFS versions 2 and 3, `portmapper` is the service responsible for mapping RPC services to ports. It acts as a management service to ensure that requests to various RPC services, like NFS and others, get directed to the correct ports."
 }

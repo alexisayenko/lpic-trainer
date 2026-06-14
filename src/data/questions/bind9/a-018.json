@@ -1,13 +1,13 @@
 {
   "id": "bind9-a018",
   "tool": "bind9",
-  "prompt": "A dig reverse lookup returns the PTR record \"5.123.168.192.in-addr.arpa. 600 IN PTR linuserv.example.net.123.168.192.in-addr.arpa.\". What is wrong with the zone definition?",
+  "prompt": "A dig reverse lookup returns the PTR record \"`5.123.168.192.in-addr.arpa. 600 IN PTR linuserv.example.net.123.168.192.in-addr.arpa.`\". What is wrong with the zone definition?",
   "choices": [
     "The TTL value of 600 is too low for a PTR record.",
-    "There is no trailing \".\" after linuserv.example.net in the PTR record in the reverse lookup zone file, so the origin is appended.",
+    "There is no trailing \"`.`\" after `linuserv.example.net` in the PTR record in the reverse lookup zone file, so the origin is appended.",
     "PTR records are not allowed in reverse zones.",
     "The IP address is written in the wrong byte order."
   ],
   "answerIndex": 1,
-  "explanation": "Without a trailing dot, linuserv.example.net is treated as relative and the zone origin (123.168.192.in-addr.arpa.) is appended; the name must end with a \".\" to be fully qualified."
+  "explanation": "Without a trailing dot, `linuserv.example.net` is treated as relative and the zone origin (`123.168.192.in-addr.arpa.`) is appended; the name must end with a \"`.`\" to be fully qualified."
 }

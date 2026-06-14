@@ -3,11 +3,11 @@
   "tool": "nginx",
   "prompt": "Olivia is setting up an Nginx reverse proxy for an application server. To ensure that the original client's IP address is forwarded to the application server, which directive should she use within the location block?",
   "choices": [
-    "proxy_set_header Host $host;",
-    "proxy_set_header X-Real-IP $remote_addr;",
-    "add_header X-Real-IP $remote_addr;",
-    "real_ip_header X-Real-IP $remote_addr;"
+    "`proxy_set_header Host $host;`",
+    "`proxy_set_header X-Real-IP $remote_addr;`",
+    "`add_header X-Real-IP $remote_addr;`",
+    "`real_ip_header X-Real-IP $remote_addr;`"
   ],
   "answerIndex": 1,
-  "explanation": "The proxy_set_header directive sets a header on the request passed to the upstream server; proxy_set_header X-Real-IP $remote_addr forwards the original client IP address."
+  "explanation": "The `proxy_set_header` directive sets a header on the request passed to the upstream server; `proxy_set_header X-Real-IP $remote_addr` forwards the original client IP address."
 }

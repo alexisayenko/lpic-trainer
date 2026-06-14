@@ -7,7 +7,7 @@
     "difficulty": "applied",
     "prompt": "Which procfs file's value must be 1 to enable IPv4 forwarding?",
     "answer": "/proc/sys/net/ipv4/ip_forward",
-    "explanation": "IPv4 packet forwarding is enabled through the ip_forward control in /proc/sys/net/ipv4.",
+    "explanation": "IPv4 packet forwarding is enabled through the `ip_forward` control in `/proc/sys/net/ipv4`.",
     "source": "https://www.lpi.org/our-certifications/exam-201-202-objectives/"
   },
   {
@@ -17,9 +17,9 @@
     "objective": "212.1",
     "difficulty": "applied",
     "prompt": "Which iptables target is commonly used for source NAT on an outbound interface with a dynamic public address?",
-    "choices": ["MASQUERADE", "REDIRECT", "REJECT", "CHECKSUM"],
+    "choices": ["`MASQUERADE`", "`REDIRECT`", "`REJECT`", "`CHECKSUM`"],
     "answerIndex": 0,
-    "explanation": "MASQUERADE is the NAT target intended for dynamic-address source NAT on outgoing interfaces.",
+    "explanation": "`MASQUERADE` is the NAT target intended for dynamic-address source NAT on outgoing interfaces.",
     "source": "https://www.man7.org/linux/man-pages/man8/iptables-extensions.8.html"
   },
   {
@@ -29,9 +29,9 @@
     "objective": "212.1",
     "difficulty": "applied",
     "prompt": "Which TWO address blocks are private-use ranges covered by the objective?",
-    "choices": ["10.0.0.0/8", "203.0.113.0/24", "fc00::/7", "2001:db8::/32"],
+    "choices": ["`10.0.0.0/8`", "`203.0.113.0/24`", "`fc00::/7`", "`2001:db8::/32`"],
     "answerIndices": [0, 2],
-    "explanation": "10.0.0.0/8 is IPv4 private space and fc00::/7 is the IPv6 Unique Local Address block.",
+    "explanation": "`10.0.0.0/8` is IPv4 private space and `fc00::/7` is the IPv6 Unique Local Address block.",
     "source": "https://www.lpi.org/our-certifications/exam-201-202-objectives/"
   },
   {
@@ -58,9 +58,9 @@
     "objective": "212.2",
     "difficulty": "recall",
     "prompt": "Which vsftpd setting enables anonymous logins?",
-    "choices": ["anonymous_enable=YES", "anon_access=YES", "guest_enable=YES", "public_enable=YES"],
+    "choices": ["`anonymous_enable=YES`", "`anon_access=YES`", "`guest_enable=YES`", "`public_enable=YES`"],
     "answerIndex": 0,
-    "explanation": "anonymous_enable controls whether the anonymous and ftp logins are accepted by vsftpd.",
+    "explanation": "`anonymous_enable` controls whether the anonymous and ftp logins are accepted by vsftpd.",
     "source": "https://security.appspot.com/vsftpd/vsftpd_conf.html"
   },
   {
@@ -70,9 +70,9 @@
     "objective": "212.2",
     "difficulty": "applied",
     "prompt": "Which TWO vsftpd settings are needed when you want anonymous users to upload files?",
-    "choices": ["write_enable=YES", "anon_upload_enable=YES", "local_enable=YES", "chroot_local_user=YES"],
+    "choices": ["`write_enable=YES`", "`anon_upload_enable=YES`", "`local_enable=YES`", "`chroot_local_user=YES`"],
     "answerIndices": [0, 1],
-    "explanation": "vsftpd requires write_enable plus anon_upload_enable for anonymous uploads to work.",
+    "explanation": "vsftpd requires `write_enable` plus `anon_upload_enable` for anonymous uploads to work.",
     "source": "https://security.appspot.com/vsftpd/vsftpd_conf.html"
   },
   {
@@ -95,7 +95,7 @@
     "difficulty": "recall",
     "prompt": "What is the default OpenSSH daemon configuration file path?",
     "answer": "/etc/ssh/sshd_config",
-    "explanation": "sshd reads daemon configuration from /etc/ssh/sshd_config by default.",
+    "explanation": "sshd reads daemon configuration from `/etc/ssh/sshd_config` by default.",
     "source": "https://man.openbsd.org/sshd_config"
   },
   {
@@ -104,10 +104,10 @@
     "type": "single",
     "objective": "212.3",
     "difficulty": "applied",
-    "prompt": "Which sshd_config directive disables direct SSH logins for root?",
-    "choices": ["PermitRootLogin no", "PasswordAuthentication no", "AllowUsers root", "PubkeyAuthentication no"],
+    "prompt": "Which `sshd_config` directive disables direct SSH logins for root?",
+    "choices": ["`PermitRootLogin no`", "`PasswordAuthentication no`", "`AllowUsers root`", "`PubkeyAuthentication no`"],
     "answerIndex": 0,
-    "explanation": "PermitRootLogin controls whether root can log in directly via SSH.",
+    "explanation": "`PermitRootLogin` controls whether root can log in directly via SSH.",
     "source": "https://man.openbsd.org/sshd_config"
   },
   {
@@ -118,13 +118,13 @@
     "difficulty": "applied",
     "prompt": "Which command forwards local TCP port 8080 to port 80 on 127.0.0.1 as seen from the remote host server.example.com?",
     "choices": [
-      "ssh -L 8080:127.0.0.1:80 server.example.com",
-      "ssh -R 8080:127.0.0.1:80 server.example.com",
-      "ssh -D 8080:80 server.example.com",
-      "sshd -L 8080:127.0.0.1:80 server.example.com"
+      "`ssh -L 8080:127.0.0.1:80 server.example.com`",
+      "`ssh -R 8080:127.0.0.1:80 server.example.com`",
+      "`ssh -D 8080:80 server.example.com`",
+      "`sshd -L 8080:127.0.0.1:80 server.example.com`"
     ],
     "answerIndex": 0,
-    "explanation": "The ssh -L form creates a local forward from a local port to a remote-side destination.",
+    "explanation": "The `ssh -L` form creates a local forward from a local port to a remote-side destination.",
     "source": "https://man.openbsd.org/ssh"
   },
   {
@@ -133,8 +133,8 @@
     "type": "multi",
     "objective": "212.3",
     "difficulty": "applied",
-    "prompt": "Which TWO sshd_config settings are the usual combination for key-only SSH logins?",
-    "choices": ["PubkeyAuthentication yes", "PasswordAuthentication no", "PermitRootLogin yes", "Protocol 1"],
+    "prompt": "Which TWO `sshd_config` settings are the usual combination for key-only SSH logins?",
+    "choices": ["`PubkeyAuthentication yes`", "`PasswordAuthentication no`", "`PermitRootLogin yes`", "`Protocol 1`"],
     "answerIndices": [0, 1],
     "explanation": "Key-only login requires public-key auth enabled and password authentication disabled.",
     "source": "https://man.openbsd.org/sshd_config"
@@ -145,7 +145,7 @@
     "type": "fill",
     "objective": "212.3",
     "difficulty": "applied",
-    "prompt": "Which signal name causes sshd to reread sshd_config?",
+    "prompt": "Which signal name causes sshd to reread `sshd_config`?",
     "answer": "SIGHUP",
     "explanation": "sshd rereads its configuration file when it receives a hangup signal.",
     "source": "https://man.openbsd.org/sshd.8"
@@ -157,7 +157,7 @@
     "objective": "212.4",
     "difficulty": "recall",
     "prompt": "Which tool is specifically designed to scan ports and services on remote hosts?",
-    "choices": ["nmap", "fail2ban", "nc", "telnetd"],
+    "choices": ["`nmap`", "fail2ban", "`nc`", "`telnetd`"],
     "answerIndex": 0,
     "explanation": "Nmap is the network mapper and security scanning tool used for port and service discovery.",
     "source": "https://svn.nmap.org/nmap/docs/nmap.1"
@@ -169,9 +169,9 @@
     "objective": "212.4",
     "difficulty": "applied",
     "prompt": "Which simple utility is commonly used to test whether a TCP port is reachable by opening a raw network connection?",
-    "choices": ["nc", "nmap", "fail2ban", "OpenVAS"],
+    "choices": ["`nc`", "`nmap`", "fail2ban", "OpenVAS"],
     "answerIndex": 0,
-    "explanation": "nc opens arbitrary TCP or UDP connections and is commonly used for quick reachability tests.",
+    "explanation": "`nc` opens arbitrary TCP or UDP connections and is commonly used for quick reachability tests.",
     "source": "https://man.openbsd.org/nc.1"
   },
   {
@@ -182,7 +182,7 @@
     "difficulty": "applied",
     "prompt": "Fail2Ban recommends placing site-specific local jail overrides in which file?",
     "answer": "jail.local",
-    "explanation": "Fail2Ban recommends keeping customizations in .local files, with jail.local overriding jail.conf defaults.",
+    "explanation": "Fail2Ban recommends keeping customizations in `.local` files, with `jail.local` overriding `jail.conf` defaults.",
     "source": "https://manpages.debian.org/bookworm/fail2ban/jail.conf.5"
   },
   {
@@ -192,7 +192,7 @@
     "objective": "212.4",
     "difficulty": "recall",
     "prompt": "Which TWO names in the objective are security-assessment or IDS tools rather than simple connectivity testers?",
-    "choices": ["OpenVAS", "telnet", "Snort", "nc"],
+    "choices": ["OpenVAS", "`telnet`", "Snort", "`nc`"],
     "answerIndices": [0, 2],
     "explanation": "The objective explicitly calls out OpenVAS and Snort as awareness items in security-task tooling.",
     "source": "https://www.lpi.org/our-certifications/exam-201-202-objectives/"
@@ -204,9 +204,9 @@
     "objective": "212.5",
     "difficulty": "recall",
     "prompt": "Which OpenVPN device type is normally used for a routed IP tunnel rather than an Ethernet bridge?",
-    "choices": ["dev tun", "dev tap", "dev net", "dev vpn"],
+    "choices": ["`dev tun`", "`dev tap`", "`dev net`", "`dev vpn`"],
     "answerIndex": 0,
-    "explanation": "OpenVPN uses tun for routed IP tunnels and tap for Ethernet bridging setups.",
+    "explanation": "OpenVPN uses `tun` for routed IP tunnels and `tap` for Ethernet bridging setups.",
     "source": "https://openvpn.net/community-docs/creating-configuration-files-for-server-and-clients.html"
   },
   {
@@ -217,7 +217,7 @@
     "difficulty": "applied",
     "prompt": "Which OpenVPN client option tells the client not to bind a fixed local port before connecting?",
     "answer": "nobind",
-    "explanation": "nobind prevents the OpenVPN client from binding a specific local port before connection.",
+    "explanation": "`nobind` prevents the OpenVPN client from binding a specific local port before connection.",
     "source": "https://openvpn.net/community-docs/community-articles/openvpn-2-4-manual.html"
   },
   {
@@ -227,9 +227,9 @@
     "objective": "212.5",
     "difficulty": "applied",
     "prompt": "Which OpenVPN directive in a client configuration specifies the VPN server hostname or IP address to connect to?",
-    "choices": ["remote", "server", "port", "proto"],
+    "choices": ["`remote`", "`server`", "`port`", "`proto`"],
     "answerIndex": 0,
-    "explanation": "The remote directive names the server endpoint the OpenVPN client should connect to.",
+    "explanation": "The `remote` directive names the server endpoint the OpenVPN client should connect to.",
     "source": "https://openvpn.net/community-docs/community-articles/openvpn-2-4-manual.html"
   }
 ]

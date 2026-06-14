@@ -1,13 +1,13 @@
 {
   "id": "ssh-f007",
   "tool": "ssh",
-  "prompt": "Cameron wants to check the version of the installed sshd daemon on his server. Which command would allow him to achieve this?",
+  "prompt": "Cameron wants to check the version of the installed `sshd` daemon on his server. Which command would allow him to achieve this?",
   "choices": [
-    "sshd --version",
-    "sshd -v",
-    "sshd -V",
-    "ssh -V sshd"
+    "`sshd --version`",
+    "`sshd -v`",
+    "`sshd -V`",
+    "`ssh -V sshd`"
   ],
   "answerIndex": 2,
-  "explanation": "Running sshd -V prints the version of the installed OpenSSH server daemon."
+  "explanation": "Running `sshd -V` prints the version of the installed OpenSSH server daemon."
 }

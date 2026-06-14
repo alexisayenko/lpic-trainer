@@ -3,11 +3,11 @@
   "tool": "samba",
   "prompt": "A systems administrator notices some irregularities with the Samba shares on a server and wants to inspect the logs for any suspicious activities. Where will the administrator primarily find the Samba-related logs on a default Samba installation?",
   "choices": [
-    "/etc/samba/logs/",
-    "/var/log/samba/",
-    "/var/samba/log/",
-    "/var/log/cifs/"
+    "`/etc/samba/logs/`",
+    "`/var/log/samba/`",
+    "`/var/samba/log/`",
+    "`/var/log/cifs/`"
   ],
   "answerIndex": 1,
-  "explanation": "On a default Samba installation, log files are stored in the /var/log/samba/ directory."
+  "explanation": "On a default Samba installation, log files are stored in the `/var/log/samba/` directory."
 }

@@ -3,11 +3,11 @@
   "tool": "postfix",
   "prompt": "Maria is configuring Postfix to support TLS encryption. She wants to specify the path to the server's private key. Which Postfix configuration directive should Maria use to achieve this?",
   "choices": [
-    "smtpd_tls_cert_file",
-    "smtpd_tls_key_file",
-    "smtpd_tls_CAfile",
-    "smtpd_tls_dkey_file"
+    "`smtpd_tls_cert_file`",
+    "`smtpd_tls_key_file`",
+    "`smtpd_tls_CAfile`",
+    "`smtpd_tls_dkey_file`"
   ],
   "answerIndex": 1,
-  "explanation": "The smtpd_tls_key_file directive specifies the path to the server's private key used for TLS encryption of incoming SMTP connections."
+  "explanation": "The `smtpd_tls_key_file` directive specifies the path to the server's private key used for TLS encryption of incoming SMTP connections."
 }

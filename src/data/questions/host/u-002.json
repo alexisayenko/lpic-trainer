@@ -3,11 +3,11 @@
   "tool": "host",
   "prompt": "Patricia, a system administrator, needs to query the DNS server to retrieve the MX records for a domain named \"mycompany.com\". She wants to use a standard utility that comes with most Linux distributions. Which of the following commands should Patricia use to achieve this?",
   "choices": [
-    "host -t MX mycompany.com",
-    "host -t AAAA mycompany.com",
-    "host -t NS mycompany.com",
-    "host mycompany.com -mx"
+    "`host -t MX mycompany.com`",
+    "`host -t AAAA mycompany.com`",
+    "`host -t NS mycompany.com`",
+    "`host mycompany.com -mx`"
   ],
   "answerIndex": 0,
-  "explanation": "The host command queries DNS records; using -t MX returns the mail exchange records for the specified domain."
+  "explanation": "The `host` command queries DNS records; using `-t MX` returns the mail exchange records for the specified domain."
 }

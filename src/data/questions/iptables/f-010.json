@@ -1,7 +1,7 @@
 {
   "id": "iptables-f010",
   "tool": "iptables",
-  "prompt": "When the default policy for the netfilter INPUT chain is set to DROP, why should a rule allowing traffic to localhost exist?",
+  "prompt": "When the default policy for the netfilter `INPUT` chain is set to `DROP`, why should a rule allowing traffic to localhost exist?",
   "choices": [
     "Some applications use the localhost interface to communicate with other applications",
     "The kernel cannot route packets without an explicit localhost rule",
@@ -9,5 +9,5 @@
     "iptables logging is written through the loopback interface"
   ],
   "answerIndex": 0,
-  "explanation": "Many applications rely on the loopback (localhost) interface for inter-process communication, so traffic to localhost must be explicitly allowed when the default INPUT policy is DROP."
+  "explanation": "Many applications rely on the loopback (localhost) interface for inter-process communication, so traffic to localhost must be explicitly allowed when the default `INPUT` policy is `DROP`."
 }

@@ -3,11 +3,11 @@
   "tool": "dovecot",
   "prompt": "You're configuring a Dovecot server and want to enable secure TLS communication. Which of the following configuration parameters is essential to specify the path to the private key that will be used for TLS?",
   "choices": [
-    "ssl_cert",
-    "ssl_key",
-    "ssl_ca",
-    "tls_key_file"
+    "`ssl_cert`",
+    "`ssl_key`",
+    "`ssl_ca`",
+    "`tls_key_file`"
   ],
   "answerIndex": 1,
-  "explanation": "The ssl_key parameter in Dovecot specifies the path to the private key used for TLS communication; ssl_cert specifies the corresponding certificate."
+  "explanation": "The `ssl_key` parameter in Dovecot specifies the path to the private key used for TLS communication; `ssl_cert` specifies the corresponding certificate."
 }

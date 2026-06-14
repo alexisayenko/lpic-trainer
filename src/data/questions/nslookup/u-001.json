@@ -1,13 +1,13 @@
 {
   "id": "nslookup-u001",
   "tool": "nslookup",
-  "prompt": "John, a system administrator, wants to determine the mail exchange (MX) servers for the domain example.org using nslookup. Which of the following commands should he use to get this specific information?",
+  "prompt": "John, a system administrator, wants to determine the mail exchange (MX) servers for the domain example.org using `nslookup`. Which of the following commands should he use to get this specific information?",
   "choices": [
-    "nslookup -query=NS example.org",
-    "nslookup -type=MX example.org",
-    "nslookup example.org -mx",
-    "nslookup -type=A example.org"
+    "`nslookup -query=NS example.org`",
+    "`nslookup -type=MX example.org`",
+    "`nslookup example.org -mx`",
+    "`nslookup -type=A example.org`"
   ],
   "answerIndex": 1,
-  "explanation": "The nslookup command is used to query DNS servers for domain name or IP address mappings. The -type option is used to specify the type of DNS record one wishes to query for."
+  "explanation": "The `nslookup` command is used to query DNS servers for domain name or IP address mappings. The `-type` option is used to specify the type of DNS record one wishes to query for."
 }

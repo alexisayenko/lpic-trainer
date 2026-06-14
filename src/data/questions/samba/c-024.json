@@ -1,13 +1,13 @@
 {
   "id": "samba-c024",
   "tool": "samba",
-  "prompt": "A system administrator wishes to access a Samba share named Docs on a server with the IP address 192.168.1.10 using the smbclient tool without providing a password. Which of the following commands should the administrator use?",
+  "prompt": "A system administrator wishes to access a Samba share named Docs on a server with the IP address 192.168.1.10 using the `smbclient` tool without providing a password. Which of the following commands should the administrator use?",
   "choices": [
-    "smbclient //192.168.1.10/Docs -N",
-    "smbclient //192.168.1.10/Docs -P",
-    "smbclient //192.168.1.10/Docs -e",
-    "smbclient //192.168.1.10/Docs -A none"
+    "`smbclient //192.168.1.10/Docs -N`",
+    "`smbclient //192.168.1.10/Docs -P`",
+    "`smbclient //192.168.1.10/Docs -e`",
+    "`smbclient //192.168.1.10/Docs -A none`"
   ],
   "answerIndex": 0,
-  "explanation": "The -N option tells smbclient not to prompt for a password, allowing an anonymous (no-password) connection."
+  "explanation": "The `-N` option tells `smbclient` not to prompt for a password, allowing an anonymous (no-password) connection."
 }

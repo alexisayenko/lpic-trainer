@@ -1,7 +1,7 @@
 {
   "id": "bind9-a052",
   "tool": "bind9",
-  "prompt": "Kevin notices the entry \"recursion no;\" in the BIND 9 configuration file. What does this directive achieve?",
+  "prompt": "Kevin notices the entry \"`recursion no;`\" in the BIND 9 configuration file. What does this directive achieve?",
   "choices": [
     "It disables zone transfers to all secondary servers.",
     "It restricts the DNS server to authoritative answers only, and prevents it from performing recursive queries for clients.",
@@ -9,5 +9,5 @@
     "It forces the server to use forwarders for every query."
   ],
   "answerIndex": 1,
-  "explanation": "The recursion no; directive means the DNS server will only provide answers for zones for which it is authoritative and will not perform recursive queries on behalf of clients."
+  "explanation": "The `recursion no;` directive means the DNS server will only provide answers for zones for which it is authoritative and will not perform recursive queries on behalf of clients."
 }

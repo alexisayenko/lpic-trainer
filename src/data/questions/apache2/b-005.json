@@ -3,11 +3,11 @@
   "tool": "apache2",
   "prompt": "Amy, a systems administrator, is setting up SSL for her Apache server on a Debian-based system. She recalls that there is a default directory where SSL certificate files are generally stored. Which directory is commonly used for this purpose?",
   "choices": [
-    "/etc/apache2/ssl/",
-    "/etc/ssl/certs/",
-    "/etc/pki/tls/certs/",
-    "/var/lib/ssl/"
+    "`/etc/apache2/ssl/`",
+    "`/etc/ssl/certs/`",
+    "`/etc/pki/tls/certs/`",
+    "`/var/lib/ssl/`"
   ],
   "answerIndex": 1,
-  "explanation": "On Debian-based systems SSL certificate files are commonly stored in /etc/ssl/certs/."
+  "explanation": "On Debian-based systems SSL certificate files are commonly stored in `/etc/ssl/certs/`."
 }

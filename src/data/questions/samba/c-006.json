@@ -1,13 +1,13 @@
 {
   "id": "samba-c006",
   "tool": "samba",
-  "prompt": "An administrator is attempting to mount a Samba share from a remote server with the IP address 192.168.2.15. The share is named Projects, and the administrator wishes to mount it to the /mnt/projects directory on the local system. Which of the following commands would correctly achieve this?",
+  "prompt": "An administrator is attempting to mount a Samba share from a remote server with the IP address 192.168.2.15. The share is named Projects, and the administrator wishes to mount it to the `/mnt/projects` directory on the local system. Which of the following commands would correctly achieve this?",
   "choices": [
-    "mount -t cifs /mnt/projects //192.168.2.15/Projects",
-    "mount -t cifs //192.168.2.15/Projects /mnt/projects",
-    "mount -t cifs 192.168.2.15:/Projects /mnt/projects",
-    "mount -t cifs //192.168.2.15 /mnt/projects/Projects"
+    "`mount -t cifs /mnt/projects //192.168.2.15/Projects`",
+    "`mount -t cifs //192.168.2.15/Projects /mnt/projects`",
+    "`mount -t cifs 192.168.2.15:/Projects /mnt/projects`",
+    "`mount -t cifs //192.168.2.15 /mnt/projects/Projects`"
   ],
   "answerIndex": 1,
-  "explanation": "The CIFS mount syntax is mount -t cifs //server/share /mountpoint, so the UNC path comes before the local directory."
+  "explanation": "The CIFS mount syntax is `mount -t cifs //server/share /mountpoint`, so the UNC path comes before the local directory."
 }

@@ -3,11 +3,11 @@
   "tool": "ldap",
   "prompt": "Peter, an IT administrator, needs to change the password of a user named \"mark.taylor\" in the LDAP directory. Which utility should Peter employ to securely alter the user's password?",
   "choices": [
-    "ldapmodify",
-    "ldapsearch",
-    "ldappasswd",
-    "ldapadd"
+    "`ldapmodify`",
+    "`ldapsearch`",
+    "`ldappasswd`",
+    "`ldapadd`"
   ],
   "answerIndex": 2,
-  "explanation": "The ldappasswd utility is used to securely change the password of an LDAP user entry."
+  "explanation": "The `ldappasswd` utility is used to securely change the password of an LDAP user entry."
 }

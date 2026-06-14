@@ -3,11 +3,11 @@
   "tool": "iptables",
   "prompt": "Natalie, an experienced network engineer, wants to ensure that all outgoing HTTP traffic (port 80) from her IPv6-enabled server is blocked. Which ip6tables rule will accomplish this?",
   "choices": [
-    "ip6tables -A INPUT -p tcp --dport 80 -j DROP",
-    "ip6tables -A OUTPUT -p tcp --dport 80 -j DROP",
-    "iptables -A OUTPUT -p tcp --dport 80 -j DROP",
-    "ip6tables -A OUTPUT -p tcp --sport 80 -j ACCEPT"
+    "`ip6tables -A INPUT -p tcp --dport 80 -j DROP`",
+    "`ip6tables -A OUTPUT -p tcp --dport 80 -j DROP`",
+    "`iptables -A OUTPUT -p tcp --dport 80 -j DROP`",
+    "`ip6tables -A OUTPUT -p tcp --sport 80 -j ACCEPT`"
   ],
   "answerIndex": 1,
-  "explanation": "ip6tables manages IPv6 firewall rules; outgoing traffic is matched in the OUTPUT chain with destination port 80 and dropped."
+  "explanation": "`ip6tables` manages IPv6 firewall rules; outgoing traffic is matched in the `OUTPUT` chain with destination port 80 and dropped."
 }

@@ -3,11 +3,11 @@
   "tool": "nfs",
   "prompt": "An administrator needs to determine which directories are currently being shared by the NFS server and the IP addresses of the clients that have access to those shares. Which utility will provide this information?",
   "choices": [
-    "nfsstat",
-    "showmount",
-    "rpcinfo",
-    "exportfs"
+    "`nfsstat`",
+    "`showmount`",
+    "`rpcinfo`",
+    "`exportfs`"
   ],
   "answerIndex": 1,
-  "explanation": "showmount queries the NFS server to display exported directories and the clients that have access to them."
+  "explanation": "`showmount` queries the NFS server to display exported directories and the clients that have access to them."
 }

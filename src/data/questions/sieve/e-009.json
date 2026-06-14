@@ -3,11 +3,11 @@
   "tool": "sieve",
   "prompt": "John, an IT manager, is configuring an email filter for a user named Anna. Anna wants all emails from \"newsletter@example.com\" to be moved to a folder named \"Newsletters\" and no longer appear in her main inbox. Which of the following Sieve actions should John use to achieve this requirement?",
   "choices": [
-    "redirect \"Newsletters\";",
-    "keep \"Newsletters\";",
-    "fileinto \"Newsletters\";",
-    "addflag \"Newsletters\";"
+    "`redirect \"Newsletters\";`",
+    "`keep \"Newsletters\";`",
+    "`fileinto \"Newsletters\";`",
+    "`addflag \"Newsletters\";`"
   ],
   "answerIndex": 2,
-  "explanation": "The fileinto action moves a message into the specified folder; since it cancels the implicit keep, the message no longer appears in the inbox."
+  "explanation": "The `fileinto` action moves a message into the specified folder; since it cancels the implicit `keep`, the message no longer appears in the inbox."
 }

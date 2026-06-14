@@ -3,11 +3,11 @@
   "tool": "samba",
   "prompt": "A Linux system administrator is troubleshooting a Samba server and wants to check the current status of connected clients, opened files, and locked files. Which of the following Samba utilities should the administrator use to get this information?",
   "choices": [
-    "testparm",
-    "smbstatus",
-    "smbclient",
-    "nmblookup"
+    "`testparm`",
+    "`smbstatus`",
+    "`smbclient`",
+    "`nmblookup`"
   ],
   "answerIndex": 1,
-  "explanation": "smbstatus reports on current Samba connections, including connected clients, open files, and locked files."
+  "explanation": "`smbstatus` reports on current Samba connections, including connected clients, open files, and locked files."
 }

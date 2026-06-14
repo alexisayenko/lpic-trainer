@@ -3,11 +3,11 @@
   "tool": "squid",
   "prompt": "Janet has recently set up Squid as a caching proxy for her organization. She needs to specify which networks are allowed to access the Squid service. Which configuration directive in the Squid configuration file should Janet modify to achieve this?",
   "choices": [
-    "acl network dstdomain",
-    "acl network src",
-    "http_access allow network",
-    "acl network port"
+    "`acl network dstdomain`",
+    "`acl network src`",
+    "`http_access allow network`",
+    "`acl network port`"
   ],
   "answerIndex": 1,
-  "explanation": "An acl with the src type matches client source IP addresses or networks; it defines which networks are permitted to use the Squid service when paired with an http_access rule."
+  "explanation": "An `acl` with the `src` type matches client source IP addresses or networks; it defines which networks are permitted to use the Squid service when paired with an `http_access` rule."
 }

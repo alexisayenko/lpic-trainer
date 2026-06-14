@@ -1,13 +1,13 @@
 {
   "id": "bind9-a047",
   "tool": "bind9",
-  "prompt": "Cassandra is preparing to deploy DNSSEC and needs to sign the zone with dnssec-signzone. Which of the following files does dnssec-signzone primarily use as input to sign the zone?",
+  "prompt": "Cassandra is preparing to deploy DNSSEC and needs to sign the zone with `dnssec-signzone`. Which of the following files does `dnssec-signzone` primarily use as input to sign the zone?",
   "choices": [
-    "The named.conf file.",
+    "The `named.conf` file.",
     "The zone's database file.",
-    "The /etc/resolv.conf file.",
-    "The rndc.key file."
+    "The `/etc/resolv.conf` file.",
+    "The `rndc.key` file."
   ],
   "answerIndex": 1,
-  "explanation": "dnssec-signzone takes the zone's database (zone) file as input and produces a signed version containing the DNSSEC resource records."
+  "explanation": "`dnssec-signzone` takes the zone's database (zone) file as input and produces a signed version containing the DNSSEC resource records."
 }

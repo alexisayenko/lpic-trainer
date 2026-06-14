@@ -1,13 +1,13 @@
 {
   "id": "nfs-c017",
   "tool": "nfs",
-  "prompt": "An administrator has recently set up an NFS share on a server and wants to ensure that only hosts from the 10.10.10.0/24 subnet can access it. Which of the following entries in the /etc/exports file correctly restricts access to this subnet?",
+  "prompt": "An administrator has recently set up an NFS share on a server and wants to ensure that only hosts from the 10.10.10.0/24 subnet can access it. Which of the following entries in the `/etc/exports` file correctly restricts access to this subnet?",
   "choices": [
-    "/data 10.10.10.0/24(rw,sync)",
-    "/data 10.10.10.0 netmask 255.255.255.0 rw",
-    "/data subnet=10.10.10.0/24 rw",
-    "/data 10.10.10.*(rw)"
+    "`/data 10.10.10.0/24(rw,sync)`",
+    "`/data 10.10.10.0 netmask 255.255.255.0 rw`",
+    "`/data subnet=10.10.10.0/24 rw`",
+    "`/data 10.10.10.*(rw)`"
   ],
   "answerIndex": 0,
-  "explanation": "The /etc/exports file specifies the directories to be shared by the NFS server and their permissions. To restrict access to a specific subnet, you should include the subnet in CIDR notation followed by the desired permissions."
+  "explanation": "The `/etc/exports` file specifies the directories to be shared by the NFS server and their permissions. To restrict access to a specific subnet, you should include the subnet in CIDR notation followed by the desired permissions."
 }

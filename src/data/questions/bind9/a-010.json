@@ -1,7 +1,7 @@
 {
   "id": "bind9-a010",
   "tool": "bind9",
-  "prompt": "Assuming it is set up correctly, what can you say about a BIND server that has the line \"allow-transfer {10.23.98.102; 10.202.79.121;};\" in your /etc/named.conf file?",
+  "prompt": "Assuming it is set up correctly, what can you say about a BIND server that has the line \"`allow-transfer {10.23.98.102; 10.202.79.121;};`\" in your `/etc/named.conf` file?",
   "choices": [
     "It is a caching-only server with no zones of its own.",
     "It forwards all queries to two upstream servers.",
@@ -9,5 +9,5 @@
     "It blocks all queries from those two IP addresses."
   ],
   "answerIndex": 2,
-  "explanation": "The allow-transfer directive lists the hosts permitted to request zone transfers, so this server is a master or slave allowing transfers to those two computers."
+  "explanation": "The `allow-transfer` directive lists the hosts permitted to request zone transfers, so this server is a master or slave allowing transfers to those two computers."
 }

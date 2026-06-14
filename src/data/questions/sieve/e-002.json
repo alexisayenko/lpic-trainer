@@ -3,11 +3,11 @@
   "tool": "sieve",
   "prompt": "Which of the following Sieve conditions checks if the incoming email is from \"admin@example.com\" and has been sent to more than 5 recipients?",
   "choices": [
-    "if address :is \"from\" \"admin@example.com\" && address :count \"over\" :all \"to\" 5 { ... }",
-    "if address :is \"from\" \"admin@example.com\" && size :over 5 { ... }",
-    "if address :is \"from\" \"admin@example.com\" || address :count \"under\" :all \"to\" 5 { ... }",
-    "if header :contains \"from\" \"admin@example.com\" && address :count \"to\" 5 { ... }"
+    "`if address :is \"from\" \"admin@example.com\" && address :count \"over\" :all \"to\" 5 { ... }`",
+    "`if address :is \"from\" \"admin@example.com\" && size :over 5 { ... }`",
+    "`if address :is \"from\" \"admin@example.com\" || address :count \"under\" :all \"to\" 5 { ... }`",
+    "`if header :contains \"from\" \"admin@example.com\" && address :count \"to\" 5 { ... }`"
   ],
   "answerIndex": 0,
-  "explanation": "The address :count \"over\" :all \"to\" 5 test, combined with the from address check, matches messages sent from admin@example.com to more than 5 recipients."
+  "explanation": "The `address :count \"over\" :all \"to\" 5` test, combined with the from address check, matches messages sent from admin@example.com to more than 5 recipients."
 }

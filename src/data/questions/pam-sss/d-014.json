@@ -1,13 +1,13 @@
 {
   "id": "pam-sss-d014",
   "tool": "pam-sss",
-  "prompt": "After setting up LDAP authentication using SSSD, users complain that they cannot log in. Upon inspection, you find that the SSSD service is running, but it is not communicating with the LDAP server. Which section and directive in the sssd.conf file should you check to ensure the LDAP server's URI is correctly defined?",
+  "prompt": "After setting up LDAP authentication using SSSD, users complain that they cannot log in. Upon inspection, you find that the SSSD service is running, but it is not communicating with the LDAP server. Which section and directive in the `sssd.conf` file should you check to ensure the LDAP server's URI is correctly defined?",
   "choices": [
-    "[sssd] section and services directive",
-    "[domain/default] and ldap_uri",
-    "[nss] section and ldap_search_base directive",
-    "[pam] section and id_provider directive"
+    "`[sssd]` section and `services` directive",
+    "`[domain/default]` and `ldap_uri`",
+    "`[nss]` section and `ldap_search_base` directive",
+    "`[pam]` section and `id_provider` directive"
   ],
   "answerIndex": 1,
-  "explanation": "The LDAP server's URI is typically defined in the sssd.conf file under a domain section (e.g., [domain/default]) with the directive ldap_uri. It's crucial to ensure this URI points to the correct LDAP server and that the server is reachable for authentication to work."
+  "explanation": "The LDAP server's URI is typically defined in the `sssd.conf` file under a domain section (e.g., `[domain/default]`) with the directive `ldap_uri`. It's crucial to ensure this URI points to the correct LDAP server and that the server is reachable for authentication to work."
 }

@@ -3,11 +3,11 @@
   "tool": "postfix",
   "prompt": "You've been asked to adjust the Postfix configuration to reduce the volume of mail that your server accepts for relay in order to avoid being flagged as a source of spam. Which parameter in the Postfix configuration files should you adjust to define which networks are trusted to relay mail through your server?",
   "choices": [
-    "relay_domains",
-    "mydestination",
-    "mynetworks",
-    "inet_interfaces"
+    "`relay_domains`",
+    "`mydestination`",
+    "`mynetworks`",
+    "`inet_interfaces`"
   ],
   "answerIndex": 2,
-  "explanation": "The mynetworks parameter in Postfix defines which IP address ranges are trusted by your server and are allowed to relay mail without authentication. Adjusting this to limit which networks can relay through your server will help reduce the risk of your server being abused for spam relay."
+  "explanation": "The `mynetworks` parameter in Postfix defines which IP address ranges are trusted by your server and are allowed to relay mail without authentication. Adjusting this to limit which networks can relay through your server will help reduce the risk of your server being abused for spam relay."
 }

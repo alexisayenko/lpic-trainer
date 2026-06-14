@@ -3,11 +3,11 @@
   "tool": "apache2",
   "prompt": "You want to limit access to a specific directory on your Apache server to only those users who are members of a certain group. Which directive should you use within your configuration to specify this group-based access restriction?",
   "choices": [
-    "Require user",
-    "Require group",
-    "AuthGroupFile",
-    "Allow from group"
+    "`Require user`",
+    "`Require group`",
+    "`AuthGroupFile`",
+    "`Allow from group`"
   ],
   "answerIndex": 1,
-  "explanation": "The Require group directive restricts access to a directory to users who belong to one of the named groups defined in the AuthGroupFile."
+  "explanation": "The `Require group` directive restricts access to a directory to users who belong to one of the named groups defined in the `AuthGroupFile`."
 }

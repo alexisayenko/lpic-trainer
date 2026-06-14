@@ -5,7 +5,7 @@
   "choices": [
     "Enable DNSSEC signing on both servers.",
     "Implement Transaction Signatures (TSIG) between the two servers.",
-    "Restrict transfers with an allow-query statement.",
+    "Restrict transfers with an `allow-query` statement.",
     "Run both servers in a chroot jail."
   ],
   "answerIndex": 1,

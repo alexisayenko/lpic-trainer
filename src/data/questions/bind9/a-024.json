@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "Which commands allow detailed diagnosis of a DNS server? (Check all correct options.)",
   "choices": [
-    "ping and traceroute",
-    "nslookup and dig",
-    "netstat and ss",
-    "named and rndc"
+    "`ping` and `traceroute`",
+    "`nslookup` and `dig`",
+    "`netstat` and `ss`",
+    "`named` and `rndc`"
   ],
   "answerIndex": 1,
-  "explanation": "nslookup and dig are the standard tools for querying DNS servers and diagnosing name resolution problems."
+  "explanation": "`nslookup` and `dig` are the standard tools for querying DNS servers and diagnosing name resolution problems."
 }

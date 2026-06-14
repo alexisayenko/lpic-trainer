@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "In which directory are DNS zone files normally stored on a system running the popular Linux DNS server?",
   "choices": [
-    "/etc/zones",
-    "/var/named",
-    "/usr/share/bind",
-    "/var/lib/dns"
+    "`/etc/zones`",
+    "`/var/named`",
+    "`/usr/share/bind`",
+    "`/var/lib/dns`"
   ],
   "answerIndex": 1,
-  "explanation": "On systems running BIND, zone files are normally stored under /var/named."
+  "explanation": "On systems running BIND, zone files are normally stored under `/var/named`."
 }

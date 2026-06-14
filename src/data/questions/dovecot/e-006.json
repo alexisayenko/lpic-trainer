@@ -3,11 +3,11 @@
   "tool": "dovecot",
   "prompt": "Tim, a senior executive at a multinational company, is planning to take a 3-week vacation. He needs to set up an automatic response for all incoming emails, notifying the senders about his absence. Which Dovecot Sieve extension should he utilize to achieve this?",
   "choices": [
-    "autoreply",
-    "vacation",
-    "notify",
-    "reject"
+    "`autoreply`",
+    "`vacation`",
+    "`notify`",
+    "`reject`"
   ],
   "answerIndex": 1,
-  "explanation": "The vacation extension in Dovecot Sieve allows users to set up automatic out-of-office or vacation replies. It's designed to inform senders that the recipient is currently unavailable."
+  "explanation": "The `vacation` extension in Dovecot Sieve allows users to set up automatic out-of-office or vacation replies. It's designed to inform senders that the recipient is currently unavailable."
 }

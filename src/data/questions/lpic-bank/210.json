@@ -7,7 +7,7 @@
     "difficulty": "recall",
     "prompt": "What is the DHCP server lease database filename?",
     "answer": "dhcpd.leases",
-    "explanation": "dhcpd stores persistent lease state in the dhcpd.leases database file.",
+    "explanation": "`dhcpd` stores persistent lease state in the `dhcpd.leases` database file.",
     "source": "https://manpages.debian.org/jessie/isc-dhcp-server/dhcpd.leases.5.en.html"
   },
   {
@@ -18,13 +18,13 @@
     "difficulty": "applied",
     "prompt": "Which DHCP statement defines a dynamic allocation pool inside a subnet declaration?",
     "choices": [
-      "range 192.0.2.100 192.0.2.200;",
-      "fixed-address 192.0.2.100;",
-      "option routers 192.0.2.1;",
-      "allow booting;"
+      "`range 192.0.2.100 192.0.2.200;`",
+      "`fixed-address 192.0.2.100;`",
+      "`option routers 192.0.2.1;`",
+      "`allow booting;`"
     ],
     "answerIndex": 0,
-    "explanation": "The range statement defines the dynamic address pool served within a subnet.",
+    "explanation": "The `range` statement defines the dynamic address pool served within a subnet.",
     "source": "https://kb.isc.org/docs/isc-dhcp-41-manual-pages-dhcpdconf"
   },
   {
@@ -33,12 +33,12 @@
     "type": "single",
     "objective": "210.1",
     "difficulty": "scenario",
-    "prompt": "A remote subnet reaches your DHCP server through a relay agent. What must still exist in dhcpd.conf for those requests to be served correctly?",
+    "prompt": "A remote subnet reaches your DHCP server through a relay agent. What must still exist in `dhcpd.conf` for those requests to be served correctly?",
     "choices": [
-      "A subnet declaration for the relayed network",
-      "A host declaration for every client",
-      "An allow unknown-clients off line",
-      "A shared-network statement on the relay host"
+      "A `subnet` declaration for the relayed network",
+      "A `host` declaration for every client",
+      "An `allow unknown-clients off` line",
+      "A `shared-network` statement on the relay host"
     ],
     "answerIndex": 0,
     "explanation": "ISC DHCP requires the relayed subnet to be declared even when leases are not served directly on a local interface.",
@@ -50,10 +50,10 @@
     "type": "single",
     "objective": "210.2",
     "difficulty": "recall",
-    "prompt": "Which PAM module performs standard local UNIX password authentication against passwd and shadow?",
-    "choices": ["pam_unix", "pam_sss", "pam_limits", "pam_listfile"],
+    "prompt": "Which PAM module performs standard local UNIX password authentication against `passwd` and `shadow`?",
+    "choices": ["`pam_unix`", "`pam_sss`", "`pam_limits`", "`pam_listfile`"],
     "answerIndex": 0,
-    "explanation": "pam_unix provides local UNIX authentication using the system password databases.",
+    "explanation": "`pam_unix` provides local UNIX authentication using the system password databases.",
     "source": "https://www.man7.org/linux/man-pages/man8/PAM.8.html"
   },
   {
@@ -62,9 +62,9 @@
     "type": "fill",
     "objective": "210.2",
     "difficulty": "applied",
-    "prompt": "Complete the NSS line for SSSD-backed user lookups: passwd: files ____",
+    "prompt": "Complete the NSS line for SSSD-backed user lookups: `passwd: files ____`",
     "answer": "sss",
-    "explanation": "nsswitch.conf uses the sss source token to query identities through SSSD.",
+    "explanation": "`nsswitch.conf` uses the `sss` source token to query identities through SSSD.",
     "source": "https://www.man7.org/linux/man-pages/man5/nsswitch.conf.5.html"
   },
   {
@@ -73,15 +73,15 @@
     "type": "single",
     "objective": "210.2",
     "difficulty": "applied",
-    "prompt": "When /etc/pam.d/ exists, what happens to /etc/pam.conf on Linux-PAM systems?",
+    "prompt": "When `/etc/pam.d/` exists, what happens to `/etc/pam.conf` on Linux-PAM systems?",
     "choices": [
       "It is ignored in favor of per-service files",
       "It overrides all per-service files",
-      "It is merged after /etc/pam.d in lexical order",
+      "It is merged after `/etc/pam.d` in lexical order",
       "It is used only for the ssh service"
     ],
     "answerIndex": 0,
-    "explanation": "Linux-PAM prefers per-service files in /etc/pam.d and ignores /etc/pam.conf when that directory exists.",
+    "explanation": "Linux-PAM prefers per-service files in `/etc/pam.d` and ignores `/etc/pam.conf` when that directory exists.",
     "source": "https://www.man7.org/linux/man-pages/man5/pam.d.5.html"
   },
   {
@@ -92,13 +92,13 @@
     "difficulty": "applied",
     "prompt": "Which PAM line is used to apply login resource limits through PAM?",
     "choices": [
-      "session required pam_limits.so",
-      "auth required pam_limits.so",
-      "password sufficient pam_limits.so",
-      "account requisite pam_limits.so"
+      "`session required pam_limits.so`",
+      "`auth required pam_limits.so`",
+      "`password sufficient pam_limits.so`",
+      "`account requisite pam_limits.so`"
     ],
     "answerIndex": 0,
-    "explanation": "pam_limits is used as a session module to impose resource limits at login time.",
+    "explanation": "`pam_limits` is used as a session module to impose resource limits at login time.",
     "source": "https://www.man7.org/linux/man-pages/man8/pam_limits.8.html"
   },
   {
@@ -109,7 +109,7 @@
     "difficulty": "recall",
     "prompt": "Which OpenLDAP client utility queries directory entries from the shell?",
     "answer": "ldapsearch",
-    "explanation": "ldapsearch is the shell-accessible LDAP search tool.",
+    "explanation": "`ldapsearch` is the shell-accessible LDAP search tool.",
     "source": "https://www.openldap.org/software//man.cgi?query=ldapsearch"
   },
   {
@@ -119,9 +119,9 @@
     "objective": "210.3",
     "difficulty": "recall",
     "prompt": "Which LDAP utility changes a user's LDAP password?",
-    "choices": ["ldappasswd", "ldapdelete", "ldapadd", "ldapsearch"],
+    "choices": ["`ldappasswd`", "`ldapdelete`", "`ldapadd`", "`ldapsearch`"],
     "answerIndex": 0,
-    "explanation": "ldappasswd is the dedicated LDAP client utility for changing directory passwords.",
+    "explanation": "`ldappasswd` is the dedicated LDAP client utility for changing directory passwords.",
     "source": "https://www.man7.org/linux/man-pages/man1/ldappasswd.1.html"
   },
   {
@@ -131,9 +131,9 @@
     "objective": "210.3",
     "difficulty": "applied",
     "prompt": "Which LDAP utility imports entries contained in an LDIF file into the directory over LDAP?",
-    "choices": ["ldapadd", "ldapdelete", "ldappasswd", "slapcat"],
+    "choices": ["`ldapadd`", "`ldapdelete`", "`ldappasswd`", "`slapcat`"],
     "answerIndex": 0,
-    "explanation": "ldapadd reads LDIF and adds entries to the directory through LDAP operations.",
+    "explanation": "`ldapadd` reads LDIF and adds entries to the directory through LDAP operations.",
     "source": "https://www.openldap.org/software//man.cgi?query=ldapadd"
   },
   {
@@ -144,7 +144,7 @@
     "difficulty": "recall",
     "prompt": "In LDIF, which attribute name starts the distinguished-name line for an entry?",
     "answer": "dn",
-    "explanation": "LDIF entry records begin with a dn field that names the entry's distinguished name.",
+    "explanation": "LDIF entry records begin with a `dn` field that names the entry's distinguished name.",
     "source": "https://www.man7.org/linux/man-pages/man5/ldif.5.html"
   },
   {
@@ -154,9 +154,9 @@
     "objective": "210.4",
     "difficulty": "applied",
     "prompt": "Which OpenLDAP utility loads LDIF data directly into a database backend while the server is offline?",
-    "choices": ["slapadd", "slapcat", "slapindex", "ldapadd"],
+    "choices": ["`slapadd`", "`slapcat`", "`slapindex`", "`ldapadd`"],
     "answerIndex": 0,
-    "explanation": "slapadd imports LDIF straight into the directory database and is intended for offline loading.",
+    "explanation": "`slapadd` imports LDIF straight into the directory database and is intended for offline loading.",
     "source": "https://www.openldap.org/doc/admin24/"
   },
   {
@@ -166,9 +166,9 @@
     "objective": "210.4",
     "difficulty": "applied",
     "prompt": "Which OpenLDAP utility dumps a database to LDIF?",
-    "choices": ["slapcat", "slapadd", "slapindex", "ldapdelete"],
+    "choices": ["`slapcat`", "`slapadd`", "`slapindex`", "`ldapdelete`"],
     "answerIndex": 0,
-    "explanation": "slapcat exports OpenLDAP database contents in LDIF form.",
+    "explanation": "`slapcat` exports OpenLDAP database contents in LDIF form.",
     "source": "https://www.openldap.org/doc/admin24/"
   },
   {
@@ -179,7 +179,7 @@
     "difficulty": "applied",
     "prompt": "Give the LDIF line that declares a modification operation instead of a plain entry add.",
     "answer": "changetype: modify",
-    "explanation": "LDIF change records identify modification operations with the changetype: modify line.",
+    "explanation": "LDIF change records identify modification operations with the `changetype: modify` line.",
     "source": "https://www.man7.org/linux/man-pages/man5/ldif.5.html"
   },
   {
@@ -188,15 +188,15 @@
     "type": "single",
     "objective": "210.4",
     "difficulty": "scenario",
-    "prompt": "With cn=config directory-based configuration, what is the recommended way to change configuration entries?",
+    "prompt": "With `cn=config` directory-based configuration, what is the recommended way to change configuration entries?",
     "choices": [
-      "Use LDAP operations such as ldapadd or ldapmodify",
-      "Edit the LDIF files in slapd.d directly",
-      "Restart slapd with a rewritten slapd.conf only",
-      "Use slapcat to edit the database in place"
+      "Use LDAP operations such as `ldapadd` or `ldapmodify`",
+      "Edit the LDIF files in `slapd.d` directly",
+      "Restart `slapd` with a rewritten `slapd.conf` only",
+      "Use `slapcat` to edit the database in place"
     ],
     "answerIndex": 0,
-    "explanation": "OpenLDAP recommends changing cn=config through LDAP operations instead of editing stored LDIF files directly.",
+    "explanation": "OpenLDAP recommends changing `cn=config` through LDAP operations instead of editing stored LDIF files directly.",
     "source": "https://www.openldap.org/doc/admin24/slapdconf2.html"
   }
 ]

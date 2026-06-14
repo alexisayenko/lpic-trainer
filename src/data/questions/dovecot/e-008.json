@@ -3,11 +3,11 @@
   "tool": "dovecot",
   "prompt": "During the security audit of your organization's email infrastructure, the auditor recommends ensuring that the Dovecot server should not allow SSLv3 due to its vulnerabilities. Which of the following configuration options should you set to disable SSLv3 in Dovecot?",
   "choices": [
-    "ssl_protocols = !SSLv3",
-    "ssl = !SSLv3",
-    "disable_ssl = SSLv3",
-    "ssl_min_protocol = SSLv3"
+    "`ssl_protocols = !SSLv3`",
+    "`ssl = !SSLv3`",
+    "`disable_ssl = SSLv3`",
+    "`ssl_min_protocol = SSLv3`"
   ],
   "answerIndex": 0,
-  "explanation": "The ssl_protocols directive controls which SSL/TLS protocols Dovecot accepts; prefixing a protocol with ! disables it, so ssl_protocols = !SSLv3 disables SSLv3."
+  "explanation": "The `ssl_protocols` directive controls which SSL/TLS protocols Dovecot accepts; prefixing a protocol with `!` disables it, so `ssl_protocols = !SSLv3` disables SSLv3."
 }

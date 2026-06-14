@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "Which of the following tools provides an interactive way to perform DNS lookups?",
   "choices": [
-    "dig",
-    "host",
-    "nslookup",
-    "named-checkzone"
+    "`dig`",
+    "`host`",
+    "`nslookup`",
+    "`named-checkzone`"
   ],
   "answerIndex": 2,
-  "explanation": "nslookup offers an interactive mode in which you can issue successive queries and change options at a prompt."
+  "explanation": "`nslookup` offers an interactive mode in which you can issue successive queries and change options at a prompt."
 }

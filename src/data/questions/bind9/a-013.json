@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "The entry that determines a caching-only (root hints) zone is:",
   "choices": [
-    "type master;",
-    "type slave;",
-    "type hint;",
-    "type forward;"
+    "`type master;`",
+    "`type slave;`",
+    "`type hint;`",
+    "`type forward;`"
   ],
   "answerIndex": 2,
-  "explanation": "A zone with \"type hint;\" references the root name servers (named.ca) and is used by a caching-only server to bootstrap recursion."
+  "explanation": "A zone with \"`type hint;`\" references the root name servers (`named.ca`) and is used by a caching-only server to bootstrap recursion."
 }

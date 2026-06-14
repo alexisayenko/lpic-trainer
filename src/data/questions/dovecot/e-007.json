@@ -1,13 +1,13 @@
 {
   "id": "dovecot-e007",
   "tool": "dovecot",
-  "prompt": "The IT department is setting up a new Dovecot server. They've been instructed to ensure that the IMAP protocol is disabled due to company policy. In the /etc/dovecot/ directory, which file would they need to modify to disable the IMAP protocol?",
+  "prompt": "The IT department is setting up a new Dovecot server. They've been instructed to ensure that the IMAP protocol is disabled due to company policy. In the `/etc/dovecot/` directory, which file would they need to modify to disable the IMAP protocol?",
   "choices": [
-    "/etc/dovecot/conf.d/10-mail.conf",
-    "/etc/dovecot/protocols.conf",
-    "/etc/dovecot/dovecot.conf",
-    "/etc/dovecot/imap.conf"
+    "`/etc/dovecot/conf.d/10-mail.conf`",
+    "`/etc/dovecot/protocols.conf`",
+    "`/etc/dovecot/dovecot.conf`",
+    "`/etc/dovecot/imap.conf`"
   ],
   "answerIndex": 2,
-  "explanation": "The /etc/dovecot/dovecot.conf is the main configuration file for Dovecot. Within this file, administrators can specify or comment out the protocols they want to enable or disable, respectively."
+  "explanation": "The `/etc/dovecot/dovecot.conf` is the main configuration file for Dovecot. Within this file, administrators can specify or comment out the protocols they want to enable or disable, respectively."
 }

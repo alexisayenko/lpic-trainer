@@ -1,7 +1,7 @@
 {
   "id": "samba-c020",
   "tool": "samba",
-  "prompt": "What does the samba-tool testparm command confirm regarding the Samba configuration?",
+  "prompt": "What does the `samba-tool testparm` command confirm regarding the Samba configuration?",
   "choices": [
     "That all clients are currently connected",
     "The configuration loads successfully",
@@ -9,5 +9,5 @@
     "That all shares are mounted on clients"
   ],
   "answerIndex": 1,
-  "explanation": "samba-tool testparm validates the configuration and confirms that it loads successfully."
+  "explanation": "`samba-tool testparm` validates the configuration and confirms that it loads successfully."
 }

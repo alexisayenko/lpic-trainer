@@ -3,11 +3,11 @@
   "tool": "sieve",
   "prompt": "Melissa wants to ensure that all emails she receives from her manager, \"manager@company.com\", with the subject containing \"meeting\", are moved to a folder named \"Meetings\". Which Sieve script accomplishes this task?",
   "choices": [
-    "if anyof (header :contains \"from\" \"manager@company.com\", header :matches \"subject\" \"*meeting*\") { fileinto \"Meetings\"; }",
-    "if allof (header :contains \"from\" \"manager@company.com\", header :matches \"subject\" \"*meeting*\") { fileinto \"Meetings\"; }",
-    "if allof (header :contains \"from\" \"manager@company.com\", header :matches \"subject\" \"*meeting*\") { redirect \"Meetings\"; }",
-    "if header :contains \"from\" \"manager@company.com\" { fileinto \"Meetings\"; }"
+    "`if anyof (header :contains \"from\" \"manager@company.com\", header :matches \"subject\" \"*meeting*\") { fileinto \"Meetings\"; }`",
+    "`if allof (header :contains \"from\" \"manager@company.com\", header :matches \"subject\" \"*meeting*\") { fileinto \"Meetings\"; }`",
+    "`if allof (header :contains \"from\" \"manager@company.com\", header :matches \"subject\" \"*meeting*\") { redirect \"Meetings\"; }`",
+    "`if header :contains \"from\" \"manager@company.com\" { fileinto \"Meetings\"; }`"
   ],
   "answerIndex": 1,
-  "explanation": "The Sieve script provided in option A correctly uses the \"allof\" test to ensure both conditions are met: the email is from \"manager@company.com\" and the subject contains the word \"meeting\". If both conditions are met, the email is moved to the \"Meetings\" folder."
+  "explanation": "The Sieve script provided in option A correctly uses the \"`allof`\" test to ensure both conditions are met: the email is from \"manager@company.com\" and the subject contains the word \"meeting\". If both conditions are met, the email is moved to the \"Meetings\" folder."
 }

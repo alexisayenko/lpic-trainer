@@ -3,11 +3,11 @@
   "tool": "ssh",
   "prompt": "Laura, a system administrator, is concerned about the security implications of allowing the root user to log in directly via SSH. Which directive in the OpenSSH server configuration file should she modify to prevent root login?",
   "choices": [
-    "PermitRootLogin no",
-    "PermitRootLogin disable",
-    "DisableRootLogin yes",
-    "RootAccess off"
+    "`PermitRootLogin no`",
+    "`PermitRootLogin disable`",
+    "`DisableRootLogin yes`",
+    "`RootAccess off`"
   ],
   "answerIndex": 0,
-  "explanation": "The PermitRootLogin directive in /etc/ssh/sshd_config, set to no, disables direct root login over SSH."
+  "explanation": "The `PermitRootLogin` directive in `/etc/ssh/sshd_config`, set to `no`, disables direct root login over SSH."
 }

@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "The main bind DNS server configuration file is:",
   "choices": [
-    "named.conf",
-    "bind.conf",
-    "resolv.conf",
-    "dns.conf"
+    "`named.conf`",
+    "`bind.conf`",
+    "`resolv.conf`",
+    "`dns.conf`"
   ],
   "answerIndex": 0,
-  "explanation": "named.conf (commonly /etc/named.conf or /etc/bind/named.conf) is the primary configuration file for the BIND name server daemon."
+  "explanation": "`named.conf` (commonly `/etc/named.conf` or `/etc/bind/named.conf`) is the primary configuration file for the BIND name server daemon."
 }

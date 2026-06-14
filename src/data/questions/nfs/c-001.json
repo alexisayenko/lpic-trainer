@@ -1,13 +1,13 @@
 {
   "id": "nfs-c001",
   "tool": "nfs",
-  "prompt": "A system administrator has just removed an entry from /etc/exports. They want to ensure that the changes take effect without affecting other existing NFS exports. Which command using exportfs should they run?",
+  "prompt": "A system administrator has just removed an entry from `/etc/exports`. They want to ensure that the changes take effect without affecting other existing NFS exports. Which command using `exportfs` should they run?",
   "choices": [
-    "exportfs -a",
-    "exportfs -r",
-    "exportfs -u",
-    "exportfs -l"
+    "`exportfs -a`",
+    "`exportfs -r`",
+    "`exportfs -u`",
+    "`exportfs -l`"
   ],
   "answerIndex": 1,
-  "explanation": "The exportfs command is used to manage NFS exported file systems. The -r option refreshes the list of exported file systems by re-reading the /etc/exports file. This ensures that changes, such as removing an entry, are reflected in the active exports without affecting other existing NFS exports."
+  "explanation": "The `exportfs` command is used to manage NFS exported file systems. The `-r` option refreshes the list of exported file systems by re-reading the `/etc/exports` file. This ensures that changes, such as removing an entry, are reflected in the active exports without affecting other existing NFS exports."
 }

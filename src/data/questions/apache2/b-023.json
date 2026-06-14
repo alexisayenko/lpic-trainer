@@ -3,11 +3,11 @@
   "tool": "apache2",
   "prompt": "Your Apache server has been receiving a large number of requests from a particular IP address that seems suspicious. You want to verify this by checking the number of requests from this IP in the access log. Which default log file should you inspect?",
   "choices": [
-    "error_log",
-    "access_log",
-    "request_log",
-    "httpd_log"
+    "`error_log`",
+    "`access_log`",
+    "`request_log`",
+    "`httpd_log`"
   ],
   "answerIndex": 1,
-  "explanation": "The access_log records all client requests served by Apache, including the requesting IP address, so it is the file to inspect for request counts from a given IP."
+  "explanation": "The `access_log` records all client requests served by Apache, including the requesting IP address, so it is the file to inspect for request counts from a given IP."
 }

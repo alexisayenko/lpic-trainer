@@ -1,7 +1,7 @@
 {
   "id": "dhcp-u004",
   "tool": "dhcp",
-  "prompt": "Daniel wants to back up the current leases the DHCP server has assigned, ensuring that if the server needs a restart, he can restore the active leases. However, he's concerned about the size of this backup. Why might the dhcpd.leases file be larger than Daniel expects?",
+  "prompt": "Daniel wants to back up the current leases the DHCP server has assigned, ensuring that if the server needs a restart, he can restore the active leases. However, he's concerned about the size of this backup. Why might the `dhcpd.leases` file be larger than Daniel expects?",
   "choices": [
     "Because it stores all the historic lease data",
     "Because it includes the full DHCP server configuration",
@@ -9,5 +9,5 @@
     "Because it logs every DHCP packet received"
   ],
   "answerIndex": 0,
-  "explanation": "The dhcpd.leases file is append-only, accumulating historic lease entries until it is periodically rewritten, which can make it larger than expected."
+  "explanation": "The `dhcpd.leases` file is append-only, accumulating historic lease entries until it is periodically rewritten, which can make it larger than expected."
 }

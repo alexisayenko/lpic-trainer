@@ -1,13 +1,13 @@
 {
   "id": "bind9-a041",
   "tool": "bind9",
-  "prompt": "Patrick, a system administrator, wants to restrict zone transfers to a specific secondary DNS server with the IP address 192.168.0.10. Which configuration should he add to the /etc/named.conf file to achieve this?",
+  "prompt": "Patrick, a system administrator, wants to restrict zone transfers to a specific secondary DNS server with the IP address 192.168.0.10. Which configuration should he add to the `/etc/named.conf` file to achieve this?",
   "choices": [
-    "allow-query { 192.168.0.10; };",
-    "allow-transfer { 192.168.0.10; };",
-    "also-notify { 192.168.0.10; };",
-    "masters { 192.168.0.10; };"
+    "`allow-query { 192.168.0.10; };`",
+    "`allow-transfer { 192.168.0.10; };`",
+    "`also-notify { 192.168.0.10; };`",
+    "`masters { 192.168.0.10; };`"
   ],
   "answerIndex": 1,
-  "explanation": "The allow-transfer { 192.168.0.10; }; statement restricts zone transfers so only that secondary server may request them."
+  "explanation": "The `allow-transfer { 192.168.0.10; };` statement restricts zone transfers so only that secondary server may request them."
 }

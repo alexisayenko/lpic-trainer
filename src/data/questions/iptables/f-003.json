@@ -3,11 +3,11 @@
   "tool": "iptables",
   "prompt": "After a long night configuring firewall rules on a Linux server, Jane wants to save the iptables configuration so that it will be applied even after a system reboot. Which command should Jane use to save the current iptables rules permanently on a typical Debian-based system?",
   "choices": [
-    "iptables-restore < /etc/iptables/rules.v4",
-    "iptables-save > /etc/iptables/rules.v4",
-    "iptables -S > /etc/iptables/rules.v4",
-    "service iptables save"
+    "`iptables-restore < /etc/iptables/rules.v4`",
+    "`iptables-save > /etc/iptables/rules.v4`",
+    "`iptables -S > /etc/iptables/rules.v4`",
+    "`service iptables save`"
   ],
   "answerIndex": 1,
-  "explanation": "iptables-save dumps the current ruleset to stdout; redirecting it to /etc/iptables/rules.v4 stores the rules where they are restored at boot on Debian-based systems."
+  "explanation": "`iptables-save` dumps the current ruleset to stdout; redirecting it to `/etc/iptables/rules.v4` stores the rules where they are restored at boot on Debian-based systems."
 }

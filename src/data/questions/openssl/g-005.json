@@ -1,13 +1,13 @@
 {
   "id": "openssl-g005",
   "tool": "openssl",
-  "prompt": "Jennifer, a system administrator, wants to generate a self-signed certificate for her company's internal web applications. She wants the certificate to be valid for 365 days. Which of the following openssl commands should she use to generate this certificate?",
+  "prompt": "Jennifer, a system administrator, wants to generate a self-signed certificate for her company's internal web applications. She wants the certificate to be valid for 365 days. Which of the following `openssl` commands should she use to generate this certificate?",
   "choices": [
-    "openssl req -new -newkey rsa:2048 -days 365 -nodes -keyout server.key -out server.csr",
-    "openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 -keyout server.key -out server.crt",
-    "openssl x509 -req -days 365 -in server.csr -out server.crt",
-    "openssl genrsa -out server.key 2048 -days 365"
+    "`openssl req -new -newkey rsa:2048 -days 365 -nodes -keyout server.key -out server.csr`",
+    "`openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 -keyout server.key -out server.crt`",
+    "`openssl x509 -req -days 365 -in server.csr -out server.crt`",
+    "`openssl genrsa -out server.key 2048 -days 365`"
   ],
   "answerIndex": 1,
-  "explanation": "The -x509 option produces a self-signed certificate and -days 365 sets its validity period to 365 days, while -newkey generates the accompanying private key."
+  "explanation": "The `-x509` option produces a self-signed certificate and `-days 365` sets its validity period to 365 days, while `-newkey` generates the accompanying private key."
 }

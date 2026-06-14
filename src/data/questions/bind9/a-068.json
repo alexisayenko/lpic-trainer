@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "Jason is tasked with modifying the primary configuration file for BIND on a Linux system. Which file should he look for?",
   "choices": [
-    "/etc/bind.conf",
-    "/etc/named.conf",
-    "/etc/dns/named.conf",
-    "/var/named/named.conf"
+    "`/etc/bind.conf`",
+    "`/etc/named.conf`",
+    "`/etc/dns/named.conf`",
+    "`/var/named/named.conf`"
   ],
   "answerIndex": 1,
-  "explanation": "/etc/named.conf is the primary BIND configuration file on a Linux system."
+  "explanation": "`/etc/named.conf` is the primary BIND configuration file on a Linux system."
 }

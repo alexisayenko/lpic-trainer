@@ -4,10 +4,10 @@
   "prompt": "An organization has recently migrated to NFSv4 from NFSv3. Which of the following is a significant difference between NFSv3 and NFSv4 that the system administrator should be aware of?",
   "choices": [
     "NFSv4 requires a separate portmapper service that NFSv3 did not.",
-    "NFSv4 integrates the mount protocol, removing the need for a separate mountd service.",
+    "NFSv4 integrates the mount protocol, removing the need for a separate `mountd` service.",
     "NFSv4 only supports UDP, while NFSv3 used TCP.",
     "NFSv4 no longer supports access control and relies solely on UNIX permissions."
   ],
   "answerIndex": 1,
-  "explanation": "One of the major architectural changes between NFSv3 and NFSv4 is the integration of the mount protocol in NFSv4. This eliminates the need for a separate mountd service, which was required in NFSv3."
+  "explanation": "One of the major architectural changes between NFSv3 and NFSv4 is the integration of the mount protocol in NFSv4. This eliminates the need for a separate `mountd` service, which was required in NFSv3."
 }

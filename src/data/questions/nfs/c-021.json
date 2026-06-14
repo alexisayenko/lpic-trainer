@@ -3,11 +3,11 @@
   "tool": "nfs",
   "prompt": "A Linux administrator is setting up an NFS server to support older client machines that only understand NFS version 3. Which configuration file should the administrator modify to define NFS version 3 exports?",
   "choices": [
-    "/etc/fstab",
-    "/etc/exports",
-    "/proc/mounts",
-    "/etc/hosts.allow"
+    "`/etc/fstab`",
+    "`/etc/exports`",
+    "`/proc/mounts`",
+    "`/etc/hosts.allow`"
   ],
   "answerIndex": 1,
-  "explanation": "/etc/exports is the file where exported directories and their options, including those used by NFSv3 clients, are defined on the NFS server."
+  "explanation": "`/etc/exports` is the file where exported directories and their options, including those used by NFSv3 clients, are defined on the NFS server."
 }

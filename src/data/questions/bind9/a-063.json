@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "Rachel wants to set a Time-to-Live of 7200 seconds for her domain in the zone file. Which line correctly does this?",
   "choices": [
-    "$ORIGIN 7200",
-    "$TTL 7200",
-    "TTL = 7200",
-    "$DEFAULT 7200"
+    "`$ORIGIN 7200`",
+    "`$TTL 7200`",
+    "`TTL = 7200`",
+    "`$DEFAULT 7200`"
   ],
   "answerIndex": 1,
-  "explanation": "The $TTL directive sets the default Time-to-Live for records in the zone; \"$TTL 7200\" sets it to 7200 seconds."
+  "explanation": "The `$TTL` directive sets the default Time-to-Live for records in the zone; \"`$TTL 7200`\" sets it to 7200 seconds."
 }

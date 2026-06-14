@@ -1,13 +1,13 @@
 {
   "id": "pam-sss-d012",
   "tool": "pam-sss",
-  "prompt": "Jenny, a system administrator, is configuring a Linux server to retrieve user information first from local files and then from an LDAP server. Which configuration in the nsswitch.conf file would correctly achieve this order of user information retrieval?",
+  "prompt": "Jenny, a system administrator, is configuring a Linux server to retrieve user information first from local files and then from an LDAP server. Which configuration in the `nsswitch.conf` file would correctly achieve this order of user information retrieval?",
   "choices": [
-    "passwd: files ldap",
-    "passwd: ldap files",
-    "passwd: ldap dns files",
-    "users: files ldap"
+    "`passwd: files ldap`",
+    "`passwd: ldap files`",
+    "`passwd: ldap dns files`",
+    "`users: files ldap`"
   ],
   "answerIndex": 0,
-  "explanation": "The line passwd: files ldap in nsswitch.conf directs the system to retrieve user information from local files first and then from an LDAP server."
+  "explanation": "The line `passwd: files ldap` in `nsswitch.conf` directs the system to retrieve user information from local files first and then from an LDAP server."
 }

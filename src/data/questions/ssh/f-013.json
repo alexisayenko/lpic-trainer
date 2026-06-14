@@ -6,7 +6,7 @@
     "Reboot the server before restarting the SSH service",
     "Establish an SSH connection from a secondary device or workstation to the server.",
     "Disable the firewall on the server temporarily",
-    "Copy sshd_config to a backup location and exit the session"
+    "Copy `sshd_config` to a backup location and exit the session"
   ],
   "answerIndex": 1,
   "explanation": "When making configuration changes that might disrupt an active SSH connection, it's a best practice to establish another SSH session from a different device or workstation. This way, if the changes made cause the SSH service to malfunction on the primary connection, Jane still has an active session from a different device to revert the changes."

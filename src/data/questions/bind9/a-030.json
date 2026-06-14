@@ -4,7 +4,7 @@
   "prompt": "Which of the following is a problem that a caching DNS server can only help solve?",
   "choices": [
     "Your ISP's DNS server is reliable, but slow.",
-    "Your domain's MX record is missing.",
+    "Your domain's `MX` record is missing.",
     "Your zone file has a syntax error.",
     "Your server's clock is out of sync."
   ],

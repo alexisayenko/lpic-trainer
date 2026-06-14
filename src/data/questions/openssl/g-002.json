@@ -1,13 +1,13 @@
 {
   "id": "openssl-g002",
   "tool": "openssl",
-  "prompt": "Emily wants to generate a Certificate Signing Request (CSR) for her company's website to get an SSL certificate from a trusted Certificate Authority. Which openssl command will allow her to generate a CSR along with a new private key?",
+  "prompt": "Emily wants to generate a Certificate Signing Request (CSR) for her company's website to get an SSL certificate from a trusted Certificate Authority. Which `openssl` command will allow her to generate a CSR along with a new private key?",
   "choices": [
-    "openssl req -new -key server.key -out server.csr",
-    "openssl genrsa -out server.key 2048",
-    "openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr",
-    "openssl x509 -req -days 365 -in server.csr -out server.crt"
+    "`openssl req -new -key server.key -out server.csr`",
+    "`openssl genrsa -out server.key 2048`",
+    "`openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr`",
+    "`openssl x509 -req -days 365 -in server.csr -out server.crt`"
   ],
   "answerIndex": 2,
-  "explanation": "The command openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr serves multiple purposes. It generates a new private key using the RSA algorithm and a corresponding Certificate Signing Request (CSR). The -nodes option ensures the private key is not encrypted with a passphrase."
+  "explanation": "The command `openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr` serves multiple purposes. It generates a new private key using the RSA algorithm and a corresponding Certificate Signing Request (CSR). The `-nodes` option ensures the private key is not encrypted with a passphrase."
 }

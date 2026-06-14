@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "You need to specify the location of the zone files in the BIND configuration. Which directive in the BIND configuration file allows you to define the path to a specific zone file for a domain?",
   "choices": [
-    "directory \"/path/to/zonefile\";",
-    "file \"/path/to/zonefile\";",
-    "zone \"/path/to/zonefile\";",
-    "include \"/path/to/zonefile\";"
+    "`directory \"/path/to/zonefile\";`",
+    "`file \"/path/to/zonefile\";`",
+    "`zone \"/path/to/zonefile\";`",
+    "`include \"/path/to/zonefile\";`"
   ],
   "answerIndex": 1,
-  "explanation": "Within a zone block, the \"file\" directive specifies the path to that zone's data file, e.g. file \"/path/to/zonefile\";."
+  "explanation": "Within a zone block, the \"`file`\" directive specifies the path to that zone's data file, e.g. `file \"/path/to/zonefile\";`."
 }

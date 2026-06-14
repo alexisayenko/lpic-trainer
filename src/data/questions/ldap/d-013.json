@@ -3,11 +3,11 @@
   "tool": "ldap",
   "prompt": "Clara, a system engineer, receives a request to update the password of a user named \"elena.perez\" in the LDAP directory. She wants to ensure the password change operation follows best practices. Which of the following methods would be recommended?",
   "choices": [
-    "Editing the userPassword attribute directly with a text editor",
-    "Utilizing the ldappasswd utility",
-    "Replacing the entry with ldapadd and a new password",
-    "Running ldapsearch with the -W option"
+    "Editing the `userPassword` attribute directly with a text editor",
+    "Utilizing the `ldappasswd` utility",
+    "Replacing the entry with `ldapadd` and a new password",
+    "Running `ldapsearch` with the `-W` option"
   ],
   "answerIndex": 1,
-  "explanation": "The ldappasswd utility is the recommended tool for changing the password of an LDAP entry, as it handles password hashing and updates securely."
+  "explanation": "The `ldappasswd` utility is the recommended tool for changing the password of an LDAP entry, as it handles password hashing and updates securely."
 }

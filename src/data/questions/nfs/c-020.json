@@ -3,11 +3,11 @@
   "tool": "nfs",
   "prompt": "A system administrator is tasked with ensuring that NFS services are protected by TCP Wrappers. Which of the following files should the administrator modify to deny access to the NFS service for a specific IP address?",
   "choices": [
-    "/etc/exports",
-    "/etc/hosts.deny",
-    "/etc/fstab",
-    "/proc/mounts"
+    "`/etc/exports`",
+    "`/etc/hosts.deny`",
+    "`/etc/fstab`",
+    "`/proc/mounts`"
   ],
   "answerIndex": 1,
-  "explanation": "/etc/hosts.deny is the TCP Wrappers file used to deny access to services for specific hosts or IP addresses."
+  "explanation": "`/etc/hosts.deny` is the TCP Wrappers file used to deny access to services for specific hosts or IP addresses."
 }

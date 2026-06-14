@@ -1,13 +1,13 @@
 {
   "id": "apache2-b026",
   "tool": "apache2",
-  "prompt": "You want to set up an authentication requirement for a directory on your Apache server. Apart from the .htpasswd file for user credentials, which additional file is commonly used to specify the authentication type and the path to the .htpasswd file?",
+  "prompt": "You want to set up an authentication requirement for a directory on your Apache server. Apart from the `.htpasswd` file for user credentials, which additional file is commonly used to specify the authentication type and the path to the `.htpasswd` file?",
   "choices": [
-    ".htgroup",
-    ".htaccess",
-    ".htconfig",
-    ".htauth"
+    "`.htgroup`",
+    "`.htaccess`",
+    "`.htconfig`",
+    "`.htauth`"
   ],
   "answerIndex": 1,
-  "explanation": "The .htaccess file is commonly used in Apache to specify directory-level configurations. When setting up basic authentication, directives like AuthType, AuthName, AuthUserFile (which points to the .htpasswd file), and Require are typically placed in this file."
+  "explanation": "The `.htaccess` file is commonly used in Apache to specify directory-level configurations. When setting up basic authentication, directives like `AuthType`, `AuthName`, `AuthUserFile` (which points to the `.htpasswd` file), and `Require` are typically placed in this file."
 }

@@ -3,11 +3,11 @@
   "tool": "ldap",
   "prompt": "Sarah is attempting to use LDAP utilities to query an LDAP directory for a user named \"john\". She wants to retrieve all attributes related to this user. Which command should Sarah use to accurately perform this query?",
   "choices": [
-    "ldapsearch -x -D \"dc=example,dc=com\" \"uid=john\"",
-    "ldapsearch -x -b \"dc=example,dc=com\" \"uid=john\"",
-    "ldapsearch -x -b \"dc=example,dc=com\" \"uid=john\" cn mail",
-    "ldapsearch -b \"dc=example,dc=com\" -f \"uid=john\" all"
+    "`ldapsearch -x -D \"dc=example,dc=com\" \"uid=john\"`",
+    "`ldapsearch -x -b \"dc=example,dc=com\" \"uid=john\"`",
+    "`ldapsearch -x -b \"dc=example,dc=com\" \"uid=john\" cn mail`",
+    "`ldapsearch -b \"dc=example,dc=com\" -f \"uid=john\" all`"
   ],
   "answerIndex": 1,
-  "explanation": "The ldapsearch utility is utilized to search entries in the LDAP directory. The -x flag indicates the use of simple authentication. The -b flag specifies the base DN from where the search should begin. The filter \"uid=john\" retrieves entries that match the user \"john\". With no attributes listed, all attributes are returned."
+  "explanation": "The `ldapsearch` utility is utilized to search entries in the LDAP directory. The `-x` flag indicates the use of simple authentication. The `-b` flag specifies the base DN from where the search should begin. The filter `\"uid=john\"` retrieves entries that match the user \"john\". With no attributes listed, all attributes are returned."
 }

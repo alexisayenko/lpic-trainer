@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "Samantha wants to check the syntax of her zone file named \"db.myorg\" for the domain \"myorg.com\" before reloading BIND. Which command should she use?",
   "choices": [
-    "named-checkconf db.myorg",
-    "named-checkzone myorg.com db.myorg",
-    "rndc reload myorg.com",
-    "dig myorg.com db.myorg"
+    "`named-checkconf db.myorg`",
+    "`named-checkzone myorg.com db.myorg`",
+    "`rndc reload myorg.com`",
+    "`dig myorg.com db.myorg`"
   ],
   "answerIndex": 1,
-  "explanation": "The named-checkzone utility checks the syntax and integrity of a zone file. The correct syntax is named-checkzone [zone-name] [zonefile]."
+  "explanation": "The `named-checkzone` utility checks the syntax and integrity of a zone file. The correct syntax is `named-checkzone [zone-name] [zonefile]`."
 }

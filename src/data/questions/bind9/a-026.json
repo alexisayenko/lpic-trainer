@@ -3,11 +3,11 @@
   "tool": "bind9",
   "prompt": "A BIND server should never respond to queries from certain networks or hosts. Which configuration guideline can be used for this purpose?",
   "choices": [
-    "allow-query { none; };",
-    "blackhole {...;};",
-    "recursion no;",
-    "deny-transfer {...;};"
+    "`allow-query { none; };`",
+    "`blackhole {...;};`",
+    "`recursion no;`",
+    "`deny-transfer {...;};`"
   ],
   "answerIndex": 1,
-  "explanation": "The blackhole statement lists addresses from which the server will neither accept queries nor send replies."
+  "explanation": "The `blackhole` statement lists addresses from which the server will neither accept queries nor send replies."
 }

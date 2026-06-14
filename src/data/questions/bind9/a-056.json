@@ -1,13 +1,13 @@
 {
   "id": "bind9-a056",
   "tool": "bind9",
-  "prompt": "Sarah wants to change the zone file format from the default text format to a binary format for performance. Which named.conf directive should she use to specify that the zone's master file should be read in a binary format?",
+  "prompt": "Sarah wants to change the zone file format from the default text format to a binary format for performance. Which `named.conf` directive should she use to specify that the zone's master file should be read in a binary format?",
   "choices": [
-    "masterfile-format text;",
-    "masterfile-format raw;",
-    "masterfile-format binary;",
-    "masterfile-format compressed;"
+    "`masterfile-format text;`",
+    "`masterfile-format raw;`",
+    "`masterfile-format binary;`",
+    "`masterfile-format compressed;`"
   ],
   "answerIndex": 1,
-  "explanation": "The masterfile-format directive determines the format of the master files. The raw format is essentially a binary format which is often faster for named to load on startup than the text format."
+  "explanation": "The `masterfile-format` directive determines the format of the master files. The `raw` format is essentially a binary format which is often faster for `named` to load on startup than the `text` format."
 }

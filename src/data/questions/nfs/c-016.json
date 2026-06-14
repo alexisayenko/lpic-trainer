@@ -3,11 +3,11 @@
   "tool": "nfs",
   "prompt": "A system administrator wants to ensure that a remote NFS share is mounted on client machines in a way that it will try to reconnect automatically if the server or network fails temporarily. Which of the following mount options should the administrator use?",
   "choices": [
-    "soft",
-    "hard",
-    "ro",
-    "noac"
+    "`soft`",
+    "`hard`",
+    "`ro`",
+    "`noac`"
   ],
   "answerIndex": 1,
-  "explanation": "The hard and soft options determine the client's behavior when the server is not responding. When using the hard option, the NFS client will continue to retry the request (such as read or write) indefinitely until the server responds. This helps in cases where there might be temporary network or server issues. On the other hand, the soft option will cause the client to fail after a set number of retries."
+  "explanation": "The `hard` and `soft` options determine the client's behavior when the server is not responding. When using the `hard` option, the NFS client will continue to retry the request (such as read or write) indefinitely until the server responds. This helps in cases where there might be temporary network or server issues. On the other hand, the `soft` option will cause the client to fail after a set number of retries."
 }

@@ -6,7 +6,7 @@
     "Assign a unique port to each HTTPS virtual host",
     "Implement Server Name Indication (SNI) in her Apache configuration",
     "Use a single wildcard certificate for all virtual hosts",
-    "Enable mod_proxy to route SSL requests"
+    "Enable `mod_proxy` to route SSL requests"
   ],
   "answerIndex": 1,
   "explanation": "Server Name Indication (SNI) is a feature that allows multiple SSL certificates to be served over HTTPS from a single IP address. It works by having the client send the name of the virtual host as part of the initial encrypted handshake, enabling the server to return the correct certificate."

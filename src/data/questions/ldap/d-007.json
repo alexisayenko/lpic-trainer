@@ -1,13 +1,13 @@
 {
   "id": "ldap-d007",
   "tool": "ldap",
-  "prompt": "Sarah, a new system administrator, has been handed a task to add a new LDAP entry for a user named \"John Doe\". She has a file named johndoe.ldif that contains the necessary LDAP data. Which of the following commands should Sarah use to correctly add this user to the LDAP directory?",
+  "prompt": "Sarah, a new system administrator, has been handed a task to add a new LDAP entry for a user named \"John Doe\". She has a file named `johndoe.ldif` that contains the necessary LDAP data. Which of the following commands should Sarah use to correctly add this user to the LDAP directory?",
   "choices": [
-    "ldapadd -f johndoe.ldif -W",
-    "ldapadd -e johndoe.ldif -W",
-    "ldapadd -b johndoe.ldif -x",
-    "ldapadd johndoe.ldif -S"
+    "`ldapadd -f johndoe.ldif -W`",
+    "`ldapadd -e johndoe.ldif -W`",
+    "`ldapadd -b johndoe.ldif -x`",
+    "`ldapadd johndoe.ldif -S`"
   ],
   "answerIndex": 0,
-  "explanation": "The ldapadd command is used to add entries to the LDAP directory. The -f option specifies the LDIF file that contains the LDAP entries to be added. The -W option prompts for the LDAP directory password, ensuring security."
+  "explanation": "The `ldapadd` command is used to add entries to the LDAP directory. The `-f` option specifies the LDIF file that contains the LDAP entries to be added. The `-W` option prompts for the LDAP directory password, ensuring security."
 }

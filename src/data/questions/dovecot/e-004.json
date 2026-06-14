@@ -3,11 +3,11 @@
   "tool": "dovecot",
   "prompt": "You suspect that one of the users in your organization has a mailbox that's growing exceptionally large. You'd like to obtain a list of all mailboxes sorted by their size. Which doveadm command would allow you to do this?",
   "choices": [
-    "doveadm mailbox status \"messages vsize\" \"*\" -A",
-    "doveadm mailbox list \"size\" \"*\" -A",
-    "doveadm search -A mailbox vsize",
-    "doveconf mailbox vsize -A"
+    "`doveadm mailbox status \"messages vsize\" \"*\" -A`",
+    "`doveadm mailbox list \"size\" \"*\" -A`",
+    "`doveadm search -A mailbox vsize`",
+    "`doveconf mailbox vsize -A`"
   ],
   "answerIndex": 0,
-  "explanation": "The command doveadm mailbox status \"messages vsize\" \"*\" -A provides the status, including message count and size (vsize), of all mailboxes for all users. This is useful when you want to monitor and sort mailboxes based on their size."
+  "explanation": "The command `doveadm mailbox status \"messages vsize\" \"*\" -A` provides the status, including message count and size (`vsize`), of all mailboxes for all users. This is useful when you want to monitor and sort mailboxes based on their size."
 }

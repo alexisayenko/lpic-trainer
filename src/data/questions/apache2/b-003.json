@@ -3,11 +3,11 @@
   "tool": "apache2",
   "prompt": "Jeremy is setting up client authentication on his Apache server. He has received a bundle of CA certificates and wants to set up Apache to recognize them for client authentication. Which directive should Jeremy use to point Apache to this bundle file?",
   "choices": [
-    "SSLCertificateFile",
-    "SSLCACertificateFile",
-    "SSLCertificateKeyFile",
-    "SSLCertificateChainFile"
+    "`SSLCertificateFile`",
+    "`SSLCACertificateFile`",
+    "`SSLCertificateKeyFile`",
+    "`SSLCertificateChainFile`"
   ],
   "answerIndex": 1,
-  "explanation": "SSLCACertificateFile specifies the path to a file containing the concatenated CA certificates used to verify client certificates during client authentication."
+  "explanation": "`SSLCACertificateFile` specifies the path to a file containing the concatenated CA certificates used to verify client certificates during client authentication."
 }

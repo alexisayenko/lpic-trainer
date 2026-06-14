@@ -3,11 +3,11 @@
   "tool": "squid",
   "prompt": "Martin, a systems administrator for a school, wants to restrict students from accessing social media websites during school hours using the Squid proxy. Which Squid configuration directive should Martin use to block access to specific domains?",
   "choices": [
-    "acl blocked_domains src",
-    "acl blocked_domains dstdomain",
-    "acl blocked_domains url_regex",
-    "acl blocked_domains port"
+    "`acl blocked_domains src`",
+    "`acl blocked_domains dstdomain`",
+    "`acl blocked_domains url_regex`",
+    "`acl blocked_domains port`"
   ],
   "answerIndex": 1,
-  "explanation": "An acl with the dstdomain type matches the destination domain of a request, allowing specific domains to be blocked when combined with an http_access deny rule."
+  "explanation": "An `acl` with the `dstdomain` type matches the destination domain of a request, allowing specific domains to be blocked when combined with an `http_access deny` rule."
 }

@@ -3,11 +3,11 @@
   "tool": "ldap",
   "prompt": "Jessica, an IT administrator, is working on the company's LDAP server. She needs to find the email addresses of all employees in the \"Sales\" department without returning any other details. Which of the following commands will give her the desired output?",
   "choices": [
-    "ldapsearch -x -b \"(ou=Sales)\" mail",
-    "ldapsearch -x -LLL \"(ou=Sales)\" mail",
-    "ldapsearch -x -LLL \"(ou=Sales)\" cn mail",
-    "ldapsearch -LLL -D \"(ou=Sales)\" mail"
+    "`ldapsearch -x -b \"(ou=Sales)\" mail`",
+    "`ldapsearch -x -LLL \"(ou=Sales)\" mail`",
+    "`ldapsearch -x -LLL \"(ou=Sales)\" cn mail`",
+    "`ldapsearch -LLL -D \"(ou=Sales)\" mail`"
   ],
   "answerIndex": 1,
-  "explanation": "The ldapsearch command is used to search and retrieve directory entries from the LDAP server. The -x option stands for simple authentication and security. -LLL suppresses the printing of the LDIF version, comments, and search result reference. The search filter (ou=Sales) filters only those in the \"Sales\" department, and specifying mail at the end only retrieves the email attribute."
+  "explanation": "The `ldapsearch` command is used to search and retrieve directory entries from the LDAP server. The `-x` option stands for simple authentication and security. `-LLL` suppresses the printing of the LDIF version, comments, and search result reference. The search filter `(ou=Sales)` filters only those in the \"Sales\" department, and specifying `mail` at the end only retrieves the email attribute."
 }

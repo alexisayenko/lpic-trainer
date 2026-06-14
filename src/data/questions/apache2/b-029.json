@@ -1,13 +1,13 @@
 {
   "id": "apache2-b029",
   "tool": "apache2",
-  "prompt": "You have been asked to restrict access to a directory named \"private\" on your Apache server. You want to use an external file to specify which users can access this directory. Which file is commonly used to define authorized users in conjunction with the Require directive?",
+  "prompt": "You have been asked to restrict access to a directory named \"private\" on your Apache server. You want to use an external file to specify which users can access this directory. Which file is commonly used to define authorized users in conjunction with the `Require` directive?",
   "choices": [
-    ".htaccess",
-    ".htpasswd",
-    ".htgroup",
-    ".htusers"
+    "`.htaccess`",
+    "`.htpasswd`",
+    "`.htgroup`",
+    "`.htusers`"
   ],
   "answerIndex": 1,
-  "explanation": "The .htpasswd file is used to store usernames and their encrypted passwords. This file is commonly used with the Require directive in the .htaccess file or the main Apache configuration file to define user-based access restrictions."
+  "explanation": "The `.htpasswd` file is used to store usernames and their encrypted passwords. This file is commonly used with the `Require` directive in the `.htaccess` file or the main Apache configuration file to define user-based access restrictions."
 }
