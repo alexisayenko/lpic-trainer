@@ -28,6 +28,10 @@ reflects the current source; deeper detail lives in
   `answerIndices`), `fill` (typed answer, compared case- and
   whitespace-insensitively). Older files without a `type` are normalised to
   `single` at load.
+- **Inline code marking** — command, configuration, path, and code text in
+  `prompt`, `explanation`, and `choices` is wrapped in Markdown backticks in the
+  question JSON; [`CodeText`](../src/components/CodeText.tsx) renders each span as
+  monospace inline code. `answer` is never marked (it is matched against typed input).
 - **Utility / tool** — the program or subsystem a question covers (`bind9`,
   `apache2`, `samba`, …). `Question.tool` is the slug;
   [`utilities.json`](../src/data/utilities.json) maps each of the 26 utilities to

@@ -74,7 +74,10 @@ src/
     ├── QuestionCardHeader.tsx question-card header: context · source · day strip · chip
     ├── LogoZoom.tsx           accessible image lightbox
     ├── Account.tsx            disconnect button / read-only / local-only notice
-    └── CloudSync.tsx          headless two-way sync
+    ├── CloudSync.tsx          headless two-way sync
+    ├── CodeText.tsx           renders backtick-marked commands/config in question text as inline code
+    ├── InfoMenu.tsx           footer menu: Theory / User manual / About
+    └── Modal.tsx              accessible dialog for the menu panels
 ```
 
 See [docs/architecture.md](docs/architecture.md) for how these fit together and
@@ -104,6 +107,8 @@ Questions live as JSON under `src/data/questions/`, grouped by the utility they 
 - `fill`: `answer` (compared case- and whitespace-insensitively).
 
 Each question also gets an `origin` (auto-tagged at load from its path/id): `linux-direct` and `ken-adams` for the original by-topic and `u`-series sets, `gpt-deep-research` for `lpic-bank/`, and `claude-lpic2book` for `lpic2book/` (original questions distilled from the CC-licensed lpic2book).
+
+Command, configuration, path, and code text inside `prompt`, `explanation`, and `choices` is wrapped in Markdown backticks (e.g. `` `named -t /var/named/root -u nobody` ``); [`CodeText`](src/components/CodeText.tsx) renders each backtick span as inline code. The `answer` field is left unmarked (it is compared against typed input).
 
 Per-utility `notes.md` files hold reference/study material.
 

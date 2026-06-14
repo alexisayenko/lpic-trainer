@@ -137,18 +137,26 @@ with a single clock snapshot for consistency.
   buckets, rendered as labelled toggle chips. They both filter the displayed
   rows **and form the quiz pool**.
 - **Per-topic progress** — an "answered N/total" count and a stacked mastery bar per
-  topic (unseen + the six bucket colours, soft-outlined segments, question
-  counts inside the blocks when they fit); derived in `useDashboardStats` (one pass over the
-  latest-record map; orphaned ids for removed questions are skipped).
+  topic. Segments ramp slate (unseen) → red (all-wrong, bucket 0) → slate-to-green for
+  buckets 20–100, and each correct block's fill opacity is scaled to its mastery (100% =
+  fully filled); question counts sit inside the blocks when they fit, in a green digit so a
+  faint low-mastery block still reads as answered. Derived in `useDashboardStats` (one pass
+  over the latest-record map; orphaned ids for removed questions are skipped).
 - **Expandable rows** — open a topic to see, first, a read-only per-tool stats
   block (label · seen/total · stacked mastery bar, from `perTool`/`bucketsByTool`),
   then its questions: stats line (21-day strip · mastery chip · source tag · id),
   a `tool · Topic Label (207)` line, the prompt, your answer when the last attempt
-  was wrong, and the correct answer — on neutral slate cards.
+  was wrong, and the correct answer — on borderless filled cards. Command/config text
+  in prompts, choices, and answers renders as inline code (see **Info menu / inline code**).
 - **Quiz launcher** — size presets + an "available" count; **Start** is disabled when
   the pool is empty.
 - **Logo lightbox** ([`LogoZoom`](../src/components/LogoZoom.tsx)) — accessible modal
   (`role="dialog"`, focus trap/restore, Escape).
+- **Info menu / inline code** — a footer link ([`InfoMenu`](../src/components/InfoMenu.tsx))
+  opens Theory (Ebbinghaus forgetting curve), User manual, and About panels in a shared
+  [`Modal`](../src/components/Modal.tsx). [`CodeText`](../src/components/CodeText.tsx) renders
+  backtick-marked command/config spans in question text as monospace inline code, used by both
+  the dashboard cards and the quiz.
 
 ## Quiz
 
@@ -219,7 +227,10 @@ src/
     ├── QuestionCardHeader.tsx   question-card header: context · source · day strip · chip
     ├── LogoZoom.tsx             accessible image lightbox
     ├── Account.tsx              disconnect button / read-only / local-only notice
-    └── CloudSync.tsx            headless two-way sync
+    ├── CloudSync.tsx            headless two-way sync
+    ├── CodeText.tsx             renders backtick-marked commands/config as inline code
+    ├── InfoMenu.tsx             footer menu: Theory / User manual / About
+    └── Modal.tsx                accessible dialog used by the menu panels
 ```
 
 ## Not wired in yet
