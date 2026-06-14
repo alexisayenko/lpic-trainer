@@ -201,8 +201,8 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
         ))}
       </ul>
 
-      <div className="flex items-start gap-2">
-        <span className="w-20 shrink-0 py-1.5 text-slate-300">Quiz size</span>
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="w-20 shrink-0 text-slate-300">Quiz size</span>
         <div className="flex flex-wrap gap-1">
           {[null, ...PRESETS].map((n) => (
             <ToggleChip
@@ -216,18 +216,17 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
             </ToggleChip>
           ))}
         </div>
+        {canQuiz && (
+          <button
+            type="button"
+            onClick={onStart}
+            disabled={available === 0}
+            className="ml-auto shrink-0 px-6 py-2 rounded-md bg-sky-600 hover:bg-sky-500 text-white font-medium transition-colors disabled:opacity-50"
+          >
+            Start quiz
+          </button>
+        )}
       </div>
-
-      {canQuiz && (
-        <button
-          type="button"
-          onClick={onStart}
-          disabled={available === 0}
-          className="block mx-auto px-10 py-3 rounded-md bg-sky-600 hover:bg-sky-500 text-white font-medium transition-colors disabled:opacity-50"
-        >
-          Start quiz
-        </button>
-      )}
 
       <footer className="space-y-2 pt-4 pb-8 text-xs text-slate-600">
         <div className="flex items-start justify-between gap-4">
