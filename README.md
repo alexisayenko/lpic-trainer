@@ -50,7 +50,7 @@ src/
 ├── App.tsx                    Screen switch (dashboard → quiz) + ?token capture
 ├── main.tsx                   Vite entry
 ├── index.css                  Tailwind directives + base styles
-├── store.ts                   Zustand store (topics, filters, quizSize, answer history)
+├── store.ts                   Zustand store (result/source/tool filters, notPracticed, cardView, quizSize, answer history)
 ├── types.ts                   Question union, AnswerRecord, Topic/Origin, shared constants
 ├── data/
 │   ├── topics.json            6 exam topics (207–212)
@@ -59,17 +59,19 @@ src/
 │       ├── index.ts           globs/normalises/dedupes question JSON into QUESTIONS[]
 │       └── <utility>/         one folder per utility: q JSON files + notes.md
 ├── lib/
-│   ├── select.ts              deck pipeline: filterPool / orderByWeakness / pickDeck
+│   ├── select.ts              deck pipeline: filterPool / balancedSample / shuffle
 │   ├── mastery.ts             mastery score (chip + result filter)
+│   ├── dates.ts               day-math helpers (startOfLocalDay / daysBack / MS_PER_DAY)
 │   ├── api.ts                 sync transport + mergeHistories
 │   └── auth.ts                token store
 └── components/
-    ├── Dashboard.tsx          home: header, filters, topic list, launcher
-    ├── TopicCard.tsx          selectable/expandable topic row + mastery bar
+    ├── Dashboard.tsx          home: header, filters, quiz size, card-view switcher, topic list, launcher
+    ├── TopicCard.tsx          expandable topic row + mastery bar
     ├── MasteryBar.tsx         stacked mastery bar (+ thin per-tool variant)
     ├── AnswerLine.tsx         question card in an expanded topic
-    ├── useDashboardStats.ts   memoized last/attempts/perTopic/mastery maps
-    ├── FilterBar.tsx          result + source filters
+    ├── useDashboardStats.ts   memoized last/attempts/perTopic/perTool/mastery maps
+    ├── FilterBar.tsx          result, source, tool (per topic) & not-practiced filters
+    ├── ToggleChip.tsx         shared on/off filter chip button
     ├── Quiz.tsx               question card, scoring, results screen
     ├── QuestionCardHeader.tsx question-card header: context · source · day strip · chip
     ├── LogoZoom.tsx           accessible image lightbox
@@ -77,6 +79,7 @@ src/
     ├── CloudSync.tsx          headless two-way sync
     ├── CodeText.tsx           renders backtick-marked commands/config in question text as inline code
     ├── InfoMenu.tsx           footer menu: Theory / User manual / About
+    ├── PalettePanel.tsx       mastery-tint colour picker (gradient + chip preview)
     └── Modal.tsx              accessible dialog for the menu panels
 ```
 
@@ -112,7 +115,7 @@ Command, configuration, path, and code text inside `prompt`, `explanation`, and 
 
 Per-utility `notes.md` files hold reference/study material.
 
-The bank holds ~490 questions: the original two sets plus the objective-mapped `lpic-bank/` (GPT) and `lpic2book/` (original, from the open book) sets. Source/reference material under `docs/refs/` is git-ignored — copyrighted course PDFs are kept local, not published.
+The bank holds ~607 questions: the original two sets plus the objective-mapped `lpic-bank/` (GPT) and `lpic2book/` (original, from the open book) sets. Source/reference material under `docs/refs/` is git-ignored — copyrighted course PDFs are kept local, not published.
 
 ## Scope notes
 

@@ -10,8 +10,10 @@ browser ──HTTPS──▶ Apache (api.isayenko.org) ──▶ Node API (127.0
 ```
 
 > **Already provisioned** on `alex-hetzner` (178.105.216.210). This doc is the
-> runbook for rebuilding or moving it. The live API token is stored in
-> `C:\Users\alex-claude\.env\alex-hetzner.env`.
+> runbook for rebuilding or moving it. The live API token is kept on the dev
+> machine in `C:\Users\alex-claude\.env\alex-hetzner.env`; in the app it is
+> supplied once per device via `?token=xxx` and stored in `localStorage`
+> (`lpic-sync-token`).
 
 ## Layout on the server
 

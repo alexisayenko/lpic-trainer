@@ -6,9 +6,11 @@ reflects the current source; deeper detail lives in
 
 ## Screens
 
-- **Login gate** — the full-screen token prompt ([`Login.tsx`](../src/components/Login.tsx))
-  shown by [`App.tsx`](../src/App.tsx) when cloud sync is configured but no valid
-  token is stored. Until a token is entered, the rest of the app is unreachable.
+- **Token unlock** — the site is public and read-only by default. Visiting once
+  with a `?token=xxx` query param ([`App.tsx`](../src/App.tsx)) stores the sync
+  token and unlocks cross-device sync; the param is then stripped from the URL.
+  There is no login screen — without a token the app stays fully usable, and the
+  footer [`Account`](../src/components/Account.tsx) panel shows a "Read-only" notice.
 - **Dashboard** — the home screen ([`Dashboard.tsx`](../src/components/Dashboard.tsx)):
   filters, per-topic progress, expandable question rows, and the quiz launcher.
 - **Quiz mode** — the active session ([`Quiz.tsx`](../src/components/Quiz.tsx)),
@@ -51,9 +53,9 @@ reflects the current source; deeper detail lives in
 - **Deck** — the per-session question list, built once in `Quiz.tsx` from a
   snapshot of history (so answering mid-quiz doesn't reorder it). Pipeline in
   [`select.ts`](../src/lib/select.ts): `filterPool` (result + source + tool +
-  not-practiced filters), then `orderByWeakness`
-  (unseen > last-wrong > last-correct, random tiebreak), then `pickDeck` slices
-  the first `quizSize` questions (`null` = all matching).
+  not-practiced filters), then `balancedSample` draws up to `quizSize` questions
+  balanced across topics and returns them shuffled (`null` = all matching). There
+  is no weakness-based ordering.
 - **Answer / attempt** — one answered question, stored as an `AnswerRecord`
   ([`types.ts`](../src/types.ts)): stable client-generated `id`, `questionId`,
   optional `pickedIndex`, `correct`, timestamp `ts`. "Attempt" is the usual term
@@ -65,7 +67,7 @@ reflects the current source; deeper detail lives in
 ## Statistics
 
 - **Seen / asked** — a question is *seen* once it has at least one record in
-  history; the dashboard's per-topic "asked N/total" counts seen questions
+  history; the dashboard's per-topic "answered N/total" counts seen questions
   ([`useDashboardStats`](../src/components/useDashboardStats.ts)).
 - **Correct / wrong "now"** — last-attempt semantics: `correctNow` / `wrongNow`
   classify each seen question by its *latest* record only

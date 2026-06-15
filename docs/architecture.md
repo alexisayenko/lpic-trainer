@@ -65,7 +65,7 @@ one question object or an array. At load each question is:
    `utilities.json`;
 4. **deduped by `id`** (later duplicates are skipped with a warning) and sorted by id.
 
-Result: the exported `QUESTIONS` array (~306 files; banks-as-arrays expand this).
+Result: the exported `QUESTIONS` array (~414 JSON files expanding to ~607 questions).
 
 ## State ([`store.ts`](../src/store.ts))
 
@@ -95,9 +95,9 @@ subsumed it; older persisted values are simply ignored.
 
 ## Deck pipeline ([`lib/select.ts`](../src/lib/select.ts))
 
-Building a quiz deck is three independent stages:
+Building a quiz deck is two stages:
 
-1. **Eligibility** — `filterPool(pool, attempts, resultFilter, sourceFilter, tools, notPracticedMs, now)`
+1. **Eligibility** — `filterPool(pool, attempts, result, source, tools, notPracticedMs, now)`
    decides which questions qualify: by the source multi-selection (the
    question's origin must be selected), by the tool multi-selection (the
    question's tool must be selected), by the result multi-selection
@@ -111,12 +111,14 @@ Building a quiz deck is three independent stages:
    deck all run the *same* predicate, so they can't diverge. Topic-level
    narrowing is expressed entirely through the tool filter (tools are grouped by
    topic in the UI); there is no separate topic-selection step.
-2. **Order** — `orderByWeakness(pool, last, rng?)` sorts unseen > last-wrong >
-   last-correct, with a random tiebreak (injectable RNG for testing).
-3. **Take** — `pickDeck(ordered, size)` slices the first N.
+2. **Sample & shuffle** — `balancedSample(pool, quizSize, groupOf)` draws up to
+   `quizSize` questions balanced across topics (round-robin over shuffled topic
+   groups, redistributing slots from exhausted groups), then returns them in
+   random order. `quizSize` null (or ≥ pool size) takes every eligible question.
+   There is no mastery- or weakness-based ordering.
 
-`lastByQuestion(history)` builds the latest-record-per-question map shared by all
-three stages and by the dashboard.
+`lastByQuestion(history)` builds the latest-record-per-question map used by the
+dashboard; `attemptsByQuestion` groups all attempts per id for `filterPool`.
 
 ## Mastery ([`lib/mastery.ts`](../src/lib/mastery.ts))
 
@@ -138,10 +140,11 @@ with a single clock snapshot for consistency.
   and a full-width overall mastery bar (all topics combined, same segment style
   as the topic bars) directly below. The Account panel lives bottom-right in
   the footer.
-- **Filters** ([`FilterBar`](../src/components/FilterBar.tsx)) — result + source toggles.
-  The result filter is unanswered (internal value `unseen`) / the six mastery
-  buckets, rendered as labelled toggle chips. They both filter the displayed
-  rows **and form the quiz pool**.
+- **Filters** ([`FilterBar`](../src/components/FilterBar.tsx)) — result, source,
+  tool (grouped by topic), and a single-select "Not practiced" window, all rendered
+  as labelled toggle chips. The result filter is unanswered (internal value
+  `unseen`) / the six mastery buckets. The filters both narrow the displayed rows
+  **and form the quiz pool**.
 - **Per-topic progress** — an "answered N/total" count and a stacked mastery bar per
   topic. Segments ramp slate (unseen) → red (all-wrong, bucket 0) → slate-to-green for
   buckets 20–100, and each correct block's fill opacity is scaled to its mastery (100% =
@@ -207,7 +210,7 @@ per-row validation matching the schema, 2 MB body cap.
 src/
 ├── App.tsx                      screen switch + ?token capture
 ├── main.tsx                     Vite entry
-├── store.ts                     Zustand store (persist v3 + migrate)
+├── store.ts                     Zustand store (persist v9 + migrate)
 ├── types.ts                     Question union, AnswerRecord, Topic/Origin, constants
 ├── data/
 │   ├── topics.json              6 exam topics (207–212)
@@ -216,18 +219,18 @@ src/
 │       ├── index.ts             globs/normalises/dedupes → QUESTIONS[]
 │       └── <utility>/           question JSON + notes.md per utility
 ├── lib/
-│   ├── select.ts                filterPool / orderByWeakness / pickDeck / shuffledIndices / lastByQuestion
+│   ├── select.ts                filterPool / balancedSample / shuffle / shuffledIndices / lastByQuestion / attemptsByQuestion
 │   ├── mastery.ts               masteryOf (0–100 score)
 │   ├── dates.ts                 startOfLocalDay / daysBack day-math helpers
 │   ├── api.ts                   sync transport + mergeHistories
 │   └── auth.ts                  token store
 └── components/
-    ├── Dashboard.tsx            home: header, filters, topic list, launcher
-    ├── TopicCard.tsx            selectable/expandable topic row + mastery bar
+    ├── Dashboard.tsx            home: header, filters, quiz size, card-view switcher, topic list, launcher
+    ├── TopicCard.tsx            expandable topic row + mastery bar
     ├── MasteryBar.tsx           stacked mastery bar (+ thin per-tool variant)
     ├── AnswerLine.tsx           question card in an expanded topic
     ├── useDashboardStats.ts     memoized last/attempts/perTopic/perTool/mastery maps
-    ├── FilterBar.tsx            result + source filters
+    ├── FilterBar.tsx            result, source, tool (per topic) & not-practiced filters
     ├── ToggleChip.tsx           shared on/off filter chip button
     ├── Quiz.tsx                 question card, scoring, results
     ├── QuestionCardHeader.tsx   question-card header: context · source · day strip · chip
@@ -236,13 +239,13 @@ src/
     ├── CloudSync.tsx            headless two-way sync
     ├── CodeText.tsx             renders backtick-marked commands/config as inline code
     ├── InfoMenu.tsx             footer menu: Theory / User manual / About
+    ├── PalettePanel.tsx         mastery-tint colour picker (gradient + chip preview)
     └── Modal.tsx                accessible dialog used by the menu panels
 ```
 
 ## Not wired in yet
 
-- **Mastery-driven ordering** — `orderByWeakness` still uses the 3-bucket weight;
-  the plan is to order by mastery once confirmed.
-- **"Skip questions asked within the last N days"** — a planned pool filter.
+- **Mastery-driven ordering** — the deck is sampled balanced-by-topic and then
+  shuffled (`balancedSample`); ordering by mastery/weakness is not implemented.
 - **Difficulty in mastery** — `difficulty` exists on ~⅔ of questions
   (`recall`/`applied`/`scenario`); held until coverage and ordering are confirmed.

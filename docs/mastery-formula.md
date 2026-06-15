@@ -77,11 +77,12 @@ bucket also carries an `on` class for text rendered on top of its colour.
 
 ## Not wired in yet
 
-- **Mastery-driven ordering** — the quiz deck is a uniform random shuffle of the
-  filtered pool (`shuffle` in `select.ts`), so selection and order depend only on
-  the user's filters. Mastery narrows the pool through the result-bucket filter but
-  does not bias ordering; an earlier `orderByWeakness` (unseen > wrong > correct)
-  was removed because it skewed the deck independently of the user's settings.
+- **Mastery-driven ordering** — the quiz deck is a balanced-by-topic random sample
+  of the filtered pool (`balancedSample` in `select.ts`), so selection and order
+  depend only on the user's filters. Mastery narrows the pool through the
+  result-bucket filter but does not bias ordering; an earlier `orderByWeakness`
+  (unseen > wrong > correct) was removed because it skewed the deck independently
+  of the user's settings.
 - **Difficulty** — `Question.difficulty` (`recall`/`applied`/`scenario`) is only on
   ~⅔ of questions; held until coverage is complete.
 - **Answer latency** — not tracked; explicitly out of scope.
