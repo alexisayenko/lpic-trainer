@@ -38,7 +38,7 @@ body {
 }
 
 .filter-row {
-  grid-template-columns: 6rem 1fr auto;
+  grid-template-columns: 6rem 1fr 4rem;
 }
 
 .filter-row > .filter-action {

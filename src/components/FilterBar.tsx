@@ -148,7 +148,7 @@ function SelectAllButton({ allSelected, onClick }: Readonly<{ allSelected: boole
     <button
       type="button"
       onClick={onClick}
-      className="filter-action shrink-0 py-1.5 text-xs text-slate-400 underline-offset-4 hover:text-slate-200 hover:underline"
+      className="filter-action shrink-0 whitespace-nowrap py-1.5 text-xs text-slate-400 underline-offset-4 hover:text-slate-200 hover:underline"
     >
       {allSelected ? 'Clear' : 'Select all'}
     </button>
