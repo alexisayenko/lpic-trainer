@@ -29,3 +29,28 @@ body {
   -webkit-user-select: text;
   user-select: text;
 }
+
+/* Filter rows: header + chips + right-aligned select-all/clear on one line when
+   the bar is wide enough; otherwise header + action stay on line 1 and the chips
+   wrap to line 2 as a block. Keyed to the bar's own width via a container query. */
+.filter-groups {
+  container-type: inline-size;
+}
+
+.filter-row {
+  grid-template-columns: 6rem 1fr auto;
+}
+
+.filter-row > .filter-action {
+  justify-self: end;
+}
+
+@container (max-width: 36rem) {
+  .filter-row {
+    grid-template-columns: 6rem 1fr;
+  }
+  .filter-row > .filter-chips {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}

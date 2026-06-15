@@ -3,7 +3,7 @@ import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
 import { attemptsByQuestion, attemptsFor, balancedSample, filterPool, shuffledIndices } from '../lib/select';
 import { masteryOf } from '../lib/mastery';
-import { topicOf, type Question } from '../types';
+import { NOT_PRACTICED_MS, topicOf, type Question } from '../types';
 import { QuestionCardHeader } from './QuestionCardHeader';
 import { CodeText, Code } from './CodeText';
 
@@ -16,27 +16,29 @@ function sameSet(a: number[], b: number[]): boolean {
 }
 
 export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
-  const selectedTopics = useStore((s) => s.selectedTopics);
   const quizSize = useStore((s) => s.quizSize);
   const resultFilter = useStore((s) => s.resultFilter);
   const sourceFilter = useStore((s) => s.sourceFilter);
-  const unseenToday = useStore((s) => s.unseenToday);
+  const toolFilter = useStore((s) => s.toolFilter);
+  const notPracticed = useStore((s) => s.notPracticed);
   const recordAnswer = useStore((s) => s.recordAnswer);
   const history = useStore((s) => s.history);
 
   // Snapshot history once, when the deck is built, so answering doesn't re-order it mid-quiz.
   const deck = useMemo<Question[]>(() => {
-    const topicPool = selectedTopics
-      ? QUESTIONS.filter((q) => {
-          const t = topicOf(q);
-          return t !== undefined && selectedTopics.includes(t);
-        })
-      : QUESTIONS;
     const snapshot = useStore.getState().history;
-    const pool = filterPool(topicPool, attemptsByQuestion(snapshot), resultFilter, sourceFilter, unseenToday, Date.now());
+    const pool = filterPool(
+      QUESTIONS,
+      attemptsByQuestion(snapshot),
+      resultFilter,
+      sourceFilter,
+      toolFilter,
+      notPracticed ? NOT_PRACTICED_MS[notPracticed] : null,
+      Date.now(),
+    );
     return balancedSample(pool, quizSize, (q) => topicOf(q) ?? '?');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTopics, quizSize, resultFilter, sourceFilter, unseenToday]);
+  }, [quizSize, resultFilter, sourceFilter, toolFilter, notPracticed]);
 
   // Display order of choices per question, in original-index space. Built once
   // per deck so stored pickedIndex/answerIndices stay in original indices.
@@ -56,7 +58,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
   if (deck.length === 0) {
     return (
       <div className="max-w-xl mx-auto p-6 text-center space-y-4">
-        <p className="text-slate-300">No questions match the selected topics and filters.</p>
+        <p className="text-slate-300">No questions match the current filters.</p>
         <button
           type="button"
           onClick={onExit}

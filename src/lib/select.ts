@@ -1,6 +1,5 @@
-import type { AnswerRecord, MasteryBucket, Question, ResultSelection, SourceSelection } from '../types';
-import { startOfLocalDay } from './dates';
-import { DAY_GAP, masteryOf } from './mastery';
+import type { AnswerRecord, MasteryBucket, Question, ResultSelection, SourceSelection, ToolSelection } from '../types';
+import { masteryOf } from './mastery';
 
 /** Latest answer record per question id (last write wins on ties). */
 export function lastByQuestion(history: AnswerRecord[]): Map<string, AnswerRecord> {
@@ -30,29 +29,28 @@ export function attemptsFor(history: AnswerRecord[], questionId: string): Answer
 }
 
 /**
- * Narrow a pool by source origin and by current mastery bucket (both are
- * multi-selections — a question matches any selected option; an empty
- * selection matches nothing), and optionally to questions not yet attempted
- * today (`unseenToday`, ANDed with the rest). Used for the dashboard's
- * "available" count, its per-question list, and the quiz deck so all three
- * agree on one predicate. `now` is one shared snapshot so every question's
- * mastery is computed against the same clock. `unseenToday` excludes any
- * question whose re-attempt now would land in the same QuizDay — i.e. seen
- * today OR within the last `DAY_GAP` (21h).
+ * Narrow a pool by source origin, by tool, and by current mastery bucket (each
+ * is a multi-selection — a question matches any selected option; an empty
+ * selection matches nothing), and optionally to questions not practiced within
+ * the last `notPracticedMs` milliseconds (ANDed with the rest; null = no such
+ * restriction). Used for the dashboard's "available" count, its per-question
+ * list, and the quiz deck so all three agree on one predicate. `now` is one
+ * shared snapshot so every question's mastery is computed against the same clock.
  */
 export function filterPool(
   pool: Question[],
   attempts: Map<string, AnswerRecord[]>,
   result: ResultSelection,
   source: SourceSelection,
-  unseenToday: boolean,
+  tools: ToolSelection,
+  notPracticedMs: number | null,
   now: number,
 ): Question[] {
-  const todayStart = startOfLocalDay(now);
   return pool.filter((q) => {
     if (!q.origin || !source.includes(q.origin)) return false;
+    if (!tools.includes(q.tool)) return false;
     const atts = attempts.get(q.id);
-    if (unseenToday && atts?.some((a) => a.ts >= todayStart || now - a.ts < DAY_GAP)) return false;
+    if (notPracticedMs !== null && atts?.some((a) => now - a.ts < notPracticedMs)) return false;
     if (!atts || atts.length === 0) return result.includes('unseen');
     const mastery = masteryOf(atts, now);
     return mastery !== null && result.includes(mastery as MasteryBucket);

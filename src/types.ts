@@ -72,6 +72,27 @@ export type ResultSelection = ResultOption[];
 /** Selected origins; empty array matches nothing. */
 export type SourceSelection = Origin[];
 
+/** "Not practiced" window: exclude questions attempted within this elapsed time. */
+export type NotPracticedWindow = '1h' | '8h' | '1d' | '2d' | '3d' | '1w';
+
+const HOUR = 60 * 60 * 1000;
+const DAY = 24 * HOUR;
+
+/** Windows in display order — single source for the filter chips and ms lookup. */
+export const NOT_PRACTICED_WINDOWS: { key: NotPracticedWindow; label: string; ms: number }[] = [
+  { key: '1h', label: '1 hour', ms: HOUR },
+  { key: '8h', label: '8 hours', ms: 8 * HOUR },
+  { key: '1d', label: '1 day', ms: DAY },
+  { key: '2d', label: '2 days', ms: 2 * DAY },
+  { key: '3d', label: '3 days', ms: 3 * DAY },
+  { key: '1w', label: '1 week', ms: 7 * DAY },
+];
+
+/** Elapsed milliseconds for each window. */
+export const NOT_PRACTICED_MS: Record<NotPracticedWindow, number> = Object.fromEntries(
+  NOT_PRACTICED_WINDOWS.map((w) => [w.key, w.ms]),
+) as Record<NotPracticedWindow, number>;
+
 // Failing (0) before unanswered, then the rest of the ramp — order used for the
 // filter chips and progress bars (the mastery-bar segment order matches).
 export const RESULT_FILTERS: ResultOption[] = [MASTERY_BUCKETS[0], 'unseen', ...MASTERY_BUCKETS.slice(1)];
@@ -104,9 +125,31 @@ export interface UtilityInfo {
 
 export const TOPIC_LABELS: Record<Topic, string> = topics as Record<Topic, string>;
 
+/** Compact topic names for tight spots (e.g. the tool-filter headers). */
+export const TOPIC_SHORT_LABELS: Record<Topic, string> = {
+  '207': 'DNS',
+  '208': 'HTTP',
+  '209': 'Files',
+  '210': 'Clients',
+  '211': 'E-Mail',
+  '212': 'Security',
+};
+
 export const ALL_TOPICS = Object.keys(TOPIC_LABELS) as Topic[];
 
 export const UTILITIES: Record<string, UtilityInfo> = utilities as Record<string, UtilityInfo>;
+
+/** Selected tool slugs; empty array matches nothing. */
+export type ToolSelection = string[];
+
+/** Every tool slug, in declaration order — the source for the tool filter and migrations. */
+export const ALL_TOOLS: string[] = Object.keys(UTILITIES);
+
+/** Tools grouped under their topic, in topic display order — drives the tool filter rows. */
+export const TOOLS_BY_TOPIC: { topic: Topic; tools: string[] }[] = ALL_TOPICS.map((topic) => ({
+  topic,
+  tools: ALL_TOOLS.filter((tool) => UTILITIES[tool].topic === topic),
+}));
 
 /** Resolve a question's topic from its tool slug via utilities.json. */
 export function topicOf(question: Question): Topic | undefined {

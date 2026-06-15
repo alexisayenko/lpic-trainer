@@ -73,38 +73,42 @@ Zustand store persisted to `localStorage` key `lpic-trainer-state`:
 
 | Field | Purpose |
 |---|---|
-| `selectedTopics` | ticked topics, or `null` = all |
 | `quizSize` | questions per quiz, or `null` = all matching |
 | `resultFilter` | multi-select of `unseen` and/or mastery buckets (`0`/`20`/`40`/`60`/`80`/`100`); empty = matches nothing; default = all selected |
 | `sourceFilter` | multi-select of `Origin`s; empty = matches nothing; default = all selected |
+| `toolFilter` | multi-select of tool slugs (grouped by topic in the UI); empty = matches nothing; default = all selected |
+| `notPracticed` | single `NotPracticedWindow` (`1h`/`8h`/`1d`/`2d`/`3d`/`1w`) or `null` = no restriction |
 | `history` | `AnswerRecord[]` — the full answer log |
 
 `recordAnswer` appends; `setHistory` replaces (after a sync merge).
-Persist is **version 6**: `migrate` backfills a fresh `id` on legacy records that
+Persist is **version 8**: `migrate` backfills a fresh `id` on legacy records that
 lack one, maps the old result filter (v<3) to the bucket model, splits
 `unseen-today` into its own toggle (v<4), converts the single-value result
-filter to a multi-selection (v<5), and (v<6) re-bases both filters on the
-"empty matches nothing" model — an empty/missing result selection and an
-`all`/missing source filter become everything-selected, a single origin
-becomes a one-element selection, and existing selections are kept with
-invalid entries dropped.
+filter to a multi-selection (v<5), re-bases the result/source filters on the
+"empty matches nothing" model (v<6), adds the tool filter defaulting to every
+tool (v<7), and converts the old `unseenToday` boolean to the `notPracticed`
+window — `true` → `1d` (closest to the old ~21h), `false`/missing → `null` (v<8).
+The topic-selection field (`selectedTopics`) was dropped once the tool filter
+subsumed it; older persisted values are simply ignored.
 
 ## Deck pipeline ([`lib/select.ts`](../src/lib/select.ts))
 
 Building a quiz deck is three independent stages:
 
-1. **Eligibility** — `filterPool(pool, attempts, resultFilter, sourceFilter, unseenToday, now)`
+1. **Eligibility** — `filterPool(pool, attempts, resultFilter, sourceFilter, tools, notPracticedMs, now)`
    decides which questions qualify: by the source multi-selection (the
-   question's origin must be selected), by the result multi-selection
+   question's origin must be selected), by the tool multi-selection (the
+   question's tool must be selected), by the result multi-selection
    (a question matches any selected option — `unseen` = zero attempts; a
    numeric bucket matches questions whose `masteryOf` score equals it, computed
-   against the single `now` snapshot), and — when the `unseenToday` toggle is
-   on — only questions whose re-attempt now would start a new QuizDay, i.e.
-   no attempt on the current local calendar day **and** none within the last
-   `DAY_GAP` (21h) (ANDed with the result filter). An empty selection in either
-   row matches nothing.
+   against the single `now` snapshot), and — when `notPracticedMs` is non-null —
+   only questions with no attempt within the last `notPracticedMs` milliseconds
+   (ANDed with the rest). An empty selection in the source/tool/result rows
+   matches nothing.
    The dashboard's "available" count, its per-topic question list, and the quiz
-   deck all run the *same* predicate, so they can't diverge.
+   deck all run the *same* predicate, so they can't diverge. Topic-level
+   narrowing is expressed entirely through the tool filter (tools are grouped by
+   topic in the UI); there is no separate topic-selection step.
 2. **Order** — `orderByWeakness(pool, last, rng?)` sorts unseen > last-wrong >
    last-correct, with a random tiebreak (injectable RNG for testing).
 3. **Take** — `pickDeck(ordered, size)` slices the first N.

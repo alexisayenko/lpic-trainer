@@ -1,7 +1,15 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { MASTERY_BUCKETS, ORIGINS, RESULT_FILTERS } from './types';
-import type { AnswerRecord, Origin, ResultOption, ResultSelection, SourceSelection, Topic } from './types';
+import { ALL_TOOLS, MASTERY_BUCKETS, ORIGINS, RESULT_FILTERS } from './types';
+import type {
+  AnswerRecord,
+  NotPracticedWindow,
+  Origin,
+  ResultOption,
+  ResultSelection,
+  SourceSelection,
+  ToolSelection,
+} from './types';
 
 function newId(): string {
   if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID();
@@ -14,6 +22,10 @@ function isResultOption(x: unknown): x is ResultOption {
 
 function isOrigin(x: unknown): x is Origin {
   return ORIGINS.includes(x as Origin);
+}
+
+function isTool(x: unknown): x is string {
+  return typeof x === 'string' && ALL_TOOLS.includes(x);
 }
 
 /** v6: empty/legacy selections mean "everything"; keep valid entries otherwise. */
@@ -29,22 +41,32 @@ function toSourceSelection(value: unknown): SourceSelection {
   return [...ORIGINS];
 }
 
+/** v7: keep known tool slugs; a missing/legacy value means "everything". */
+function toToolSelection(value: unknown): ToolSelection {
+  if (Array.isArray(value)) return value.filter(isTool);
+  return [...ALL_TOOLS];
+}
+
 interface State {
-  selectedTopics: Topic[] | null;
   /** Number of questions per quiz; null means "all matching questions". */
   quizSize: number | null;
   /** Restrict the quiz pool (and dashboard view) by mastery result; empty = match nothing. */
   resultFilter: ResultSelection;
   /** Restrict the quiz pool (and dashboard view) by question origin; empty = match nothing. */
   sourceFilter: SourceSelection;
-  /** When on, further restrict to questions not attempted today (ANDed with the result filter). */
-  unseenToday: boolean;
+  /** Restrict the quiz pool (and dashboard view) by tool; empty = match nothing. */
+  toolFilter: ToolSelection;
+  /** Exclude questions practiced within this window; null = no such restriction. */
+  notPracticed: NotPracticedWindow | null;
   history: AnswerRecord[];
-  setTopics: (topics: Topic[] | null) => void;
   setQuizSize: (size: number | null) => void;
   toggleResultFilter: (f: ResultOption) => void;
   toggleSourceFilter: (o: Origin) => void;
-  setUnseenToday: (on: boolean) => void;
+  toggleToolFilter: (tool: string) => void;
+  setResultFilter: (sel: ResultSelection) => void;
+  setSourceFilter: (sel: SourceSelection) => void;
+  setToolFilter: (sel: ToolSelection) => void;
+  setNotPracticed: (w: NotPracticedWindow | null) => void;
   recordAnswer: (questionId: string, pickedIndex: number | undefined, correct: boolean) => void;
   /** Replace the whole answer log (used after a cloud sync/merge). */
   setHistory: (history: AnswerRecord[]) => void;
@@ -53,13 +75,12 @@ interface State {
 export const useStore = create<State>()(
   persist(
     (set) => ({
-      selectedTopics: null,
       quizSize: null,
       resultFilter: ['unseen', ...MASTERY_BUCKETS],
       sourceFilter: [...ORIGINS],
-      unseenToday: false,
+      toolFilter: [...ALL_TOOLS],
+      notPracticed: null,
       history: [],
-      setTopics: (selectedTopics) => set({ selectedTopics }),
       setQuizSize: (quizSize) => set({ quizSize }),
       toggleResultFilter: (f) =>
         set((s) => ({
@@ -73,7 +94,16 @@ export const useStore = create<State>()(
             ? s.sourceFilter.filter((x) => x !== o)
             : [...s.sourceFilter, o],
         })),
-      setUnseenToday: (unseenToday) => set({ unseenToday }),
+      toggleToolFilter: (tool) =>
+        set((s) => ({
+          toolFilter: s.toolFilter.includes(tool)
+            ? s.toolFilter.filter((x) => x !== tool)
+            : [...s.toolFilter, tool],
+        })),
+      setResultFilter: (resultFilter) => set({ resultFilter }),
+      setSourceFilter: (sourceFilter) => set({ sourceFilter }),
+      setToolFilter: (toolFilter) => set({ toolFilter }),
+      setNotPracticed: (notPracticed) => set({ notPracticed }),
       recordAnswer: (questionId, pickedIndex, correct) =>
         set((s) => ({
           history: [...s.history, { id: newId(), questionId, pickedIndex, correct, ts: Date.now() }],
@@ -82,7 +112,7 @@ export const useStore = create<State>()(
     }),
     {
       name: 'lpic-trainer-state',
-      version: 6,
+      version: 8,
       // v0/v1: answer records gained a stable `id`, and the result/source
       // filters were added. v3: the result filter became mastery buckets —
       // 'unseen' carries over, anything else falls back to 'all'. v4:
@@ -91,13 +121,22 @@ export const useStore = create<State>()(
       // filtering), any single value maps to a one-element selection.
       // v6: empty selections now match nothing, so [] / 'all' / missing map
       // to everything selected; the source filter became multi-select too.
+      // v7: added the per-tool filter — missing/legacy maps to every tool.
+      // v8: the `unseenToday` boolean became the `notPracticed` window — true
+      // maps to '1 day' (closest to the old ~21h), false/missing to null.
       // When adding new persisted fields or filter values, bump `version` and
       // append a `if (version < N)` block — earlier blocks must keep working
       // on data shaped by every prior version.
       migrate: (state: unknown, version: number) => {
-        const s = (state ?? {}) as Omit<Partial<State>, 'resultFilter' | 'sourceFilter'> & {
+        const s = (state ?? {}) as Omit<
+          Partial<State>,
+          'resultFilter' | 'sourceFilter' | 'toolFilter' | 'notPracticed'
+        > & {
           resultFilter?: unknown;
           sourceFilter?: unknown;
+          toolFilter?: unknown;
+          notPracticed?: unknown;
+          unseenToday?: unknown;
         };
         s.history = Array.isArray(s.history)
           ? s.history.map((r) => (r.id ? r : { ...r, id: newId() }))
@@ -119,6 +158,13 @@ export const useStore = create<State>()(
         if (version < 6) {
           s.resultFilter = toResultSelection(s.resultFilter);
           s.sourceFilter = toSourceSelection(s.sourceFilter);
+        }
+        if (version < 7) {
+          s.toolFilter = toToolSelection(s.toolFilter);
+        }
+        if (version < 8) {
+          s.notPracticed = s.unseenToday === true ? '1d' : null;
+          delete s.unseenToday;
         }
         return s as State;
       },

@@ -2,16 +2,14 @@ import type { ReactNode } from 'react';
 import { TOPIC_LABELS, type Topic } from '../types';
 import { MasteryBar } from './MasteryBar';
 
-/** Selectable topic row: number + label, "answered" count, expand toggle, mastery bar.
+/** Topic row: number + label, "answered" count, expand toggle, mastery bar.
  *  Expanded content (tool stats + question cards) is passed as children. */
 export function TopicCard({
   topic,
   seen,
   total,
   buckets,
-  selected,
   isOpen,
-  onToggleSelect,
   onToggleOpen,
   children,
 }: Readonly<{
@@ -19,27 +17,21 @@ export function TopicCard({
   seen: number;
   total: number;
   buckets: Map<number, number> | undefined;
-  selected: boolean;
   isOpen: boolean;
-  onToggleSelect: () => void;
   onToggleOpen: () => void;
   children?: ReactNode;
 }>) {
   return (
-    <li
-      className={`rounded-md border overflow-hidden ${
-        selected ? 'border-sky-500 bg-sky-900/10' : 'border-transparent'
-      }`}
-    >
+    <li className="rounded-md border border-transparent overflow-hidden">
       <div
         role="button"
         tabIndex={0}
-        aria-pressed={selected}
-        onClick={onToggleSelect}
+        aria-expanded={isOpen}
+        onClick={onToggleOpen}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            onToggleSelect();
+            onToggleOpen();
           }
         }}
         className="p-3 bg-slate-800/60 hover:bg-slate-800 cursor-pointer space-y-2"

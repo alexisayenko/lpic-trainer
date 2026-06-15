@@ -6,7 +6,7 @@ import { cloudEnabled } from '../lib/api';
 import { MS_PER_DAY, daysBack, startOfLocalDay } from '../lib/dates';
 import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
-import { ALL_TOPICS, UTILITIES, topicOf, type Topic } from '../types';
+import { NOT_PRACTICED_MS, UTILITIES, topicOf, type Topic } from '../types';
 import { Account } from './Account';
 import { AnswerLine } from './AnswerLine';
 import { FilterBar } from './FilterBar';
@@ -24,50 +24,48 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const token = useAuth((s) => s.token);
   const canQuiz = !cloudEnabled || !!token;
   const history = useStore((s) => s.history);
-  const selected = useStore((s) => s.selectedTopics);
-  const setTopics = useStore((s) => s.setTopics);
   const quizSize = useStore((s) => s.quizSize);
   const setQuizSize = useStore((s) => s.setQuizSize);
   const resultFilter = useStore((s) => s.resultFilter);
   const toggleResultFilter = useStore((s) => s.toggleResultFilter);
   const sourceFilter = useStore((s) => s.sourceFilter);
   const toggleSourceFilter = useStore((s) => s.toggleSourceFilter);
-  const unseenToday = useStore((s) => s.unseenToday);
-  const setUnseenToday = useStore((s) => s.setUnseenToday);
+  const toolFilter = useStore((s) => s.toolFilter);
+  const toggleToolFilter = useStore((s) => s.toggleToolFilter);
+  const setResultFilter = useStore((s) => s.setResultFilter);
+  const setSourceFilter = useStore((s) => s.setSourceFilter);
+  const setToolFilter = useStore((s) => s.setToolFilter);
+  const notPracticed = useStore((s) => s.notPracticed);
+  const setNotPracticed = useStore((s) => s.setNotPracticed);
 
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
 
+  const notPracticedMs = notPracticed ? NOT_PRACTICED_MS[notPracticed] : null;
+
   const { last, attemptsByQ, perTopic, masteryByQ, bucketsByTopic, perTool, bucketsByTool } =
     useDashboardStats(history);
 
-  const isOn = (t: Topic) => selected === null || selected.includes(t);
-  const toggleTopic = (t: Topic) => {
-    const current = selected ?? ALL_TOPICS;
-    const next = current.includes(t) ? current.filter((x) => x !== t) : [...current, t];
-    setTopics(next.length === ALL_TOPICS.length ? null : next);
-  };
-
   const available = useMemo(() => {
-    const topicPool = QUESTIONS.filter((q) => {
-      const t = topicOf(q);
-      return t !== undefined && (selected === null || selected.includes(t));
-    });
-    return filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, unseenToday, Date.now()).length;
-  }, [selected, resultFilter, sourceFilter, unseenToday, attemptsByQ]);
+    const topicPool = QUESTIONS.filter((q) => topicOf(q) !== undefined);
+    return filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, toolFilter, notPracticedMs, Date.now())
+      .length;
+  }, [resultFilter, sourceFilter, toolFilter, notPracticedMs, attemptsByQ]);
 
   const questionRows = useMemo(() => {
     if (!open) return [];
     const pool = QUESTIONS.filter((q) => topicOf(q) === open);
-    return filterPool(pool, attemptsByQ, resultFilter, sourceFilter, unseenToday, Date.now()).sort((a, b) => {
-      const ra = last.get(a.id);
-      const rb = last.get(b.id);
-      if (ra && rb) return rb.ts - ra.ts;
-      if (ra) return -1;
-      if (rb) return 1;
-      return a.id.localeCompare(b.id);
-    });
-  }, [open, resultFilter, sourceFilter, unseenToday, attemptsByQ, last]);
+    return filterPool(pool, attemptsByQ, resultFilter, sourceFilter, toolFilter, notPracticedMs, Date.now()).sort(
+      (a, b) => {
+        const ra = last.get(a.id);
+        const rb = last.get(b.id);
+        if (ra && rb) return rb.ts - ra.ts;
+        if (ra) return -1;
+        if (rb) return 1;
+        return a.id.localeCompare(b.id);
+      },
+    );
+  }, [open, resultFilter, sourceFilter, toolFilter, notPracticedMs, attemptsByQ, last]);
 
   const toolRows = useMemo(() => {
     if (!open) return [];
@@ -152,9 +150,41 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
         toggleResultFilter={toggleResultFilter}
         sourceFilter={sourceFilter}
         toggleSourceFilter={toggleSourceFilter}
-        unseenToday={unseenToday}
-        setUnseenToday={setUnseenToday}
+        setResultFilter={setResultFilter}
+        setSourceFilter={setSourceFilter}
+        toolFilter={toolFilter}
+        toggleToolFilter={toggleToolFilter}
+        setToolFilter={setToolFilter}
+        notPracticed={notPracticed}
+        setNotPracticed={setNotPracticed}
       />
+
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="w-20 shrink-0 text-slate-300">Quiz size</span>
+        <div className="flex flex-wrap gap-1">
+          {[null, ...PRESETS].map((n) => (
+            <ToggleChip
+              key={n ?? 'all'}
+              on={quizSize === n}
+              onClick={() => setQuizSize(n)}
+              disabled={n !== null && n > available}
+              className={n === null ? 'min-w-[4.75rem] text-center tabular-nums' : ''}
+            >
+              {n ?? `All (${available})`}
+            </ToggleChip>
+          ))}
+        </div>
+        {canQuiz && (
+          <button
+            type="button"
+            onClick={onStart}
+            disabled={available === 0}
+            className="ml-auto shrink-0 px-6 py-2 rounded-md bg-sky-600 hover:bg-sky-500 text-white font-medium transition-colors disabled:opacity-50"
+          >
+            Start quiz
+          </button>
+        )}
+      </div>
 
       <ul className="space-y-2">
         {perTopic.map((s) => (
@@ -164,9 +194,7 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
             seen={s.seen}
             total={s.total}
             buckets={bucketsByTopic.get(s.topic)}
-            selected={isOn(s.topic)}
             isOpen={open === s.topic}
-            onToggleSelect={() => toggleTopic(s.topic)}
             onToggleOpen={() => setOpen(open === s.topic ? null : s.topic)}
           >
             {toolRows.length > 0 && (
@@ -200,33 +228,6 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
           </TopicCard>
         ))}
       </ul>
-
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="w-20 shrink-0 text-slate-300">Quiz size</span>
-        <div className="flex flex-wrap gap-1">
-          {[null, ...PRESETS].map((n) => (
-            <ToggleChip
-              key={n ?? 'all'}
-              on={quizSize === n}
-              onClick={() => setQuizSize(n)}
-              disabled={n !== null && n > available}
-              className={n === null ? 'min-w-[4.75rem] text-center tabular-nums' : ''}
-            >
-              {n ?? `All (${available})`}
-            </ToggleChip>
-          ))}
-        </div>
-        {canQuiz && (
-          <button
-            type="button"
-            onClick={onStart}
-            disabled={available === 0}
-            className="ml-auto shrink-0 px-6 py-2 rounded-md bg-sky-600 hover:bg-sky-500 text-white font-medium transition-colors disabled:opacity-50"
-          >
-            Start quiz
-          </button>
-        )}
-      </div>
 
       <footer className="space-y-2 pt-4 pb-8 text-xs text-slate-600">
         <div className="flex items-start justify-between gap-4">

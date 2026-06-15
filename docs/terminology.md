@@ -50,8 +50,8 @@ reflects the current source; deeper detail lives in
 
 - **Deck** — the per-session question list, built once in `Quiz.tsx` from a
   snapshot of history (so answering mid-quiz doesn't reorder it). Pipeline in
-  [`select.ts`](../src/lib/select.ts): filter by selected topics, then
-  `filterPool` (result + source filters), then `orderByWeakness`
+  [`select.ts`](../src/lib/select.ts): `filterPool` (result + source + tool +
+  not-practiced filters), then `orderByWeakness`
   (unseen > last-wrong > last-correct, random tiebreak), then `pickDeck` slices
   the first `quizSize` questions (`null` = all matching).
 - **Answer / attempt** — one answered question, stored as an `AnswerRecord`
@@ -78,9 +78,15 @@ reflects the current source; deeper detail lives in
   matches questions whose current `masteryOf` score equals it, computed at one
   shared `now` per filtering pass (`filterPool` in
   [`select.ts`](../src/lib/select.ts)).
-  **Unseen today** (no attempts on the current local calendar day — the
-  daily-drill view) is a separate standalone toggle ANDed with the result
-  filter, so e.g. "mastery 40 AND not practiced today" is expressible.
+- **Source filter** — multi-select over question `Origin`s; same "any selected,
+  empty matches nothing" semantics as the result filter.
+- **Tool filter** — multi-select over tool slugs, grouped by topic in the UI
+  (each topic is a row of tool chips under the "LPIC-2 Topics" heading). Replaces
+  the old per-topic selection; topic narrowing is just "select all of a topic's
+  tools". Same multi-select semantics.
+- **Not practiced** — a single-select window (`1h`/`8h`/`1d`/`2d`/`3d`/`1w`, or
+  none) that excludes any question attempted within that elapsed time, ANDed with
+  the rest, so e.g. "mastery 40 AND not practiced in the last day" is expressible.
 - **Overall score** — the dashboard header line; *cumulative* over every record
   in history (`totalCorrect/totalAttempts`), unlike the per-topic "now" numbers.
 - **Accuracy** — per-topic `askedAccuracy`: `correctNow / seen`, i.e. the share
