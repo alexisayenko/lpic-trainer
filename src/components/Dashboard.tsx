@@ -6,10 +6,11 @@ import { cloudEnabled } from '../lib/api';
 import { MS_PER_DAY, daysBack, startOfLocalDay } from '../lib/dates';
 import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
-import { NOT_PRACTICED_MS, UTILITIES, topicOf, type Topic } from '../types';
+import { CARD_VIEWS, NOT_PRACTICED_MS, UTILITIES, questionContext, topicOf, type Topic } from '../types';
 import { Account } from './Account';
 import { AnswerLine } from './AnswerLine';
 import { FilterBar } from './FilterBar';
+import { MasteryChip } from './QuestionCardHeader';
 import { MasteryBar, MiniMasteryBar } from './MasteryBar';
 import { TopicCard } from './TopicCard';
 import { ToggleChip } from './ToggleChip';
@@ -37,6 +38,8 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const setToolFilter = useStore((s) => s.setToolFilter);
   const notPracticed = useStore((s) => s.notPracticed);
   const setNotPracticed = useStore((s) => s.setNotPracticed);
+  const cardView = useStore((s) => s.cardView);
+  const setCardView = useStore((s) => s.setCardView);
 
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
@@ -186,6 +189,17 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
         )}
       </div>
 
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="w-20 shrink-0 text-slate-300">Cards</span>
+        <div className="flex flex-wrap gap-1">
+          {CARD_VIEWS.map(({ key, label }) => (
+            <ToggleChip key={key} on={cardView === key} onClick={() => setCardView(key)}>
+              {label}
+            </ToggleChip>
+          ))}
+        </div>
+      </div>
+
       <ul className="space-y-2">
         {perTopic.map((s) => (
           <TopicCard
@@ -212,8 +226,16 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
                 ))}
               </div>
             )}
-            {questionRows.length === 0 ? (
+            {cardView === 'none' ? null : questionRows.length === 0 ? (
               <p className="text-sm text-slate-500">No matching questions.</p>
+            ) : cardView === 'badges' ? (
+              <div className="flex flex-wrap gap-1.5">
+                {questionRows.map((q) => (
+                  <span key={q.id} title={`${questionContext(q)} [${q.id}]`}>
+                    <MasteryChip score={masteryByQ.get(q.id) ?? null} />
+                  </span>
+                ))}
+              </div>
             ) : (
               questionRows.map((q) => (
                 <AnswerLine

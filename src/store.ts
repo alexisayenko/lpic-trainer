@@ -3,6 +3,7 @@ import { persist } from 'zustand/middleware';
 import { ALL_TOOLS, MASTERY_BUCKETS, ORIGINS, RESULT_FILTERS } from './types';
 import type {
   AnswerRecord,
+  CardView,
   NotPracticedWindow,
   Origin,
   ResultOption,
@@ -26,6 +27,10 @@ function isOrigin(x: unknown): x is Origin {
 
 function isTool(x: unknown): x is string {
   return typeof x === 'string' && ALL_TOOLS.includes(x);
+}
+
+function isCardView(x: unknown): x is CardView {
+  return x === 'full' || x === 'badges' || x === 'none';
 }
 
 /** v6: empty/legacy selections mean "everything"; keep valid entries otherwise. */
@@ -58,6 +63,8 @@ interface State {
   toolFilter: ToolSelection;
   /** Exclude questions practiced within this window; null = no such restriction. */
   notPracticed: NotPracticedWindow | null;
+  /** How expanded topic cards render their matching questions. */
+  cardView: CardView;
   history: AnswerRecord[];
   setQuizSize: (size: number | null) => void;
   toggleResultFilter: (f: ResultOption) => void;
@@ -67,6 +74,7 @@ interface State {
   setSourceFilter: (sel: SourceSelection) => void;
   setToolFilter: (sel: ToolSelection) => void;
   setNotPracticed: (w: NotPracticedWindow | null) => void;
+  setCardView: (v: CardView) => void;
   recordAnswer: (questionId: string, pickedIndex: number | undefined, correct: boolean) => void;
   /** Replace the whole answer log (used after a cloud sync/merge). */
   setHistory: (history: AnswerRecord[]) => void;
@@ -80,6 +88,7 @@ export const useStore = create<State>()(
       sourceFilter: [...ORIGINS],
       toolFilter: [...ALL_TOOLS],
       notPracticed: null,
+      cardView: 'full',
       history: [],
       setQuizSize: (quizSize) => set({ quizSize }),
       toggleResultFilter: (f) =>
@@ -104,6 +113,7 @@ export const useStore = create<State>()(
       setSourceFilter: (sourceFilter) => set({ sourceFilter }),
       setToolFilter: (toolFilter) => set({ toolFilter }),
       setNotPracticed: (notPracticed) => set({ notPracticed }),
+      setCardView: (cardView) => set({ cardView }),
       recordAnswer: (questionId, pickedIndex, correct) =>
         set((s) => ({
           history: [...s.history, { id: newId(), questionId, pickedIndex, correct, ts: Date.now() }],
@@ -112,7 +122,7 @@ export const useStore = create<State>()(
     }),
     {
       name: 'lpic-trainer-state',
-      version: 8,
+      version: 9,
       // v0/v1: answer records gained a stable `id`, and the result/source
       // filters were added. v3: the result filter became mastery buckets —
       // 'unseen' carries over, anything else falls back to 'all'. v4:
@@ -124,19 +134,21 @@ export const useStore = create<State>()(
       // v7: added the per-tool filter — missing/legacy maps to every tool.
       // v8: the `unseenToday` boolean became the `notPracticed` window — true
       // maps to '1 day' (closest to the old ~21h), false/missing to null.
+      // v9: added the `cardView` switcher — missing/invalid maps to 'full'.
       // When adding new persisted fields or filter values, bump `version` and
       // append a `if (version < N)` block — earlier blocks must keep working
       // on data shaped by every prior version.
       migrate: (state: unknown, version: number) => {
         const s = (state ?? {}) as Omit<
           Partial<State>,
-          'resultFilter' | 'sourceFilter' | 'toolFilter' | 'notPracticed'
+          'resultFilter' | 'sourceFilter' | 'toolFilter' | 'notPracticed' | 'cardView'
         > & {
           resultFilter?: unknown;
           sourceFilter?: unknown;
           toolFilter?: unknown;
           notPracticed?: unknown;
           unseenToday?: unknown;
+          cardView?: unknown;
         };
         s.history = Array.isArray(s.history)
           ? s.history.map((r) => (r.id ? r : { ...r, id: newId() }))
@@ -165,6 +177,9 @@ export const useStore = create<State>()(
         if (version < 8) {
           s.notPracticed = s.unseenToday === true ? '1d' : null;
           delete s.unseenToday;
+        }
+        if (version < 9) {
+          s.cardView = isCardView(s.cardView) ? s.cardView : 'full';
         }
         return s as State;
       },
