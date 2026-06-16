@@ -79,7 +79,7 @@ const CELL_GLYPH: Record<DayStatus, ReactNode> = {
 };
 const CELL_TONE: Record<DayStatus, string> = {
   none: 'text-slate-600',
-  correct: 'text-emerald-400',
+  correct: MASTERY_TINTS[100].text,
   wrong: MASTERY_TINTS[0].text,
 };
 
