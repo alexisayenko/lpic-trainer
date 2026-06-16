@@ -40,6 +40,8 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const setNotPracticed = useStore((s) => s.setNotPracticed);
   const cardView = useStore((s) => s.cardView);
   const setCardView = useStore((s) => s.setCardView);
+  const topicsExpanded = useStore((s) => s.topicsExpanded);
+  const setTopicsExpanded = useStore((s) => s.setTopicsExpanded);
 
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
@@ -164,6 +166,8 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
         </div>
       </div>
 
+      <hr className="border-slate-700" />
+
       <FilterBar
         resultFilter={resultFilter}
         toggleResultFilter={toggleResultFilter}
@@ -176,6 +180,8 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
         setToolFilter={setToolFilter}
         notPracticed={notPracticed}
         setNotPracticed={setNotPracticed}
+        topicsExpanded={topicsExpanded}
+        setTopicsExpanded={setTopicsExpanded}
       />
 
       <hr className="border-slate-700" />
@@ -217,6 +223,8 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
           </div>
         ))}
       </div>
+
+      <hr className="border-slate-700" />
 
       <div className="flex flex-wrap items-center gap-2">
         <span className="w-20 shrink-0 text-slate-300">Quiz size</span>

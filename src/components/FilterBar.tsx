@@ -29,6 +29,8 @@ export function FilterBar({
   setToolFilter,
   notPracticed,
   setNotPracticed,
+  topicsExpanded,
+  setTopicsExpanded,
 }: Readonly<{
   resultFilter: ResultSelection;
   toggleResultFilter: (f: ResultOption) => void;
@@ -41,6 +43,8 @@ export function FilterBar({
   setToolFilter: (sel: ToolSelection) => void;
   notPracticed: NotPracticedWindow | null;
   setNotPracticed: (w: NotPracticedWindow | null) => void;
+  topicsExpanded: boolean;
+  setTopicsExpanded: (v: boolean) => void;
 }>) {
   const allResults = resultFilter.length === RESULT_FILTERS.length;
   const allSources = sourceFilter.length === ORIGINS.length;
@@ -96,9 +100,24 @@ export function FilterBar({
           ))}
         </div>
       </div>
-      <div className="space-y-2.5 border-t border-slate-800 pt-3">
+      <div className="space-y-2.5 border-t border-slate-700 pt-3">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-sm font-medium text-slate-200">LPIC-2 Topics</span>
+          <button
+            type="button"
+            onClick={() => setTopicsExpanded(!topicsExpanded)}
+            aria-expanded={topicsExpanded}
+            className="flex items-center gap-1.5 text-sm font-medium text-slate-200 hover:text-slate-100"
+          >
+            <svg
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              className={`h-3 w-3 transition-transform ${topicsExpanded ? 'rotate-90' : ''}`}
+              fill="currentColor"
+            >
+              <path d="M6 4l4 4-4 4z" />
+            </svg>
+            LPIC-2 Topics
+          </button>
           <span className="flex items-center gap-2 text-xs text-slate-400">
             <button
               type="button"
@@ -119,7 +138,8 @@ export function FilterBar({
             </button>
           </span>
         </div>
-        {TOOLS_BY_TOPIC.map(({ topic, tools }) => {
+        {topicsExpanded &&
+          TOOLS_BY_TOPIC.map(({ topic, tools }) => {
           const allTools = tools.every((tool) => toolFilter.includes(tool));
           return (
             <div key={topic} className="filter-row grid items-start gap-x-2 gap-y-1.5">

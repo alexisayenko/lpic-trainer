@@ -79,17 +79,19 @@ Zustand store persisted to `localStorage` key `lpic-trainer-state`:
 | `toolFilter` | multi-select of tool slugs (grouped by topic in the UI); empty = matches nothing; default = all selected |
 | `notPracticed` | single `NotPracticedWindow` (`1h`/`8h`/`1d`/`2d`/`3d`/`1w`) or `null` = no restriction |
 | `cardView` | how expanded topic cards render questions: `full` cards / `badges` only / `none` |
+| `topicsExpanded` | whether the "LPIC-2 Topics" tool-filter region is expanded; default `true` |
 | `history` | `AnswerRecord[]` — the full answer log |
 
 `recordAnswer` appends; `setHistory` replaces (after a sync merge).
-Persist is **version 9**: `migrate` backfills a fresh `id` on legacy records that
+Persist is **version 10**: `migrate` backfills a fresh `id` on legacy records that
 lack one, maps the old result filter (v<3) to the bucket model, splits
 `unseen-today` into its own toggle (v<4), converts the single-value result
 filter to a multi-selection (v<5), re-bases the result/source filters on the
 "empty matches nothing" model (v<6), adds the tool filter defaulting to every
 tool (v<7), and converts the old `unseenToday` boolean to the `notPracticed`
 window — `true` → `1d` (closest to the old ~21h), `false`/missing → `null` (v<8),
-and adds the `cardView` switcher defaulting to `full` (v<9).
+adds the `cardView` switcher defaulting to `full` (v<9), and adds
+`topicsExpanded` defaulting to `true` (v<10).
 The topic-selection field (`selectedTopics`) was dropped once the tool filter
 subsumed it; older persisted values are simply ignored.
 
@@ -144,7 +146,8 @@ with a single clock snapshot for consistency.
   tool (grouped by topic), and a single-select "Not practiced" window, all rendered
   as labelled toggle chips. The result filter is unanswered (internal value
   `unseen`) / the six mastery buckets. The filters both narrow the displayed rows
-  **and form the quiz pool**.
+  **and form the quiz pool**. The "LPIC-2 Topics" tool block is collapsible, its
+  open/closed state persisted in `topicsExpanded`.
 - **Tool boxes** — below the filters, a round-robin 3-column masonry of one
   bordered box per tool (always shown; collapsed to its header when empty). Each
   box's header is a tool-filter toggle chip (clicking it toggles that tool, kept

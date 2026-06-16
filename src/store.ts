@@ -65,6 +65,8 @@ interface State {
   notPracticed: NotPracticedWindow | null;
   /** How expanded topic cards render their matching questions. */
   cardView: CardView;
+  /** Whether the "LPIC-2 Topics" tool-filter region is expanded. */
+  topicsExpanded: boolean;
   history: AnswerRecord[];
   setQuizSize: (size: number | null) => void;
   toggleResultFilter: (f: ResultOption) => void;
@@ -75,6 +77,7 @@ interface State {
   setToolFilter: (sel: ToolSelection) => void;
   setNotPracticed: (w: NotPracticedWindow | null) => void;
   setCardView: (v: CardView) => void;
+  setTopicsExpanded: (v: boolean) => void;
   recordAnswer: (questionId: string, pickedIndex: number | undefined, correct: boolean) => void;
   /** Replace the whole answer log (used after a cloud sync/merge). */
   setHistory: (history: AnswerRecord[]) => void;
@@ -89,6 +92,7 @@ export const useStore = create<State>()(
       toolFilter: [...ALL_TOOLS],
       notPracticed: null,
       cardView: 'full',
+      topicsExpanded: true,
       history: [],
       setQuizSize: (quizSize) => set({ quizSize }),
       toggleResultFilter: (f) =>
@@ -114,6 +118,7 @@ export const useStore = create<State>()(
       setToolFilter: (toolFilter) => set({ toolFilter }),
       setNotPracticed: (notPracticed) => set({ notPracticed }),
       setCardView: (cardView) => set({ cardView }),
+      setTopicsExpanded: (topicsExpanded) => set({ topicsExpanded }),
       recordAnswer: (questionId, pickedIndex, correct) =>
         set((s) => ({
           history: [...s.history, { id: newId(), questionId, pickedIndex, correct, ts: Date.now() }],
@@ -122,7 +127,7 @@ export const useStore = create<State>()(
     }),
     {
       name: 'lpic-trainer-state',
-      version: 9,
+      version: 10,
       // v0/v1: answer records gained a stable `id`, and the result/source
       // filters were added. v3: the result filter became mastery buckets —
       // 'unseen' carries over, anything else falls back to 'all'. v4:
@@ -135,6 +140,7 @@ export const useStore = create<State>()(
       // v8: the `unseenToday` boolean became the `notPracticed` window — true
       // maps to '1 day' (closest to the old ~21h), false/missing to null.
       // v9: added the `cardView` switcher — missing/invalid maps to 'full'.
+      // v10: added `topicsExpanded` for the tool-filter region — missing maps to true.
       // When adding new persisted fields or filter values, bump `version` and
       // append a `if (version < N)` block — earlier blocks must keep working
       // on data shaped by every prior version.
@@ -149,6 +155,7 @@ export const useStore = create<State>()(
           notPracticed?: unknown;
           unseenToday?: unknown;
           cardView?: unknown;
+          topicsExpanded?: unknown;
         };
         s.history = Array.isArray(s.history)
           ? s.history.map((r) => (r.id ? r : { ...r, id: newId() }))
@@ -180,6 +187,9 @@ export const useStore = create<State>()(
         }
         if (version < 9) {
           s.cardView = isCardView(s.cardView) ? s.cardView : 'full';
+        }
+        if (version < 10) {
+          s.topicsExpanded = typeof s.topicsExpanded === 'boolean' ? s.topicsExpanded : true;
         }
         return s as State;
       },
