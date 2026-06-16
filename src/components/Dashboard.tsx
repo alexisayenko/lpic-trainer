@@ -6,7 +6,7 @@ import { cloudEnabled } from '../lib/api';
 import { MS_PER_DAY, daysBack, startOfLocalDay } from '../lib/dates';
 import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
-import { CARD_VIEWS, NOT_PRACTICED_MS, UTILITIES, questionContext, topicOf, type Topic } from '../types';
+import { ALL_TOOLS, CARD_VIEWS, NOT_PRACTICED_MS, UTILITIES, questionContext, topicOf, type Question, type Topic } from '../types';
 import { Account } from './Account';
 import { AnswerLine } from './AnswerLine';
 import { FilterBar } from './FilterBar';
@@ -77,6 +77,22 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
       .map(([tool, info]) => ({ tool, label: info.label, stats: perTool.get(tool) }))
       .sort((a, b) => a.label.localeCompare(b.label));
   }, [open, perTool]);
+
+  const badgesByTool = useMemo(() => {
+    const topicPool = QUESTIONS.filter((q) => topicOf(q) !== undefined);
+    const pool = filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, ALL_TOOLS, notPracticedMs, Date.now());
+    const byTool = new Map<string, Question[]>();
+    for (const q of pool) {
+      const arr = byTool.get(q.tool);
+      if (arr) arr.push(q);
+      else byTool.set(q.tool, [q]);
+    }
+    return ALL_TOOLS.map((tool) => ({
+      tool,
+      label: UTILITIES[tool].label,
+      questions: byTool.get(tool) ?? [],
+    }));
+  }, [resultFilter, sourceFilter, notPracticedMs, attemptsByQ]);
 
   const totalAttempts = history.length;
 
@@ -162,6 +178,46 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
         setNotPracticed={setNotPracticed}
       />
 
+      <hr className="border-slate-700" />
+
+      <div className="flex items-start gap-2">
+        {[0, 1, 2].map((col) => (
+          <div key={col} className="flex flex-1 flex-col items-start gap-2">
+            {badgesByTool
+              .filter((_, i) => i % 3 === col)
+              .map(({ tool, label, questions }) => (
+                <fieldset key={tool} className="w-max min-w-[13rem] rounded-md border border-slate-700 px-2 pb-2">
+                  <legend className="mx-auto">
+                    <ToggleChip
+                      on={toolFilter.includes(tool)}
+                      onClick={() => toggleToolFilter(tool)}
+                      className="max-w-[11rem] whitespace-normal text-center leading-tight"
+                    >
+                      {label.includes(' (')
+                        ? [label.slice(0, label.indexOf(' (')), label.slice(label.indexOf(' (') + 1)].map((line) => (
+                            <span key={line} className="block">
+                              {line}
+                            </span>
+                          ))
+                        : label}{' '}
+                      <span className="text-sky-400">{questions.length}</span>
+                    </ToggleChip>
+                  </legend>
+                  {questions.length > 0 && (
+                    <div className="grid grid-cols-9 gap-1.5">
+                      {questions.map((q) => (
+                        <span key={q.id} title={`${questionContext(q)} [${q.id}]`}>
+                          <MasteryChip score={masteryByQ.get(q.id) ?? null} />
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </fieldset>
+              ))}
+          </div>
+        ))}
+      </div>
+
       <div className="flex flex-wrap items-center gap-2">
         <span className="w-20 shrink-0 text-slate-300">Quiz size</span>
         <div className="flex flex-wrap gap-1">
@@ -188,6 +244,8 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
           </button>
         )}
       </div>
+
+      <hr className="border-slate-700" />
 
       <div className="flex flex-wrap items-center gap-2">
         <span className="w-20 shrink-0 text-slate-300">Cards</span>

@@ -145,6 +145,15 @@ with a single clock snapshot for consistency.
   as labelled toggle chips. The result filter is unanswered (internal value
   `unseen`) / the six mastery buckets. The filters both narrow the displayed rows
   **and form the quiz pool**.
+- **Tool boxes** — below the filters, a round-robin 3-column masonry of one
+  bordered box per tool (always shown; collapsed to its header when empty). Each
+  box's header is a tool-filter toggle chip (clicking it toggles that tool, kept
+  in sync with the FilterBar tool chips) labelled `Tool N` where the coloured
+  `N` is the count of badges currently shown (after filtering); the body is a
+  9-column grid of mastery chips for
+  the questions matching the **result/source/not-practiced** filters (the tool
+  filter itself is excluded so every box still populates). The quiz-size presets
+  and Start button sit directly beneath this region.
 - **Per-topic progress** — an "answered N/total" count and a stacked mastery bar per
   topic. Segments ramp slate (unseen) → red (all-wrong, bucket 0) → slate-to-green for
   buckets 20–100, and each correct block's fill opacity is scaled to its mastery (100% =
@@ -225,7 +234,7 @@ src/
 │   ├── api.ts                   sync transport + mergeHistories
 │   └── auth.ts                  token store
 └── components/
-    ├── Dashboard.tsx            home: header, filters, quiz size, card-view switcher, topic list, launcher
+    ├── Dashboard.tsx            home: header, filters, per-tool badge boxes, quiz size, card-view switcher, topic list, launcher
     ├── TopicCard.tsx            expandable topic row + mastery bar
     ├── MasteryBar.tsx           stacked mastery bar (+ thin per-tool variant)
     ├── AnswerLine.tsx           question card in an expanded topic
