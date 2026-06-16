@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
 import { useAuth } from '../lib/auth';
@@ -21,6 +21,19 @@ import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
 
+/** Toolbox masonry columns: 2 on phones, 3 from the `sm` breakpoint up. */
+function useToolboxCols() {
+  const [cols, setCols] = useState(3);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 640px)');
+    const update = () => setCols(mq.matches ? 3 : 2);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  return cols;
+}
+
 export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const token = useAuth((s) => s.token);
   const canQuiz = !cloudEnabled || !!token;
@@ -42,6 +55,7 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const setCardView = useStore((s) => s.setCardView);
   const topicsExpanded = useStore((s) => s.topicsExpanded);
   const setTopicsExpanded = useStore((s) => s.setTopicsExpanded);
+  const toolboxCols = useToolboxCols();
 
   const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
@@ -187,12 +201,12 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
       <hr className="border-slate-700" />
 
       <div className="flex items-start gap-2">
-        {[0, 1, 2].map((col) => (
+        {Array.from({ length: toolboxCols }, (_, c) => c).map((col) => (
           <div key={col} className="flex flex-1 flex-col items-start gap-2">
             {badgesByTool
-              .filter((_, i) => i % 3 === col)
+              .filter((_, i) => i % toolboxCols === col)
               .map(({ tool, label, questions }) => (
-                <fieldset key={tool} className="w-max min-w-[13rem] rounded-md border border-slate-700 px-2 pb-2">
+                <fieldset key={tool} className="w-max min-w-[10.5rem] rounded-md border border-slate-700 px-2 pb-2 pt-0.5 sm:min-w-[13rem]">
                   <legend className="mx-auto">
                     <ToggleChip
                       on={toolFilter.includes(tool)}
@@ -210,7 +224,7 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
                     </ToggleChip>
                   </legend>
                   {questions.length > 0 && (
-                    <div className="grid grid-cols-9 gap-1.5">
+                    <div className="grid grid-cols-7 gap-1.5 sm:grid-cols-9">
                       {questions.map((q) => (
                         <span key={q.id} title={`${questionContext(q)} [${q.id}]`}>
                           <MasteryChip score={masteryByQ.get(q.id) ?? null} />

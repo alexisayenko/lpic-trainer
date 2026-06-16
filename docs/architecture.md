@@ -148,12 +148,15 @@ with a single clock snapshot for consistency.
   `unseen`) / the six mastery buckets. The filters both narrow the displayed rows
   **and form the quiz pool**. The "LPIC-2 Topics" tool block is collapsible, its
   open/closed state persisted in `topicsExpanded`.
-- **Tool boxes** — below the filters, a round-robin 3-column masonry of one
-  bordered box per tool (always shown; collapsed to its header when empty). Each
+- **Tool boxes** — below the filters, a round-robin masonry of one bordered box
+  per tool (always shown; collapsed to its header when empty). The masonry is
+  responsive: 2 columns with a 7-wide badge grid on phones, 3 columns with a
+  9-wide grid from the `sm` breakpoint up (the column count comes from a
+  `matchMedia` hook so the round-robin distribution stays left-to-right). Each
   box's header is a tool-filter toggle chip (clicking it toggles that tool, kept
   in sync with the FilterBar tool chips) labelled `Tool N` where the coloured
   `N` is the count of badges currently shown (after filtering); the body is a
-  9-column grid of mastery chips for
+  grid of mastery chips for
   the questions matching the **result/source/not-practiced** filters (the tool
   filter itself is excluded so every box still populates). The quiz-size presets
   and Start button sit directly beneath this region.
