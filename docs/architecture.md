@@ -14,7 +14,7 @@ answer questions (single-choice, multiple-response, or fill-in-the-blank), and g
 an explanation after each. All progress lives in `localStorage`; an optional
 self-hosted backend syncs that progress across devices.
 
-Stack: React 18 + TypeScript, Vite 5, Tailwind 3, Zustand (`persist`). No router —
+Stack: React 19 + TypeScript, Vite 8, Tailwind 4, Zustand 5 (`persist`). No router —
 a one-field state switch picks between two screens. An iOS wrapper exists via
 Capacitor (`capacitor.config.ts` + `ios/`); see [mobile/README.md](../mobile/README.md).
 

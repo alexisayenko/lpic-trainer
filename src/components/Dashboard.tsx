@@ -204,7 +204,7 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
                       <ToggleChip
                         on={toolFilter.includes(tool)}
                         onClick={() => toggleToolFilter(tool)}
-                        className="max-w-[11rem] whitespace-normal text-center leading-tight"
+                        className="max-w-44 whitespace-normal text-center leading-tight"
                       >
                         {label}{' '}
                         <span className="text-sky-400">{questions.length}</span>
@@ -242,7 +242,7 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
               on={quizSize === n}
               onClick={() => setQuizSize(n)}
               disabled={n !== null && n > available}
-              className={n === null ? 'min-w-[4.75rem] text-center tabular-nums' : ''}
+              className={n === null ? 'min-w-19 text-center tabular-nums' : ''}
             >
               {n ?? `All (${available})`}
             </ToggleChip>

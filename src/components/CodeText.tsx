@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-const CODE_CLASS = 'rounded bg-slate-950/60 px-1 py-0.5 font-mono text-[14px] text-white';
+const CODE_CLASS = 'rounded-sm bg-slate-950/60 px-1 py-0.5 font-mono text-[14px] text-white';
 
 /** Inline code span, styled for the dark theme. */
 export function Code({ children }: Readonly<{ children: ReactNode }>) {

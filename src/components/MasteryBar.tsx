@@ -28,7 +28,7 @@ export function MasteryBar({ total, buckets }: Readonly<{ total: number; buckets
         return (
           <div
             key={seg.key}
-            className={`${seg.cls} ${seg.txt} flex items-center justify-center overflow-hidden rounded-sm`}
+            className={`${seg.cls} ${seg.txt} flex items-center justify-center overflow-hidden rounded-xs`}
             title={seg.title}
             style={{ width: `${pct}%` }}
           >
@@ -47,7 +47,7 @@ export function MiniMasteryBar({ total, buckets }: Readonly<{ total: number; buc
       {masterySegments(total, buckets).filter((seg) => seg.n > 0).map((seg) => (
         <div
           key={seg.key}
-          className={`${seg.cls} rounded-sm`}
+          className={`${seg.cls} rounded-xs`}
           title={seg.title}
           style={{ width: `${total ? (seg.n / total) * 100 : 0}%` }}
         />

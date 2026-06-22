@@ -27,7 +27,7 @@ export function LogoZoom({ src, alt, onClose }: Readonly<{ src: string; alt: str
         type="button"
         onClick={onClose}
         aria-label="Close"
-        className="cursor-zoom-out focus:outline-none"
+        className="cursor-zoom-out focus:outline-hidden"
       >
         <img src={src} alt={alt} className="max-h-[85vh] max-w-full rounded-lg object-contain" />
       </button>

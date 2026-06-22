@@ -64,7 +64,7 @@ function GradientPicker({ value, onPick }: Readonly<{ value: string | null; onPi
       ref={ref}
       width={600}
       height={120}
-      className="h-28 w-full cursor-crosshair rounded"
+      className="h-28 w-full cursor-crosshair rounded-sm"
       onPointerDown={(e) => {
         const canvas = ref.current;
         if (!canvas) return;
@@ -112,7 +112,7 @@ export function PalettePanel() {
                 setBaseHex(m ? toHex(+m[0], +m[1], +m[2]) : null);
                 setActive(s.key);
               }}
-              className={`h-3 w-full rounded-sm ${overrides[s.key] ? '' : s.bar} ${
+              className={`h-3 w-full rounded-xs ${overrides[s.key] ? '' : s.bar} ${
                 active === s.key ? 'ring-2 ring-slate-300' : ''
               }`}
               style={overrides[s.key] ? { backgroundColor: overrides[s.key] } : undefined}

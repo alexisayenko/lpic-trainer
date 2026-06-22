@@ -6,9 +6,9 @@ Web app, single-player, runs entirely in the browser. Pick which exam objectives
 
 ## Stack
 
-- React 18 + TypeScript
-- Vite 5 (dev server + build)
-- Tailwind CSS 3
+- React 19 + TypeScript
+- Vite 8 (dev server + build)
+- Tailwind CSS 4
 - Zustand (state, with `persist` middleware → `localStorage`)
 
 ## Run locally
@@ -50,7 +50,7 @@ src/
 ├── App.tsx                    Screen switch (dashboard → quiz) + ?token capture
 ├── main.tsx                   Vite entry
 ├── index.css                  Tailwind directives + base styles
-├── store.ts                   Zustand store (result/source/tool filters, notPracticed, cardView, quizSize, answer history)
+├── store.ts                   Zustand store (result/source/tool filters, notPracticed, quizSize, answer history)
 ├── types.ts                   Question union, AnswerRecord, Topic/Origin, shared constants
 ├── data/
 │   ├── topics.json            6 exam topics (207–212)
