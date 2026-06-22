@@ -171,7 +171,7 @@
     "prompt": "Which tool is specifically designed to scan ports and services on remote hosts?",
     "choices": ["`nmap`", "`fail2ban`", "`nc`", "`telnetd`"],
     "answerIndex": 0,
-    "explanation": "Nmap is the network mapper and security scanning tool used for port and service discovery.",
+    "explanation": "`Nmap` is the network mapper and security scanning tool used for port and service discovery.",
     "origin": "gpt-deep-research",
     "source": "https://svn.nmap.org/nmap/docs/nmap.1"
   },

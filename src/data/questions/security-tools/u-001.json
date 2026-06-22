@@ -1,7 +1,7 @@
 {
   "id": "security-tools-u001",
   "tool": "nmap",
-  "prompt": "For what purpose is TCP/IP stack fingerprinting used by nmap?",
+  "prompt": "For what purpose is TCP/IP stack fingerprinting used by `nmap`?",
   "choices": [
     "To uniquely identify servers for forensics",
     "To masquerade the responses of remote servers",
@@ -10,6 +10,6 @@
     "To determine the remote operating system"
   ],
   "answerIndex": 4,
-  "explanation": "Differences in TCP/IP stack behavior let nmap infer the remote operating system.",
+  "explanation": "Differences in TCP/IP stack behavior let `nmap` infer the remote operating system.",
   "origin": "ken-adams"
 }

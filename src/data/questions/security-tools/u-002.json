@@ -2,7 +2,7 @@
   "id": "security-tools-u002",
   "tool": "nmap",
   "type": "multi",
-  "prompt": "Which nmap parameters scan a target for open TCP ports? (Choose two.)",
+  "prompt": "Which `nmap` parameters scan a target for open TCP ports? (Choose two.)",
   "choices": [
     "`-sS`",
     "`-sT`",
