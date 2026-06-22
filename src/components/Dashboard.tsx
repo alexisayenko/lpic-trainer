@@ -206,13 +206,7 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
                         onClick={() => toggleToolFilter(tool)}
                         className="max-w-[11rem] whitespace-normal text-center leading-tight"
                       >
-                        {label.includes(' (')
-                          ? [label.slice(0, label.indexOf(' (')), label.slice(label.indexOf(' (') + 1)].map((line) => (
-                              <span key={line} className="block">
-                                {line}
-                              </span>
-                            ))
-                          : label}{' '}
+                        {label}{' '}
                         <span className="text-sky-400">{questions.length}</span>
                       </ToggleChip>
                     </legend>

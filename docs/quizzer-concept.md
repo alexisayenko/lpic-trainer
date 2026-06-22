@@ -46,7 +46,7 @@ user's raw Q&A ──paste into──▶ [our prompt] ──▶ quiz-pack.json �
 |---|---|---|
 | Question schema + quiz flow | `src/components/Quiz.tsx`, `src/types.ts` | direct, after generalizing the data source |
 | Pool filtering + balanced-by-topic sampling | `src/lib/select.ts` (`filterPool`, `balancedSample`) | as-is (pure TS) |
-| Topic grouping + stats UI (stacked bars) | `src/components/Dashboard.tsx`, `TopicCard.tsx`, `useDashboardStats.ts` | direct |
+| Topic grouping + stats UI (stacked bars) | `src/components/Dashboard.tsx`, `useDashboardStats.ts` | direct |
 | Mini-quizzes by size | `store.ts` (`quizSize`), `select.ts` (`balancedSample`) | as-is |
 | Local-first persistence | `store.ts` (Zustand + persist) | as-is |
 | Cross-device stats sync | `src/lib/{api,auth}.ts`, `server/` | as-is (already live) |

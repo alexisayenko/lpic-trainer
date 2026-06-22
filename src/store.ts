@@ -3,7 +3,6 @@ import { persist } from 'zustand/middleware';
 import { ALL_TOOLS, MASTERY_BUCKETS, ORIGINS, RESULT_FILTERS } from './types';
 import type {
   AnswerRecord,
-  CardView,
   NotPracticedWindow,
   Origin,
   ResultOption,
@@ -27,10 +26,6 @@ function isOrigin(x: unknown): x is Origin {
 
 function isTool(x: unknown): x is string {
   return typeof x === 'string' && ALL_TOOLS.includes(x);
-}
-
-function isCardView(x: unknown): x is CardView {
-  return x === 'full' || x === 'badges' || x === 'none';
 }
 
 /** v6: empty/legacy selections mean "everything"; keep valid entries otherwise. */
@@ -63,10 +58,6 @@ interface State {
   toolFilter: ToolSelection;
   /** Exclude questions practiced within this window; null = no such restriction. */
   notPracticed: NotPracticedWindow | null;
-  /** How expanded topic cards render their matching questions. */
-  cardView: CardView;
-  /** Whether the "LPIC-2 Topics" tool-filter region is expanded. */
-  topicsExpanded: boolean;
   history: AnswerRecord[];
   setQuizSize: (size: number | null) => void;
   toggleResultFilter: (f: ResultOption) => void;
@@ -76,8 +67,6 @@ interface State {
   setSourceFilter: (sel: SourceSelection) => void;
   setToolFilter: (sel: ToolSelection) => void;
   setNotPracticed: (w: NotPracticedWindow | null) => void;
-  setCardView: (v: CardView) => void;
-  setTopicsExpanded: (v: boolean) => void;
   recordAnswer: (questionId: string, pickedIndex: number | undefined, correct: boolean) => void;
   /** Replace the whole answer log (used after a cloud sync/merge). */
   setHistory: (history: AnswerRecord[]) => void;
@@ -91,8 +80,6 @@ export const useStore = create<State>()(
       sourceFilter: [...ORIGINS],
       toolFilter: [...ALL_TOOLS],
       notPracticed: null,
-      cardView: 'full',
-      topicsExpanded: true,
       history: [],
       setQuizSize: (quizSize) => set({ quizSize }),
       toggleResultFilter: (f) =>
@@ -117,8 +104,6 @@ export const useStore = create<State>()(
       setSourceFilter: (sourceFilter) => set({ sourceFilter }),
       setToolFilter: (toolFilter) => set({ toolFilter }),
       setNotPracticed: (notPracticed) => set({ notPracticed }),
-      setCardView: (cardView) => set({ cardView }),
-      setTopicsExpanded: (topicsExpanded) => set({ topicsExpanded }),
       recordAnswer: (questionId, pickedIndex, correct) =>
         set((s) => ({
           history: [...s.history, { id: newId(), questionId, pickedIndex, correct, ts: Date.now() }],
@@ -139,8 +124,8 @@ export const useStore = create<State>()(
       // v7: added the per-tool filter — missing/legacy maps to every tool.
       // v8: the `unseenToday` boolean became the `notPracticed` window — true
       // maps to '1 day' (closest to the old ~21h), false/missing to null.
-      // v9: added the `cardView` switcher — missing/invalid maps to 'full'.
-      // v10: added `topicsExpanded` for the tool-filter region — missing maps to true.
+      // v9/v10: added the `cardView` switcher and `topicsExpanded` flag, both
+      // later removed from the UI (their fields and migrate blocks dropped).
       // v11: the `ftp` and `security-tools` tools were split per-utility — any
       // selected old slug expands to its replacement slugs in `toolFilter`.
       // When adding new persisted fields or filter values, bump `version` and
@@ -149,15 +134,13 @@ export const useStore = create<State>()(
       migrate: (state: unknown, version: number) => {
         const s = (state ?? {}) as Omit<
           Partial<State>,
-          'resultFilter' | 'sourceFilter' | 'toolFilter' | 'notPracticed' | 'cardView'
+          'resultFilter' | 'sourceFilter' | 'toolFilter' | 'notPracticed'
         > & {
           resultFilter?: unknown;
           sourceFilter?: unknown;
           toolFilter?: unknown;
           notPracticed?: unknown;
           unseenToday?: unknown;
-          cardView?: unknown;
-          topicsExpanded?: unknown;
         };
         s.history = Array.isArray(s.history)
           ? s.history.map((r) => (r.id ? r : { ...r, id: newId() }))
@@ -186,12 +169,6 @@ export const useStore = create<State>()(
         if (version < 8) {
           s.notPracticed = s.unseenToday === true ? '1d' : null;
           delete s.unseenToday;
-        }
-        if (version < 9) {
-          s.cardView = isCardView(s.cardView) ? s.cardView : 'full';
-        }
-        if (version < 10) {
-          s.topicsExpanded = typeof s.topicsExpanded === 'boolean' ? s.topicsExpanded : true;
         }
         if (version < 11 && Array.isArray(s.toolFilter)) {
           const split: Record<string, string[]> = {

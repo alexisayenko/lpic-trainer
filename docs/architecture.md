@@ -78,8 +78,6 @@ Zustand store persisted to `localStorage` key `lpic-trainer-state`:
 | `sourceFilter` | multi-select of `Origin`s; empty = matches nothing; default = all selected |
 | `toolFilter` | multi-select of tool slugs (grouped by topic in the UI); empty = matches nothing; default = all selected |
 | `notPracticed` | single `NotPracticedWindow` (`1h`/`8h`/`1d`/`2d`/`3d`/`5d`/`1w`) or `null` = no restriction |
-| `cardView` | how expanded topic cards render questions: `full` cards / `badges` only / `none` (retained for back-compat; no longer used by the UI) |
-| `topicsExpanded` | whether the "LPIC-2 Topics" tool-filter region is expanded; default `true` (retained for back-compat; no longer used by the UI) |
 | `history` | `AnswerRecord[]` — the full answer log |
 
 `recordAnswer` appends; `setHistory` replaces (after a sync merge).
@@ -89,12 +87,11 @@ lack one, maps the old result filter (v<3) to the bucket model, splits
 filter to a multi-selection (v<5), re-bases the result/source filters on the
 "empty matches nothing" model (v<6), adds the tool filter defaulting to every
 tool (v<7), and converts the old `unseenToday` boolean to the `notPracticed`
-window — `true` → `1d` (closest to the old ~21h), `false`/missing → `null` (v<8),
-adds the `cardView` switcher defaulting to `full` (v<9), adds
-`topicsExpanded` defaulting to `true` (v<10), and expands any selected old tool
-slug in `toolFilter` to its replacements after the `ftp` →
-`vsftpd`/`pureftpd`/`ftp-other` and `security-tools` →
-`nmap`/`nc`/`fail2ban`/`security-other` splits (v<11).
+window — `true` → `1d` (closest to the old ~21h), `false`/missing → `null` (v<8).
+v9/v10 added a `cardView` switcher and a `topicsExpanded` flag that were later
+removed with their UI. v<11 expands any selected old tool slug in `toolFilter`
+to its replacements after the `ftp` → `vsftpd`/`pureftpd`/`ftp-other` and
+`security-tools` → `nmap`/`nc`/`fail2ban`/`security-other` splits.
 The topic-selection field (`selectedTopics`) was dropped once the tool filter
 subsumed it; older persisted values are simply ignored.
 
@@ -243,9 +240,7 @@ src/
 │   └── auth.ts                  token store
 └── components/
     ├── Dashboard.tsx            home: header, filters, per-topic tool-box rows, quiz size, launcher
-    ├── TopicCard.tsx            expandable topic row + mastery bar
     ├── MasteryBar.tsx           stacked mastery bar (+ thin per-tool variant)
-    ├── AnswerLine.tsx           question card in an expanded topic
     ├── useDashboardStats.ts     memoized last/attempts/perTopic/perTool/mastery maps
     ├── FilterBar.tsx            result, source & not-practiced filters
     ├── ToggleChip.tsx           shared on/off filter chip button

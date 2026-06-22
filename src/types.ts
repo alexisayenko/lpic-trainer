@@ -72,16 +72,6 @@ export type ResultSelection = ResultOption[];
 /** Selected origins; empty array matches nothing. */
 export type SourceSelection = Origin[];
 
-/** How the expanded topic cards render their matching questions. */
-export type CardView = 'full' | 'badges' | 'none';
-
-/** Card-view options in display order — single source for the switcher. */
-export const CARD_VIEWS: { key: CardView; label: string }[] = [
-  { key: 'full', label: 'Full cards' },
-  { key: 'badges', label: 'Badges only' },
-  { key: 'none', label: 'Hidden' },
-];
-
 /** "Not practiced" window: exclude questions attempted within this elapsed time. */
 export type NotPracticedWindow = '1h' | '8h' | '1d' | '2d' | '3d' | '5d' | '1w';
 
