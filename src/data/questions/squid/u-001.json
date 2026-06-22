@@ -4,7 +4,7 @@
   "prompt": "Given this Squid excerpt — `acl Safe_ports port 80 443 1025-65535`, `acl CONNECT method CONNECT`, `http_access deny !Safe_ports`, `http_access deny CONNECT !SSL_ports`, `http_access allow localnet` — which statement is true?",
   "choices": [
     "An `http_access` rule denying everyone must be added at the end",
-    "Users who connect to localhost can access web sites through this proxy",
+    "Users who connect to `localhost` can access web sites through this proxy",
     "This proxy can access SSL sites by listening on any port",
     "This proxy is misconfigured and no user can access web sites",
     "This proxy cannot be used to access FTP servers listening on the standard port"

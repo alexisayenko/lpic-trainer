@@ -1,7 +1,7 @@
 {
   "id": "bind9-a051",
   "tool": "bind9",
-  "prompt": "Samantha wants to check the syntax of her zone file named \"db.myorg\" for the domain \"myorg.com\" before reloading BIND. Which command should she use?",
+  "prompt": "Samantha wants to check the syntax of her zone file named `db.myorg` for the domain `myorg.com` before reloading BIND. Which command should she use?",
   "choices": [
     "`named-checkconf db.myorg`",
     "`named-checkzone myorg.com db.myorg`",

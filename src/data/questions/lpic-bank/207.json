@@ -81,7 +81,7 @@
     "type": "single",
     "objective": "207.2",
     "difficulty": "applied",
-    "prompt": "After manually editing a primary zone file, which SOA field must be increased so secondaries treat the zone as newer?",
+    "prompt": "After manually editing a primary zone file, which `SOA` field must be increased so secondaries treat the zone as newer?",
     "choices": ["`serial`", "`refresh`", "`retry`", "`expire`"],
     "answerIndex": 0,
     "explanation": "The SOA `serial` is the version counter secondaries compare when deciding whether to transfer a newer zone.",

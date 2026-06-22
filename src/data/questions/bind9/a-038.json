@@ -6,7 +6,7 @@
     "The server forwards all queries to `127.0.0.1`.",
     "The server can only be accessed from the computer on which it is running.",
     "The server disables IPv6 support entirely.",
-    "The server allows zone transfers only to localhost."
+    "The server allows zone transfers only to `localhost`."
   ],
   "answerIndex": 1,
   "explanation": "Binding only to the loopback addresses `127.0.0.1` and `::1` means the server is reachable only from the local machine.",

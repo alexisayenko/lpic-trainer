@@ -149,7 +149,7 @@
     "type": "single",
     "objective": "211.1",
     "difficulty": "scenario",
-    "prompt": "To stop attackers from probing valid mailboxes via the SMTP VRFY command, which `main.cf` line should be added?",
+    "prompt": "To stop attackers from probing valid mailboxes via the `SMTP VRFY` command, which `main.cf` line should be added?",
     "choices": [
       "`smtpd_vrfy = no`",
       "`disable_vrfy_command = yes`",
