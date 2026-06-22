@@ -83,7 +83,7 @@ export const CARD_VIEWS: { key: CardView; label: string }[] = [
 ];
 
 /** "Not practiced" window: exclude questions attempted within this elapsed time. */
-export type NotPracticedWindow = '1h' | '8h' | '1d' | '2d' | '3d' | '1w';
+export type NotPracticedWindow = '1h' | '8h' | '1d' | '2d' | '3d' | '5d' | '1w';
 
 const HOUR = 60 * 60 * 1000;
 const DAY = 24 * HOUR;
@@ -95,6 +95,7 @@ export const NOT_PRACTICED_WINDOWS: { key: NotPracticedWindow; label: string; ms
   { key: '1d', label: '1 day', ms: DAY },
   { key: '2d', label: '2 days', ms: 2 * DAY },
   { key: '3d', label: '3 days', ms: 3 * DAY },
+  { key: '5d', label: '5 days', ms: 5 * DAY },
   { key: '1w', label: '1 week', ms: 7 * DAY },
 ];
 

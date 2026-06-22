@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
 import { useAuth } from '../lib/auth';
@@ -6,13 +6,11 @@ import { cloudEnabled } from '../lib/api';
 import { MS_PER_DAY, daysBack, startOfLocalDay } from '../lib/dates';
 import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
-import { ALL_TOOLS, CARD_VIEWS, NOT_PRACTICED_MS, UTILITIES, questionContext, topicOf, type Question, type Topic } from '../types';
+import { ALL_TOOLS, NOT_PRACTICED_MS, TOOLS_BY_TOPIC, TOPIC_SHORT_LABELS, UTILITIES, questionContext, topicOf, type Question } from '../types';
 import { Account } from './Account';
-import { AnswerLine } from './AnswerLine';
 import { FilterBar } from './FilterBar';
 import { MasteryChip } from './QuestionCardHeader';
 import { MasteryBar, MiniMasteryBar } from './MasteryBar';
-import { TopicCard } from './TopicCard';
 import { ToggleChip } from './ToggleChip';
 import { LogoZoom } from './LogoZoom';
 import { InfoMenu } from './InfoMenu';
@@ -20,19 +18,6 @@ import { useDashboardStats } from './useDashboardStats';
 import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
-
-/** Toolbox masonry columns: 2 on phones, 3 from the `sm` breakpoint up. */
-function useToolboxCols() {
-  const [cols, setCols] = useState(3);
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 640px)');
-    const update = () => setCols(mq.matches ? 3 : 2);
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
-  return cols;
-}
 
 export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const token = useAuth((s) => s.token);
@@ -51,18 +36,12 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const setToolFilter = useStore((s) => s.setToolFilter);
   const notPracticed = useStore((s) => s.notPracticed);
   const setNotPracticed = useStore((s) => s.setNotPracticed);
-  const cardView = useStore((s) => s.cardView);
-  const setCardView = useStore((s) => s.setCardView);
-  const topicsExpanded = useStore((s) => s.topicsExpanded);
-  const setTopicsExpanded = useStore((s) => s.setTopicsExpanded);
-  const toolboxCols = useToolboxCols();
 
-  const [open, setOpen] = useState<Topic | null>(null);
   const [zoom, setZoom] = useState(false);
 
   const notPracticedMs = notPracticed ? NOT_PRACTICED_MS[notPracticed] : null;
 
-  const { last, attemptsByQ, perTopic, masteryByQ, bucketsByTopic, perTool, bucketsByTool } =
+  const { attemptsByQ, perTopic, masteryByQ, bucketsByTopic, perTool, bucketsByTool } =
     useDashboardStats(history);
 
   const available = useMemo(() => {
@@ -70,29 +49,6 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
     return filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, toolFilter, notPracticedMs, Date.now())
       .length;
   }, [resultFilter, sourceFilter, toolFilter, notPracticedMs, attemptsByQ]);
-
-  const questionRows = useMemo(() => {
-    if (!open) return [];
-    const pool = QUESTIONS.filter((q) => topicOf(q) === open);
-    return filterPool(pool, attemptsByQ, resultFilter, sourceFilter, toolFilter, notPracticedMs, Date.now()).sort(
-      (a, b) => {
-        const ra = last.get(a.id);
-        const rb = last.get(b.id);
-        if (ra && rb) return rb.ts - ra.ts;
-        if (ra) return -1;
-        if (rb) return 1;
-        return a.id.localeCompare(b.id);
-      },
-    );
-  }, [open, resultFilter, sourceFilter, toolFilter, notPracticedMs, attemptsByQ, last]);
-
-  const toolRows = useMemo(() => {
-    if (!open) return [];
-    return Object.entries(UTILITIES)
-      .filter(([, info]) => info.topic === open)
-      .map(([tool, info]) => ({ tool, label: info.label, stats: perTool.get(tool) }))
-      .sort((a, b) => a.label.localeCompare(b.label));
-  }, [open, perTool]);
 
   const badgesByTool = useMemo(() => {
     const topicPool = QUESTIONS.filter((q) => topicOf(q) !== undefined);
@@ -103,14 +59,24 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
       if (arr) arr.push(q);
       else byTool.set(q.tool, [q]);
     }
-    return ALL_TOOLS.map((tool) => ({
-      tool,
-      label: UTILITIES[tool].label,
-      questions: byTool.get(tool) ?? [],
-    }));
+    return new Map(
+      ALL_TOOLS.map((tool) => [
+        tool,
+        { tool, label: UTILITIES[tool].label, questions: byTool.get(tool) ?? [] },
+      ]),
+    );
   }, [resultFilter, sourceFilter, notPracticedMs, attemptsByQ]);
 
   const totalAttempts = history.length;
+
+  const setTopicTools = (topicTools: string[], on: boolean) => {
+    const next = new Set(toolFilter);
+    for (const t of topicTools) {
+      if (on) next.add(t);
+      else next.delete(t);
+    }
+    setToolFilter([...next]);
+  };
 
   const overall = useMemo(() => {
     const buckets = new Map<number, number>();
@@ -189,53 +155,86 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
         toggleSourceFilter={toggleSourceFilter}
         setResultFilter={setResultFilter}
         setSourceFilter={setSourceFilter}
-        toolFilter={toolFilter}
-        toggleToolFilter={toggleToolFilter}
-        setToolFilter={setToolFilter}
         notPracticed={notPracticed}
         setNotPracticed={setNotPracticed}
-        topicsExpanded={topicsExpanded}
-        setTopicsExpanded={setTopicsExpanded}
       />
 
       <hr className="border-slate-700" />
 
-      <div className="flex items-start gap-2">
-        {Array.from({ length: toolboxCols }, (_, c) => c).map((col) => (
-          <div key={col} className="flex flex-1 flex-col items-start gap-2">
-            {badgesByTool
-              .filter((_, i) => i % toolboxCols === col)
-              .map(({ tool, label, questions }) => (
-                <fieldset key={tool} className="w-max min-w-[10.5rem] rounded-md border border-slate-700 px-2 pb-2 pt-0.5 sm:min-w-[13rem]">
-                  <legend className="mx-auto">
-                    <ToggleChip
-                      on={toolFilter.includes(tool)}
-                      onClick={() => toggleToolFilter(tool)}
-                      className="max-w-[11rem] whitespace-normal text-center leading-tight"
-                    >
-                      {label.includes(' (')
-                        ? [label.slice(0, label.indexOf(' (')), label.slice(label.indexOf(' (') + 1)].map((line) => (
-                            <span key={line} className="block">
-                              {line}
-                            </span>
-                          ))
-                        : label}{' '}
-                      <span className="text-sky-400">{questions.length}</span>
-                    </ToggleChip>
-                  </legend>
-                  {questions.length > 0 && (
-                    <div className="grid grid-cols-7 gap-1.5 sm:grid-cols-9">
-                      {questions.map((q) => (
-                        <span key={q.id} title={`${questionContext(q)} [${q.id}]`}>
-                          <MasteryChip score={masteryByQ.get(q.id) ?? null} />
-                        </span>
-                      ))}
+      <div className="space-y-3">
+        {TOOLS_BY_TOPIC.map(({ topic, tools }) => {
+          const allOn = tools.every((t) => toolFilter.includes(t));
+          const noneOn = tools.every((t) => !toolFilter.includes(t));
+          return (
+            <div key={topic} className="space-y-1.5">
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="text-slate-300">
+                  <span className="text-slate-500">{topic}</span> {TOPIC_SHORT_LABELS[topic]}
+                </span>
+                <span className="flex items-center gap-2 text-xs text-slate-400">
+                  <button
+                    type="button"
+                    onClick={() => setTopicTools(tools, true)}
+                    disabled={allOn}
+                    className="underline-offset-4 hover:text-slate-200 hover:underline disabled:opacity-40 disabled:hover:text-slate-400 disabled:hover:no-underline"
+                  >
+                    Select all
+                  </button>
+                  <span className="text-slate-600">·</span>
+                  <button
+                    type="button"
+                    onClick={() => setTopicTools(tools, false)}
+                    disabled={noneOn}
+                    className="underline-offset-4 hover:text-slate-200 hover:underline disabled:opacity-40 disabled:hover:text-slate-400 disabled:hover:no-underline"
+                  >
+                    Clear
+                  </button>
+                </span>
+              </div>
+              <hr className="border-slate-700" />
+              <MasteryBar total={perTopic.find((s) => s.topic === topic)?.total ?? 0} buckets={bucketsByTopic.get(topic)} />
+              <div className="columns-2 gap-2 sm:columns-3">
+              {tools.map((tool) => {
+                const item = badgesByTool.get(tool);
+                if (!item) return null;
+                const { label, questions } = item;
+                return (
+                  <fieldset key={tool} className="mb-2 w-full break-inside-avoid rounded-md border border-slate-700 px-2 pb-2 pt-0.5">
+                    <legend className="mx-auto">
+                      <ToggleChip
+                        on={toolFilter.includes(tool)}
+                        onClick={() => toggleToolFilter(tool)}
+                        className="max-w-[11rem] whitespace-normal text-center leading-tight"
+                      >
+                        {label.includes(' (')
+                          ? [label.slice(0, label.indexOf(' (')), label.slice(label.indexOf(' (') + 1)].map((line) => (
+                              <span key={line} className="block">
+                                {line}
+                              </span>
+                            ))
+                          : label}{' '}
+                        <span className="text-sky-400">{questions.length}</span>
+                      </ToggleChip>
+                    </legend>
+                    <div className="mb-1.5 mt-0.5 flex">
+                      <MiniMasteryBar total={perTool.get(tool)?.total ?? 0} buckets={bucketsByTool.get(tool)} />
                     </div>
-                  )}
-                </fieldset>
-              ))}
-          </div>
-        ))}
+                    {questions.length > 0 && (
+                      <div className="grid grid-cols-7 gap-1.5 sm:grid-cols-9">
+                        {questions.map((q) => (
+                          <span key={q.id} title={`${questionContext(q)} [${q.id}]`}>
+                            <MasteryChip score={masteryByQ.get(q.id) ?? null} />
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </fieldset>
+                );
+              })}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       <hr className="border-slate-700" />
@@ -266,70 +265,6 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
           </button>
         )}
       </div>
-
-      <hr className="border-slate-700" />
-
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="w-20 shrink-0 text-slate-300">Cards</span>
-        <div className="flex flex-wrap gap-1">
-          {CARD_VIEWS.map(({ key, label }) => (
-            <ToggleChip key={key} on={cardView === key} onClick={() => setCardView(key)}>
-              {label}
-            </ToggleChip>
-          ))}
-        </div>
-      </div>
-
-      <ul className="space-y-2">
-        {perTopic.map((s) => (
-          <TopicCard
-            key={s.topic}
-            topic={s.topic}
-            seen={s.seen}
-            total={s.total}
-            buckets={bucketsByTopic.get(s.topic)}
-            isOpen={open === s.topic}
-            onToggleOpen={() => setOpen(open === s.topic ? null : s.topic)}
-          >
-            {toolRows.length > 0 && (
-              <div className="mb-3 space-y-1.5">
-                {toolRows.map(({ tool, label, stats }) => (
-                  <div key={tool} className="flex items-center gap-3 text-xs">
-                    <span className="w-44 truncate text-slate-300" title={label}>
-                      {label}
-                    </span>
-                    <span className="w-14 shrink-0 text-right tabular-nums text-slate-500">
-                      {stats ? `${stats.seen}/${stats.total}` : '0/0'}
-                    </span>
-                    <MiniMasteryBar total={stats?.total ?? 0} buckets={bucketsByTool.get(tool)} />
-                  </div>
-                ))}
-              </div>
-            )}
-            {cardView === 'none' ? null : questionRows.length === 0 ? (
-              <p className="text-sm text-slate-500">No matching questions.</p>
-            ) : cardView === 'badges' ? (
-              <div className="flex flex-wrap gap-1.5">
-                {questionRows.map((q) => (
-                  <span key={q.id} title={`${questionContext(q)} [${q.id}]`}>
-                    <MasteryChip score={masteryByQ.get(q.id) ?? null} />
-                  </span>
-                ))}
-              </div>
-            ) : (
-              questionRows.map((q) => (
-                <AnswerLine
-                  key={q.id}
-                  q={q}
-                  rec={last.get(q.id)}
-                  attempts={attemptsByQ.get(q.id)}
-                  mastery={masteryByQ.get(q.id)}
-                />
-              ))
-            )}
-          </TopicCard>
-        ))}
-      </ul>
 
       <footer className="space-y-2 pt-4 pb-8 text-xs text-slate-600">
         <div className="flex items-start justify-between gap-4">

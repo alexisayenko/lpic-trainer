@@ -50,7 +50,7 @@ renders nothing; it reacts to the token and to history changes.
   `RESULT_FILTERS` / `ALL_TOPICS` are the single-source constants
   consumed by filters and the store migration.
 - **`topicOf(q)`** resolves a question's topic from its `tool` via
-  [`utilities.json`](../src/data/utilities.json) (26 utilities → `{topic, label}`).
+  [`utilities.json`](../src/data/utilities.json) (31 utilities → `{topic, label}`).
 
 ## Question loading ([`data/questions/index.ts`](../src/data/questions/index.ts))
 
@@ -77,21 +77,24 @@ Zustand store persisted to `localStorage` key `lpic-trainer-state`:
 | `resultFilter` | multi-select of `unseen` and/or mastery buckets (`0`/`20`/`40`/`60`/`80`/`100`); empty = matches nothing; default = all selected |
 | `sourceFilter` | multi-select of `Origin`s; empty = matches nothing; default = all selected |
 | `toolFilter` | multi-select of tool slugs (grouped by topic in the UI); empty = matches nothing; default = all selected |
-| `notPracticed` | single `NotPracticedWindow` (`1h`/`8h`/`1d`/`2d`/`3d`/`1w`) or `null` = no restriction |
-| `cardView` | how expanded topic cards render questions: `full` cards / `badges` only / `none` |
-| `topicsExpanded` | whether the "LPIC-2 Topics" tool-filter region is expanded; default `true` |
+| `notPracticed` | single `NotPracticedWindow` (`1h`/`8h`/`1d`/`2d`/`3d`/`5d`/`1w`) or `null` = no restriction |
+| `cardView` | how expanded topic cards render questions: `full` cards / `badges` only / `none` (retained for back-compat; no longer used by the UI) |
+| `topicsExpanded` | whether the "LPIC-2 Topics" tool-filter region is expanded; default `true` (retained for back-compat; no longer used by the UI) |
 | `history` | `AnswerRecord[]` — the full answer log |
 
 `recordAnswer` appends; `setHistory` replaces (after a sync merge).
-Persist is **version 10**: `migrate` backfills a fresh `id` on legacy records that
+Persist is **version 11**: `migrate` backfills a fresh `id` on legacy records that
 lack one, maps the old result filter (v<3) to the bucket model, splits
 `unseen-today` into its own toggle (v<4), converts the single-value result
 filter to a multi-selection (v<5), re-bases the result/source filters on the
 "empty matches nothing" model (v<6), adds the tool filter defaulting to every
 tool (v<7), and converts the old `unseenToday` boolean to the `notPracticed`
 window — `true` → `1d` (closest to the old ~21h), `false`/missing → `null` (v<8),
-adds the `cardView` switcher defaulting to `full` (v<9), and adds
-`topicsExpanded` defaulting to `true` (v<10).
+adds the `cardView` switcher defaulting to `full` (v<9), adds
+`topicsExpanded` defaulting to `true` (v<10), and expands any selected old tool
+slug in `toolFilter` to its replacements after the `ftp` →
+`vsftpd`/`pureftpd`/`ftp-other` and `security-tools` →
+`nmap`/`nc`/`fail2ban`/`security-other` splits (v<11).
 The topic-selection field (`selectedTopics`) was dropped once the tool filter
 subsumed it; older persisted values are simply ignored.
 
@@ -117,7 +120,10 @@ Building a quiz deck is two stages:
    `quizSize` questions balanced across topics (round-robin over shuffled topic
    groups, redistributing slots from exhausted groups), then returns them in
    random order. `quizSize` null (or ≥ pool size) takes every eligible question.
-   There is no mastery- or weakness-based ordering.
+   **Even topic coverage is the only selection bias**: within a topic every
+   eligible question is equally likely, and there is no mastery-, weakness-,
+   difficulty-, recency-, or origin-based weighting or ordering. (Choice order
+   within each question is independently shuffled at render — `shuffledIndices`.)
 
 `lastByQuestion(history)` builds the latest-record-per-question map used by the
 dashboard; `attemptsByQuestion` groups all attempts per id for `filterPool`.
@@ -142,36 +148,32 @@ with a single clock snapshot for consistency.
   and a full-width overall mastery bar (all topics combined, same segment style
   as the topic bars) directly below. The Account panel lives bottom-right in
   the footer.
-- **Filters** ([`FilterBar`](../src/components/FilterBar.tsx)) — result, source,
-  tool (grouped by topic), and a single-select "Not practiced" window, all rendered
-  as labelled toggle chips. The result filter is unanswered (internal value
-  `unseen`) / the six mastery buckets. The filters both narrow the displayed rows
-  **and form the quiz pool**. The "LPIC-2 Topics" tool block is collapsible, its
-  open/closed state persisted in `topicsExpanded`.
-- **Tool boxes** — below the filters, a round-robin masonry of one bordered box
-  per tool (always shown; collapsed to its header when empty). The masonry is
-  responsive: 2 columns with a 7-wide badge grid on phones, 3 columns with a
-  9-wide grid from the `sm` breakpoint up (the column count comes from a
-  `matchMedia` hook so the round-robin distribution stays left-to-right). Each
-  box's header is a tool-filter toggle chip (clicking it toggles that tool, kept
-  in sync with the FilterBar tool chips) labelled `Tool N` where the coloured
-  `N` is the count of badges currently shown (after filtering); the body is a
-  grid of mastery chips for
-  the questions matching the **result/source/not-practiced** filters (the tool
-  filter itself is excluded so every box still populates). The quiz-size presets
-  and Start button sit directly beneath this region.
-- **Per-topic progress** — an "answered N/total" count and a stacked mastery bar per
-  topic. Segments ramp slate (unseen) → red (all-wrong, bucket 0) → slate-to-green for
-  buckets 20–100, and each correct block's fill opacity is scaled to its mastery (100% =
-  fully filled); question counts sit inside the blocks when they fit, in a green digit so a
-  faint low-mastery block still reads as answered. Derived in `useDashboardStats` (one pass
-  over the latest-record map; orphaned ids for removed questions are skipped).
-- **Expandable rows** — open a topic to see, first, a read-only per-tool stats
-  block (label · seen/total · stacked mastery bar, from `perTool`/`bucketsByTool`),
-  then its questions: stats line (21-day strip · mastery chip · source tag · id),
-  a `tool · Topic Label (207)` line, the prompt, your answer when the last attempt
-  was wrong, and the correct answer — on borderless filled cards. Command/config text
-  in prompts, choices, and answers renders as inline code (see **Info menu / inline code**).
+- **Filters** ([`FilterBar`](../src/components/FilterBar.tsx)) — result, source, and a
+  single-select "Not practiced" window, all rendered as labelled toggle chips. The
+  result filter is unanswered (internal value `unseen`) / the six mastery buckets. The
+  filters both narrow the displayed rows **and form the quiz pool**. Tool selection no
+  longer lives here — it has moved entirely into the per-topic tool boxes below.
+- **Tool boxes** — below the filters, one bordered box per tool, grouped into
+  **per-topic rows** (one row per LPIC-2 topic 207–212). Each topic row opens with
+  a header line — the topic label on the left, `Select all` / `Clear` actions on the
+  right (operating on that topic's tools in the tool filter) and a full-width divider
+  beneath — then that topic's stacked **MasteryBar** (with counts), then the topic's
+  tool boxes laid out as a CSS-columns masonry within the topic (`columns-2
+  sm:columns-3`). Each box (always shown; collapsed to its header when empty) carries
+  a tool-filter toggle-chip legend labelled `Tool N` where the coloured `N` is the
+  filtered count of badges currently shown; clicking it toggles that tool in the tool
+  filter. At the box's top sits a thin per-tool **MiniMasteryBar**, below which is the
+  responsive badge grid of mastery chips for the questions matching the
+  **result/source/not-practiced** filters (the tool filter itself is excluded so every
+  box still populates) — 7 columns on phones, 9 from the `sm` breakpoint. The
+  quiz-size presets and Start button sit directly beneath this region.
+- **Per-topic progress** — each topic-row header in the tool boxes carries that topic's
+  stacked mastery bar (with counts). Segments ramp slate (unseen) → red (all-wrong,
+  bucket 0) → slate-to-green for buckets 20–100, and each correct block's fill opacity is
+  scaled to its mastery (100% = fully filled); question counts sit inside the blocks when
+  they fit, in a green digit so a faint low-mastery block still reads as answered. Derived
+  in `useDashboardStats` (one pass over the latest-record map; orphaned ids for removed
+  questions are skipped).
 - **Quiz launcher** — size presets + an "available" count; **Start** is disabled when
   the pool is empty.
 - **Logo lightbox** ([`LogoZoom`](../src/components/LogoZoom.tsx)) — accessible modal
@@ -225,11 +227,11 @@ per-row validation matching the schema, 2 MB body cap.
 src/
 ├── App.tsx                      screen switch + ?token capture
 ├── main.tsx                     Vite entry
-├── store.ts                     Zustand store (persist v9 + migrate)
+├── store.ts                     Zustand store (persist v11 + migrate)
 ├── types.ts                     Question union, AnswerRecord, Topic/Origin, constants
 ├── data/
 │   ├── topics.json              6 exam topics (207–212)
-│   ├── utilities.json           26 utilities → {topic, label}
+│   ├── utilities.json           31 utilities → {topic, label}
 │   └── questions/
 │       ├── index.ts             globs/normalises/dedupes → QUESTIONS[]
 │       └── <utility>/           question JSON + notes.md per utility
@@ -240,12 +242,12 @@ src/
 │   ├── api.ts                   sync transport + mergeHistories
 │   └── auth.ts                  token store
 └── components/
-    ├── Dashboard.tsx            home: header, filters, per-tool badge boxes, quiz size, card-view switcher, topic list, launcher
+    ├── Dashboard.tsx            home: header, filters, per-topic tool-box rows, quiz size, launcher
     ├── TopicCard.tsx            expandable topic row + mastery bar
     ├── MasteryBar.tsx           stacked mastery bar (+ thin per-tool variant)
     ├── AnswerLine.tsx           question card in an expanded topic
     ├── useDashboardStats.ts     memoized last/attempts/perTopic/perTool/mastery maps
-    ├── FilterBar.tsx            result, source, tool (per topic) & not-practiced filters
+    ├── FilterBar.tsx            result, source & not-practiced filters
     ├── ToggleChip.tsx           shared on/off filter chip button
     ├── Quiz.tsx                 question card, scoring, results
     ├── QuestionCardHeader.tsx   question-card header: context · source · day strip · chip
