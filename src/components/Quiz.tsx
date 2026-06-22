@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { QUESTIONS } from '../data/questions/index';
 import { useStore } from '../store';
 import { attemptsByQuestion, attemptsFor, balancedSample, filterPool, shuffledIndices } from '../lib/select';
@@ -54,6 +54,36 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
   const [selected, setSelected] = useState<number[]>([]); // multi
   const [typed, setTyped] = useState(''); // fill
   const [score, setScore] = useState({ correct: 0, total: 0 });
+
+  // Float a ">" FAB whenever the primary blue action button isn't fully on screen.
+  const primaryBtnRef = useRef<HTMLButtonElement | null>(null);
+  const [fabVisible, setFabVisible] = useState(false);
+  useEffect(() => {
+    const el = primaryBtnRef.current;
+    if (!el) {
+      setFabVisible(false);
+      return;
+    }
+    const obs = new IntersectionObserver(
+      ([entry]) => setFabVisible(entry.intersectionRatio < 1),
+      { threshold: [0, 1] },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [index, answered]);
+
+  // Right arrow advances/skips the question (desktop); ignored while typing a fill answer.
+  const advanceRef = useRef<() => void>(() => {});
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'ArrowRight') return;
+      const el = document.activeElement;
+      if (el instanceof HTMLElement && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) return;
+      advanceRef.current();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   if (deck.length === 0) {
     return (
@@ -130,6 +160,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
     setTyped('');
     setIndex((i) => i + 1);
   };
+  advanceRef.current = next;
 
   const isCorrectChoice = (i: number) => {
     if (q.type === 'multi') return q.answerIndices.includes(i);
@@ -149,6 +180,14 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
     return 'border-slate-700 bg-slate-800/60 hover:bg-slate-800';
   };
 
+  const primary = answered
+    ? { run: next, disabled: false }
+    : q.type === 'multi'
+      ? { run: submitMulti, disabled: selected.length === 0 }
+      : q.type === 'fill'
+        ? { run: submitFill, disabled: typed.trim() === '' }
+        : null;
+
   return (
     <div className="max-w-xl mx-auto p-6 space-y-5">
       <QuestionCardHeader
@@ -157,7 +196,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
         mastery={mastery}
         titleClassName="text-sm text-slate-400"
       />
-      <h2 className="text-xl text-slate-100 leading-snug"><CodeText text={q.prompt} /></h2>
+      <h2 className="text-xl text-slate-300 leading-snug"><CodeText text={q.prompt} /></h2>
       {q.type === 'multi' && !answered && (
         <p className="text-xs text-slate-500 -mt-2">Select all that apply, then submit.</p>
       )}
@@ -192,7 +231,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
                 onClick={() => (q.type === 'multi' ? toggleMulti(i) : chooseSingle(i))}
                 className={`w-full text-left p-3 rounded-md border transition-colors ${choiceClass(i)}`}
               >
-                <span className="text-slate-200"><CodeText text={choices[i]} /></span>
+                <span className="text-slate-300"><CodeText text={choices[i]} /></span>
               </button>
             </li>
           ))}
@@ -201,6 +240,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
 
       {!answered && q.type === 'multi' && (
         <button
+          ref={primaryBtnRef}
           type="button"
           onClick={submitMulti}
           disabled={selected.length === 0}
@@ -211,6 +251,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
       )}
       {!answered && q.type === 'fill' && (
         <button
+          ref={primaryBtnRef}
           type="button"
           onClick={submitFill}
           disabled={typed.trim() === ''}
@@ -234,6 +275,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
             <p className="text-sm text-slate-300 mt-1"><CodeText text={q.explanation} /></p>
           </div>
           <button
+            ref={primaryBtnRef}
             type="button"
             onClick={next}
             className="w-full py-3 rounded-md bg-sky-600 hover:bg-sky-500 text-white font-medium"
@@ -255,6 +297,17 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
           End quiz
         </button>
       </div>
+      {primary && fabVisible && (
+        <button
+          type="button"
+          onClick={primary.run}
+          disabled={primary.disabled}
+          aria-label="Continue"
+          className="fixed bottom-6 right-6 z-20 flex h-14 w-14 items-center justify-center rounded-full bg-sky-600 text-white shadow-lg hover:bg-sky-500 disabled:opacity-50 sm:hidden"
+        >
+          <span className="text-3xl leading-none">›</span>
+        </button>
+      )}
     </div>
   );
 }
