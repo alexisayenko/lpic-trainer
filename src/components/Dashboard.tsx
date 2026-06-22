@@ -161,7 +161,7 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
 
       <hr className="border-slate-700" />
 
-      <div className="space-y-3">
+      <div className="space-y-6">
         {TOOLS_BY_TOPIC.map(({ topic, tools }) => {
           const allOn = tools.every((t) => toolFilter.includes(t));
           const noneOn = tools.every((t) => !toolFilter.includes(t));
