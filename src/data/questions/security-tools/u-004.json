@@ -1,14 +1,14 @@
 {
   "id": "security-tools-u004",
-  "tool": "security-tools",
-  "prompt": "With fail2ban, what is a 'jail'?",
+  "tool": "fail2ban",
+  "prompt": "With `fail2ban`, what is a 'jail'?",
   "choices": [
-    "The chroot environment in which fail2ban runs",
+    "The chroot environment in which `fail2ban` runs",
     "A group of services monitored for similar attack patterns",
     "A netfilter rules chain blocking offending IPs for a service",
     "A filter definition together with one or more actions to take when the filter matches"
   ],
   "answerIndex": 3,
-  "explanation": "A fail2ban jail pairs a log filter with the action(s) to run when the filter matches.",
+  "explanation": "A `fail2ban` jail pairs a log filter with the action(s) to run when the filter matches.",
   "origin": "ken-adams"
 }

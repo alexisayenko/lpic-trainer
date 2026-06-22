@@ -1,6 +1,6 @@
 {
   "id": "ftp-g005",
-  "tool": "ftp",
+  "tool": "ftp-other",
   "prompt": "Stephanie, a system administrator, is trying to understand the difference between passive and active FTP modes. She's reading that passive mode is often more firewall-friendly for clients. In a passive FTP connection, which of the following happens?",
   "choices": [
     "The server initiates the data connection to the client from port `20`",

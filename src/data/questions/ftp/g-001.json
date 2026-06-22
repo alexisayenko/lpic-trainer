@@ -1,6 +1,6 @@
 {
   "id": "ftp-g001",
-  "tool": "ftp",
+  "tool": "pureftpd",
   "prompt": "Mark is starting the Pure-FTPd server and wants to ensure that only clients with a valid user account on the system can connect. Which command line option should Mark use to enforce this behavior?",
   "choices": [
     "`pure-ftpd -l unix`",

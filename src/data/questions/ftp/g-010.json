@@ -1,6 +1,6 @@
 {
   "id": "ftp-g010",
-  "tool": "ftp",
+  "tool": "vsftpd",
   "prompt": "Emily, a system administrator, is configuring an FTP server using vsftpd. She wants to ensure that users can't browse the files above their home directories. Which directive should Emily set in the `vsftpd.conf` to enforce this behavior?",
   "choices": [
     "`local_root=YES`",

@@ -1,6 +1,6 @@
 {
   "id": "security-tools-u006",
-  "tool": "security-tools",
+  "tool": "nc",
   "type": "multi",
   "prompt": "Which tools can be used to connect to and interact with remote TCP network services? (Choose two.)",
   "choices": [

@@ -127,7 +127,7 @@ export const useStore = create<State>()(
     }),
     {
       name: 'lpic-trainer-state',
-      version: 10,
+      version: 11,
       // v0/v1: answer records gained a stable `id`, and the result/source
       // filters were added. v3: the result filter became mastery buckets —
       // 'unseen' carries over, anything else falls back to 'all'. v4:
@@ -141,6 +141,8 @@ export const useStore = create<State>()(
       // maps to '1 day' (closest to the old ~21h), false/missing to null.
       // v9: added the `cardView` switcher — missing/invalid maps to 'full'.
       // v10: added `topicsExpanded` for the tool-filter region — missing maps to true.
+      // v11: the `ftp` and `security-tools` tools were split per-utility — any
+      // selected old slug expands to its replacement slugs in `toolFilter`.
       // When adding new persisted fields or filter values, bump `version` and
       // append a `if (version < N)` block — earlier blocks must keep working
       // on data shaped by every prior version.
@@ -190,6 +192,18 @@ export const useStore = create<State>()(
         }
         if (version < 10) {
           s.topicsExpanded = typeof s.topicsExpanded === 'boolean' ? s.topicsExpanded : true;
+        }
+        if (version < 11 && Array.isArray(s.toolFilter)) {
+          const split: Record<string, string[]> = {
+            ftp: ['vsftpd', 'pureftpd', 'ftp-other'],
+            'security-tools': ['nmap', 'nc', 'fail2ban', 'security-other'],
+          };
+          const next = new Set<string>();
+          for (const t of s.toolFilter as string[]) {
+            if (split[t]) split[t].forEach((x) => next.add(x));
+            else next.add(t);
+          }
+          s.toolFilter = [...next];
         }
         return s as State;
       },

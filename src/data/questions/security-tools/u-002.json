@@ -1,6 +1,6 @@
 {
   "id": "security-tools-u002",
-  "tool": "security-tools",
+  "tool": "nmap",
   "type": "multi",
   "prompt": "Which nmap parameters scan a target for open TCP ports? (Choose two.)",
   "choices": [

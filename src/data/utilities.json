@@ -20,9 +20,14 @@
   "sieve": {"topic":"211","label":"Sieve"},
   "procmail": {"topic":"211","label":"procmail"},
   "iptables": {"topic":"212","label":"iptables / routing"},
-  "security-tools": {"topic":"212","label":"Security tools (nmap / nc / fail2ban)"},
+  "nmap": {"topic":"212","label":"nmap"},
+  "nc": {"topic":"212","label":"netcat / nc"},
+  "fail2ban": {"topic":"212","label":"fail2ban"},
+  "security-other": {"topic":"212","label":"Other security tools"},
   "ssh": {"topic":"212","label":"OpenSSH"},
   "openvpn": {"topic":"212","label":"OpenVPN"},
   "openssl": {"topic":"212","label":"OpenSSL"},
-  "ftp": {"topic":"212","label":"FTP (vsftpd / Pure-FTPd)"}
+  "vsftpd": {"topic":"212","label":"vsftpd"},
+  "pureftpd": {"topic":"212","label":"Pure-FTPd"},
+  "ftp-other": {"topic":"212","label":"FTP"}
 }

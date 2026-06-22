@@ -1,7 +1,7 @@
 {
   "id": "security-tools-u005",
-  "tool": "security-tools",
-  "prompt": "Using its standard configuration, how does fail2ban block offending SSH clients?",
+  "tool": "fail2ban",
+  "prompt": "Using its standard configuration, how does `fail2ban` block offending SSH clients?",
   "choices": [
     "By modifying the sshd configuration",
     "By modifying the TCP Wrapper configuration for sshd",
@@ -10,6 +10,6 @@
     "By creating null routes for the client"
   ],
   "answerIndex": 2,
-  "explanation": "fail2ban bans clients by adding netfilter/iptables rules that drop their traffic.",
+  "explanation": "`fail2ban` bans clients by adding `netfilter`/`iptables` rules that drop their traffic.",
   "origin": "ken-adams"
 }
