@@ -7,7 +7,7 @@
     "`NameVirtualHost *:80` indicates that all name-based virtual hosts will listen on port `80`",
     "Each virtual host can service requests for a single hostname only",
     "You must configure a different IP address for each virtual host",
-    "It is necessary to create a VirtualHost block for the main host",
+    "It is necessary to create a `VirtualHost` block for the main host",
     "A `Listen` directive is required for each virtual host"
   ],
   "answerIndex": 0,
