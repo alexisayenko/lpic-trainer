@@ -287,5 +287,8 @@
     "prompt": "Which Dovecot setting, when set to `yes`, blocks cleartext password logins on unencrypted connections? (parameter name only)",
     "answer": "disable_plaintext_auth",
     "explanation": "`disable_plaintext_auth = yes` refuses plaintext authentication unless the connection is secured by SSL/TLS.","origin":"claude-lpic2book"
-  }
+  },
+  {"id":"book-211-019","tool":"postfix","type":"single","objective":"211.1","difficulty":"applied","prompt":"In the Postfix queue directory `/var/spool/postfix`, which subdirectory holds messages submitted locally (via `sendmail`) that are waiting to be picked up?","choices":["`maildrop`","`active`","`deferred`","`corrupt`"],"answerIndex":0,"explanation":"Locally submitted mail lands in the `maildrop` queue, from which the `pickup` daemon collects it for processing.","origin":"claude-lpic2book"},
+  {"id":"book-211-020","tool":"postfix","type":"single","objective":"211.1","difficulty":"recall","prompt":"Which subdirectory of `/var/spool/postfix` stores messages that could not be delivered yet and are awaiting a later retry?","choices":["`deferred`","`incoming`","`active`","`maildrop`"],"answerIndex":0,"explanation":"Messages whose delivery failed temporarily are moved to the `deferred` queue and retried according to Postfix's backoff schedule.","origin":"claude-lpic2book"},
+  {"id":"book-211-021","tool":"postfix","type":"multi","objective":"211.1","difficulty":"applied","prompt":"Which of the following are real subdirectories of the Postfix spool `/var/spool/postfix`? (Choose three.)","choices":["`incoming`","`active`","`deferred`","`outbox`","`sent`"],"answerIndices":[0,1,2],"explanation":"Postfix uses `incoming`, `active`, `deferred` (plus `maildrop`, `hold`, `corrupt`) as queue directories; `outbox` and `sent` are mail-client concepts, not Postfix queues.","origin":"claude-lpic2book"}
 ]

@@ -12,6 +12,8 @@
   "dhcp": {"topic":"210","label":"DHCP"},
   "pam-sss": {"topic":"210","label":"PAM & SSSD"},
   "ldap": {"topic":"210","label":"OpenLDAP"},
+  "arp": {"topic":"210","label":"arp"},
+  "radvd": {"topic":"210","label":"radvd"},
   "postfix": {"topic":"211","label":"Postfix"},
   "smtp": {"topic":"211","label":"SMTP"},
   "exim": {"topic":"211","label":"Exim"},
