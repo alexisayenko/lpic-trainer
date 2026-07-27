@@ -21,6 +21,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
   const sourceFilter = useStore((s) => s.sourceFilter);
   const toolFilter = useStore((s) => s.toolFilter);
   const objectiveFilter = useStore((s) => s.objectiveFilter);
+  const weightFilter = useStore((s) => s.weightFilter);
   const dashboardView = useStore((s) => s.dashboardView);
   const notPracticed = useStore((s) => s.notPracticed);
   const recordAnswer = useStore((s) => s.recordAnswer);
@@ -35,7 +36,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
       resultFilter,
       sourceFilter,
       dashboardView === 'objective'
-        ? { by: 'objective', objectives: objectiveFilter }
+        ? { by: 'objective', objectives: objectiveFilter, weights: weightFilter }
         : { by: 'tool', tools: toolFilter },
       notPracticed ? NOT_PRACTICED_MS[notPracticed] : null,
       Date.now(),
@@ -47,7 +48,7 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
         : (q: Question) => topicOf(q) ?? '?';
     return balancedSample(pool, quizSize, groupOf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quizSize, resultFilter, sourceFilter, toolFilter, objectiveFilter, dashboardView, notPracticed]);
+  }, [quizSize, resultFilter, sourceFilter, toolFilter, objectiveFilter, weightFilter, dashboardView, notPracticed]);
 
   // Display order of choices per question, in original-index space. Built once
   // per deck so stored pickedIndex/answerIndices stay in original indices.

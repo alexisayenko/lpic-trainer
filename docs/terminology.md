@@ -96,6 +96,10 @@ reflects the current source; deeper detail lives in
   one box per objective, grouped by topic, with the same multi-select semantics
   as the tool filter. The two views keep independent selections; the active
   view's selection scopes the quiz pool.
+- **Objective weight filter** — multi-select over the LPI weights (2-5) in the
+  filter bar; applies only in the objective view (disabled otherwise) and
+  narrows badges, the available count and the quiz pool by the weight of each
+  question's objective.
 - **Not practiced** — a single-select window (`1h`/`8h`/`1d`/`2d`/`3d`/`1w`, or
   none) that excludes any question attempted within that elapsed time, ANDed with
   the rest, so e.g. "mastery 40 AND not practiced in the last day" is expressible.

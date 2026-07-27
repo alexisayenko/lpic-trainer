@@ -78,6 +78,7 @@ Zustand store persisted to `localStorage` key `lpic-trainer-state`:
 | `sourceFilter` | multi-select of `Origin`s; empty = matches nothing; default = all selected |
 | `toolFilter` | multi-select of tool slugs (grouped by topic in the UI); empty = matches nothing; default = all selected. Applied in the `tool` view |
 | `objectiveFilter` | multi-select of exam-objective codes (`"207.1"`-style, grouped by topic in the UI); empty = matches nothing; default = all selected. Applied in the `objective` view |
+| `weightFilter` | multi-select of LPI weights (`2`/`3`/`4`/`5`); empty = matches nothing; default = all selected. Applied in the `objective` view |
 | `dashboardView` | dashboard grouping mode: `tool` (classic per-tool boxes) or `objective` (per exam objective); each view keeps its own selection |
 | `notPracticed` | single `NotPracticedWindow` (`1h`/`8h`/`1d`/`2d`/`3d`/`5d`/`1w`) or `null` = no restriction |
 | `history` | `AnswerRecord[]` — the full answer log |
@@ -95,7 +96,8 @@ removed with their UI. v<11 expands any selected old tool slug in `toolFilter`
 to its replacements after the `ftp` → `vsftpd`/`pureftpd`/`ftp-other` and
 `security-tools` → `nmap`/`nc`/`fail2ban`/`security-other` splits. v<12 adds the
 objective-focused dashboard view — `dashboardView` defaults to `tool` and
-`objectiveFilter` to every objective.
+`objectiveFilter` to every objective. v<13 adds the objective-weight filter
+defaulting to every weight.
 The topic-selection field (`selectedTopics`) was dropped once the tool filter
 subsumed it; older persisted values are simply ignored.
 
@@ -107,7 +109,9 @@ Building a quiz deck is two stages:
    decides which questions qualify: by the source multi-selection (the
    question's origin must be selected), by the **scope** (a discriminated union:
    the `tool` view passes the tool multi-selection, the `objective` view the
-   objective multi-selection — the question's tool/objective must be selected),
+   objective multi-selection plus the LPI-weight multi-selection — the
+   question's tool/objective (and, in the objective view, its objective's
+   weight) must be selected),
    by the result multi-selection
    (a question matches any selected option — `unseen` = zero attempts; a
    numeric bucket matches questions whose `masteryOf` score equals it, computed
@@ -155,7 +159,9 @@ with a single clock snapshot for consistency.
   as the topic bars) directly below. The Account panel lives bottom-right in
   the footer.
 - **Filters** ([`FilterBar`](../src/components/FilterBar.tsx)) — result, source, and a
-  single-select "Not practiced" window, all rendered as labelled toggle chips. The
+  single-select "Not practiced" window, plus an "Objective weight" multi-select
+  (LPI weights 2-5) that only applies — and is only enabled — in the objective
+  view; all rendered as labelled toggle chips. The
   result filter is unanswered (internal value `unseen`) / the six mastery buckets. The
   filters both narrow the displayed rows **and form the quiz pool**. Tool selection no
   longer lives here — it has moved entirely into the per-topic tool boxes below.

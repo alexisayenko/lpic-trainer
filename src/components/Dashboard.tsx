@@ -58,6 +58,9 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const toggleToolFilter = useStore((s) => s.toggleToolFilter);
   const objectiveFilter = useStore((s) => s.objectiveFilter);
   const toggleObjectiveFilter = useStore((s) => s.toggleObjectiveFilter);
+  const weightFilter = useStore((s) => s.weightFilter);
+  const toggleWeightFilter = useStore((s) => s.toggleWeightFilter);
+  const setWeightFilter = useStore((s) => s.setWeightFilter);
   const dashboardView = useStore((s) => s.dashboardView);
   const setDashboardView = useStore((s) => s.setDashboardView);
   const setResultFilter = useStore((s) => s.setResultFilter);
@@ -86,11 +89,11 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
     const topicPool = QUESTIONS.filter((q) => topicOf(q) !== undefined);
     const scope =
       dashboardView === 'objective'
-        ? ({ by: 'objective', objectives: objectiveFilter } as const)
+        ? ({ by: 'objective', objectives: objectiveFilter, weights: weightFilter } as const)
         : ({ by: 'tool', tools: toolFilter } as const);
     return filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, scope, notPracticedMs, Date.now())
       .length;
-  }, [resultFilter, sourceFilter, toolFilter, objectiveFilter, dashboardView, notPracticedMs, attemptsByQ]);
+  }, [resultFilter, sourceFilter, toolFilter, objectiveFilter, weightFilter, dashboardView, notPracticedMs, attemptsByQ]);
 
   const badgesByTool = useMemo(() => {
     const topicPool = QUESTIONS.filter((q) => topicOf(q) !== undefined);
@@ -118,12 +121,15 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   }, [resultFilter, sourceFilter, notPracticedMs, attemptsByQ]);
 
   const badgesByObjective = useMemo(() => {
+    // The weight filter is applied here (unlike the objective filter, which is
+    // excluded so every box still populates): weight de-selection empties the
+    // matching cards, mirroring how result/source narrow the badge display.
     const pool = filterPool(
       QUESTIONS,
       attemptsByQ,
       resultFilter,
       sourceFilter,
-      { by: 'objective', objectives: ALL_OBJECTIVES },
+      { by: 'objective', objectives: ALL_OBJECTIVES, weights: weightFilter },
       notPracticedMs,
       Date.now(),
     );
@@ -137,7 +143,7 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
     return new Map(
       ALL_OBJECTIVES.map((code) => [code, { code, questions: byObjective.get(code) ?? [] }]),
     );
-  }, [resultFilter, sourceFilter, notPracticedMs, attemptsByQ]);
+  }, [resultFilter, sourceFilter, weightFilter, notPracticedMs, attemptsByQ]);
 
   // Topic-level progress for the objective view, aggregated over the topic's
   // objectives (differs slightly from the tool-based perTopic: a few questions
@@ -255,6 +261,10 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
         toggleSourceFilter={toggleSourceFilter}
         setResultFilter={setResultFilter}
         setSourceFilter={setSourceFilter}
+        weightFilter={weightFilter}
+        toggleWeightFilter={toggleWeightFilter}
+        setWeightFilter={setWeightFilter}
+        weightFilterEnabled={dashboardView === 'objective'}
         notPracticed={notPracticed}
         setNotPracticed={setNotPracticed}
       />

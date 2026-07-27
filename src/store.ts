@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ALL_OBJECTIVES, ALL_TOOLS, MASTERY_BUCKETS, ORIGINS, RESULT_FILTERS } from './types';
+import { ALL_OBJECTIVES, ALL_TOOLS, ALL_WEIGHTS, MASTERY_BUCKETS, ORIGINS, RESULT_FILTERS } from './types';
 import type {
   AnswerRecord,
   DashboardView,
@@ -11,6 +11,7 @@ import type {
   ResultSelection,
   SourceSelection,
   ToolSelection,
+  WeightSelection,
 } from './types';
 
 function newId(): string {
@@ -59,6 +60,16 @@ function toObjectiveSelection(value: unknown): ObjectiveSelection {
   return [...ALL_OBJECTIVES];
 }
 
+function isWeight(x: unknown): x is number {
+  return typeof x === 'number' && ALL_WEIGHTS.includes(x);
+}
+
+/** v13: keep known LPI weights; a missing/legacy value means "everything". */
+function toWeightSelection(value: unknown): WeightSelection {
+  if (Array.isArray(value)) return value.filter(isWeight);
+  return [...ALL_WEIGHTS];
+}
+
 interface State {
   /** Number of questions per quiz; null means "all matching questions". */
   quizSize: number | null;
@@ -70,6 +81,8 @@ interface State {
   toolFilter: ToolSelection;
   /** Restrict the quiz pool (and dashboard view) by exam objective; empty = match nothing. Applied in the 'objective' view. */
   objectiveFilter: ObjectiveSelection;
+  /** Restrict the quiz pool (and dashboard view) by the objective's LPI weight; empty = match nothing. Applied in the 'objective' view. */
+  weightFilter: WeightSelection;
   /** Dashboard grouping mode; each view keeps its own selection (toolFilter / objectiveFilter). */
   dashboardView: DashboardView;
   /** Exclude questions practiced within this window; null = no such restriction. */
@@ -80,10 +93,12 @@ interface State {
   toggleSourceFilter: (o: Origin) => void;
   toggleToolFilter: (tool: string) => void;
   toggleObjectiveFilter: (objective: string) => void;
+  toggleWeightFilter: (weight: number) => void;
   setResultFilter: (sel: ResultSelection) => void;
   setSourceFilter: (sel: SourceSelection) => void;
   setToolFilter: (sel: ToolSelection) => void;
   setObjectiveFilter: (sel: ObjectiveSelection) => void;
+  setWeightFilter: (sel: WeightSelection) => void;
   setDashboardView: (view: DashboardView) => void;
   setNotPracticed: (w: NotPracticedWindow | null) => void;
   recordAnswer: (questionId: string, pickedIndex: number | undefined, correct: boolean) => void;
@@ -99,6 +114,7 @@ export const useStore = create<State>()(
       sourceFilter: [...ORIGINS],
       toolFilter: [...ALL_TOOLS],
       objectiveFilter: [...ALL_OBJECTIVES],
+      weightFilter: [...ALL_WEIGHTS],
       dashboardView: 'tool',
       notPracticed: null,
       history: [],
@@ -127,10 +143,17 @@ export const useStore = create<State>()(
             ? s.objectiveFilter.filter((x) => x !== objective)
             : [...s.objectiveFilter, objective],
         })),
+      toggleWeightFilter: (weight) =>
+        set((s) => ({
+          weightFilter: s.weightFilter.includes(weight)
+            ? s.weightFilter.filter((x) => x !== weight)
+            : [...s.weightFilter, weight],
+        })),
       setResultFilter: (resultFilter) => set({ resultFilter }),
       setSourceFilter: (sourceFilter) => set({ sourceFilter }),
       setToolFilter: (toolFilter) => set({ toolFilter }),
       setObjectiveFilter: (objectiveFilter) => set({ objectiveFilter }),
+      setWeightFilter: (weightFilter) => set({ weightFilter }),
       setDashboardView: (dashboardView) => set({ dashboardView }),
       setNotPracticed: (notPracticed) => set({ notPracticed }),
       recordAnswer: (questionId, pickedIndex, correct) =>
@@ -141,7 +164,7 @@ export const useStore = create<State>()(
     }),
     {
       name: 'lpic-trainer-state',
-      version: 12,
+      version: 13,
       // v0/v1: answer records gained a stable `id`, and the result/source
       // filters were added. v3: the result filter became mastery buckets —
       // 'unseen' carries over, anything else falls back to 'all'. v4:
@@ -159,6 +182,7 @@ export const useStore = create<State>()(
       // selected old slug expands to its replacement slugs in `toolFilter`.
       // v12: added the objective-focused dashboard view — `dashboardView`
       // defaults to 'tool' and `objectiveFilter` to every objective.
+      // v13: added the objective-weight filter defaulting to every weight.
       // When adding new persisted fields or filter values, bump `version` and
       // append a `if (version < N)` block — earlier blocks must keep working
       // on data shaped by every prior version.
@@ -171,6 +195,7 @@ export const useStore = create<State>()(
           sourceFilter?: unknown;
           toolFilter?: unknown;
           objectiveFilter?: unknown;
+          weightFilter?: unknown;
           dashboardView?: unknown;
           notPracticed?: unknown;
           unseenToday?: unknown;
@@ -218,6 +243,9 @@ export const useStore = create<State>()(
         if (version < 12) {
           s.objectiveFilter = toObjectiveSelection(s.objectiveFilter);
           s.dashboardView = s.dashboardView === 'objective' ? 'objective' : 'tool';
+        }
+        if (version < 13) {
+          s.weightFilter = toWeightSelection(s.weightFilter);
         }
         return s as State;
       },

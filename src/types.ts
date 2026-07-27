@@ -175,6 +175,14 @@ export const OBJECTIVES_BY_TOPIC: { topic: Topic; objectives: string[] }[] = ALL
   }),
 );
 
+/** Selected LPI weights (objective view only); empty array matches nothing. */
+export type WeightSelection = number[];
+
+/** Every distinct LPI weight, ascending — the source for the weight filter and migrations. */
+export const ALL_WEIGHTS: number[] = [...new Set(ALL_OBJECTIVES.map((c) => OBJECTIVES[c].weight))].sort(
+  (a, b) => a - b,
+);
+
 /** The dashboard's grouping mode: cards per tool (classic) or per exam objective. */
 export type DashboardView = 'tool' | 'objective';
 

@@ -1,5 +1,6 @@
 import { ToggleChip } from './ToggleChip';
 import {
+  ALL_WEIGHTS,
   NOT_PRACTICED_WINDOWS,
   ORIGINS,
   ORIGIN_LABELS,
@@ -10,6 +11,7 @@ import {
   type ResultOption,
   type ResultSelection,
   type SourceSelection,
+  type WeightSelection,
 } from '../types';
 
 export function FilterBar({
@@ -19,6 +21,10 @@ export function FilterBar({
   toggleSourceFilter,
   setResultFilter,
   setSourceFilter,
+  weightFilter,
+  toggleWeightFilter,
+  setWeightFilter,
+  weightFilterEnabled,
   notPracticed,
   setNotPracticed,
 }: Readonly<{
@@ -28,11 +34,17 @@ export function FilterBar({
   toggleSourceFilter: (o: Origin) => void;
   setResultFilter: (sel: ResultSelection) => void;
   setSourceFilter: (sel: SourceSelection) => void;
+  weightFilter: WeightSelection;
+  toggleWeightFilter: (w: number) => void;
+  setWeightFilter: (sel: WeightSelection) => void;
+  /** The weight filter only applies in the objective view; disabled otherwise. */
+  weightFilterEnabled: boolean;
   notPracticed: NotPracticedWindow | null;
   setNotPracticed: (w: NotPracticedWindow | null) => void;
 }>) {
   const allResults = resultFilter.length === RESULT_FILTERS.length;
   const allSources = sourceFilter.length === ORIGINS.length;
+  const allWeights = weightFilter.length === ALL_WEIGHTS.length;
   return (
     <div className="filter-groups space-y-3">
       <div className="filter-row grid items-start gap-x-2 gap-y-1.5">
@@ -62,6 +74,30 @@ export function FilterBar({
           allSelected={allSources}
           onClick={() => setSourceFilter(allSources ? [] : [...ORIGINS])}
         />
+      </div>
+      <div
+        className={`filter-row grid items-start gap-x-2 gap-y-1.5 ${weightFilterEnabled ? '' : 'opacity-40'}`}
+        title={weightFilterEnabled ? undefined : 'Applies when grouping by objectives'}
+      >
+        <span className="shrink-0 whitespace-nowrap py-1.5 text-sm text-slate-300">Objective weight</span>
+        <div className="filter-chips flex flex-wrap gap-1">
+          {ALL_WEIGHTS.map((w) => (
+            <ToggleChip
+              key={w}
+              on={weightFilter.includes(w)}
+              onClick={() => toggleWeightFilter(w)}
+              disabled={!weightFilterEnabled}
+            >
+              {w}
+            </ToggleChip>
+          ))}
+        </div>
+        {weightFilterEnabled && (
+          <SelectAllButton
+            allSelected={allWeights}
+            onClick={() => setWeightFilter(allWeights ? [] : [...ALL_WEIGHTS])}
+          />
+        )}
       </div>
       <div className="filter-row grid items-start gap-x-2 gap-y-1.5">
         <span className="shrink-0 whitespace-nowrap py-1.5 text-sm text-slate-300">Not practiced</span>

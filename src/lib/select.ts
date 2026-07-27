@@ -1,3 +1,4 @@
+import { OBJECTIVES } from '../types';
 import type {
   AnswerRecord,
   MasteryBucket,
@@ -6,21 +7,25 @@ import type {
   ResultSelection,
   SourceSelection,
   ToolSelection,
+  WeightSelection,
 } from '../types';
 import { masteryOf } from './mastery';
 
 /**
  * The dashboard-view-dependent half of the pool predicate: the tool view
- * narrows by tool slug, the objective view by the question's exam objective.
- * Either way an empty selection matches nothing.
+ * narrows by tool slug, the objective view by the question's exam objective
+ * AND by the objective's LPI weight. Either way an empty selection matches
+ * nothing.
  */
 export type ScopeSelection =
   | { by: 'tool'; tools: ToolSelection }
-  | { by: 'objective'; objectives: ObjectiveSelection };
+  | { by: 'objective'; objectives: ObjectiveSelection; weights: WeightSelection };
 
 function inScope(q: Question, scope: ScopeSelection): boolean {
   if (scope.by === 'tool') return scope.tools.includes(q.tool);
-  return q.objective !== undefined && scope.objectives.includes(q.objective);
+  if (q.objective === undefined || !scope.objectives.includes(q.objective)) return false;
+  const weight = OBJECTIVES[q.objective]?.weight;
+  return weight !== undefined && scope.weights.includes(weight);
 }
 
 /** Latest answer record per question id (last write wins on ties). */
