@@ -31,21 +31,33 @@ import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
 
-/** Hanging-weight outline icon shown before an objective's LPI weight (inherits text color). */
-function WeightIcon() {
+/** Hanging-weight outline badge with the objective's LPI weight inside the body
+ *  (inherits text color); pinned to the top-left corner of each objective card. */
+function WeightBadge({ weight }: Readonly<{ weight: number }>) {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.8"
       strokeLinejoin="round"
       role="img"
-      aria-label="weight"
-      className="inline-block h-3.5 w-3.5 align-[-2px]"
+      aria-label={`weight ${weight}`}
+      className="h-7 w-7"
     >
-      <circle cx="12" cy="6" r="2.5" />
-      <path d="M9.7 8.2 5.2 19a1.7 1.7 0 0 0 1.6 2.3h10.4a1.7 1.7 0 0 0 1.6-2.3L14.3 8.2" />
+      <circle cx="12" cy="5" r="2.3" />
+      <path d="M9.9 7.1 4.8 18.6A1.8 1.8 0 0 0 6.4 21h11.2a1.8 1.8 0 0 0 1.6-2.4L14.1 7.1" />
+      <text
+        x="12"
+        y="17.4"
+        textAnchor="middle"
+        fontSize="9"
+        fontWeight="600"
+        fill="currentColor"
+        stroke="none"
+      >
+        {weight}
+      </text>
     </svg>
   );
 }
@@ -396,21 +408,24 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
                 const { questions } = item;
                 const { title, weight } = OBJECTIVES[code];
                 return (
-                  <fieldset key={code} className="mb-2 w-full break-inside-avoid rounded-md border border-slate-700 px-2 pb-2 pt-0.5">
+                  <fieldset key={code} className="relative mb-2 w-full break-inside-avoid rounded-md border border-slate-700 px-2 pb-2 pt-0.5">
+                    <span
+                      className="absolute -top-3 left-1 text-slate-400"
+                      title={`LPI weight: ${weight}`}
+                    >
+                      <WeightBadge weight={weight} />
+                    </span>
                     <legend className="mx-auto">
                       <ToggleChip
                         on={objectiveFilter.includes(code)}
                         onClick={() => toggleObjectiveFilter(code)}
-                        className="max-w-80 whitespace-normal text-center leading-tight"
+                        className="max-w-72 whitespace-normal text-center leading-tight"
                       >
                         <span className="text-slate-400">{code}</span> {title}{' '}
-                        <span className="whitespace-nowrap text-slate-400">
-                          <WeightIcon /> {weight}
-                        </span>{' '}
                         <span className="text-sky-400">{questions.length}</span>
                       </ToggleChip>
                     </legend>
-                    <div className="mb-1.5 mt-0.5 flex">
+                    <div className="mb-1.5 mt-0.5 flex pl-8">
                       <MiniMasteryBar total={perObjective.get(code)?.total ?? 0} buckets={bucketsByObjective.get(code)} />
                     </div>
                     {questions.length > 0 && (
