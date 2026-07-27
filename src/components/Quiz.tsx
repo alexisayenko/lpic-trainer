@@ -20,6 +20,8 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
   const resultFilter = useStore((s) => s.resultFilter);
   const sourceFilter = useStore((s) => s.sourceFilter);
   const toolFilter = useStore((s) => s.toolFilter);
+  const objectiveFilter = useStore((s) => s.objectiveFilter);
+  const dashboardView = useStore((s) => s.dashboardView);
   const notPracticed = useStore((s) => s.notPracticed);
   const recordAnswer = useStore((s) => s.recordAnswer);
   const history = useStore((s) => s.history);
@@ -32,13 +34,20 @@ export function Quiz({ onExit }: Readonly<{ onExit: () => void }>) {
       attemptsByQuestion(snapshot),
       resultFilter,
       sourceFilter,
-      toolFilter,
+      dashboardView === 'objective'
+        ? { by: 'objective', objectives: objectiveFilter }
+        : { by: 'tool', tools: toolFilter },
       notPracticed ? NOT_PRACTICED_MS[notPracticed] : null,
       Date.now(),
     );
-    return balancedSample(pool, quizSize, (q) => topicOf(q) ?? '?');
+    // Spread the deck evenly over the groups the active view selects by.
+    const groupOf =
+      dashboardView === 'objective'
+        ? (q: Question) => q.objective ?? '?'
+        : (q: Question) => topicOf(q) ?? '?';
+    return balancedSample(pool, quizSize, groupOf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quizSize, resultFilter, sourceFilter, toolFilter, notPracticed]);
+  }, [quizSize, resultFilter, sourceFilter, toolFilter, objectiveFilter, dashboardView, notPracticed]);
 
   // Display order of choices per question, in original-index space. Built once
   // per deck so stored pickedIndex/answerIndices stay in original indices.

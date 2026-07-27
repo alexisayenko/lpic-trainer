@@ -1,5 +1,6 @@
 import topics from './data/topics.json';
 import utilities from './data/utilities.json';
+import objectives from './data/objectives.json';
 
 export type Topic = '207' | '208' | '209' | '210' | '211' | '212';
 
@@ -151,6 +152,31 @@ export const TOOLS_BY_TOPIC: { topic: Topic; tools: string[] }[] = ALL_TOPICS.ma
   topic,
   tools: ALL_TOOLS.filter((tool) => UTILITIES[tool].topic === topic),
 }));
+
+/** Official exam-202 sub-objective metadata (title + weight), keyed by "207.1"-style code. */
+export interface ObjectiveInfo {
+  title: string;
+  weight: number;
+}
+
+export const OBJECTIVES: Record<string, ObjectiveInfo> = objectives as Record<string, ObjectiveInfo>;
+
+/** Selected objective codes; empty array matches nothing. */
+export type ObjectiveSelection = string[];
+
+/** Every objective code, in declaration (= exam) order — the source for the objective filter and migrations. */
+export const ALL_OBJECTIVES: string[] = Object.keys(OBJECTIVES);
+
+/** Objectives grouped under their topic, in topic display order — drives the objective filter rows. */
+export const OBJECTIVES_BY_TOPIC: { topic: Topic; objectives: string[] }[] = ALL_TOPICS.map(
+  (topic) => ({
+    topic,
+    objectives: ALL_OBJECTIVES.filter((code) => code.startsWith(topic)),
+  }),
+);
+
+/** The dashboard's grouping mode: cards per tool (classic) or per exam objective. */
+export type DashboardView = 'tool' | 'objective';
 
 /** Resolve a question's topic from its tool slug via utilities.json. */
 export function topicOf(question: Question): Topic | undefined {

@@ -1,0 +1,23 @@
+{
+  "207.1": { "title": "Basic DNS server configuration", "weight": 3 },
+  "207.2": { "title": "Create and maintain DNS zones", "weight": 3 },
+  "207.3": { "title": "Securing a DNS server", "weight": 2 },
+  "208.1": { "title": "Basic Apache configuration", "weight": 4 },
+  "208.2": { "title": "Apache configuration for HTTPS", "weight": 3 },
+  "208.3": { "title": "Implementing Squid as a caching proxy", "weight": 2 },
+  "208.4": { "title": "Implementing Nginx as a web server and a reverse proxy", "weight": 2 },
+  "209.1": { "title": "Samba Server Configuration", "weight": 5 },
+  "209.2": { "title": "NFS Server Configuration", "weight": 3 },
+  "210.1": { "title": "DHCP configuration", "weight": 2 },
+  "210.2": { "title": "PAM authentication", "weight": 3 },
+  "210.3": { "title": "LDAP client usage", "weight": 2 },
+  "210.4": { "title": "Configuring an OpenLDAP server", "weight": 4 },
+  "211.1": { "title": "Using e-mail servers", "weight": 4 },
+  "211.2": { "title": "Managing E-Mail Delivery", "weight": 2 },
+  "211.3": { "title": "Managing Mailbox Access", "weight": 2 },
+  "212.1": { "title": "Configuring a router", "weight": 3 },
+  "212.2": { "title": "Managing FTP servers", "weight": 2 },
+  "212.3": { "title": "Secure shell (SSH)", "weight": 4 },
+  "212.4": { "title": "Security tasks", "weight": 3 },
+  "212.5": { "title": "OpenVPN", "weight": 2 }
+}

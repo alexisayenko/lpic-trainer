@@ -85,7 +85,17 @@ reflects the current source; deeper detail lives in
 - **Tool filter** — multi-select over tool slugs, grouped by topic in the UI
   (each topic is a row of tool chips under the "LPIC-2 Topics" heading). Replaces
   the old per-topic selection; topic narrowing is just "select all of a topic's
-  tools". Same multi-select semantics.
+  tools". Same multi-select semantics. Applied when the dashboard is in the
+  `tool` view.
+- **Objective** — an official exam-202 sub-objective (`207.1` … `212.5`), with a
+  title and an LPI weight ([`objectives.json`](../src/data/objectives.json)).
+  `Question.objective` carries the code; it is content-based, so a question may
+  belong to a different topic than its tool's (e.g. a TCP-wrappers question in
+  the `nfs` folder is `212.4`).
+- **Objective filter / view** — the dashboard's `Group by: Objectives` mode:
+  one box per objective, grouped by topic, with the same multi-select semantics
+  as the tool filter. The two views keep independent selections; the active
+  view's selection scopes the quiz pool.
 - **Not practiced** — a single-select window (`1h`/`8h`/`1d`/`2d`/`3d`/`1w`, or
   none) that excludes any question attempted within that elapsed time, ANDed with
   the rest, so e.g. "mastery 40 AND not practiced in the last day" is expressible.

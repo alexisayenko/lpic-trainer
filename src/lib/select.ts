@@ -1,5 +1,27 @@
-import type { AnswerRecord, MasteryBucket, Question, ResultSelection, SourceSelection, ToolSelection } from '../types';
+import type {
+  AnswerRecord,
+  MasteryBucket,
+  ObjectiveSelection,
+  Question,
+  ResultSelection,
+  SourceSelection,
+  ToolSelection,
+} from '../types';
 import { masteryOf } from './mastery';
+
+/**
+ * The dashboard-view-dependent half of the pool predicate: the tool view
+ * narrows by tool slug, the objective view by the question's exam objective.
+ * Either way an empty selection matches nothing.
+ */
+export type ScopeSelection =
+  | { by: 'tool'; tools: ToolSelection }
+  | { by: 'objective'; objectives: ObjectiveSelection };
+
+function inScope(q: Question, scope: ScopeSelection): boolean {
+  if (scope.by === 'tool') return scope.tools.includes(q.tool);
+  return q.objective !== undefined && scope.objectives.includes(q.objective);
+}
 
 /** Latest answer record per question id (last write wins on ties). */
 export function lastByQuestion(history: AnswerRecord[]): Map<string, AnswerRecord> {
@@ -29,8 +51,9 @@ export function attemptsFor(history: AnswerRecord[], questionId: string): Answer
 }
 
 /**
- * Narrow a pool by source origin, by tool, and by current mastery bucket (each
- * is a multi-selection — a question matches any selected option; an empty
+ * Narrow a pool by source origin, by scope (tool or exam objective, depending
+ * on the dashboard view), and by current mastery bucket (each is a
+ * multi-selection — a question matches any selected option; an empty
  * selection matches nothing), and optionally to questions not practiced within
  * the last `notPracticedMs` milliseconds (ANDed with the rest; null = no such
  * restriction). Used for the dashboard's "available" count, its per-question
@@ -42,13 +65,13 @@ export function filterPool(
   attempts: Map<string, AnswerRecord[]>,
   result: ResultSelection,
   source: SourceSelection,
-  tools: ToolSelection,
+  scope: ScopeSelection,
   notPracticedMs: number | null,
   now: number,
 ): Question[] {
   return pool.filter((q) => {
     if (!q.origin || !source.includes(q.origin)) return false;
-    if (!tools.includes(q.tool)) return false;
+    if (!inScope(q, scope)) return false;
     const atts = attempts.get(q.id);
     if (notPracticedMs !== null && atts?.some((a) => now - a.ts < notPracticedMs)) return false;
     if (!atts || atts.length === 0) return result.includes('unseen');

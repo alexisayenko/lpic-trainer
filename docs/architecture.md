@@ -76,12 +76,14 @@ Zustand store persisted to `localStorage` key `lpic-trainer-state`:
 | `quizSize` | questions per quiz, or `null` = all matching |
 | `resultFilter` | multi-select of `unseen` and/or mastery buckets (`0`/`20`/`40`/`60`/`80`/`100`); empty = matches nothing; default = all selected |
 | `sourceFilter` | multi-select of `Origin`s; empty = matches nothing; default = all selected |
-| `toolFilter` | multi-select of tool slugs (grouped by topic in the UI); empty = matches nothing; default = all selected |
+| `toolFilter` | multi-select of tool slugs (grouped by topic in the UI); empty = matches nothing; default = all selected. Applied in the `tool` view |
+| `objectiveFilter` | multi-select of exam-objective codes (`"207.1"`-style, grouped by topic in the UI); empty = matches nothing; default = all selected. Applied in the `objective` view |
+| `dashboardView` | dashboard grouping mode: `tool` (classic per-tool boxes) or `objective` (per exam objective); each view keeps its own selection |
 | `notPracticed` | single `NotPracticedWindow` (`1h`/`8h`/`1d`/`2d`/`3d`/`5d`/`1w`) or `null` = no restriction |
 | `history` | `AnswerRecord[]` — the full answer log |
 
 `recordAnswer` appends; `setHistory` replaces (after a sync merge).
-Persist is **version 11**: `migrate` backfills a fresh `id` on legacy records that
+Persist is **version 12**: `migrate` backfills a fresh `id` on legacy records that
 lack one, maps the old result filter (v<3) to the bucket model, splits
 `unseen-today` into its own toggle (v<4), converts the single-value result
 filter to a multi-selection (v<5), re-bases the result/source filters on the
@@ -91,7 +93,9 @@ window — `true` → `1d` (closest to the old ~21h), `false`/missing → `null`
 v9/v10 added a `cardView` switcher and a `topicsExpanded` flag that were later
 removed with their UI. v<11 expands any selected old tool slug in `toolFilter`
 to its replacements after the `ftp` → `vsftpd`/`pureftpd`/`ftp-other` and
-`security-tools` → `nmap`/`nc`/`fail2ban`/`security-other` splits.
+`security-tools` → `nmap`/`nc`/`fail2ban`/`security-other` splits. v<12 adds the
+objective-focused dashboard view — `dashboardView` defaults to `tool` and
+`objectiveFilter` to every objective.
 The topic-selection field (`selectedTopics`) was dropped once the tool filter
 subsumed it; older persisted values are simply ignored.
 
@@ -99,25 +103,30 @@ subsumed it; older persisted values are simply ignored.
 
 Building a quiz deck is two stages:
 
-1. **Eligibility** — `filterPool(pool, attempts, result, source, tools, notPracticedMs, now)`
+1. **Eligibility** — `filterPool(pool, attempts, result, source, scope, notPracticedMs, now)`
    decides which questions qualify: by the source multi-selection (the
-   question's origin must be selected), by the tool multi-selection (the
-   question's tool must be selected), by the result multi-selection
+   question's origin must be selected), by the **scope** (a discriminated union:
+   the `tool` view passes the tool multi-selection, the `objective` view the
+   objective multi-selection — the question's tool/objective must be selected),
+   by the result multi-selection
    (a question matches any selected option — `unseen` = zero attempts; a
    numeric bucket matches questions whose `masteryOf` score equals it, computed
    against the single `now` snapshot), and — when `notPracticedMs` is non-null —
    only questions with no attempt within the last `notPracticedMs` milliseconds
-   (ANDed with the rest). An empty selection in the source/tool/result rows
+   (ANDed with the rest). An empty selection in the source/scope/result rows
    matches nothing.
    The dashboard's "available" count, its per-topic question list, and the quiz
    deck all run the *same* predicate, so they can't diverge. Topic-level
-   narrowing is expressed entirely through the tool filter (tools are grouped by
-   topic in the UI); there is no separate topic-selection step.
+   narrowing is expressed entirely through the active scope selection (tools and
+   objectives are both grouped by topic in the UI); there is no separate
+   topic-selection step.
 2. **Sample & shuffle** — `balancedSample(pool, quizSize, groupOf)` draws up to
-   `quizSize` questions balanced across topics (round-robin over shuffled topic
+   `quizSize` questions balanced across groups (round-robin over shuffled
    groups, redistributing slots from exhausted groups), then returns them in
-   random order. `quizSize` null (or ≥ pool size) takes every eligible question.
-   **Even topic coverage is the only selection bias**: within a topic every
+   random order. The group is the active view's unit: topics in the `tool` view,
+   objectives in the `objective` view. `quizSize` null (or ≥ pool size) takes
+   every eligible question.
+   **Even group coverage is the only selection bias**: within a group every
    eligible question is equally likely, and there is no mastery-, weakness-,
    difficulty-, recency-, or origin-based weighting or ordering. (Choice order
    within each question is independently shuffled at render — `shuffledIndices`.)
@@ -150,6 +159,14 @@ with a single clock snapshot for consistency.
   result filter is unanswered (internal value `unseen`) / the six mastery buckets. The
   filters both narrow the displayed rows **and form the quiz pool**. Tool selection no
   longer lives here — it has moved entirely into the per-topic tool boxes below.
+- **Group-by switcher** — between the filters and the boxes, a `Group by` chip pair
+  (`Tools` / `Objectives`) sets `dashboardView`. The `tool` view shows the classic
+  per-tool boxes; the `objective` view shows one box per official exam objective
+  (21 across the six topics), labelled `<code> <title> (weight: N) <count>` with the
+  LPI weight. Each view keeps its own selection (`toolFilter` / `objectiveFilter`);
+  the active view's selection scopes the quiz pool. Objective captions are long, so
+  that view uses half the columns (`columns-1 sm:columns-2`) — cards roughly 1.5×
+  wider, captions wrapping to two lines — and a denser badge grid (10/14 columns).
 - **Tool boxes** — below the filters, one bordered box per tool, grouped into
   **per-topic rows** (one row per LPIC-2 topic 207–212). Each topic row opens with
   a header line — the topic label on the left, `Select all` / `Clear` actions on the

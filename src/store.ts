@@ -1,9 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ALL_TOOLS, MASTERY_BUCKETS, ORIGINS, RESULT_FILTERS } from './types';
+import { ALL_OBJECTIVES, ALL_TOOLS, MASTERY_BUCKETS, ORIGINS, RESULT_FILTERS } from './types';
 import type {
   AnswerRecord,
+  DashboardView,
   NotPracticedWindow,
+  ObjectiveSelection,
   Origin,
   ResultOption,
   ResultSelection,
@@ -47,6 +49,16 @@ function toToolSelection(value: unknown): ToolSelection {
   return [...ALL_TOOLS];
 }
 
+function isObjective(x: unknown): x is string {
+  return typeof x === 'string' && ALL_OBJECTIVES.includes(x);
+}
+
+/** v12: keep known objective codes; a missing/legacy value means "everything". */
+function toObjectiveSelection(value: unknown): ObjectiveSelection {
+  if (Array.isArray(value)) return value.filter(isObjective);
+  return [...ALL_OBJECTIVES];
+}
+
 interface State {
   /** Number of questions per quiz; null means "all matching questions". */
   quizSize: number | null;
@@ -54,8 +66,12 @@ interface State {
   resultFilter: ResultSelection;
   /** Restrict the quiz pool (and dashboard view) by question origin; empty = match nothing. */
   sourceFilter: SourceSelection;
-  /** Restrict the quiz pool (and dashboard view) by tool; empty = match nothing. */
+  /** Restrict the quiz pool (and dashboard view) by tool; empty = match nothing. Applied in the 'tool' view. */
   toolFilter: ToolSelection;
+  /** Restrict the quiz pool (and dashboard view) by exam objective; empty = match nothing. Applied in the 'objective' view. */
+  objectiveFilter: ObjectiveSelection;
+  /** Dashboard grouping mode; each view keeps its own selection (toolFilter / objectiveFilter). */
+  dashboardView: DashboardView;
   /** Exclude questions practiced within this window; null = no such restriction. */
   notPracticed: NotPracticedWindow | null;
   history: AnswerRecord[];
@@ -63,9 +79,12 @@ interface State {
   toggleResultFilter: (f: ResultOption) => void;
   toggleSourceFilter: (o: Origin) => void;
   toggleToolFilter: (tool: string) => void;
+  toggleObjectiveFilter: (objective: string) => void;
   setResultFilter: (sel: ResultSelection) => void;
   setSourceFilter: (sel: SourceSelection) => void;
   setToolFilter: (sel: ToolSelection) => void;
+  setObjectiveFilter: (sel: ObjectiveSelection) => void;
+  setDashboardView: (view: DashboardView) => void;
   setNotPracticed: (w: NotPracticedWindow | null) => void;
   recordAnswer: (questionId: string, pickedIndex: number | undefined, correct: boolean) => void;
   /** Replace the whole answer log (used after a cloud sync/merge). */
@@ -79,6 +98,8 @@ export const useStore = create<State>()(
       resultFilter: ['unseen', ...MASTERY_BUCKETS],
       sourceFilter: [...ORIGINS],
       toolFilter: [...ALL_TOOLS],
+      objectiveFilter: [...ALL_OBJECTIVES],
+      dashboardView: 'tool',
       notPracticed: null,
       history: [],
       setQuizSize: (quizSize) => set({ quizSize }),
@@ -100,9 +121,17 @@ export const useStore = create<State>()(
             ? s.toolFilter.filter((x) => x !== tool)
             : [...s.toolFilter, tool],
         })),
+      toggleObjectiveFilter: (objective) =>
+        set((s) => ({
+          objectiveFilter: s.objectiveFilter.includes(objective)
+            ? s.objectiveFilter.filter((x) => x !== objective)
+            : [...s.objectiveFilter, objective],
+        })),
       setResultFilter: (resultFilter) => set({ resultFilter }),
       setSourceFilter: (sourceFilter) => set({ sourceFilter }),
       setToolFilter: (toolFilter) => set({ toolFilter }),
+      setObjectiveFilter: (objectiveFilter) => set({ objectiveFilter }),
+      setDashboardView: (dashboardView) => set({ dashboardView }),
       setNotPracticed: (notPracticed) => set({ notPracticed }),
       recordAnswer: (questionId, pickedIndex, correct) =>
         set((s) => ({
@@ -112,7 +141,7 @@ export const useStore = create<State>()(
     }),
     {
       name: 'lpic-trainer-state',
-      version: 11,
+      version: 12,
       // v0/v1: answer records gained a stable `id`, and the result/source
       // filters were added. v3: the result filter became mastery buckets —
       // 'unseen' carries over, anything else falls back to 'all'. v4:
@@ -128,17 +157,21 @@ export const useStore = create<State>()(
       // later removed from the UI (their fields and migrate blocks dropped).
       // v11: the `ftp` and `security-tools` tools were split per-utility — any
       // selected old slug expands to its replacement slugs in `toolFilter`.
+      // v12: added the objective-focused dashboard view — `dashboardView`
+      // defaults to 'tool' and `objectiveFilter` to every objective.
       // When adding new persisted fields or filter values, bump `version` and
       // append a `if (version < N)` block — earlier blocks must keep working
       // on data shaped by every prior version.
       migrate: (state: unknown, version: number) => {
         const s = (state ?? {}) as Omit<
           Partial<State>,
-          'resultFilter' | 'sourceFilter' | 'toolFilter' | 'notPracticed'
+          'resultFilter' | 'sourceFilter' | 'toolFilter' | 'objectiveFilter' | 'dashboardView' | 'notPracticed'
         > & {
           resultFilter?: unknown;
           sourceFilter?: unknown;
           toolFilter?: unknown;
+          objectiveFilter?: unknown;
+          dashboardView?: unknown;
           notPracticed?: unknown;
           unseenToday?: unknown;
         };
@@ -181,6 +214,10 @@ export const useStore = create<State>()(
             else next.add(t);
           }
           s.toolFilter = [...next];
+        }
+        if (version < 12) {
+          s.objectiveFilter = toObjectiveSelection(s.objectiveFilter);
+          s.dashboardView = s.dashboardView === 'objective' ? 'objective' : 'tool';
         }
         return s as State;
       },

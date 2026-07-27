@@ -23,6 +23,15 @@ const TOOL_TOTALS = (() => {
   return m;
 })();
 
+/** Total questions per exam objective — static, computed once from the loaded bank. */
+const OBJECTIVE_TOTALS = (() => {
+  const m = new Map<string, number>();
+  for (const q of QUESTIONS) {
+    if (q.objective) m.set(q.objective, (m.get(q.objective) ?? 0) + 1);
+  }
+  return m;
+})();
+
 export interface TopicStats {
   topic: Topic;
   total: number;
@@ -31,6 +40,12 @@ export interface TopicStats {
 
 export interface ToolStats {
   tool: string;
+  total: number;
+  seen: number;
+}
+
+export interface ObjectiveStats {
+  objective: string;
   total: number;
   seen: number;
 }
@@ -113,5 +128,45 @@ export function useDashboardStats(history: AnswerRecord[]) {
     return m;
   }, [masteryByQ]);
 
-  return { last, attemptsByQ, perTopic, masteryByQ, bucketsByTopic, perTool, bucketsByTool };
+  // Same aggregates keyed by exam objective (questions lacking the field are skipped).
+  const perObjective = useMemo(() => {
+    const seen = new Map<string, number>();
+    for (const rec of last.values()) {
+      const q = byId.get(rec.questionId);
+      if (!q?.objective) continue;
+      seen.set(q.objective, (seen.get(q.objective) ?? 0) + 1);
+    }
+    const m = new Map<string, ObjectiveStats>();
+    for (const [objective, total] of OBJECTIVE_TOTALS) {
+      m.set(objective, { objective, total, seen: seen.get(objective) ?? 0 });
+    }
+    return m;
+  }, [last]);
+
+  const bucketsByObjective = useMemo(() => {
+    const m = new Map<string, Map<number, number>>();
+    for (const [qid, score] of masteryByQ) {
+      const q = byId.get(qid);
+      if (!q?.objective) continue;
+      let b = m.get(q.objective);
+      if (!b) {
+        b = new Map();
+        m.set(q.objective, b);
+      }
+      b.set(score, (b.get(score) ?? 0) + 1);
+    }
+    return m;
+  }, [masteryByQ]);
+
+  return {
+    last,
+    attemptsByQ,
+    perTopic,
+    masteryByQ,
+    bucketsByTopic,
+    perTool,
+    bucketsByTool,
+    perObjective,
+    bucketsByObjective,
+  };
 }

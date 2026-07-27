@@ -6,7 +6,19 @@ import { cloudEnabled } from '../lib/api';
 import { MS_PER_DAY, daysBack, startOfLocalDay } from '../lib/dates';
 import { STRIP_DAYS } from '../lib/mastery';
 import { filterPool } from '../lib/select';
-import { ALL_TOOLS, NOT_PRACTICED_MS, TOOLS_BY_TOPIC, TOPIC_SHORT_LABELS, UTILITIES, questionContext, topicOf, type Question } from '../types';
+import {
+  ALL_OBJECTIVES,
+  ALL_TOOLS,
+  NOT_PRACTICED_MS,
+  OBJECTIVES,
+  OBJECTIVES_BY_TOPIC,
+  TOOLS_BY_TOPIC,
+  TOPIC_SHORT_LABELS,
+  UTILITIES,
+  questionContext,
+  topicOf,
+  type Question,
+} from '../types';
 import { Account } from './Account';
 import { FilterBar } from './FilterBar';
 import { MasteryChip } from './QuestionCardHeader';
@@ -31,9 +43,14 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const toggleSourceFilter = useStore((s) => s.toggleSourceFilter);
   const toolFilter = useStore((s) => s.toolFilter);
   const toggleToolFilter = useStore((s) => s.toggleToolFilter);
+  const objectiveFilter = useStore((s) => s.objectiveFilter);
+  const toggleObjectiveFilter = useStore((s) => s.toggleObjectiveFilter);
+  const dashboardView = useStore((s) => s.dashboardView);
+  const setDashboardView = useStore((s) => s.setDashboardView);
   const setResultFilter = useStore((s) => s.setResultFilter);
   const setSourceFilter = useStore((s) => s.setSourceFilter);
   const setToolFilter = useStore((s) => s.setToolFilter);
+  const setObjectiveFilter = useStore((s) => s.setObjectiveFilter);
   const notPracticed = useStore((s) => s.notPracticed);
   const setNotPracticed = useStore((s) => s.setNotPracticed);
 
@@ -41,18 +58,38 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
 
   const notPracticedMs = notPracticed ? NOT_PRACTICED_MS[notPracticed] : null;
 
-  const { attemptsByQ, perTopic, masteryByQ, bucketsByTopic, perTool, bucketsByTool } =
-    useDashboardStats(history);
+  const {
+    attemptsByQ,
+    perTopic,
+    masteryByQ,
+    bucketsByTopic,
+    perTool,
+    bucketsByTool,
+    perObjective,
+    bucketsByObjective,
+  } = useDashboardStats(history);
 
   const available = useMemo(() => {
     const topicPool = QUESTIONS.filter((q) => topicOf(q) !== undefined);
-    return filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, toolFilter, notPracticedMs, Date.now())
+    const scope =
+      dashboardView === 'objective'
+        ? ({ by: 'objective', objectives: objectiveFilter } as const)
+        : ({ by: 'tool', tools: toolFilter } as const);
+    return filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, scope, notPracticedMs, Date.now())
       .length;
-  }, [resultFilter, sourceFilter, toolFilter, notPracticedMs, attemptsByQ]);
+  }, [resultFilter, sourceFilter, toolFilter, objectiveFilter, dashboardView, notPracticedMs, attemptsByQ]);
 
   const badgesByTool = useMemo(() => {
     const topicPool = QUESTIONS.filter((q) => topicOf(q) !== undefined);
-    const pool = filterPool(topicPool, attemptsByQ, resultFilter, sourceFilter, ALL_TOOLS, notPracticedMs, Date.now());
+    const pool = filterPool(
+      topicPool,
+      attemptsByQ,
+      resultFilter,
+      sourceFilter,
+      { by: 'tool', tools: ALL_TOOLS },
+      notPracticedMs,
+      Date.now(),
+    );
     const byTool = new Map<string, Question[]>();
     for (const q of pool) {
       const arr = byTool.get(q.tool);
@@ -67,6 +104,47 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
     );
   }, [resultFilter, sourceFilter, notPracticedMs, attemptsByQ]);
 
+  const badgesByObjective = useMemo(() => {
+    const pool = filterPool(
+      QUESTIONS,
+      attemptsByQ,
+      resultFilter,
+      sourceFilter,
+      { by: 'objective', objectives: ALL_OBJECTIVES },
+      notPracticedMs,
+      Date.now(),
+    );
+    const byObjective = new Map<string, Question[]>();
+    for (const q of pool) {
+      if (!q.objective) continue;
+      const arr = byObjective.get(q.objective);
+      if (arr) arr.push(q);
+      else byObjective.set(q.objective, [q]);
+    }
+    return new Map(
+      ALL_OBJECTIVES.map((code) => [code, { code, questions: byObjective.get(code) ?? [] }]),
+    );
+  }, [resultFilter, sourceFilter, notPracticedMs, attemptsByQ]);
+
+  // Topic-level progress for the objective view, aggregated over the topic's
+  // objectives (differs slightly from the tool-based perTopic: a few questions
+  // carry an objective from another topic than their tool's).
+  const objectiveTopicStats = useMemo(() => {
+    const m = new Map<string, { total: number; buckets: Map<number, number> }>();
+    for (const { topic, objectives } of OBJECTIVES_BY_TOPIC) {
+      let total = 0;
+      const buckets = new Map<number, number>();
+      for (const code of objectives) {
+        total += perObjective.get(code)?.total ?? 0;
+        for (const [score, n] of bucketsByObjective.get(code) ?? []) {
+          buckets.set(score, (buckets.get(score) ?? 0) + n);
+        }
+      }
+      m.set(topic, { total, buckets });
+    }
+    return m;
+  }, [perObjective, bucketsByObjective]);
+
   const totalAttempts = history.length;
 
   const setTopicTools = (topicTools: string[], on: boolean) => {
@@ -76,6 +154,15 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
       else next.delete(t);
     }
     setToolFilter([...next]);
+  };
+
+  const setTopicObjectives = (topicObjectives: string[], on: boolean) => {
+    const next = new Set(objectiveFilter);
+    for (const o of topicObjectives) {
+      if (on) next.add(o);
+      else next.delete(o);
+    }
+    setObjectiveFilter([...next]);
   };
 
   const overall = useMemo(() => {
@@ -161,6 +248,22 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
 
       <hr className="border-slate-700" />
 
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="w-20 shrink-0 text-slate-300">Group by</span>
+        <div className="flex flex-wrap gap-1">
+          <ToggleChip on={dashboardView === 'tool'} onClick={() => setDashboardView('tool')}>
+            Tools
+          </ToggleChip>
+          <ToggleChip
+            on={dashboardView === 'objective'}
+            onClick={() => setDashboardView('objective')}
+          >
+            Objectives
+          </ToggleChip>
+        </div>
+      </div>
+
+      {dashboardView === 'tool' && (
       <div className="space-y-6">
         {TOOLS_BY_TOPIC.map(({ topic, tools }) => {
           const allOn = tools.every((t) => toolFilter.includes(t));
@@ -230,6 +333,83 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
           );
         })}
       </div>
+      )}
+
+      {dashboardView === 'objective' && (
+      <div className="space-y-6">
+        {OBJECTIVES_BY_TOPIC.map(({ topic, objectives }) => {
+          const allOn = objectives.every((o) => objectiveFilter.includes(o));
+          const noneOn = objectives.every((o) => !objectiveFilter.includes(o));
+          const topicStats = objectiveTopicStats.get(topic);
+          return (
+            <div key={topic} className="space-y-1.5">
+              <div className="flex items-center justify-between gap-2 text-sm">
+                <span className="text-slate-300">
+                  <span className="text-slate-500">{topic}</span> {TOPIC_SHORT_LABELS[topic]}
+                </span>
+                <span className="flex items-center gap-2 text-xs text-slate-400">
+                  <button
+                    type="button"
+                    onClick={() => setTopicObjectives(objectives, true)}
+                    disabled={allOn}
+                    className="underline-offset-4 hover:text-slate-200 hover:underline disabled:opacity-40 disabled:hover:text-slate-400 disabled:hover:no-underline"
+                  >
+                    Select all
+                  </button>
+                  <span className="text-slate-600">·</span>
+                  <button
+                    type="button"
+                    onClick={() => setTopicObjectives(objectives, false)}
+                    disabled={noneOn}
+                    className="underline-offset-4 hover:text-slate-200 hover:underline disabled:opacity-40 disabled:hover:text-slate-400 disabled:hover:no-underline"
+                  >
+                    Clear
+                  </button>
+                </span>
+              </div>
+              <hr className="border-slate-700" />
+              <MasteryBar total={topicStats?.total ?? 0} buckets={topicStats?.buckets} />
+              {/* Objective captions are long — half the columns of the tool view so each card is ~1.5-2x wider. */}
+              <div className="columns-1 gap-2 sm:columns-2">
+              {objectives.map((code) => {
+                const item = badgesByObjective.get(code);
+                if (!item) return null;
+                const { questions } = item;
+                const { title, weight } = OBJECTIVES[code];
+                return (
+                  <fieldset key={code} className="mb-2 w-full break-inside-avoid rounded-md border border-slate-700 px-2 pb-2 pt-0.5">
+                    <legend className="mx-auto">
+                      <ToggleChip
+                        on={objectiveFilter.includes(code)}
+                        onClick={() => toggleObjectiveFilter(code)}
+                        className="max-w-80 whitespace-normal text-center leading-tight"
+                      >
+                        <span className="text-slate-400">{code}</span> {title}{' '}
+                        <span className="whitespace-nowrap text-slate-400">(weight: {weight})</span>{' '}
+                        <span className="text-sky-400">{questions.length}</span>
+                      </ToggleChip>
+                    </legend>
+                    <div className="mb-1.5 mt-0.5 flex">
+                      <MiniMasteryBar total={perObjective.get(code)?.total ?? 0} buckets={bucketsByObjective.get(code)} />
+                    </div>
+                    {questions.length > 0 && (
+                      <div className="grid grid-cols-10 gap-1.5 sm:grid-cols-14">
+                        {questions.map((q) => (
+                          <span key={q.id} title={`${questionContext(q)} [${q.id}]`}>
+                            <MasteryChip score={masteryByQ.get(q.id) ?? null} />
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </fieldset>
+                );
+              })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      )}
 
       <hr className="border-slate-700" />
 
