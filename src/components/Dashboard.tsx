@@ -31,6 +31,25 @@ import logo from '../assets/logo.png';
 
 const PRESETS = [5, 6, 12, 24, 48, 60];
 
+/** Hanging-weight outline icon shown before an objective's LPI weight (inherits text color). */
+function WeightIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinejoin="round"
+      role="img"
+      aria-label="weight"
+      className="inline-block h-3.5 w-3.5 align-[-2px]"
+    >
+      <circle cx="12" cy="6" r="2.5" />
+      <path d="M9.7 8.2 5.2 19a1.7 1.7 0 0 0 1.6 2.3h10.4a1.7 1.7 0 0 0 1.6-2.3L14.3 8.2" />
+    </svg>
+  );
+}
+
 export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
   const token = useAuth((s) => s.token);
   const canQuiz = !cloudEnabled || !!token;
@@ -385,7 +404,9 @@ export function Dashboard({ onStart }: Readonly<{ onStart: () => void }>) {
                         className="max-w-80 whitespace-normal text-center leading-tight"
                       >
                         <span className="text-slate-400">{code}</span> {title}{' '}
-                        <span className="whitespace-nowrap text-slate-400">(weight: {weight})</span>{' '}
+                        <span className="whitespace-nowrap text-slate-400">
+                          <WeightIcon /> {weight}
+                        </span>{' '}
                         <span className="text-sky-400">{questions.length}</span>
                       </ToggleChip>
                     </legend>
