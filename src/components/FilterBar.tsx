@@ -79,7 +79,7 @@ export function FilterBar({
         className={`filter-row grid items-start gap-x-2 gap-y-1.5 ${weightFilterEnabled ? '' : 'opacity-40'}`}
         title={weightFilterEnabled ? undefined : 'Applies when grouping by objectives'}
       >
-        <span className="shrink-0 whitespace-nowrap py-1.5 text-sm text-slate-300">Objective weight</span>
+        <span className="w-20 shrink-0 py-1.5 text-sm text-slate-300">Weight</span>
         <div className="filter-chips flex flex-wrap gap-1">
           {ALL_WEIGHTS.map((w) => (
             <ToggleChip

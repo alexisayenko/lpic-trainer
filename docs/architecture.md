@@ -159,7 +159,7 @@ with a single clock snapshot for consistency.
   as the topic bars) directly below. The Account panel lives bottom-right in
   the footer.
 - **Filters** ([`FilterBar`](../src/components/FilterBar.tsx)) — result, source, and a
-  single-select "Not practiced" window, plus an "Objective weight" multi-select
+  single-select "Not practiced" window, plus a "Weight" multi-select
   (LPI weights 2-5) that only applies — and is only enabled — in the objective
   view; all rendered as labelled toggle chips. The
   result filter is unanswered (internal value `unseen`) / the six mastery buckets. The
