@@ -2,7 +2,7 @@
   "id": "samba-c004",
   "tool": "samba",
   "objective": "209.1",
-  "prompt": "A system administrator wants to mount a Samba share named Backup located on the server smb-server. They also need to provide a username admin and password secretpass during the mount process. Which command should they use to mount the share to the directory `/mnt/backup`?",
+  "prompt": "A system administrator wants to mount a Samba share named `Backup` located on the server `smb-server`. They also need to provide a username `admin` and password `secretpass` during the mount process. Which command should they use to mount the share to the directory `/mnt/backup`?",
   "choices": [
     "`mount -t cifs -o username=admin,password=secretpass //smb-server/Backup /mnt/backup`",
     "`mount -t nfs -o user=admin,pass=secretpass //smb-server/Backup /mnt/backup`",

@@ -2,7 +2,7 @@
   "id": "samba-c031",
   "tool": "samba",
   "objective": "209.1",
-  "prompt": "While troubleshooting a connectivity issue with a remote Samba server, the administrator decides to use the `smbclient` tool to list all available shares on the server named file-server. Which of the following commands will accomplish this?",
+  "prompt": "While troubleshooting a connectivity issue with a remote Samba server, the administrator decides to use the `smbclient` tool to list all available shares on the server named `file-server`. Which of the following commands will accomplish this?",
   "choices": [
     "`smbclient -U file-server`",
     "`smbclient -L file-server`",

@@ -2,7 +2,7 @@
   "id": "samba-c023",
   "tool": "samba",
   "objective": "209.1",
-  "prompt": "A user requests a \"hidden\" Samba share, named confidential, similar to the Windows Administration Share. How can this be configured?",
+  "prompt": "A user requests a \"hidden\" Samba share, named `confidential`, similar to the Windows Administration Share. How can this be configured?",
   "choices": [
     "`[confidential]` with `hidden = yes`",
     "`[.confidential]`",

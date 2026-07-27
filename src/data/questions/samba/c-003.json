@@ -2,7 +2,7 @@
   "id": "samba-c003",
   "tool": "samba",
   "objective": "209.1",
-  "prompt": "An administrator is troubleshooting a Samba issue and is looking for detailed logs from the nmbd daemon. Which file within `/var/log/samba/` would typically hold these logs?",
+  "prompt": "An administrator is troubleshooting a Samba issue and is looking for detailed logs from the `nmbd` daemon. Which file within `/var/log/samba/` would typically hold these logs?",
   "choices": [
     "`smbd.log`",
     "`samba.log`",
@@ -10,6 +10,6 @@
     "`winbindd.log`"
   ],
   "answerIndex": 2,
-  "explanation": "Logs for the nmbd daemon are written to `nmbd.log` (also seen as `log.nmbd`) within `/var/log/samba/`.",
+  "explanation": "Logs for the `nmbd` daemon are written to `nmbd.log` (also seen as `log.nmbd`) within `/var/log/samba/`.",
   "origin": "linux-direct"
 }

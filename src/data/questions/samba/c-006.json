@@ -2,7 +2,7 @@
   "id": "samba-c006",
   "tool": "samba",
   "objective": "209.1",
-  "prompt": "An administrator is attempting to mount a Samba share from a remote server with the IP address `192.168.2.15`. The share is named Projects, and the administrator wishes to mount it to the `/mnt/projects` directory on the local system. Which of the following commands would correctly achieve this?",
+  "prompt": "An administrator is attempting to mount a Samba share from a remote server with the IP address `192.168.2.15`. The share is named `Projects`, and the administrator wishes to mount it to the `/mnt/projects` directory on the local system. Which of the following commands would correctly achieve this?",
   "choices": [
     "`mount -t cifs /mnt/projects //192.168.2.15/Projects`",
     "`mount -t cifs //192.168.2.15/Projects /mnt/projects`",

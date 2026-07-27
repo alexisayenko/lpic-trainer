@@ -6,7 +6,7 @@
   "choices": [
     "It comments out the mapping line so it is ignored",
     "It tells Samba to stop processing the rest of the `username map` file once this entry matches",
-    "It inverts the mapping so root is mapped to admin instead",
+    "It inverts the mapping so `root` is mapped to `admin` instead",
     "It marks the mapping as case-insensitive"
   ],
   "answerIndex": 1,
