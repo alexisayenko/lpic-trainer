@@ -162,7 +162,7 @@ with a single clock snapshot for consistency.
 - **Group-by switcher** — between the filters and the boxes, a `Group by` chip pair
   (`Tools` / `Objectives`) sets `dashboardView`. The `tool` view shows the classic
   per-tool boxes; the `objective` view shows one box per official exam objective
-  (21 across the six topics), labelled `<code> <title> <count>` (a hanging-weight corner badge carries the
+  (21 across the six topics), labelled `<code> <title> <count>` (a matching non-interactive chip left of the caption carries the
   LPI weight. Each view keeps its own selection (`toolFilter` / `objectiveFilter`);
   the active view's selection scopes the quiz pool. Objective captions are long, so
   that view uses half the columns (`columns-1 sm:columns-2`) — cards roughly 1.5×
