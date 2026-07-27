@@ -10,6 +10,6 @@
     "`exportfs -l`"
   ],
   "answerIndex": 0,
-  "explanation": "`rpcinfo -p localhost` lists all RPC services registered with the portmapper on the local host.",
+  "explanation": "`rpcinfo -p localhost` lists all RPC services registered with the `portmapper` on the local host.",
   "origin": "linux-direct"
 }

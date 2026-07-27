@@ -2,7 +2,7 @@
   "id": "apache2-b029",
   "tool": "apache2",
   "objective": "208.1",
-  "prompt": "You have been asked to restrict access to a directory named \"private\" on your Apache server. You want to use an external file to specify which users can access this directory. Which file is commonly used to define authorized users in conjunction with the `Require` directive?",
+  "prompt": "You have been asked to restrict access to a directory named `private` on your Apache server. You want to use an external file to specify which users can access this directory. Which file is commonly used to define authorized users in conjunction with the `Require` directive?",
   "choices": [
     "`.htaccess`",
     "`.htpasswd`",

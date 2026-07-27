@@ -21,7 +21,7 @@
     "type": "single",
     "objective": "211.1",
     "difficulty": "applied",
-    "prompt": "An admin wants all outgoing mail handed off to the ISP's server mail.example.com instead of being delivered directly. Which setting accomplishes this?",
+    "prompt": "An admin wants all outgoing mail handed off to the ISP's server `mail.example.com` instead of being delivered directly. Which setting accomplishes this?",
     "choices": [
       "`mydestination = mail.example.com`",
       "`myorigin = mail.example.com`",
@@ -157,7 +157,7 @@
       "`vrfy_command = disabled`"
     ],
     "answerIndex": 1,
-    "explanation": "`disable_vrfy_command = yes` turns off VRFY so recipient addresses cannot be enumerated.","origin":"claude-lpic2book"
+    "explanation": "`disable_vrfy_command = yes` turns off `VRFY` so recipient addresses cannot be enumerated.","origin":"claude-lpic2book"
   },
   {
     "id": "book-211-011",

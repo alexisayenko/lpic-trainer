@@ -69,7 +69,7 @@
     "type": "fill",
     "objective": "209.1",
     "difficulty": "applied",
-    "prompt": "Give the exact command used to add a Samba password for an existing local user named alice.",
+    "prompt": "Give the exact command used to add a Samba password for an existing local user named `alice`.",
     "answer": "smbpasswd -a alice",
     "explanation": "`smbpasswd` adds or updates Samba passwords for local users, and `-a` adds the user to Samba.",
     "origin": "gpt-deep-research",

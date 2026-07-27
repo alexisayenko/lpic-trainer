@@ -2,7 +2,7 @@
   "id": "ftp-g003",
   "tool": "vsftpd",
   "objective": "212.2",
-  "prompt": "Jenna, a system administrator, is configuring the vsftpd server on her Linux machine. She wants to ensure that users cannot see the files of other users. Which configuration directive in the `vsftpd.conf` file should Jenna modify?",
+  "prompt": "Jenna, a system administrator, is configuring the `vsftpd` server on her Linux machine. She wants to ensure that users cannot see the files of other users. Which configuration directive in the `vsftpd.conf` file should Jenna modify?",
   "choices": [
     "`local_enable`",
     "`chroot_local_user`",

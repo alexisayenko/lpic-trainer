@@ -2,7 +2,7 @@
   "id": "apache2-b021",
   "tool": "apache2",
   "objective": "208.1",
-  "prompt": "You've been tasked with creating a password for a user named \"jdoe\" for client authentication on your Apache server. Which utility would you use to generate the encrypted password and store it in a `.htpasswd` file?",
+  "prompt": "You've been tasked with creating a password for a user named `jdoe` for client authentication on your Apache server. Which utility would you use to generate the encrypted password and store it in a `.htpasswd` file?",
   "choices": [
     "`passwd`",
     "`htpasswd`",

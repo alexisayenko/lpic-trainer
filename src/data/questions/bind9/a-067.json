@@ -2,7 +2,7 @@
   "id": "bind9-a067",
   "tool": "bind9",
   "objective": "207.1",
-  "prompt": "After making changes to a specific zone file in BIND, Alex wants to reload just that specific zone rather than reloading all zones. Which rndc command can he use?",
+  "prompt": "After making changes to a specific zone file in BIND, Alex wants to reload just that specific zone rather than reloading all zones. Which `rndc` command can he use?",
   "choices": [
     "`rndc flush example.com`",
     "`rndc reload example.com`",

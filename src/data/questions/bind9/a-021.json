@@ -2,14 +2,14 @@
   "id": "bind9-a021",
   "tool": "bind9",
   "objective": "207.3",
-  "prompt": "How would you run named within a chroot prison as the nobody user and group?",
+  "prompt": "How would you run `named` within a chroot prison as the `nobody` user and group?",
   "choices": [
     "`named --chroot /var/named/root --user nobody`",
-    "Invoke named with \"`named -t /var/named/root -u nobody`\"",
+    "Invoke `named` with \"`named -t /var/named/root -u nobody`\"",
     "`chroot /var/named/root named -nobody`",
     "`named -j /var/named/root -g nobody`"
   ],
   "answerIndex": 1,
-  "explanation": "The `-t` option sets the chroot directory and the `-u` option sets the user named runs as: `named -t /var/named/root -u nobody`.",
+  "explanation": "The `-t` option sets the chroot directory and the `-u` option sets the user `named` runs as: `named -t /var/named/root -u nobody`.",
   "origin": "linux-direct"
 }

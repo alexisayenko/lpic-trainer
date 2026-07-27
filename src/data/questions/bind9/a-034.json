@@ -4,10 +4,10 @@
   "objective": "207.3",
   "prompt": "Which of these ways can be used to only allow access to a DNS server from specified networks/hosts?",
   "choices": [
-    "Using the `allow-transfer` statement `{...;};` in the named configuration file.",
-    "Using the `allow-query` statement `{...;};` in the named configuration file.",
-    "Using the `forwarders` statement `{...;};` in the named configuration file.",
-    "Using the `listen-on` statement `{...;};` in the named configuration file."
+    "Using the `allow-transfer` statement `{...;};` in the `named` configuration file.",
+    "Using the `allow-query` statement `{...;};` in the `named` configuration file.",
+    "Using the `forwarders` statement `{...;};` in the `named` configuration file.",
+    "Using the `listen-on` statement `{...;};` in the `named` configuration file."
   ],
   "answerIndex": 1,
   "explanation": "The `allow-query` statement restricts which hosts or networks may send queries to the server.",

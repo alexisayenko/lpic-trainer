@@ -6,7 +6,7 @@
   "choices": [
     "`Squid`",
     "CGI",
-    "lynx",
+    "`lynx`",
     "PHP"
   ],
   "answerIndex": 0,

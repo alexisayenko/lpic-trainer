@@ -2,7 +2,7 @@
   "id": "nginx-b001",
   "tool": "nginx",
   "objective": "208.4",
-  "prompt": "Olivia is setting up an Nginx reverse proxy for an application server. To ensure that the original client's IP address is forwarded to the application server, which directive should she use within the location block?",
+  "prompt": "Olivia is setting up an Nginx reverse proxy for an application server. To ensure that the original client's IP address is forwarded to the application server, which directive should she use within the `location` block?",
   "choices": [
     "`proxy_set_header Host $host;`",
     "`proxy_set_header X-Real-IP $remote_addr;`",

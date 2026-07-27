@@ -6,7 +6,7 @@
   "choices": [
     "Run the program using `chroot` with the option `--static_libs`",
     "Copy the required library into the appropriate `lib` directory inside the chroot jail",
-    "Add the path to the lib directory in the chroot jail to `/etc/ld.so.conf` in the root filesystem",
+    "Add the path to the `lib` directory in the chroot jail to `/etc/ld.so.conf` in the root filesystem",
     "Create a symbolic link that points to the required library outside the chroot jail"
   ],
   "answerIndex": 1,

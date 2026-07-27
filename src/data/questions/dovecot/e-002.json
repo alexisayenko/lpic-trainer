@@ -2,7 +2,7 @@
   "id": "dovecot-e002",
   "tool": "dovecot",
   "objective": "211.3",
-  "prompt": "A user named johndoe reports that he accidentally deleted an important email. You decide to recover it from the backup, but first, you want to know the current UIDs of mails in his mailbox. Which doveadm command can provide you this information?",
+  "prompt": "A user named `johndoe` reports that he accidentally deleted an important email. You decide to recover it from the backup, but first, you want to know the current UIDs of mails in his mailbox. Which `doveadm` command can provide you this information?",
   "choices": [
     "`doveadm fetch -u johndoe uid`",
     "`doveadm search -u johndoe uid`",
@@ -10,6 +10,6 @@
     "`doveconf -u johndoe uid`"
   ],
   "answerIndex": 1,
-  "explanation": "The `doveadm search` command queries a user's mailbox; `doveadm search -u johndoe uid` returns the current UIDs of the mails in johndoe's mailbox.",
+  "explanation": "The `doveadm search` command queries a user's mailbox; `doveadm search -u johndoe uid` returns the current UIDs of the mails in `johndoe`'s mailbox.",
   "origin": "linux-direct"
 }

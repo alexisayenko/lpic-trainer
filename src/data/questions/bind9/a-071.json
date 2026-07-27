@@ -4,12 +4,12 @@
   "objective": "207.1",
   "prompt": "James notices a reference to \"`db.example.com`\" in the zone block of a BIND configuration file. What is the most likely purpose of this reference?",
   "choices": [
-    "It is the IP address of the example.com mail server.",
-    "It is a placeholder name for the zone file of example.com.",
-    "It is the TSIG key name used for example.com.",
-    "It is the hostname of the example.com slave server."
+    "It is the IP address of the `example.com` mail server.",
+    "It is a placeholder name for the zone file of `example.com`.",
+    "It is the TSIG key name used for `example.com`.",
+    "It is the hostname of the `example.com` slave server."
   ],
   "answerIndex": 1,
-  "explanation": "In a zone block the file value such as \"`db.example.com`\" names the zone data (database) file for the example.com domain.",
+  "explanation": "In a zone block the file value such as \"`db.example.com`\" names the zone data (database) file for the `example.com` domain.",
   "origin": "linux-direct"
 }

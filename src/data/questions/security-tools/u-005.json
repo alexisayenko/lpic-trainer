@@ -4,10 +4,10 @@
   "objective": "212.4",
   "prompt": "Using its standard configuration, how does `fail2ban` block offending SSH clients?",
   "choices": [
-    "By modifying the sshd configuration",
-    "By modifying the TCP Wrapper configuration for sshd",
+    "By modifying the `sshd` configuration",
+    "By modifying the TCP Wrapper configuration for `sshd`",
     "By creating and maintaining netfilter rules",
-    "By acting as a proxy in front of sshd",
+    "By acting as a proxy in front of `sshd`",
     "By creating null routes for the client"
   ],
   "answerIndex": 2,

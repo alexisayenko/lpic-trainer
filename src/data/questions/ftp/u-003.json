@@ -3,7 +3,7 @@
   "tool": "vsftpd",
   "type": "multi",
   "objective": "212.2",
-  "prompt": "Which FTP names are recognized as anonymous users in vsftpd when `anonymous_enable=YES`? (Choose two.)",
+  "prompt": "Which FTP names are recognized as anonymous users in `vsftpd` when `anonymous_enable=YES`? (Choose two.)",
   "choices": [
     "`nobody`",
     "`guest`",

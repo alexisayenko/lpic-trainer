@@ -2,7 +2,7 @@
   "id": "apache2-b028",
   "tool": "apache2",
   "objective": "208.1",
-  "prompt": "After setting up a new Apache server, you are integrating mod_perl for executing Perl scripts. To ensure that the scripts are parsed and executed by mod_perl, which directive should you specify in the Apache configuration file?",
+  "prompt": "After setting up a new Apache server, you are integrating `mod_perl` for executing Perl scripts. To ensure that the scripts are parsed and executed by `mod_perl`, which directive should you specify in the Apache configuration file?",
   "choices": [
     "`AddType`",
     "`AddHandler`",
@@ -10,6 +10,6 @@
     "`PerlModule`"
   ],
   "answerIndex": 1,
-  "explanation": "When configuring mod_perl in Apache, the `AddHandler` directive is used to specify that files with a particular extension (e.g., `.pl`) should be handled by mod_perl. This ensures that Perl scripts are parsed and executed by the mod_perl module.",
+  "explanation": "When configuring `mod_perl` in Apache, the `AddHandler` directive is used to specify that files with a particular extension (e.g., `.pl`) should be handled by `mod_perl`. This ensures that Perl scripts are parsed and executed by the `mod_perl` module.",
   "origin": "linux-direct"
 }

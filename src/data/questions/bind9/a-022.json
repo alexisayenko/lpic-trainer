@@ -4,10 +4,10 @@
   "objective": "207.2",
   "prompt": "A zone file SOA reads: \"`example.net. IN SOA dns.pangaea.edu. fred.example.com. (...)`\". Which of the following is true of this entry?",
   "choices": [
-    "The primary name server for example.net is `fred.example.com`.",
-    "You should send an email to `fred@example.com` about any DNS related issues with the example.net domain.",
+    "The primary name server for `example.net` is `fred.example.com`.",
+    "You should send an email to `fred@example.com` about any DNS related issues with the `example.net` domain.",
     "The serial number must be incremented by `dns.pangaea.edu`.",
-    "The example.net zone has no responsible person defined."
+    "The `example.net` zone has no responsible person defined."
   ],
   "answerIndex": 1,
   "explanation": "In the SOA record the second field is the responsible person's email with the first dot replaced by @, so `fred.example.com.` means `fred@example.com`.",

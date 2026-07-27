@@ -2,7 +2,7 @@
   "id": "iptables-f008",
   "tool": "iptables",
   "objective": "212.1",
-  "prompt": "Carlos, a system administrator, has just loaded a new set of iptables rules from the `/etc/iptables/myrules.v4` file on his Ubuntu server. He now wants to apply these rules to the running iptables configuration. Which command will achieve this?",
+  "prompt": "Carlos, a system administrator, has just loaded a new set of `iptables` rules from the `/etc/iptables/myrules.v4` file on his Ubuntu server. He now wants to apply these rules to the running `iptables` configuration. Which command will achieve this?",
   "choices": [
     "`iptables-save < /etc/iptables/myrules.v4`",
     "`iptables --load /etc/iptables/myrules.v4`",

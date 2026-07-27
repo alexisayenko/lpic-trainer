@@ -4,9 +4,9 @@
   "objective": "208.3",
   "prompt": "Which Squid configuration keyword is used to define networks and times when a service can be accessed?",
   "choices": [
-    "permit",
-    "allow",
-    "http_allow",
+    "`permit`",
+    "`allow`",
+    "`http_allow`",
     "`acl`"
   ],
   "answerIndex": 3,

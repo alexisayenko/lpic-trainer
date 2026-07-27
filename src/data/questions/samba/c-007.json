@@ -10,6 +10,6 @@
     "`restrict to = +Finance`"
   ],
   "answerIndex": 1,
-  "explanation": "The `valid users` parameter restricts access to a share; prefixing a name with `@` specifies a group, so `@Finance` limits access to members of the Finance group.",
+  "explanation": "The `valid users` parameter restricts access to a share; prefixing a name with `@` specifies a group, so `@Finance` limits access to members of the `Finance` group.",
   "origin": "linux-direct"
 }

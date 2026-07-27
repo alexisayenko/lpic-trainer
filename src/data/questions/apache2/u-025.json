@@ -3,9 +3,9 @@
   "tool": "apache2",
   "type": "multi",
   "objective": "208.1",
-  "prompt": "During startup, Apache reports it cannot resolve any VirtualHost entries. What could cause this? (Choose two.)",
+  "prompt": "During startup, Apache reports it cannot resolve any `VirtualHost` entries. What could cause this? (Choose two.)",
   "choices": [
-    "The VirtualHost directives are incorrect in httpd.conf",
+    "The `VirtualHost` directives are incorrect in `httpd.conf`",
     "The Apache process died before the virtual hosts were configured",
     "The network is up but name resolution is not running yet, so Apache cannot DNS-check the virtual hosts",
     "The network is not yet configured, so Apache cannot DNS-check the virtual hosts"

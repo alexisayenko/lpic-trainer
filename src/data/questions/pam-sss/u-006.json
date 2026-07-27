@@ -10,6 +10,6 @@
     "`auth try_first_pass nullok, require pam_unix.so`"
   ],
   "answerIndex": 1,
-  "explanation": "A pam.d line is `<type> <control> <module> [args]`, e.g. `auth required pam_unix.so try_first_pass nullok`.",
+  "explanation": "A `pam.d` line is `<type> <control> <module> [args]`, e.g. `auth required pam_unix.so try_first_pass nullok`.",
   "origin": "ken-adams"
 }

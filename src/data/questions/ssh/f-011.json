@@ -2,7 +2,7 @@
   "id": "ssh-f011",
   "tool": "ssh",
   "objective": "212.3",
-  "prompt": "Tom, a system administrator, wants to restrict SSH access to a specific user named \"johndoe\". Which file should Tom edit to specifically deny SSH access for user \"johndoe\"?",
+  "prompt": "Tom, a system administrator, wants to restrict SSH access to a specific user named `johndoe`. Which file should Tom edit to specifically deny SSH access for user `johndoe`?",
   "choices": [
     "`/etc/ssh/ssh_config`",
     "`/etc/ssh/sshd_config`",
@@ -10,6 +10,6 @@
     "`/etc/hosts.deny`"
   ],
   "answerIndex": 1,
-  "explanation": "The `/etc/ssh/sshd_config` is the OpenSSH server configuration file. By editing this file and adding a directive such as `DenyUsers johndoe`, Tom can deny SSH access to the user \"johndoe\".",
+  "explanation": "The `/etc/ssh/sshd_config` is the OpenSSH server configuration file. By editing this file and adding a directive such as `DenyUsers johndoe`, Tom can deny SSH access to the user `johndoe`.",
   "origin": "linux-direct"
 }

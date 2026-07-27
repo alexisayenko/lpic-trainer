@@ -2,7 +2,7 @@
   "id": "bind9-a046",
   "tool": "bind9",
   "objective": "207.3",
-  "prompt": "Jennifer wants to verify that the named service runs as a non-root user. Which of the following entries should she look for in the `/etc/passwd` file?",
+  "prompt": "Jennifer wants to verify that the `named` service runs as a non-root user. Which of the following entries should she look for in the `/etc/passwd` file?",
   "choices": [
     "`named:x:0:0:DNS BIND User:/var/named:/bin/bash`",
     "`named:x:125:129:DNS BIND User:/var/named:/bin/false`",

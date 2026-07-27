@@ -2,7 +2,7 @@
   "id": "iptables-u006",
   "tool": "iptables",
   "objective": "212.1",
-  "prompt": "Which netfilter table contains the built-in chains INPUT, OUTPUT and FORWARD?",
+  "prompt": "Which netfilter table contains the built-in chains `INPUT`, `OUTPUT` and `FORWARD`?",
   "choices": [
     "`filter`",
     "`ipconn`",
@@ -11,6 +11,6 @@
     "`nat`"
   ],
   "answerIndex": 0,
-  "explanation": "The `filter` table holds the INPUT, OUTPUT, and FORWARD chains.",
+  "explanation": "The `filter` table holds the `INPUT`, `OUTPUT`, and `FORWARD` chains.",
   "origin": "ken-adams"
 }

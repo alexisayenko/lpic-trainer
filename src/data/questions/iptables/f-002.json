@@ -2,7 +2,7 @@
   "id": "iptables-f002",
   "tool": "iptables",
   "objective": "212.1",
-  "prompt": "As the lead network engineer at GammaCorp, you've received a request to ensure that all incoming SSH traffic (port `22`) from the IP address `192.168.1.10` is blocked. Which iptables rule will effectively fulfill this requirement?",
+  "prompt": "As the lead network engineer at GammaCorp, you've received a request to ensure that all incoming SSH traffic (port `22`) from the IP address `192.168.1.10` is blocked. Which `iptables` rule will effectively fulfill this requirement?",
   "choices": [
     "`iptables -A OUTPUT -p tcp --dport 22 -d 192.168.1.10 -j DROP`",
     "`iptables -A INPUT -p tcp --sport 22 -s 192.168.1.10 -j DROP`",
@@ -10,6 +10,6 @@
     "`iptables -A INPUT -p udp --dport 22 -s 192.168.1.10 -j REJECT`"
   ],
   "answerIndex": 2,
-  "explanation": "Appending a rule to the INPUT chain matching TCP destination port `22` from source `192.168.1.10` with a DROP target blocks incoming SSH traffic from that host.",
+  "explanation": "Appending a rule to the `INPUT` chain matching TCP destination port `22` from source `192.168.1.10` with a `DROP` target blocks incoming SSH traffic from that host.",
   "origin": "linux-direct"
 }

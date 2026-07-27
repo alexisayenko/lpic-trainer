@@ -7,7 +7,7 @@
   "choices": [
     "The rules disable packet forwarding because nodes always use `fe80::/64` addresses to identify routers in their routing tables",
     "Both `ip6tables` commands complete without an error message or warning",
-    "Packets with source or destination addresses from `fe80::/64` will never occur in the FORWARD chain",
+    "Packets with source or destination addresses from `fe80::/64` will never occur in the `FORWARD` chain",
     "The rules suppress any automatic configuration through router advertisements or DHCPv6",
     "The second command returns an error because the affected network is already part of another rule"
   ],

@@ -2,7 +2,7 @@
   "id": "ssh-u004",
   "tool": "ssh",
   "objective": "212.3",
-  "prompt": "To allow X connections to be forwarded from or through an SSH server, which keyword must be set to `yes` in the sshd configuration file?",
+  "prompt": "To allow X connections to be forwarded from or through an SSH server, which keyword must be set to `yes` in the `sshd` configuration file?",
   "choices": [
     "`ForwardingAllow`",
     "`X11Forwarding`",

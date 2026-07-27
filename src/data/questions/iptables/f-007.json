@@ -2,7 +2,7 @@
   "id": "iptables-f007",
   "tool": "iptables",
   "objective": "212.1",
-  "prompt": "Alex wants to allow SSH traffic to his server only from a specific IP address `192.168.1.5`. Which iptables command should he use?",
+  "prompt": "Alex wants to allow SSH traffic to his server only from a specific IP address `192.168.1.5`. Which `iptables` command should he use?",
   "choices": [
     "`iptables -A INPUT -p tcp --dport 22 -s 192.168.1.5 -j DROP`",
     "`iptables -A INPUT -p tcp --dport 22 -s 192.168.1.5 -j ACCEPT`",

@@ -6,7 +6,7 @@
   "choices": [
     "TCP Wrappers",
     "ACLs (Access Control Lists)",
-    "portmapper mappings",
+    "`portmapper` mappings",
     "`exportfs` subtree checking"
   ],
   "answerIndex": 1,

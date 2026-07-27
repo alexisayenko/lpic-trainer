@@ -5,7 +5,7 @@
     "type": "fill",
     "objective": "207.1",
     "difficulty": "recall",
-    "prompt": "Which BIND utility checks `named.conf` syntax before you reload named?",
+    "prompt": "Which BIND utility checks `named.conf` syntax before you reload `named`?",
     "answer": "named-checkconf",
     "explanation": "`named-checkconf` validates `named.conf` syntax before the daemon loads the configuration.",
     "origin": "gpt-deep-research",
@@ -33,7 +33,7 @@
     "prompt": "You edited a zone file on a running BIND server and want the daemon to reread changed zones without stopping it. Which command should you use?",
     "choices": ["`rndc reload`", "`kill -9 $(pidof named)`", "`host -r localhost`", "`dig @localhost reload`"],
     "answerIndex": 0,
-    "explanation": "`rndc` is the runtime control utility for named, and `reload` requests the server to reload changed data.",
+    "explanation": "`rndc` is the runtime control utility for `named`, and `reload` requests the server to reload changed data.",
     "origin": "gpt-deep-research",
     "source": "https://bind9.readthedocs.io/en/v9.20.7/"
   },

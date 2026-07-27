@@ -2,7 +2,7 @@
   "id": "ftp-g008",
   "tool": "vsftpd",
   "objective": "212.2",
-  "prompt": "Michael is setting up an FTP server using vsftpd and he wants to allow anonymous users to upload files. However, he needs these uploads to be readable only by the system administrator for review before they're made publicly accessible. Which directive should Michael configure in the vsftpd.conf?",
+  "prompt": "Michael is setting up an FTP server using `vsftpd` and he wants to allow anonymous users to upload files. However, he needs these uploads to be readable only by the system administrator for review before they're made publicly accessible. Which directive should Michael configure in the `vsftpd.conf`?",
   "choices": [
     "`anon_world_readable_only=YES`",
     "`anon_upload_enable=YES`",

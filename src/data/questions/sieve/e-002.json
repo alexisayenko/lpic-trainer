@@ -2,7 +2,7 @@
   "id": "sieve-e002",
   "tool": "sieve",
   "objective": "211.2",
-  "prompt": "Which of the following Sieve conditions checks if the incoming email is from \"admin@example.com\" and has been sent to more than 5 recipients?",
+  "prompt": "Which of the following Sieve conditions checks if the incoming email is from `admin@example.com` and has been sent to more than 5 recipients?",
   "choices": [
     "`if address :is \"from\" \"admin@example.com\" && address :count \"gt\" :all \"to\" \"5\" { ... }`",
     "`if address :is \"from\" \"admin@example.com\" && size :over 5 { ... }`",
@@ -10,6 +10,6 @@
     "`if header :contains \"from\" \"admin@example.com\" && address :count \"to\" 5 { ... }`"
   ],
   "answerIndex": 0,
-  "explanation": "The relational comparator `address :count \"gt\" :all \"to\" \"5\"` (RFC 5231) is true when the message was sent to more than 5 recipients; with the from-address check it matches mail from admin@example.com to over 5 recipients.",
+  "explanation": "The relational comparator `address :count \"gt\" :all \"to\" \"5\"` (RFC 5231) is true when the message was sent to more than 5 recipients; with the from-address check it matches mail from `admin@example.com` to over 5 recipients.",
   "origin": "linux-direct"
 }

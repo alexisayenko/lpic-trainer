@@ -2,7 +2,7 @@
   "id": "ldap-d015",
   "tool": "ldap",
   "objective": "210.3",
-  "prompt": "Rachel, a systems administrator, wants to modify the email address of a user named \"jane.smith\" in her company's LDAP directory. Which LDAP utility should Rachel use to accomplish this task?",
+  "prompt": "Rachel, a systems administrator, wants to modify the email address of a user named `jane.smith` in her company's LDAP directory. Which LDAP utility should Rachel use to accomplish this task?",
   "choices": [
     "`ldapmodify`",
     "`ldapadd`",

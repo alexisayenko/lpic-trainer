@@ -2,7 +2,7 @@
   "id": "host-u002",
   "tool": "host",
   "objective": "207.2",
-  "prompt": "Patricia, a system administrator, needs to query the DNS server to retrieve the MX records for a domain named \"mycompany.com\". She wants to use a standard utility that comes with most Linux distributions. Which of the following commands should Patricia use to achieve this?",
+  "prompt": "Patricia, a system administrator, needs to query the DNS server to retrieve the MX records for a domain named `mycompany.com`. She wants to use a standard utility that comes with most Linux distributions. Which of the following commands should Patricia use to achieve this?",
   "choices": [
     "`host -t MX mycompany.com`",
     "`host -t AAAA mycompany.com`",

@@ -5,11 +5,11 @@
   "prompt": "A system administrator is working on a custom PAM module configuration. They create a file named `myapp` in the `/etc/pam.d/` directory. What is the significance of the `myapp` file in the context of PAM?",
   "choices": [
     "It is a backup of the global PAM configuration",
-    "It defines the PAM rules for a specific application named \"myapp\"",
+    "It defines the PAM rules for a specific application named `myapp`",
     "It lists users allowed to run the `myapp` application",
     "It stores compiled PAM module binaries for `myapp`"
   ],
   "answerIndex": 1,
-  "explanation": "A file in `/etc/pam.d/` named after a service defines the PAM rules for that specific application; the `myapp` file defines the PAM rules for the application named \"myapp\".",
+  "explanation": "A file in `/etc/pam.d/` named after a service defines the PAM rules for that specific application; the `myapp` file defines the PAM rules for the application named `myapp`.",
   "origin": "linux-direct"
 }

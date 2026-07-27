@@ -2,7 +2,7 @@
   "id": "iptables-f009",
   "tool": "iptables",
   "objective": "212.1",
-  "prompt": "Sarah, a system administrator, needs to temporarily drop all incoming traffic to the server but still wants to allow outgoing traffic. Which iptables command should she use?",
+  "prompt": "Sarah, a system administrator, needs to temporarily drop all incoming traffic to the server but still wants to allow outgoing traffic. Which `iptables` command should she use?",
   "choices": [
     "`iptables -P INPUT ACCEPT`",
     "`iptables -P INPUT DROP`",

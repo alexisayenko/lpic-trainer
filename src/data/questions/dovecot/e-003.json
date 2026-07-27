@@ -2,7 +2,7 @@
   "id": "dovecot-e003",
   "tool": "dovecot",
   "objective": "211.3",
-  "prompt": "As a systems administrator, you want to ensure that your Dovecot configuration files have the right syntax and are not missing any mandatory parameters. Which doveconf command would you use to check the validity of the configuration files?",
+  "prompt": "As a systems administrator, you want to ensure that your Dovecot configuration files have the right syntax and are not missing any mandatory parameters. Which `doveconf` command would you use to check the validity of the configuration files?",
   "choices": [
     "`doveconf -a`",
     "`doveconf -c`",

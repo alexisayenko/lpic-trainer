@@ -4,10 +4,10 @@
   "objective": "208.2",
   "prompt": "Which is the best permission for private key files on a secure Apache server?",
   "choices": [
-    "640",
-    "600",
-    "644",
-    "660"
+    "`640`",
+    "`600`",
+    "`644`",
+    "`660`"
   ],
   "answerIndex": 1,
   "explanation": "`600` (read/write for the owner only) keeps the private key inaccessible to other users.",

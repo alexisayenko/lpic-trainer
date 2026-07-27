@@ -2,7 +2,7 @@
   "id": "host-u001",
   "tool": "host",
   "objective": "207.2",
-  "prompt": "Linda, a systems administrator, needs to find the IPv6 address associated with the domain example.com using the host command. Which command should she use to retrieve this specific information?",
+  "prompt": "Linda, a systems administrator, needs to find the IPv6 address associated with the domain `example.com` using the `host` command. Which command should she use to retrieve this specific information?",
   "choices": [
     "`host -t A example.com`",
     "`host example.com -t AAAA`",
