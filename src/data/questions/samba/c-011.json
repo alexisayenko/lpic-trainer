@@ -1,6 +1,7 @@
 {
   "id": "samba-c011",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Alice, a system administrator, is configuring a Samba server and wants to ensure that Windows user `winuser1` gets mapped to Linux user `linuxuser1` when accessing the Samba shares. Which of the following configuration directives in the `smb.conf` file would Alice use to achieve this?",
   "choices": [
     "`map users = /etc/samba/user.map`",

@@ -1,6 +1,7 @@
 {
   "id": "ssh-f003",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Jasmine wishes to prevent root logins via SSH on her server for added security. Which configuration directive should she modify in the `sshd_config` file?",
   "choices": [
     "`PermitRootLogin no`",

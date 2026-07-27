@@ -1,6 +1,7 @@
 {
   "id": "apache2-u004",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "Given this Apache configuration excerpt, which numbered line has incorrect syntax? `1: <VirtualHost *:80>` `2: ServerAdmin admin9@server.example.org` `3: DocumentRoot /home/http/admin` `4: ServerName admin.server.example.org` `5: DirectoryIndex index.php default.php` `6: ErrorLog logs/admin.server.example.org-error_log` `7: CustomLog logs/admin.server.example.org-access_log common` `8: </VirtualHost>`",
   "choices": [
     "1 and 4",

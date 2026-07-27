@@ -1,6 +1,7 @@
 {
   "id": "procmail-u001",
   "tool": "procmail",
+  "objective": "211.2",
   "prompt": "Jane, a systems administrator, is troubleshooting email delivery issues for a user. She suspects that the user's procmail is misconfigured. Which of the following files should Jane examine to check the user's personal procmail configuration?",
   "choices": [
     "`/etc/procmailrc`",

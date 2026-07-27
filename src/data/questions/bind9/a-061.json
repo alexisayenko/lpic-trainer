@@ -1,6 +1,7 @@
 {
   "id": "bind9-a061",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "Alex needs to specify the responsible person in the SOA record of a zone file for example.net. Which of the following formats is correct for the email address of the responsible person?",
   "choices": [
     "`admin@example.net`",

@@ -1,6 +1,7 @@
 {
   "id": "dhcp-u008",
   "tool": "dhcp",
+  "objective": "210.1",
   "prompt": "Which statement in the ISC DHCPD configuration specifies whether an address pool can be used by nodes that have a corresponding `host` section?",
   "choices": [
     "`identified-nodes`",

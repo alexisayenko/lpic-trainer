@@ -1,6 +1,7 @@
 {
   "id": "bind9-a068",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Jason is tasked with modifying the primary configuration file for BIND on a Linux system. Which file should he look for?",
   "choices": [
     "`/etc/bind.conf`",

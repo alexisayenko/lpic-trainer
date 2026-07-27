@@ -1,6 +1,7 @@
 {
   "id": "postfix-e007",
   "tool": "postfix",
+  "objective": "211.1",
   "prompt": "Maria is configuring Postfix to support TLS encryption. She wants to specify the path to the server's private key. Which Postfix configuration directive should Maria use to achieve this?",
   "choices": [
     "`smtpd_tls_cert_file`",

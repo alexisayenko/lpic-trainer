@@ -1,6 +1,7 @@
 {
   "id": "smtp-u002",
   "tool": "smtp",
+  "objective": "211.1",
   "prompt": "Sandra is reviewing logs of SMTP transactions for troubleshooting. She observes the initial greeting from the mail server includes the term \"220\". What does the \"220\" SMTP status code indicate?",
   "choices": [
     "Requested action completed",

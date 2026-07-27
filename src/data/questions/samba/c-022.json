@@ -1,6 +1,7 @@
 {
   "id": "samba-c022",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "How must Samba be configured such that it can check CIFS passwords against those found in `/etc/passwd` and `/etc/shadow`?",
   "choices": [
     "Set `passdb backend = unix` in `smb.conf`",

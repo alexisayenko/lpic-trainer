@@ -1,6 +1,7 @@
 {
   "id": "bind9-a047",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "Cassandra is preparing to deploy DNSSEC and needs to sign the zone with `dnssec-signzone`. Which of the following files does `dnssec-signzone` primarily use as input to sign the zone?",
   "choices": [
     "The `named.conf` file.",

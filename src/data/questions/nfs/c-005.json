@@ -1,6 +1,7 @@
 {
   "id": "nfs-c005",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "Jeremy, a systems administrator, suspects that some of the RPC services on his NFS server are not responding. He wants to check the status of all registered RPC services on his local server. Which command should he execute?",
   "choices": [
     "`rpcinfo -p localhost`",

@@ -1,6 +1,7 @@
 {
   "id": "ssh-f010",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Mike, an IT security specialist, wants to ensure that a specific user, `alison`, cannot access the system via SSH. Besides using the `DenyUsers` directive, which other directive can he use to achieve this by specifying a list of users who are allowed to access?",
   "choices": [
     "`PermitUsers`",

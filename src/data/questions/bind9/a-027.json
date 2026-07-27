@@ -1,6 +1,7 @@
 {
   "id": "bind9-a027",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "Which of the following security issues does DNSSEC address most directly?",
   "choices": [
     "Denial-of-service flooding",

@@ -1,6 +1,7 @@
 {
   "id": "ldap-d001",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "As part of a routine cleanup, Mike, the lead systems administrator, wants to delete an LDAP entry for a user named \"alice\" whose DN is \"`uid=alice,ou=users,dc=example,dc=com`\". Which of the following commands should Mike use to correctly delete this user's entry from the LDAP directory?",
   "choices": [
     "`ldapdelete \"uid=alice,ou=users,dc=example,dc=com\" -x`",

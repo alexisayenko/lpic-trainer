@@ -1,6 +1,7 @@
 {
   "id": "bind9-a005",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "What is the purpose of a `PTR` record?",
   "choices": [
     "Provide name resolution IP (reverse mapping of an IP address to a hostname).",

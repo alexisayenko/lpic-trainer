@@ -1,6 +1,7 @@
 {
   "id": "apache2-u034",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "After configuring Apache to run inside a chroot prison as a non-root user, `httpd` no longer starts. What is the main cause?",
   "choices": [
     "`mod_chroot` needs the absolute path to the chroot environment",

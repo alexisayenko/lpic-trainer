@@ -1,6 +1,7 @@
 {
   "id": "nfs-c007",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "An administrator is trying to confirm the currently mounted NFS filesystems on a Linux system. Which file should they inspect to find out details about all currently mounted filesystems, including NFS mounts?",
   "choices": [
     "`/etc/fstab`",

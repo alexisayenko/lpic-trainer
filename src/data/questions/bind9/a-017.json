@@ -1,6 +1,7 @@
 {
   "id": "bind9-a017",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "What program should you run to create a key for DNSSEC purposes?",
   "choices": [
     "`dnssec-signzone`",

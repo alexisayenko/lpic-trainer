@@ -1,6 +1,7 @@
 {
   "id": "apache2-b006",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "Anna is configuring an Apache web server to support HTTPS. She has acquired a server certificate, a private key, and an intermediate CA certificate from a Certificate Authority. She wants to ensure a proper SSL setup. In which directives should Anna specify the server certificate, the private key, and the intermediate CA certificate respectively?",
   "choices": [
     "`SSLCertificateFile` for the server certificate, `SSLCertificateKeyFile` for the private key, `SSLCertificateChainFile` for the intermediate CA",

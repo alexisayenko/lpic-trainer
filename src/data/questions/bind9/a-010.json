@@ -1,6 +1,7 @@
 {
   "id": "bind9-a010",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "Assuming it is set up correctly, what can you say about a BIND server that has the line \"`allow-transfer {10.23.98.102; 10.202.79.121;};`\" in your `/etc/named.conf` file?",
   "choices": [
     "It is a caching-only server with no zones of its own.",

@@ -1,6 +1,7 @@
 {
   "id": "ssh-u001",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Which local file's content must be transmitted to a remote SSH server in order to log into it using SSH keys?",
   "choices": [
     "`~/.ssh/known_hosts`",

@@ -1,6 +1,7 @@
 {
   "id": "apache2-u008",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "Which line in the Apache configuration would allow only clients with a valid certificate to access the site?",
   "choices": [
     "`<IfModule libexec/ssl.c>`",

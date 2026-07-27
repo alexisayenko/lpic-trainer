@@ -1,6 +1,7 @@
 {
   "id": "squid-u001",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "Given this Squid excerpt — `acl Safe_ports port 80 443 1025-65535`, `acl CONNECT method CONNECT`, `http_access deny !Safe_ports`, `http_access deny CONNECT !SSL_ports`, `http_access allow localnet` — which statement is true?",
   "choices": [
     "An `http_access` rule denying everyone must be added at the end",

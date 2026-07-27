@@ -1,6 +1,7 @@
 {
   "id": "nfs-c002",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "Thomas is trying to set up an NFS mount that requires specific mount options for performance tuning. He decides to add an entry in a configuration file where he can specify these options so the NFS share uses them every time it's mounted. Which file should he edit to define these options for the NFS mount?",
   "choices": [
     "`/etc/exports`",

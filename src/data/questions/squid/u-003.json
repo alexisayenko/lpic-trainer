@@ -1,6 +1,7 @@
 {
   "id": "squid-u003",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "Which Squid configuration keyword is used to define networks and times when a service can be accessed?",
   "choices": [
     "permit",

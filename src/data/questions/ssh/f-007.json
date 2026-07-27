@@ -1,6 +1,7 @@
 {
   "id": "ssh-f007",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Cameron wants to check the version of the installed `sshd` daemon on his server. Which command would allow him to achieve this?",
   "choices": [
     "`sshd --version`",

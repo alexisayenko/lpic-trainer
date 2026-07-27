@@ -1,6 +1,7 @@
 {
   "id": "ldap-d002",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Daniel, a systems administrator, is trying to search his company's LDAP directory for all users under the \"`dc=example,dc=org`\" base who have the surname \"Smith\". He wants to retrieve their full names and email addresses. Which of the following `ldapsearch` commands will accomplish this task?",
   "choices": [
     "`ldapsearch -x -D \"dc=example,dc=org\" \"(sn=Smith)\" cn mail`",

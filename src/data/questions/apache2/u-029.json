@@ -2,6 +2,7 @@
   "id": "apache2-u029",
   "tool": "apache2",
   "type": "multi",
+  "objective": "208.1",
   "prompt": "Which statements about the `Alias` and `Redirect` directives in Apache are true? (Choose two.)",
   "choices": [
     "`Alias` is not a valid configuration directive",

@@ -1,6 +1,7 @@
 {
   "id": "openssl-g003",
   "tool": "openssl",
+  "objective": "208.2",
   "prompt": "Lucas is setting up an Apache server for testing purposes and needs a quick self-signed certificate without generating a separate CSR. Which command would allow him to achieve this directly?",
   "choices": [
     "`openssl req -new -newkey rsa:2048 -nodes -keyout privateKey.key -out certificate.csr`",

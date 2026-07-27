@@ -1,6 +1,7 @@
 {
   "id": "bind9-u006",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "What records must be inserted into a zone file to use round-robin load distribution for a web server?",
   "choices": [
     "`www.example.org. 60 IN RR 192.168.1.1; 192.168.1.2; 192.168.1.3`",

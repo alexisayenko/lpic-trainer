@@ -1,6 +1,7 @@
 {
   "id": "ldap-d011",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Alex, an IT professional, needs to retrieve information about a user named `john.doe` from an LDAP directory. Which utility should Alex use to perform this search?",
   "choices": [
     "`ldapsearch`",

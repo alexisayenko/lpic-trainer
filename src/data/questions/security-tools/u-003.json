@@ -1,6 +1,7 @@
 {
   "id": "security-tools-u003",
   "tool": "security-other",
+  "objective": "212.4",
   "prompt": "What is the name of the network security scanner project that is, at its core, a server with a set of network vulnerability tests?",
   "choices": [
     "Wireshark",

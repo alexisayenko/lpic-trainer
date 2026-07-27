@@ -1,6 +1,7 @@
 {
   "id": "bind9-a004",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "In which directory are DNS zone files normally stored on a system running the popular Linux DNS server?",
   "choices": [
     "`/etc/zones`",

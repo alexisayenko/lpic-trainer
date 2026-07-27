@@ -1,6 +1,7 @@
 {
   "id": "sieve-u001",
   "tool": "sieve",
+  "objective": "211.2",
   "prompt": "When are Sieve filters usually applied to an email?",
   "choices": [
     "When the email is delivered to a mailbox",

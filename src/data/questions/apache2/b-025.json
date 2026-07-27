@@ -1,6 +1,7 @@
 {
   "id": "apache2-b025",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "When adding a new virtual host to your Apache 2.4 configuration, which directive is used to define the document root for this host?",
   "choices": [
     "`RootDirectory`",

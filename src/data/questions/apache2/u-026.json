@@ -1,6 +1,7 @@
 {
   "id": "apache2-u026",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "When Apache is configured to use name-based virtual hosts:",
   "choices": [
     "`NameVirtualHost *:80` indicates that all name-based virtual hosts will listen on port `80`",

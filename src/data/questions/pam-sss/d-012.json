@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-d012",
   "tool": "pam-sss",
+  "objective": "210.3",
   "prompt": "Jenny, a system administrator, is configuring a Linux server to retrieve user information first from local files and then from an LDAP server. Which configuration in the `nsswitch.conf` file would correctly achieve this order of user information retrieval?",
   "choices": [
     "`passwd: files ldap`",

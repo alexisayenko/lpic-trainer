@@ -1,6 +1,7 @@
 {
   "id": "samba-c003",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "An administrator is troubleshooting a Samba issue and is looking for detailed logs from the nmbd daemon. Which file within `/var/log/samba/` would typically hold these logs?",
   "choices": [
     "`smbd.log`",

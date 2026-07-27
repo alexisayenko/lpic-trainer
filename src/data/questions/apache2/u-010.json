@@ -2,6 +2,7 @@
   "id": "apache2-u010",
   "tool": "apache2",
   "type": "multi",
+  "objective": "208.1",
   "prompt": "What information about HTTP transfers can you retrieve from log files on an Apache server? (Choose two.)",
   "choices": [
     "The name of the browser claimed by the client",

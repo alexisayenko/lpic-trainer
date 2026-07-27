@@ -1,6 +1,7 @@
 {
   "id": "apache2-u013",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "A security certificate is considered valid when:",
   "choices": [
     "The browser informs about the security of the website",

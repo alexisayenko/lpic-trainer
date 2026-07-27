@@ -1,6 +1,7 @@
 {
   "id": "iptables-f004",
   "tool": "iptables",
+  "objective": "212.1",
   "prompt": "Laura is working as a system administrator for a company. She is asked to ensure that any incoming traffic on port `8080` is redirected to port `80` on the same server. Which iptables rule will achieve this?",
   "choices": [
     "`iptables -t nat -A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80`",

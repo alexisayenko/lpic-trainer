@@ -1,6 +1,7 @@
 {
   "id": "sieve-e012",
   "tool": "sieve",
+  "objective": "211.2",
   "prompt": "Peter, an IT specialist, wishes to create a mail filtering rule that prioritizes messages from his boss, whose email address is \"boss@example.org\". However, he wants to exclude messages that contain the word \"FYI\" in the subject. Which of the following conditions would effectively match this scenario?",
   "choices": [
     "`* ^From:boss@example.org && ^Subject:.*FYI`",

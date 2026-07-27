@@ -1,6 +1,7 @@
 {
   "id": "apache2-b010",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "Patricia, a server administrator, is hardening her Apache SSL configuration. She recently learned that SSLv2 and SSLv3 have significant vulnerabilities. Which directive should she include in her Apache configuration to ensure that these protocols are disabled?",
   "choices": [
     "`SSLCipherSuite all -SSLv2 -SSLv3`",

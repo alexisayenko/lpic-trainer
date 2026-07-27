@@ -1,6 +1,7 @@
 {
   "id": "ftp-u004",
   "tool": "vsftpd",
+  "objective": "212.2",
   "prompt": "To prevent anonymous FTP users from listing uploaded file names, what precaution can be taken when creating an upload directory?",
   "choices": [
     "The directory must not have the write permission set",

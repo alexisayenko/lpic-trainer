@@ -1,6 +1,7 @@
 {
   "id": "apache2-u006",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "A directory `.htaccess` contains `AuthType Basic`, `AuthName \"Protected Directory\"`, `AuthUserFile /var/www/dir/.htpasswd`, `Require valid-user`, and the file `/var/www/dir/.htpasswd` contains `usera:S3cr3t`. Given everything is processed correctly, which statement about requests to the directory is true?",
   "choices": [
     "The browser prompts for a username and password but logins for `usera` do not work",

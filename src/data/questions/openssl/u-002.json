@@ -2,6 +2,7 @@
   "id": "openssl-u002",
   "tool": "openssl",
   "type": "multi",
+  "objective": "208.2",
   "prompt": "Which subcommands of the `openssl` command are used in the process of generating a private key and a CSR? (Choose two.)",
   "choices": [
     "`req`",

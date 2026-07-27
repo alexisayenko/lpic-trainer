@@ -1,6 +1,7 @@
 {
   "id": "bind9-a015",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "In which section of the `named.conf` file is the zone file directory defined?",
   "choices": [
     "`zone`",

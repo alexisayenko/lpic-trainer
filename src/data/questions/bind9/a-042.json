@@ -1,6 +1,7 @@
 {
   "id": "bind9-a042",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "Which of the following describes the primary purpose of DNSSEC?",
   "choices": [
     "To encrypt DNS queries between resolvers and clients",

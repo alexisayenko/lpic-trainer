@@ -1,6 +1,7 @@
 {
   "id": "nginx-u004",
   "tool": "nginx",
+  "objective": "208.4",
   "prompt": "With Nginx, which directive is used to proxy requests to a FastCGI application?",
   "choices": [
     "`proxy_fastcgi_pass`",

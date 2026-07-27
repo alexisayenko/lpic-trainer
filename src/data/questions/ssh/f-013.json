@@ -1,6 +1,7 @@
 {
   "id": "ssh-f013",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Jane, a network administrator, has just made changes to the SSHD configuration file on a remote server. She is currently SSH'd into the server from her workstation. Before restarting the SSH service to apply the changes, what should Jane do to ensure continued access in case her changes disrupt the service?",
   "choices": [
     "Reboot the server before restarting the SSH service",

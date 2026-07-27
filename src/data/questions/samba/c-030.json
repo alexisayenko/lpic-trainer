@@ -1,6 +1,7 @@
 {
   "id": "samba-c030",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Chloe wants her Samba server to be part of an Active Directory (AD) domain and authenticate users using the AD domain controller. Which of the following configurations should she set in the `smb.conf` file to achieve this?",
   "choices": [
     "`security = user`",

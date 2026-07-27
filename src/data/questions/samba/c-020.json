@@ -1,6 +1,7 @@
 {
   "id": "samba-c020",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "What does the `samba-tool testparm` command confirm regarding the Samba configuration?",
   "choices": [
     "That all clients are currently connected",

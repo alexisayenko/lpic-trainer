@@ -1,6 +1,7 @@
 {
   "id": "squid-u010",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "Which of the following is NOT a valid ACL type when configuring Squid?",
   "choices": [
     "`url_regex`",

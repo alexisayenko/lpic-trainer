@@ -1,6 +1,7 @@
 {
   "id": "smtp-u001",
   "tool": "smtp",
+  "objective": "211.1",
   "prompt": "Tom, an IT specialist, is manually testing the SMTP communication between two mail servers. He needs to specify the sender's email address. Which SMTP command should Tom use?",
   "choices": [
     "`RCPT TO`",

@@ -1,6 +1,7 @@
 {
   "id": "iptables-u007",
   "tool": "iptables",
+  "objective": "212.1",
   "prompt": "Which command is used to administer IPv6 netfilter rules?",
   "choices": [
     "`ipv6tables`",

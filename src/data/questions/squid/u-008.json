@@ -1,6 +1,7 @@
 {
   "id": "squid-u008",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "The file /var/squid/url_blacklist lists URLs users may not access. What correctly creates an acl named blacklist based on this file?",
   "choices": [
     "`acl blacklist urlpath_regex /var/squid/url_blacklist`",

@@ -1,6 +1,7 @@
 {
   "id": "bind9-a001",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "Which of the following is an advantage of running BIND in a chroot prison?",
   "choices": [
     "It allows BIND to listen on privileged ports without root.",

@@ -1,6 +1,7 @@
 {
   "id": "bind9-a016",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "You want to allow users to access the computer with the IP address `192.168.17.198` as linus.example.com. What line would you put in the zone file for example.com to accomplish this?",
   "choices": [
     "`linus IN A 192.168.17.198`",

@@ -1,6 +1,7 @@
 {
   "id": "nfs-c003",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "Samuel, a system administrator, is setting up an NFS server. To ensure the NFS mounts specified in `/etc/exports` are honored by the server, he needs to start a specific service. Which service is responsible for this task?",
   "choices": [
     "`portmapper`",

@@ -1,6 +1,7 @@
 {
   "id": "ftp-g004",
   "tool": "ftp-other",
+  "objective": "212.2",
   "prompt": "Rebecca is a security-conscious system administrator who wants to use the ProFTPd server to provide FTP services. She wants to make sure that users are chrooted to their home directories, ensuring they cannot navigate outside of it. Which directive in the `proftpd.conf` should Rebecca adjust?",
   "choices": [
     "`RootLogin`",

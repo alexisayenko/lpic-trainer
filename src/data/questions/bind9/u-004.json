@@ -2,6 +2,7 @@
   "id": "bind9-u004",
   "tool": "bind9",
   "type": "multi",
+  "objective": "207.1",
   "prompt": "Which of the following are alternative DNS software packages to BIND? (Choose two.)",
   "choices": [
     "`easydns`",

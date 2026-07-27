@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-d001",
   "tool": "pam-sss",
+  "objective": "210.2",
   "prompt": "Elena, a Linux system engineer, needs to restrict SSH access for a group of users listed in a file. Which PAM module should she employ to achieve this objective?",
   "choices": [
     "`pam_listfile`",

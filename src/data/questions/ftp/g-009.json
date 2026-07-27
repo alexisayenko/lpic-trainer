@@ -1,6 +1,7 @@
 {
   "id": "ftp-g009",
   "tool": "pureftpd",
+  "objective": "212.2",
   "prompt": "Miguel needs Pure-FTPd to listen on only one specific IP address on a multi-homed server. Which configuration option should he use?",
   "choices": [
     "`TrustedGateway`",

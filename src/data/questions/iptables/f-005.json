@@ -1,6 +1,7 @@
 {
   "id": "iptables-f005",
   "tool": "iptables",
+  "objective": "212.1",
   "prompt": "You have been tasked with configuring a firewall on a Linux server to block incoming SSH traffic from a specific IP address `192.168.1.5`. Which of the following iptables commands will accomplish this task?",
   "choices": [
     "`iptables -A INPUT -p tcp --dport 22 -d 192.168.1.5 -j DROP`",

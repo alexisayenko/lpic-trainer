@@ -1,6 +1,7 @@
 {
   "id": "samba-c015",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Laura, a systems administrator, is configuring a new Samba 4 server. She wants to ensure the main Samba daemon starts at boot and handles the incoming SMB connections. Which of the following daemons should Laura ensure is enabled and starts at boot?",
   "choices": [
     "`nmbd`",

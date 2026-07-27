@@ -1,6 +1,7 @@
 {
   "id": "bind9-a038",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "What is the effect of the following lines in `/etc/named.conf`: `listen-on port 53 { 127.0.0.1; };` `listen-on-v6 port 53 { ::1; };`?",
   "choices": [
     "The server forwards all queries to `127.0.0.1`.",

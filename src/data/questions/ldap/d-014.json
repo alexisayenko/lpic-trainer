@@ -1,6 +1,7 @@
 {
   "id": "ldap-d014",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Peter, an IT administrator, needs to change the password of a user named \"mark.taylor\" in the LDAP directory. Which utility should Peter employ to securely alter the user's password?",
   "choices": [
     "`ldapmodify`",

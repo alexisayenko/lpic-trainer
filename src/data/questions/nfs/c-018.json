@@ -1,6 +1,7 @@
 {
   "id": "nfs-c018",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "A system administrator wants to ensure that an NFS share named `/share` is accessible to all hosts within the `192.168.5.0/24` subnet but read-only. Which of the following entries in the `/etc/exports` file will achieve this?",
   "choices": [
     "`/share 192.168.5.0/24(rw,sync)`",

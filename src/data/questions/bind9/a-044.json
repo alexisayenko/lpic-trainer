@@ -1,6 +1,7 @@
 {
   "id": "bind9-a044",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "Sarah wants to understand which specific threat DNSSEC primarily addresses before deploying it. What is the main security issue that DNSSEC aims to resolve?",
   "choices": [
     "Unauthorized zone transfers.",

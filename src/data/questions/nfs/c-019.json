@@ -1,6 +1,7 @@
 {
   "id": "nfs-c019",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "After making changes to the `/etc/exports` file, which command should a system administrator run to apply the changes without restarting the NFS server?",
   "choices": [
     "`exportfs -u`",

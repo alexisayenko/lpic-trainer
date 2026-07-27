@@ -1,6 +1,7 @@
 {
   "id": "ldap-u005",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Which command is used to change user passwords in an OpenLDAP directory?",
   "choices": [
     "`olppasswd`",

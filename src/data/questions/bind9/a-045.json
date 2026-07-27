@@ -1,6 +1,7 @@
 {
   "id": "bind9-a045",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "Michelle wishes to ensure that zone transfer requests between her primary and secondary DNS servers are authenticated. Which would be the best method to secure these transfers in BIND?",
   "choices": [
     "Enable DNSSEC signing on both servers.",

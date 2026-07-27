@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-d013",
   "tool": "pam-sss",
+  "objective": "210.2",
   "prompt": "Your organization is implementing SSSD for LDAP authentication on Linux servers. One of the system administrators is trying to decide which service to configure within the `sssd.conf` file. Which service should they configure to utilize LDAP for user information?",
   "choices": [
     "`services = nss`",

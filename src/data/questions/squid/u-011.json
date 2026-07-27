@@ -1,6 +1,7 @@
 {
   "id": "squid-u011",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "Which of the following is recommended to reduce Squid's disk resource consumption?",
   "choices": [
     "Reduce the size of `cache_dir` in the configuration file",

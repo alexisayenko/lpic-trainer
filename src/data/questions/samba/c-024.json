@@ -1,6 +1,7 @@
 {
   "id": "samba-c024",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "A system administrator wishes to access a Samba share named Docs on a server with the IP address `192.168.1.10` using the `smbclient` tool without providing a password. Which of the following commands should the administrator use?",
   "choices": [
     "`smbclient //192.168.1.10/Docs -N`",

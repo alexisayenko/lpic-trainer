@@ -1,6 +1,7 @@
 {
   "id": "openvpn-u004",
   "tool": "openvpn",
+  "objective": "212.5",
   "prompt": "Which OpenVPN option makes the server forward packets between VPN clients itself instead of passing them to the host for further processing?",
   "choices": [
     "`client-to-client`",

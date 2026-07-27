@@ -1,6 +1,7 @@
 {
   "id": "bind9-u002",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "A zone file contains `$ORIGIN example.com` and `host2.example.org. IN A 198.51.100.102`, and is included with `zone \"example.com\" { type master; file \"db.example.com\"; };`. Which problem is contained in this configuration?",
   "choices": [
     "The zone cannot contain records for a name which is outside the zone's hierarchy",

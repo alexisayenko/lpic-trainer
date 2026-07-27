@@ -1,6 +1,7 @@
 {
   "id": "ssh-f001",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Jackson received a new private key (`id_newkey`) and wants to use it to connect to a server. Which command should he use to specify the private key while initiating the SSH connection?",
   "choices": [
     "`ssh -i id_newkey user@server`",

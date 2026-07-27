@@ -1,6 +1,7 @@
 {
   "id": "apache2-u019",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "Which directive defines the path to the Apache configuration files?",
   "choices": [
     "`DocumentRoot`",

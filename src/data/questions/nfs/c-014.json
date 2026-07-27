@@ -1,6 +1,7 @@
 {
   "id": "nfs-c014",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "An organization has recently migrated to NFSv4 from NFSv3. Which of the following is a significant difference between NFSv3 and NFSv4 that the system administrator should be aware of?",
   "choices": [
     "NFSv4 requires a separate portmapper service that NFSv3 did not.",

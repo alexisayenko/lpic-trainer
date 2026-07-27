@@ -1,6 +1,7 @@
 {
   "id": "samba-c021",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Which of the following actions synchronizes UNIX passwords with the Samba passwords when the encrypted Samba password is changed using `smbpasswd`?",
   "choices": [
     "Add `unix password sync = yes` to `smb.conf`",

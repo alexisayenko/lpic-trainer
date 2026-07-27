@@ -1,6 +1,7 @@
 {
   "id": "apache2-u021",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "An Apache server includes `VirtualDocumentRoot /var/httpd/%-2/%-1`. For a request to `http://www.luna.edu/index.htm`, which file is served?",
   "choices": [
     "`/var/httpd/www/luna/edu/index.htm`",

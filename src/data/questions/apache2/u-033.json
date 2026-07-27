@@ -1,6 +1,7 @@
 {
   "id": "apache2-u033",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "Which is the best permission for private key files on a secure Apache server?",
   "choices": [
     "640",

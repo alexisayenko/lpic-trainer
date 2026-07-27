@@ -1,6 +1,7 @@
 {
   "id": "bind9-a018",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "A dig reverse lookup returns the PTR record \"`5.123.168.192.in-addr.arpa. 600 IN PTR linuserv.example.net.123.168.192.in-addr.arpa.`\". What is wrong with the zone definition?",
   "choices": [
     "The TTL value of 600 is too low for a PTR record.",

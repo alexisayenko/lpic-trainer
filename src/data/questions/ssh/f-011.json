@@ -1,6 +1,7 @@
 {
   "id": "ssh-f011",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Tom, a system administrator, wants to restrict SSH access to a specific user named \"johndoe\". Which file should Tom edit to specifically deny SSH access for user \"johndoe\"?",
   "choices": [
     "`/etc/ssh/ssh_config`",

@@ -1,6 +1,7 @@
 {
   "id": "postfix-u003",
   "tool": "postfix",
+  "objective": "211.1",
   "prompt": "A company accepts e-mail for two domains for all of its users on a Postfix server. Which configuration option should be updated?",
   "choices": [
     "`mydomains`",

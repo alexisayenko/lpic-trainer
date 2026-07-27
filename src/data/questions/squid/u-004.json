@@ -1,6 +1,7 @@
 {
   "id": "squid-u004",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "Which Squid configuration directive defines the authentication method to be used?",
   "choices": [
     "`proxy_auth`",

@@ -1,6 +1,7 @@
 {
   "id": "security-tools-u005",
   "tool": "fail2ban",
+  "objective": "212.4",
   "prompt": "Using its standard configuration, how does `fail2ban` block offending SSH clients?",
   "choices": [
     "By modifying the sshd configuration",

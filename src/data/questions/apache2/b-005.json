@@ -1,6 +1,7 @@
 {
   "id": "apache2-b005",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "Amy, a systems administrator, is setting up SSL for her Apache server on a Debian-based system. She recalls that there is a default directory where SSL certificate files are generally stored. Which directory is commonly used for this purpose?",
   "choices": [
     "`/etc/apache2/ssl/`",

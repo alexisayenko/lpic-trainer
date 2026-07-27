@@ -1,6 +1,7 @@
 {
   "id": "apache2-b017",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "After migrating your Apache 2.2 configuration to Apache 2.4, you notice that some of your old access control directives are throwing errors. Which module provides compatibility with the access control directives from Apache 2.2?",
   "choices": [
     "`mod_authz_core`",

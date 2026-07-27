@@ -1,6 +1,7 @@
 {
   "id": "dovecot-e012",
   "tool": "dovecot",
+  "objective": "211.3",
   "prompt": "You're configuring a Dovecot server and want to enable secure TLS communication. Which of the following configuration parameters is essential to specify the path to the private key that will be used for TLS?",
   "choices": [
     "`ssl_cert`",

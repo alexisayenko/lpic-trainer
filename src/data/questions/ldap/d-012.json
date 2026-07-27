@@ -1,6 +1,7 @@
 {
   "id": "ldap-d012",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "A Linux workstation is experiencing slow login times for users. Upon investigation, Harry, a seasoned technician, notices that the `nsswitch.conf` contains the line `hosts: files dns ldap`. What can be a potential reason for the slow login times?",
   "choices": [
     "The `files` entry forces the system to read `/etc/hosts` on every login",

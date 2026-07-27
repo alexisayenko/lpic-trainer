@@ -1,6 +1,7 @@
 {
   "id": "bind9-a071",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "James notices a reference to \"`db.example.com`\" in the zone block of a BIND configuration file. What is the most likely purpose of this reference?",
   "choices": [
     "It is the IP address of the example.com mail server.",

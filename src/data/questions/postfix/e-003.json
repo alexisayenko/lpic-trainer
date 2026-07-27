@@ -1,6 +1,7 @@
 {
   "id": "postfix-e003",
   "tool": "postfix",
+  "objective": "211.1",
   "prompt": "A system administrator is troubleshooting mail delivery issues on a Postfix server. Which command can the administrator use to process and deliver mail from the queue immediately?",
   "choices": [
     "`postqueue -f`",

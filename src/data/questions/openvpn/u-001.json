@@ -1,6 +1,7 @@
 {
   "id": "openvpn-u001",
   "tool": "openvpn",
+  "objective": "212.5",
   "prompt": "What is the standard port used by OpenVPN?",
   "choices": [
     "`500`",

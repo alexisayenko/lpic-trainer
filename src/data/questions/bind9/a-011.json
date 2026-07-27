@@ -1,6 +1,7 @@
 {
   "id": "bind9-a011",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Given a BIND9 options block with \"`forwarders {192.168.0.4;};`\" and \"`forward first;`\", which of the following is true?",
   "choices": [
     "The server refuses all recursive queries.",

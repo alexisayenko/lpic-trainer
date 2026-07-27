@@ -1,6 +1,7 @@
 {
   "id": "sieve-e009",
   "tool": "sieve",
+  "objective": "211.2",
   "prompt": "John, an IT manager, is configuring an email filter for a user named Anna. Anna wants all emails from \"newsletter@example.com\" to be moved to a folder named \"Newsletters\" and no longer appear in her main inbox. Which of the following Sieve actions should John use to achieve this requirement?",
   "choices": [
     "`redirect \"Newsletters\";`",

@@ -1,6 +1,7 @@
 {
   "id": "apache2-u024",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "A restricted area authenticates users against `/srv/www/security/site-passwd`. Which command CHANGES the password of an existing user without losing data, when Basic authentication is used?",
   "choices": [
     "`htpasswd -n /srv/www/security/site-passwd user`",

@@ -1,6 +1,7 @@
 {
   "id": "apache2-b016",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "An administrator working on a CentOS server wants to restart the Apache service. However, she can't remember the correct service name on CentOS. Which command should she use to correctly restart the Apache service?",
   "choices": [
     "`systemctl restart apache2`",

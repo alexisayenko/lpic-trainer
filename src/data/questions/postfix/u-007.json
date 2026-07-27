@@ -2,6 +2,7 @@
   "id": "postfix-u007",
   "tool": "postfix",
   "type": "multi",
+  "objective": "211.1",
   "prompt": "A mail server is found to be an open relay. Which actions help prevent open relaying while still receiving company mail? (Choose two.)",
   "choices": [
     "Configure netfilter to block port `25` on the public network",

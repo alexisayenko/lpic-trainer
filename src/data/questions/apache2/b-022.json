@@ -1,6 +1,7 @@
 {
   "id": "apache2-b022",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "You want to limit access to a specific directory on your Apache server to only those users who are members of a certain group. Which directive should you use within your configuration to specify this group-based access restriction?",
   "choices": [
     "`Require user`",

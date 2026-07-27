@@ -1,6 +1,7 @@
 {
   "id": "iptables-f002",
   "tool": "iptables",
+  "objective": "212.1",
   "prompt": "As the lead network engineer at GammaCorp, you've received a request to ensure that all incoming SSH traffic (port `22`) from the IP address `192.168.1.10` is blocked. Which iptables rule will effectively fulfill this requirement?",
   "choices": [
     "`iptables -A OUTPUT -p tcp --dport 22 -d 192.168.1.10 -j DROP`",

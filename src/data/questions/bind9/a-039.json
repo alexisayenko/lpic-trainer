@@ -1,6 +1,7 @@
 {
   "id": "bind9-a039",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "What is DNSSEC used for?",
   "choices": [
     "Encrypting all DNS traffic between client and server.",

@@ -1,6 +1,7 @@
 {
   "id": "squid-u005",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "What type of ACL in Squid's configuration file is used for authentication purposes?",
   "choices": [
     "`auth_required`",

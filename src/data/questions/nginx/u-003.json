@@ -1,6 +1,7 @@
 {
   "id": "nginx-u003",
   "tool": "nginx",
+  "objective": "208.4",
   "prompt": "Which configuration block in Nginx is used to configure settings for a reverse proxy server?",
   "choices": [
     "`server`",

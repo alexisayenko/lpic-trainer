@@ -1,6 +1,7 @@
 {
   "id": "bind9-a025",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "What is the purpose of the following lines in `/etc/named.conf`: `zone \"1.168.192.in-addr.arpa\" { type master; file \"named.192.168.1\"; };`?",
   "choices": [
     "It tells the DNS server to forward all queries to `named.192.168.1`.",

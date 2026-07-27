@@ -1,6 +1,7 @@
 {
   "id": "postfix-u006",
   "tool": "postfix",
+  "objective": "211.1",
   "prompt": "Which Postfix parameter modifies only the sender address and not the recipient address?",
   "choices": [
     "`alias_rewrite_maps`",

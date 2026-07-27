@@ -1,6 +1,7 @@
 {
   "id": "samba-c002",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "After making changes to the Samba configuration file, an administrator wishes to verify the syntax of `/etc/samba/smb.conf` without starting or restarting the Samba service. Which utility should they use to check the syntax of this configuration file?",
   "choices": [
     "`smbstatus`",

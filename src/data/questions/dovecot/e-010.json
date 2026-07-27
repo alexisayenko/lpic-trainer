@@ -1,6 +1,7 @@
 {
   "id": "dovecot-e010",
   "tool": "dovecot",
+  "objective": "211.3",
   "prompt": "As the new system administrator in a company, you are tasked with the responsibility of checking the current version of Dovecot running on a server. You have a hunch that the configuration file might give you this information. Which of the following files in the `/etc/dovecot/` directory should you inspect to get the version of Dovecot?",
   "choices": [
     "`/etc/dovecot/version`",

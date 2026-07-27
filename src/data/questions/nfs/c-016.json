@@ -1,6 +1,7 @@
 {
   "id": "nfs-c016",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "A system administrator wants to ensure that a remote NFS share is mounted on client machines in a way that it will try to reconnect automatically if the server or network fails temporarily. Which of the following mount options should the administrator use?",
   "choices": [
     "`soft`",

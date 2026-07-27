@@ -1,6 +1,7 @@
 {
   "id": "bind9-a021",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "How would you run named within a chroot prison as the nobody user and group?",
   "choices": [
     "`named --chroot /var/named/root --user nobody`",

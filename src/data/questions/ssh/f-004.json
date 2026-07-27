@@ -1,6 +1,7 @@
 {
   "id": "ssh-f004",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Raj wants to restrict SSH access only to users who are members of the `sshusers` group. Which directive in the `/etc/ssh/sshd_config` file should he modify to implement this restriction?",
   "choices": [
     "`AllowUsers sshusers`",

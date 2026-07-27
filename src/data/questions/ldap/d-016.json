@@ -1,6 +1,7 @@
 {
   "id": "ldap-d016",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Jessica, an IT administrator, is working on the company's LDAP server. She needs to find the email addresses of all employees in the \"Sales\" department without returning any other details. Which of the following commands will give her the desired output?",
   "choices": [
     "`ldapsearch -x -b \"(ou=Sales)\" mail`",

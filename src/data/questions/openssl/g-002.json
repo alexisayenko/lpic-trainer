@@ -1,6 +1,7 @@
 {
   "id": "openssl-g002",
   "tool": "openssl",
+  "objective": "208.2",
   "prompt": "Emily wants to generate a Certificate Signing Request (CSR) for her company's website to get an SSL certificate from a trusted Certificate Authority. Which `openssl` command will allow her to generate a CSR along with a new private key?",
   "choices": [
     "`openssl req -new -key server.key -out server.csr`",

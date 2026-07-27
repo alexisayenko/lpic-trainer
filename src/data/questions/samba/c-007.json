@@ -1,6 +1,7 @@
 {
   "id": "samba-c007",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Jennifer, a systems administrator, is looking to ensure that a directory shared via Samba is only accessible to a specific group named \"Finance\". Based on the Samba 4 documentation, which of the following `smb.conf` configuration options should she use?",
   "choices": [
     "`allowed groups = Finance`",

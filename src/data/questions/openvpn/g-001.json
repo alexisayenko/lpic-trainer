@@ -1,6 +1,7 @@
 {
   "id": "openvpn-g001",
   "tool": "openvpn",
+  "objective": "212.5",
   "prompt": "Sarah, a network administrator, has set up OpenVPN for her company. She wants to ensure that all the client traffic, including all the network traffic, should go through the VPN. Which directive should she include in the OpenVPN client configuration to achieve this?",
   "choices": [
     "`redirect-gateway def1`",

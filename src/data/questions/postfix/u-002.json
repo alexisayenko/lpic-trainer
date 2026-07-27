@@ -1,6 +1,7 @@
 {
   "id": "postfix-u002",
   "tool": "postfix",
+  "objective": "211.1",
   "prompt": "Which Postfix command rebuilds all of the alias database files with a single invocation and without any command-line arguments?",
   "choices": [
     "`makealiases`",

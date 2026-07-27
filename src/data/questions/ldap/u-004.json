@@ -1,6 +1,7 @@
 {
   "id": "ldap-u004",
   "tool": "ldap",
+  "objective": "210.4",
   "prompt": "How is the LDAP administrator account configured when the `rootdn` and `rootpw` directives are not present in `slapd.conf`?",
   "choices": [
     "The default account `admin` with password `admin` is used",

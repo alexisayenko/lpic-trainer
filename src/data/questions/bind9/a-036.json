@@ -1,6 +1,7 @@
 {
   "id": "bind9-a036",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Which of the following is an advantage of a forward-only DNS server configuration versus a full recursive lookup configuration?",
   "choices": [
     "A forward-only configuration is often faster than a complete recursive configuration.",

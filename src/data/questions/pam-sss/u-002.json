@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-u002",
   "tool": "pam-sss",
+  "objective": "210.2",
   "prompt": "How are PAM modules organized and stored?",
   "choices": [
     "As plain text files in `/etc/security/`",

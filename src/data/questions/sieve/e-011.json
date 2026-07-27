@@ -1,6 +1,7 @@
 {
   "id": "sieve-e011",
   "tool": "sieve",
+  "objective": "211.2",
   "prompt": "Melissa wants to ensure that all emails she receives from her manager, `manager@company.com`, with the subject containing `meeting`, are moved to a folder named `Meetings`. Which Sieve script accomplishes this task?",
   "choices": [
     "`if anyof (header :contains \"from\" \"manager@company.com\", header :matches \"subject\" \"*meeting*\") { fileinto \"Meetings\"; }`",

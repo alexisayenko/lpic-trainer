@@ -1,6 +1,7 @@
 {
   "id": "openvpn-u003",
   "tool": "openvpn",
+  "objective": "212.5",
   "prompt": "Which option in the client configuration tells OpenVPN to use a dynamic source port when connecting to a peer?",
   "choices": [
     "`dynamic-bind`",

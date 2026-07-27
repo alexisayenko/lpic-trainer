@@ -1,6 +1,7 @@
 {
   "id": "sieve-e007",
   "tool": "sieve",
+  "objective": "211.2",
   "prompt": "David, a network administrator, is receiving a high volume of emails from a specific domain, \"bulkmailers.com\". He wishes to automatically discard any emails larger than 5MB from this domain using Sieve. Which Sieve script will achieve this?",
   "choices": [
     "`if header :contains \"from\" \"@bulkmailers.com\" { if size :over 5000000 { discard; } }`",

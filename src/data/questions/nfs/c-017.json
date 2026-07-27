@@ -1,6 +1,7 @@
 {
   "id": "nfs-c017",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "An administrator has recently set up an NFS share on a server and wants to ensure that only hosts from the `10.10.10.0/24` subnet can access it. Which of the following entries in the `/etc/exports` file correctly restricts access to this subnet?",
   "choices": [
     "`/data 10.10.10.0/24(rw,sync)`",

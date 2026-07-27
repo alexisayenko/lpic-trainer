@@ -2,6 +2,7 @@
   "id": "ldap-u006",
   "tool": "ldap",
   "type": "multi",
+  "objective": "210.4",
   "prompt": "Which values can be used in the OpenLDAP attribute `olcBackend` to specify a backend? (Choose three.)",
   "choices": [
     "`xml`",

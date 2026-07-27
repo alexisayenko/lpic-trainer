@@ -1,6 +1,7 @@
 {
   "id": "samba-c010",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Patrick, a systems administrator, wants to set up logging for his Samba 4 server. He wants each machine to have its own log file, named after the machine's NetBIOS name. Which configuration option in the `smb.conf` file would he need to use?",
   "choices": [
     "`log file = /var/log/samba/%U.log`",

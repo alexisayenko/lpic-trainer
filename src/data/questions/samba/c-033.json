@@ -1,6 +1,7 @@
 {
   "id": "samba-c033",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "The company's IT department decided to migrate from a classical NT4-style domain to an Active Directory domain using Samba. Which `samba-tool` subcommand will allow the administrator to execute this domain migration?",
   "choices": [
     "`samba-tool domain provision`",

@@ -1,6 +1,7 @@
 {
   "id": "apache2-b003",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "Jeremy is setting up client authentication on his Apache server. He has received a bundle of CA certificates and wants to set up Apache to recognize them for client authentication. Which directive should Jeremy use to point Apache to this bundle file?",
   "choices": [
     "`SSLCertificateFile`",

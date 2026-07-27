@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-d007",
   "tool": "pam-sss",
+  "objective": "210.2",
   "prompt": "After recent system audits, the IT department wants to consolidate all PAM configurations into a single file rather than having multiple files under `/etc/pam.d/`. Which file can achieve this centralized configuration approach?",
   "choices": [
     "`/etc/pam.d/passwd`",

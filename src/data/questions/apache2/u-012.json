@@ -1,6 +1,7 @@
 {
   "id": "apache2-u012",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "You want to modify Apache settings for a single directory by placing a file in that directory. What should this file be named?",
   "choices": [
     "`.httpd`",

@@ -1,6 +1,7 @@
 {
   "id": "apache2-b020",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "You are working as an administrator for a small company. They've asked you to add a new user named \"john\" and set a password for him for HTTP basic authentication on their website. Which command would you use to add this user to an existing password file `users.passwd` without overwriting the file?",
   "choices": [
     "`htpasswd -c users.passwd john`",

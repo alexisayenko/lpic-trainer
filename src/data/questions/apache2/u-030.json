@@ -1,6 +1,7 @@
 {
   "id": "apache2-u030",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "The `MinSpareServers` option defines:",
   "choices": [
     "The minimum number of virtual domains",

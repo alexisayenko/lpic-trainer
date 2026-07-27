@@ -1,6 +1,7 @@
 {
   "id": "bind9-u008",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "What is the purpose of DANE?",
   "choices": [
     "Verify the integrity of name information retrieved via DNS",

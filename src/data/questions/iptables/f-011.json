@@ -1,6 +1,7 @@
 {
   "id": "iptables-f011",
   "tool": "iptables",
+  "objective": "212.1",
   "prompt": "On a Linux router, packet forwarding for IPv4 has been enabled. After a reboot, the machine no longer forwards IP packets from other hosts. The command '`echo 1 > /proc/sys/net/ipv4/ip_forward`' temporarily resolves this issue. Which one of the following options is the best way to ensure this setting is saved across system restarts?",
   "choices": [
     "Add '`echo 1 > /proc/sys/net/ipv4/ip_forward`' to `~/.bashrc`",

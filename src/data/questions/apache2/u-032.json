@@ -1,6 +1,7 @@
 {
   "id": "apache2-u032",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "A web server handling ~200 simultaneous requests runs slowly during occasional spikes. Which httpd.conf directives should be adjusted?",
   "choices": [
     "`MinSpareServers` & `MaxSpareServers`",

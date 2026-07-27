@@ -1,6 +1,7 @@
 {
   "id": "samba-c026",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "The system administrator needs to update the Samba password for a user named \"john\" to ensure he can access shared resources using his new credentials. Which tool should the administrator use to change the Samba-specific password for this user?",
   "choices": [
     "`passwd`",

@@ -1,6 +1,7 @@
 {
   "id": "squid-u009",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "Users in the acl `sales_net` must be allowed to access the Internet at the times in the acl `sales_time`. What is the correct `http_access` directive?",
   "choices": [
     "`http_access sales_net sales_time`",

@@ -1,6 +1,7 @@
 {
   "id": "bind9-a037",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "What is the effect of the line `directory \"/home/sam/bind\";` found in the options section of an `/etc/named.conf` file?",
   "choices": [
     "It tells BIND to chroot into `/home/sam/bind` on startup.",

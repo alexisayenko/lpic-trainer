@@ -1,6 +1,7 @@
 {
   "id": "openssl-g004",
   "tool": "openssl",
+  "objective": "208.2",
   "prompt": "Robert, an Apache server administrator, has been asked to generate a private key for the server without a passphrase. Which of the following `openssl` commands should he use to generate an RSA private key that doesn't require a passphrase?",
   "choices": [
     "`openssl genrsa -des3 -out server.key 2048`",

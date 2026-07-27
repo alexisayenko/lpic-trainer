@@ -1,6 +1,7 @@
 {
   "id": "apache2-u002",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "Considering this `httpd.conf` excerpt, select the correct answer: `<Location> AllowOverride AuthConfig Indexes </Location>`",
   "choices": [
     "The `Indexes` directive allows other index-related directives such as `DirectoryIndex`",

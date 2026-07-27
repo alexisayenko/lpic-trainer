@@ -1,6 +1,7 @@
 {
   "id": "openssl-u001",
   "tool": "openssl",
+  "objective": "208.2",
   "prompt": "Which tool can be used to create a Certificate Signing Request (CSR) to run an Apache server with HTTPS?",
   "choices": [
     "`httpsgen`",

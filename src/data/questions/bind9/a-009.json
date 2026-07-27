@@ -1,6 +1,7 @@
 {
   "id": "bind9-a009",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "The term `in-addr.arpa` in the `named.conf` file determines that the zone in question:",
   "choices": [
     "is a caching-only zone.",

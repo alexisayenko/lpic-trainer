@@ -1,6 +1,7 @@
 {
   "id": "bind9-a055",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "Jeremy sees the directive \"`masterfile-format compressed;`\" in `named.conf` and the server fails to start. What could be the potential issue?",
   "choices": [
     "The directive must be placed in a zone block, not options.",

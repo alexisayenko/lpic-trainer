@@ -1,6 +1,7 @@
 {
   "id": "dovecot-e007",
   "tool": "dovecot",
+  "objective": "211.3",
   "prompt": "The IT department is setting up a new Dovecot server. They've been instructed to ensure that the IMAP protocol is disabled due to company policy. In the `/etc/dovecot/` directory, which file would they need to modify to disable the IMAP protocol?",
   "choices": [
     "`/etc/dovecot/conf.d/10-mail.conf`",

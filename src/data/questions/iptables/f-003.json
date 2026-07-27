@@ -1,6 +1,7 @@
 {
   "id": "iptables-f003",
   "tool": "iptables",
+  "objective": "212.1",
   "prompt": "After a long night configuring firewall rules on a Linux server, Jane wants to save the iptables configuration so that it will be applied even after a system reboot. Which command should Jane use to save the current iptables rules permanently on a typical Debian-based system?",
   "choices": [
     "`iptables-restore < /etc/iptables/rules.v4`",

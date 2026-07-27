@@ -1,6 +1,7 @@
 {
   "id": "squid-u002",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "Which tool caches Web (HTTP) access by clients, improving performance on subsequent accesses to the same popular sites?",
   "choices": [
     "`Squid`",

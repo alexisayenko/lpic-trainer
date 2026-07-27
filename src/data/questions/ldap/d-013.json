@@ -1,6 +1,7 @@
 {
   "id": "ldap-d013",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Clara, a system engineer, receives a request to update the password of a user named \"elena.perez\" in the LDAP directory. She wants to ensure the password change operation follows best practices. Which of the following methods would be recommended?",
   "choices": [
     "Editing the `userPassword` attribute directly with a text editor",

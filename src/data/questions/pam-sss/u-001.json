@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-u001",
   "tool": "pam-sss",
+  "objective": "210.2",
   "prompt": "In a PAM configuration file, which is true about the `required` control flag?",
   "choices": [
     "The module must succeed for the facility to succeed, but all remaining modules of the same type are still invoked",

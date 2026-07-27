@@ -1,6 +1,7 @@
 {
   "id": "bind9-a043",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Natasha implements a split configuration in BIND with an internal DNS server for local resolution and an external server for other queries. Where should she add the address of the external server in the internal server's configuration so unresolved queries are passed to it?",
   "choices": [
     "In the `masters` statement",

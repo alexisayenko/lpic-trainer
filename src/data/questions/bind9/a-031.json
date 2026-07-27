@@ -1,6 +1,7 @@
 {
   "id": "bind9-a031",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Which of the following tools provides an interactive way to perform DNS lookups?",
   "choices": [
     "`dig`",

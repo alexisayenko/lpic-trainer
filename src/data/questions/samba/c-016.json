@@ -1,6 +1,7 @@
 {
   "id": "samba-c016",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Which of the following Samba configuration parameters is functionally identical to the parameter `read only=yes`?",
   "choices": [
     "`writeable=no`",

@@ -1,6 +1,7 @@
 {
   "id": "ldap-d006",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Sarah is attempting to use LDAP utilities to query an LDAP directory for a user named \"john\". She wants to retrieve all attributes related to this user. Which command should Sarah use to accurately perform this query?",
   "choices": [
     "`ldapsearch -x -D \"dc=example,dc=com\" \"uid=john\"`",

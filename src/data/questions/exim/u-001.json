@@ -1,6 +1,7 @@
 {
   "id": "exim-u001",
   "tool": "exim",
+  "objective": "211.1",
   "prompt": "Jacob is given the task to replace the current email server with another one that is known for its flexibility and ease of configuration, especially with complex email setups. He recalls that one of the well-known alternatives to Sendmail, which fits this description, is:",
   "choices": [
     "Postfix",

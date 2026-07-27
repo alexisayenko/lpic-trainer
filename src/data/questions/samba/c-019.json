@@ -1,6 +1,7 @@
 {
   "id": "samba-c019",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Select the Samba option below that should be used if the main intention is to set up a guest printer service.",
   "choices": [
     "`security = user`",

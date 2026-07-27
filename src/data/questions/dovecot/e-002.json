@@ -1,6 +1,7 @@
 {
   "id": "dovecot-e002",
   "tool": "dovecot",
+  "objective": "211.3",
   "prompt": "A user named johndoe reports that he accidentally deleted an important email. You decide to recover it from the backup, but first, you want to know the current UIDs of mails in his mailbox. Which doveadm command can provide you this information?",
   "choices": [
     "`doveadm fetch -u johndoe uid`",

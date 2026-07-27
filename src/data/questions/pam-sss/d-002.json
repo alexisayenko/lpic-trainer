@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-d002",
   "tool": "pam-sss",
+  "objective": "210.2",
   "prompt": "Adrian, a systems administrator, wants to implement password complexity rules on a Linux server to ensure that users create strong passwords. Which PAM module should he configure to achieve this goal?",
   "choices": [
     "`pam_unix`",

@@ -1,6 +1,7 @@
 {
   "id": "dovecot-u001",
   "tool": "dovecot",
+  "objective": "211.3",
   "prompt": "After installing Dovecot, `ps ax` shows processes only as `dovecot/imap` and `dovecot/imap-login`. Which option associates each process with the username, peer IP address, and connection status?",
   "choices": [
     "`verbose_proctitle = yes` in the Dovecot configuration",

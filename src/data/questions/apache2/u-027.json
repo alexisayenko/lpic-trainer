@@ -1,6 +1,7 @@
 {
   "id": "apache2-u027",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "A custom log record can be created in the Apache configuration with which directives?",
   "choices": [
     "`Log` and `Access`",

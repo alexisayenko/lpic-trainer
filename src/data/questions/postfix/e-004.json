@@ -1,6 +1,7 @@
 {
   "id": "postfix-e004",
   "tool": "postfix",
+  "objective": "211.1",
   "prompt": "George is setting up a Postfix mail server. He needs to define the network settings, specifically, the network from which he will accept SMTP relay requests. Which configuration file in Postfix would George need to modify to set this up?",
   "choices": [
     "`master.cf`",

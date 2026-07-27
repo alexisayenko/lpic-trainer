@@ -1,6 +1,7 @@
 {
   "id": "bind9-a002",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "The main bind DNS server configuration file is:",
   "choices": [
     "`named.conf`",

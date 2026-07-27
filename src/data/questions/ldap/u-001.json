@@ -1,6 +1,7 @@
 {
   "id": "ldap-u001",
   "tool": "ldap",
+  "objective": "210.4",
   "prompt": "If there is no `access` directive, what is the default access setting for OpenLDAP?",
   "choices": [
     "`access to * by * read`",

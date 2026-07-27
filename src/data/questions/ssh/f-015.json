@@ -1,6 +1,7 @@
 {
   "id": "ssh-f015",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Jennifer, a systems administrator, wants to allow a developer to access a server without a password using SSH. She has received the developer's public key. Where should Jennifer place this public key to allow password-less authentication for the developer?",
   "choices": [
     "In the developer's `~/.ssh/known_hosts` file",

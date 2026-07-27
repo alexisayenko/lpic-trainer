@@ -1,6 +1,7 @@
 {
   "id": "bind9-a070",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "You need to specify the location of the zone files in the BIND configuration. Which directive in the BIND configuration file allows you to define the path to a specific zone file for a domain?",
   "choices": [
     "`directory \"/path/to/zonefile\";`",

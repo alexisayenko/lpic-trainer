@@ -1,6 +1,7 @@
 {
   "id": "apache2-b013",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "After setting up SSL on an Apache server, the administrator wants to verify the details of a given certificate. Which openssl utility allows the administrator to display the contents of an SSL certificate in a readable format?",
   "choices": [
     "`openssl x509`",

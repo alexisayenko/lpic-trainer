@@ -1,6 +1,7 @@
 {
   "id": "bind9-a064",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "In the BIND 9.x configuration, which file is primarily responsible for global server settings?",
   "choices": [
     "`resolv.conf`",

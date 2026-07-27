@@ -1,6 +1,7 @@
 {
   "id": "openssl-g001",
   "tool": "openssl",
+  "objective": "208.2",
   "prompt": "Maria is tasked with creating a new certificate request for her company's Apache server. She wants to use the OpenSSL command-line tools to achieve this. Which command should she use to create a new private key and a certificate signing request (CSR)?",
   "choices": [
     "`openssl x509 -req -in server.csr -signkey server.key -out server.crt`",

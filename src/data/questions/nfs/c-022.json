@@ -1,6 +1,7 @@
 {
   "id": "nfs-c022",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "An administrator needs to determine which directories are currently being shared by the NFS server and the IP addresses of the clients that have access to those shares. Which utility will provide this information?",
   "choices": [
     "`nfsstat`",

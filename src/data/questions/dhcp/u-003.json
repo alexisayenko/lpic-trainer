@@ -1,6 +1,7 @@
 {
   "id": "dhcp-u003",
   "tool": "dhcp",
+  "objective": "210.1",
   "prompt": "Jake is troubleshooting a DHCP server. He wants to get detailed information about current leases, including MAC addresses, lease start and end times, and IP addresses. Which file should he examine to gather this information?",
   "choices": [
     "`/etc/dhcp/dhcpd.conf`",

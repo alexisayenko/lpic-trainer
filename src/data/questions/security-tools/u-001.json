@@ -1,6 +1,7 @@
 {
   "id": "security-tools-u001",
   "tool": "nmap",
+  "objective": "212.4",
   "prompt": "For what purpose is TCP/IP stack fingerprinting used by `nmap`?",
   "choices": [
     "To uniquely identify servers for forensics",

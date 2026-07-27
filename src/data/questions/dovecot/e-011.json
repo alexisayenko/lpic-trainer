@@ -1,6 +1,7 @@
 {
   "id": "dovecot-e011",
   "tool": "dovecot",
+  "objective": "211.3",
   "prompt": "Alex is configuring a Dovecot server for his organization. He needs to ensure that the server supports secure email retrieval using both IMAP and POP3. What should he make sure to enable in the Dovecot configuration to achieve this?",
   "choices": [
     "`ssl = required` and `protocols = imap pop3`",

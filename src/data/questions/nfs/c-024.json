@@ -1,6 +1,7 @@
 {
   "id": "nfs-c024",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "An administrator wants to verify the status of the NFS server and gather statistics related to the NFS requests being handled by the server. Which utility should the administrator use to get this information?",
   "choices": [
     "`showmount`",

@@ -1,6 +1,7 @@
 {
   "id": "nfs-c013",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "A systems administrator wants to export a directory `/data` to two different servers (server1 and server2). server1 should have read-only access, while server2 should have read-write access. Which of the following entries in `/etc/exports` would correctly implement this configuration?",
   "choices": [
     "`/data server1 ro server2 rw`",

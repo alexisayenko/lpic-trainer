@@ -1,6 +1,7 @@
 {
   "id": "apache2-b028",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "After setting up a new Apache server, you are integrating mod_perl for executing Perl scripts. To ensure that the scripts are parsed and executed by mod_perl, which directive should you specify in the Apache configuration file?",
   "choices": [
     "`AddType`",

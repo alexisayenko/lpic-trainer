@@ -1,6 +1,7 @@
 {
   "id": "apache2-b004",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "As part of security hardening for his Apache web server, Alex wants to ensure that the server doesn't disclose its version number and other unnecessary information in HTTP responses. Which directive should Alex modify to minimize this disclosure?",
   "choices": [
     "`ServerSignature`",

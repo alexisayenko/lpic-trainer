@@ -1,6 +1,7 @@
 {
   "id": "nfs-c023",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "An administrator wants the root user on an NFS client to keep root privileges on a share instead of being mapped to the anonymous user. Which `/etc/exports` option enables this?",
   "choices": [
     "`sync`",

@@ -1,6 +1,7 @@
 {
   "id": "bind9-a029",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "What is a feature of a split DNS configuration?",
   "choices": [
     "All clients always receive identical answers regardless of location.",

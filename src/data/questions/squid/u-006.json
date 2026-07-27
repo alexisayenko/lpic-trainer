@@ -1,6 +1,7 @@
 {
   "id": "squid-u006",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "In the Squid configuration, the `http_access` entry is intended to:",
   "choices": [
     "Control HTTP access to an ACL",

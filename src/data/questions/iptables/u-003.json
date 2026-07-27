@@ -1,6 +1,7 @@
 {
   "id": "iptables-u003",
   "tool": "iptables",
+  "objective": "212.1",
   "prompt": "Your organization's network recently transitioned to IPv6, and you are now required to configure the firewall rules using ip6tables. You need to allow incoming HTTP traffic on port `80` from the IPv6 address `2001:db8::1`. Which of the following ip6tables commands should be used?",
   "choices": [
     "`ip6tables -A OUTPUT -p tcp --dport 80 -d 2001:db8::1 -j ACCEPT`",

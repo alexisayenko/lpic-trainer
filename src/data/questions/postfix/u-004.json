@@ -1,6 +1,7 @@
 {
   "id": "postfix-u004",
   "tool": "postfix",
+  "objective": "211.1",
   "prompt": "In the main Postfix configuration file, how are service definitions continued on the next line?",
   "choices": [
     "The initial line must end with a backslash (`\\\\`)",

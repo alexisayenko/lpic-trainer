@@ -1,6 +1,7 @@
 {
   "id": "postfix-e002",
   "tool": "postfix",
+  "objective": "211.1",
   "prompt": "You've been asked to adjust the Postfix configuration to reduce the volume of mail that your server accepts for relay in order to avoid being flagged as a source of spam. Which parameter in the Postfix configuration files should you adjust to define which networks are trusted to relay mail through your server?",
   "choices": [
     "`relay_domains`",

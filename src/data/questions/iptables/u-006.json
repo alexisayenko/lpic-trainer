@@ -1,6 +1,7 @@
 {
   "id": "iptables-u006",
   "tool": "iptables",
+  "objective": "212.1",
   "prompt": "Which netfilter table contains the built-in chains INPUT, OUTPUT and FORWARD?",
   "choices": [
     "`filter`",

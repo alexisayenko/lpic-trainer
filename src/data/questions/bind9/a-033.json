@@ -1,6 +1,7 @@
 {
   "id": "bind9-a033",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "The mail server is currently called fred, while the main `MX` record points to `mailhost.example.org`. What should be done to direct the example.org email to fred?",
   "choices": [
     "Change the MX priority value to 0.",

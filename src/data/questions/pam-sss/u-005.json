@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-u005",
   "tool": "pam-sss",
+  "objective": "210.2",
   "prompt": "Which PAM module sets and unsets environment variables?",
   "choices": [
     "`pam-vars`",

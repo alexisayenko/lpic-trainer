@@ -1,6 +1,7 @@
 {
   "id": "bind9-a014",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "A Linux system administrator runs \"`rndc flush`\" at a root command prompt on a computer running a DNS server. What will be the effect?",
   "choices": [
     "The DNS server's zone files will be deleted.",

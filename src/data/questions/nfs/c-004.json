@@ -1,6 +1,7 @@
 {
   "id": "nfs-c004",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "A Linux administrator needs to identify which clients have mounted the NFS shares from a specific NFS server. Which `showmount` command should be used to display this information?",
   "choices": [
     "`showmount -e`",

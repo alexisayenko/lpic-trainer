@@ -1,6 +1,7 @@
 {
   "id": "bind9-a008",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Some users are unable to connect to specific local hosts by name, while access to hosts in other zones works as expected. Hosts are reachable by IP. What is the default log file that could provide hints about the problem?",
   "choices": [
     "`/var/log/named.debug`",

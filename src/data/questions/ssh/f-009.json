@@ -1,6 +1,7 @@
 {
   "id": "ssh-f009",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Amelia wants to initiate an SSH connection to a remote server with the IP address `192.168.1.10` using the username admin. Which of the following commands should Amelia use to achieve this?",
   "choices": [
     "`ssh 192.168.1.10 -l admin@`",

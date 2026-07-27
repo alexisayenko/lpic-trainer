@@ -1,6 +1,7 @@
 {
   "id": "openssl-g006",
   "tool": "openssl",
+  "objective": "208.2",
   "prompt": "As part of improving security for a new e-commerce website, the server administrator decides to implement SSL on the Apache server. Which of the following tools is commonly used to generate a Certificate Signing Request (CSR) to obtain an SSL certificate from a Certificate Authority?",
   "choices": [
     "`openssl req`",

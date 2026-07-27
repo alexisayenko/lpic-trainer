@@ -1,6 +1,7 @@
 {
   "id": "ldap-u002",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Which of the following is correct about this excerpt from an LDIF file? `dn: cn=PrintOperators,ou=Groups,o=IT,DC=mycompany,DC=example,DC=com`",
   "choices": [
     "`dn` is the relative distinguished name",

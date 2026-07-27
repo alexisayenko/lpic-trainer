@@ -1,6 +1,7 @@
 {
   "id": "bind9-a057",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "Patrick is looking at a BIND 9 zone file and comes across a record of the format \"`www IN A 192.168.1.5`\". Which of the following describes this DNS record?",
   "choices": [
     "It is a reverse record mapping `192.168.1.5` to the hostname \"www\".",

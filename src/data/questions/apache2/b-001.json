@@ -1,6 +1,7 @@
 {
   "id": "apache2-b001",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "Samantha is troubleshooting a connectivity issue with her Apache2 HTTPS website. She wants to review the SSL configuration but is unsure where the default SSL configuration file is located. Where can Samantha typically find the default SSL configuration on a Debian-based Apache2 setup?",
   "choices": [
     "`/etc/apache2/sites-available/default-ssl.conf`",

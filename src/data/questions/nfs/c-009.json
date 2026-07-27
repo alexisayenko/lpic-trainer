@@ -1,6 +1,7 @@
 {
   "id": "nfs-c009",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "Maria wants to ensure that an NFS share from the server `nfs-server.example.com` is automatically mounted on her client machine at boot time. She decides to add an entry in a configuration file to achieve this. Which file should she edit to make sure the NFS share is mounted at boot?",
   "choices": [
     "`/etc/exports`",

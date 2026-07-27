@@ -1,6 +1,7 @@
 {
   "id": "squid-u013",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "When setting up a Squid proxy, what would be a reason to limit `reply_body_max_size`?",
   "choices": [
     "Avoid overloading the `cache_mem`",

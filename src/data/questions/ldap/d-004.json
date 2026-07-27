@@ -1,6 +1,7 @@
 {
   "id": "ldap-d004",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Tom, a systems engineer, wants to query his LDAP server to retrieve all user entries under the \"`dc=example,dc=com`\" base, but he only wants to get the \"`cn`\" and \"`mail`\" attributes for each user. Which command should he execute?",
   "choices": [
     "`ldapsearch -x -b \"dc=example,dc=com\" (objectClass=person) cn mail`",

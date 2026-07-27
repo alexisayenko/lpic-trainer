@@ -1,6 +1,7 @@
 {
   "id": "nfs-c011",
   "tool": "nfs",
+  "objective": "212.4",
   "prompt": "An administrator notices that certain legitimate requests to the NFS server are getting denied. After some investigation, she realizes that there's a conflicting rule in the TCP Wrappers configuration. Which of the following statements is true regarding how TCP Wrappers processes rules in its configuration files?",
   "choices": [
     "TCP Wrappers processes `/etc/hosts.deny` before `/etc/hosts.allow` and the last match wins.",

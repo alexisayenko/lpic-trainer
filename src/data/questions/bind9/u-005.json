@@ -1,6 +1,7 @@
 {
   "id": "bind9-u005",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "Which is the simplest way to configure BIND to return a different version string for queries?",
   "choices": [
     "`version-string \"my version\"` in the configuration",

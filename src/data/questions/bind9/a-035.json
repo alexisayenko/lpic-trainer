@@ -1,6 +1,7 @@
 {
   "id": "bind9-a035",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "What guideline can be used in `named.conf` to restrict zone transfers to the `192.168.1.0/24` network?",
   "choices": [
     "`allow-query {192.168.1.0/24;};`",

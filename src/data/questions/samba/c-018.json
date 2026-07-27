@@ -1,6 +1,7 @@
 {
   "id": "samba-c018",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Which of the following Samba services handles the membership of a file server in an Active Directory domain?",
   "choices": [
     "`nmbd`",

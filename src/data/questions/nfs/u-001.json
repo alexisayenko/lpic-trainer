@@ -1,6 +1,7 @@
 {
   "id": "nfs-u001",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "Which service belongs to NFSv4 and does not exist in NFSv3?",
   "choices": [
     "`rpc.mountd`",

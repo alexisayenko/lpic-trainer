@@ -1,6 +1,7 @@
 {
   "id": "apache2-u016",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "A server has two interfaces: local `eth0` (`172.24.21.78`) and Internet `eth1` (`10.203.17.26`). Which directive ensures your name-based virtual hosts are defined only on the local network?",
   "choices": [
     "`NameVirtualHost 172.24.21.78`",

@@ -1,6 +1,7 @@
 {
   "id": "bind9-a022",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "A zone file SOA reads: \"`example.net. IN SOA dns.pangaea.edu. fred.example.com. (...)`\". Which of the following is true of this entry?",
   "choices": [
     "The primary name server for example.net is `fred.example.com`.",

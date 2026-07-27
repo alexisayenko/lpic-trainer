@@ -1,6 +1,7 @@
 {
   "id": "postfix-e005",
   "tool": "postfix",
+  "objective": "211.1",
   "prompt": "Janet wants to set up a fallback relay for her Postfix server, ensuring that if her primary mail relay isn't working, the mail will be forwarded to a backup relay. Which parameter in the Postfix configuration files should she modify to achieve this?",
   "choices": [
     "`relayhost`",

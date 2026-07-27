@@ -1,6 +1,7 @@
 {
   "id": "bind9-a013",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "The entry that determines a caching-only (root hints) zone is:",
   "choices": [
     "`type master;`",

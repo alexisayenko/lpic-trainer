@@ -2,6 +2,7 @@
   "id": "iptables-u004",
   "tool": "iptables",
   "type": "multi",
+  "objective": "212.1",
   "prompt": "Which statements are correct regarding the following commands executed on a Linux router? (Choose two.) `ip6tables -A FORWARD -s fe80::/64 -j DROP` and `ip6tables -A FORWARD -d fe80::/64 -j DROP`",
   "choices": [
     "The rules disable packet forwarding because nodes always use `fe80::/64` addresses to identify routers in their routing tables",

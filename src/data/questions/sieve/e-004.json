@@ -1,6 +1,7 @@
 {
   "id": "sieve-e004",
   "tool": "sieve",
+  "objective": "211.2",
   "prompt": "As a mail system administrator, you need to filter incoming email messages that contain the words \"free offer\" in their subject and move them to the \"Promotions\" mailbox. Which Sieve rule accomplishes this task?",
   "choices": [
     "`if header :contains \"Subject\" \"free offer\" { fileinto \"Promotions\"; }`",

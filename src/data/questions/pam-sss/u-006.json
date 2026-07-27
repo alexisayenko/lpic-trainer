@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-u006",
   "tool": "pam-sss",
+  "objective": "210.2",
   "prompt": "Which of the following lines is valid in a configuration file in `/etc/pam.d/`?",
   "choices": [
     "`auth required:pam_unix.so(try_first_pass nullok)`",

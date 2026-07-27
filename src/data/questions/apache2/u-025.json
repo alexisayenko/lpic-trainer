@@ -2,6 +2,7 @@
   "id": "apache2-u025",
   "tool": "apache2",
   "type": "multi",
+  "objective": "208.1",
   "prompt": "During startup, Apache reports it cannot resolve any VirtualHost entries. What could cause this? (Choose two.)",
   "choices": [
     "The VirtualHost directives are incorrect in httpd.conf",

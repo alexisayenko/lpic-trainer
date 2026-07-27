@@ -2,6 +2,7 @@
   "id": "ssh-u002",
   "tool": "ssh",
   "type": "multi",
+  "objective": "212.3",
   "prompt": "Which lines in the sshd configuration file should, if present, be changed to increase the security of the server? (Choose two.)",
   "choices": [
     "`PermitEmptyPasswords no`",

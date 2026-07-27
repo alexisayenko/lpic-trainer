@@ -1,6 +1,7 @@
 {
   "id": "nfs-c001",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "A system administrator has just removed an entry from `/etc/exports`. They want to ensure that the changes take effect without affecting other existing NFS exports. Which command using `exportfs` should they run?",
   "choices": [
     "`exportfs -a`",

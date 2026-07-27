@@ -1,6 +1,7 @@
 {
   "id": "apache2-u022",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "In which Apache context should SSL support be enabled?",
   "choices": [
     "In a `<VirtualHost>` directive",

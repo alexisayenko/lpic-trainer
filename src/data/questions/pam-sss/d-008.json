@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-d008",
   "tool": "pam-sss",
+  "objective": "210.2",
   "prompt": "A new intern in your IT department is tasked with setting up PAM-based authentication for a specific service. While reviewing his work, you find that he used the following line in the PAM configuration: `service_name auth sufficient pam_unix.so` What does the \"`sufficient`\" control flag indicate in this configuration?",
   "choices": [
     "If this module succeeds, then the authentication process skips any subsequent modules and grants access",

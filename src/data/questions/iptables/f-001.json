@@ -1,6 +1,7 @@
 {
   "id": "iptables-f001",
   "tool": "iptables",
+  "objective": "212.1",
   "prompt": "Alex wants to enable IP forwarding on his Linux-based router so that it can forward packets between interfaces. Which command will he use to enable IP forwarding temporarily (until the next reboot)?",
   "choices": [
     "`sysctl -w net.ipv4.ip_forward=1`",

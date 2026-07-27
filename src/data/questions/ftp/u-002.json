@@ -1,6 +1,7 @@
 {
   "id": "ftp-u002",
   "tool": "vsftpd",
+  "objective": "212.2",
   "prompt": "Which Linux user does vsftpd use to perform file system operations for anonymous FTP users?",
   "choices": [
     "The Linux user `root`, restricted to globally readable/writable files",

@@ -1,6 +1,7 @@
 {
   "id": "ssh-f014",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "Amy, an IT security expert, wants to enhance the security of her OpenSSH server by ensuring that it does not use version 1 of the SSH protocol. Which directive should she modify in the OpenSSH configuration file?",
   "choices": [
     "`Protocol 2`",

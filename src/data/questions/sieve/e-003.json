@@ -1,6 +1,7 @@
 {
   "id": "sieve-e003",
   "tool": "sieve",
+  "objective": "211.2",
   "prompt": "As an administrator, you need to set a Sieve filter to automatically reject emails that are sent to `noreply@mydomain.com`. Which Sieve rule should you use?",
   "choices": [
     "`if address :is \"to\" \"noreply@mydomain.com\" { discard; }`",

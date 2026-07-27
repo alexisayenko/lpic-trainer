@@ -1,6 +1,7 @@
 {
   "id": "bind9-a024",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Which commands allow detailed diagnosis of a DNS server? (Check all correct options.)",
   "choices": [
     "`ping` and `traceroute`",

@@ -1,6 +1,7 @@
 {
   "id": "bind9-a007",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "A BIND server must be updated to use TSIG with the `hmac-md5` algorithm and the key `skrKc4DoTzi/takI1Pi7JZA==`. Which configuration block should be added?",
   "choices": [
     "`key.server.example.com. { algorithm hmac-md5; secret \"skrKc4DoTzi/takI1Pi7JZA==\"; };`",

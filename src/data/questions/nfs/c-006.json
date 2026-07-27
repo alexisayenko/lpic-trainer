@@ -1,6 +1,7 @@
 {
   "id": "nfs-c006",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "A system administrator is configuring an NFS server. He is aware that for NFS versions 2 and 3, a certain service is vital for the proper mapping of RPC services to ports on the server. Which service is responsible for this task in older NFS versions?",
   "choices": [
     "`mountd`",

@@ -1,6 +1,7 @@
 {
   "id": "samba-c032",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "A Linux system administrator is troubleshooting a Samba server and wants to check the current status of connected clients, opened files, and locked files. Which of the following Samba utilities should the administrator use to get this information?",
   "choices": [
     "`testparm`",

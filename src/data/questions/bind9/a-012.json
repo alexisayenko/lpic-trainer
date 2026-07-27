@@ -1,6 +1,7 @@
 {
   "id": "bind9-a012",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "A zone file on the DNS server has been updated. Which command will tell named to reload its zone files?",
   "choices": [
     "`named -r`",

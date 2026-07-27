@@ -2,6 +2,7 @@
   "id": "dovecot-u002",
   "tool": "dovecot",
   "type": "multi",
+  "objective": "211.3",
   "prompt": "Which authentication mechanisms are supported by Dovecot? (Choose three.)",
   "choices": [
     "`cram-md5`",

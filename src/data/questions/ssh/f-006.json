@@ -1,6 +1,7 @@
 {
   "id": "ssh-f006",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "While reviewing the SSH configuration files in `/etc/ssh/`, Emma notices a file that contains the private key for the SSH server. This key is critical for maintaining the security of the server. Which file is she observing?",
   "choices": [
     "`ssh_host_rsa_key.pub`",

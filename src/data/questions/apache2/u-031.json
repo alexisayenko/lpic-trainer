@@ -1,6 +1,7 @@
 {
   "id": "apache2-u031",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "When Apache uses name-based virtual hosts:",
   "choices": [
     "It starts several daemons (one per virtual host)",

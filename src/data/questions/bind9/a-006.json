@@ -1,6 +1,7 @@
 {
   "id": "bind9-a006",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "To use dynamic DNS updates safely, the use of TSIG is recommended. Which statement about TSIG is true?",
   "choices": [
     "TSIG encrypts all DNS query traffic between clients and the server.",

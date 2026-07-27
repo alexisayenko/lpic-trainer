@@ -1,6 +1,7 @@
 {
   "id": "squid-b001",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "Janet has recently set up Squid as a caching proxy for her organization. She needs to specify which networks are allowed to access the Squid service. Which configuration directive in the Squid configuration file should Janet modify to achieve this?",
   "choices": [
     "`acl network dstdomain`",

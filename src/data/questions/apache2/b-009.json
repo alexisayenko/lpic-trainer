@@ -1,6 +1,7 @@
 {
   "id": "apache2-b009",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "Jamal, a cybersecurity specialist, is asked to review and suggest improvements to an Apache SSL configuration. He notices that the current cipher suite might be susceptible to certain attacks. Which of the following recommendations would ensure that the server uses only strong ciphers and avoids known weak ones?",
   "choices": [
     "`SSLProtocol all`",

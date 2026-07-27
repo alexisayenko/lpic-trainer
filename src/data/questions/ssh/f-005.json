@@ -1,6 +1,7 @@
 {
   "id": "ssh-f005",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "After a security audit, the security team advised changing the host keys for the SSH server. Thomas is tasked with regenerating these keys. Before he starts, he backs up all existing keys in the `/etc/ssh/` directory. Which file should Thomas specifically ensure he has a backup of, as it represents the public part of the server's DSA key?",
   "choices": [
     "`ssh_host_dsa_key`",

@@ -1,6 +1,7 @@
 {
   "id": "ldap-d005",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Emily, a network engineer, wants to search her LDAP directory for all entries that contain a specific email domain \"`@techcorp.com`\" under the base \"`dc=tech,dc=net`\". She wants to use simple authentication and ensure that the search results show the user's full name and email address. Which command should she use?",
   "choices": [
     "`ldapsearch -x -b \"dc=tech,dc=net\" \"(cn=*@techcorp.com)\" cn mail`",

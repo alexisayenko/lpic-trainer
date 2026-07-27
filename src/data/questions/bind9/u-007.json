@@ -2,6 +2,7 @@
   "id": "bind9-u007",
   "tool": "bind9",
   "type": "multi",
+  "objective": "207.1",
   "prompt": "A DNS server has the IP address `192.168.0.1`. Which of the following must be applied to a client to use this DNS server? (Choose two.)",
   "choices": [
     "Run `bind nameserver 192.168.0.1`",

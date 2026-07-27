@@ -1,6 +1,7 @@
 {
   "id": "powerdns-u001",
   "tool": "powerdns",
+  "objective": "207.1",
   "prompt": "Carla, an IT manager, wants to set up a new DNS infrastructure that can work with various backends like relational databases and LDAP servers. She is looking for an alternate name server to BIND which provides flexibility with different data sources. Which option should she consider?",
   "choices": [
     "Unbound",

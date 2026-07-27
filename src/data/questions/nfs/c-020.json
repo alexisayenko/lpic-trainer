@@ -1,6 +1,7 @@
 {
   "id": "nfs-c020",
   "tool": "nfs",
+  "objective": "212.4",
   "prompt": "A system administrator is tasked with ensuring that NFS services are protected by TCP Wrappers. Which of the following files should the administrator modify to deny access to the NFS service for a specific IP address?",
   "choices": [
     "`/etc/exports`",

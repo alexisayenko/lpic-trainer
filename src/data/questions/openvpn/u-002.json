@@ -2,6 +2,7 @@
   "id": "openvpn-u002",
   "tool": "openvpn",
   "type": "multi",
+  "objective": "212.5",
   "prompt": "What information can be found in the file specified by the `status` parameter in an OpenVPN server configuration? (Choose two.)",
   "choices": [
     "Statistical information about the running openvpn daemon",

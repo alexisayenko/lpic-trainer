@@ -1,6 +1,7 @@
 {
   "id": "dhcp-u007",
   "tool": "dhcp",
+  "objective": "210.1",
   "prompt": "A host named `lpi` with MAC address `08:00:2b:4c:59:23` should always be assigned the IP `192.168.1.2` by an ISC DHCP server. Which configuration achieves this?",
   "choices": [
     "`host lpi { hardware-ethernet 08:00:2b:4c:59:23; fixed-address 192.168.1.2; }`",

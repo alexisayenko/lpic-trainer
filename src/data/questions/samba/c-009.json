@@ -1,6 +1,7 @@
 {
   "id": "samba-c009",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Bob, another system administrator, has been given the task to manage Samba users' mappings. In the `user.map` file, he found an entry `!admin = root`. He is uncertain about the `!` character before the Windows username. What does the `!` character signify in the mapping file?",
   "choices": [
     "It comments out the mapping line so it is ignored",

@@ -2,6 +2,7 @@
   "id": "nfs-u002",
   "tool": "nfs",
   "type": "multi",
+  "objective": "209.2",
   "prompt": "Which of the following options are valid in `/etc/exports`? (Choose two.)",
   "choices": [
     "`ro`",

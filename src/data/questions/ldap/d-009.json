@@ -1,6 +1,7 @@
 {
   "id": "ldap-d009",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "David, a junior systems administrator, accidentally added an erroneous group entry in the LDAP directory. He now wants to delete it. The DN for the group is \"`cn=wronggroup,ou=groups,dc=example,dc=com`\". While discussing with a colleague, David was advised not to use SASL authentication for the deletion. Which command should David use?",
   "choices": [
     "`ldapdelete -Y -D \"cn=admin,dc=example,dc=com\" -W`",

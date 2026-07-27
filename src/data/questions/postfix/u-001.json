@@ -1,6 +1,7 @@
 {
   "id": "postfix-u001",
   "tool": "postfix",
+  "objective": "211.1",
   "prompt": "After recently transitioning to Postfix, a system administrator wants to change the default behavior of the mail server. To define parameters that control the operation of the Postfix mail system, which configuration file should the administrator primarily modify?",
   "choices": [
     "`/etc/postfix/master.cf`",

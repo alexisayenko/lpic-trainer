@@ -1,6 +1,7 @@
 {
   "id": "bind9-a066",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Michael is exploring alternate name servers to BIND for a small local network that requires both DNS and DHCP functionalities. Which would be most suitable?",
   "choices": [
     "PowerDNS",

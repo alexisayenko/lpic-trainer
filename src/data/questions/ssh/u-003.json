@@ -2,6 +2,7 @@
   "id": "ssh-u003",
   "tool": "ssh",
   "type": "multi",
+  "objective": "212.3",
   "prompt": "Which sshd configuration settings should be set to `no` to fully disable password-based logins? (Choose two.)",
   "choices": [
     "`UsePasswords`",

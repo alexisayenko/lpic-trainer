@@ -1,6 +1,7 @@
 {
   "id": "bind9-a023",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "The zone file for the luna.edu domain includes the line \"`imbrium IN NS dns1.imbrium.luna.edu.`\". What other information must also appear in this zone file to make this line valid?",
   "choices": [
     "A CNAME record for `imbrium.luna.edu.`",

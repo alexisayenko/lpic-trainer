@@ -1,6 +1,7 @@
 {
   "id": "ldap-u007",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Which statement is INCORRECT regarding the LDIF file format?",
   "choices": [
     "The LDIF file accepts any type of file encoding",

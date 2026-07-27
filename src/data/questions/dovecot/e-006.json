@@ -1,6 +1,7 @@
 {
   "id": "dovecot-e006",
   "tool": "dovecot",
+  "objective": "211.2",
   "prompt": "Tim, a senior executive at a multinational company, is planning to take a 3-week vacation. He needs to set up an automatic response for all incoming emails, notifying the senders about his absence. Which Dovecot Sieve extension should he utilize to achieve this?",
   "choices": [
     "`autoreply`",

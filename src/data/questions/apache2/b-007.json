@@ -1,6 +1,7 @@
 {
   "id": "apache2-b007",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "Samantha, an experienced system administrator, is setting up multiple secure websites on a single Apache server using a single IP address. She knows that older methods required separate IP addresses for each SSL certificate but recalls that a modern solution exists to mitigate this. What should Samantha implement to host multiple SSL certificates on a single IP address?",
   "choices": [
     "Assign a unique port to each HTTPS virtual host",

@@ -1,6 +1,7 @@
 {
   "id": "ssh-f012",
   "tool": "ssh",
+  "objective": "212.3",
   "prompt": "John, an IT specialist, wants to generate a new SSH key pair for himself. Which command should he use to generate an RSA key pair?",
   "choices": [
     "`ssh-keygen -t rsa`",

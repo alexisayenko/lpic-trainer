@@ -1,6 +1,7 @@
 {
   "id": "courier-e001",
   "tool": "courier",
+  "objective": "211.3",
   "prompt": "Your organization is looking to deploy a new email server solution. The primary requirement is to have a unified solution that integrates IMAP, POP3, and SMTP under the same server umbrella. One of your colleagues suggests using Courier. Why might the Courier server be a suitable choice?",
   "choices": [
     "Courier is a unified mail server that integrates IMAP, POP3, and SMTP services",

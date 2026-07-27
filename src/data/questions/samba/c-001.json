@@ -1,6 +1,7 @@
 {
   "id": "samba-c001",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "A systems administrator wants to configure the Samba server settings. Which file in the `/etc/samba/` directory primarily holds the global and share-specific configurations for Samba?",
   "choices": [
     "`/etc/samba/smb.conf`",

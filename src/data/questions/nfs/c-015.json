@@ -1,6 +1,7 @@
 {
   "id": "nfs-c015",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "A systems administrator is implementing an NFSv4 server. What feature of NFSv4 can be leveraged to allow more granular permission control than traditional UNIX permissions?",
   "choices": [
     "TCP Wrappers",

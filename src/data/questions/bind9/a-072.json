@@ -1,6 +1,7 @@
 {
   "id": "bind9-a072",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Sarah has modified the `named.conf` file and one of the zone files for BIND. She wants to apply these changes without restarting the BIND service. Which command should she use?",
   "choices": [
     "`rndc flush`",

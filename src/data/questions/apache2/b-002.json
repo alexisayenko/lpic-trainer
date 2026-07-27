@@ -1,6 +1,7 @@
 {
   "id": "apache2-b002",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "Michael is a new system administrator responsible for setting up Apache2 on a Debian-based system. He knows that there's a specific directory where additional configuration files can be placed to be loaded by Apache2 automatically. Which directory is this?",
   "choices": [
     "`/etc/apache2/conf.d/`",

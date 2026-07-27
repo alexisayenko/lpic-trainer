@@ -1,6 +1,7 @@
 {
   "id": "bind9-a049",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "Jessica has already implemented DNSSEC and now wants to ensure that only valid TLS certificates are used by clients connecting to her web services. Which DNS-based security mechanism should she consider implementing next?",
   "choices": [
     "Transaction Signatures (TSIG).",

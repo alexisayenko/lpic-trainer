@@ -1,6 +1,7 @@
 {
   "id": "ldap-d003",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Richard, an experienced system administrator, is trying to add a new group to the LDAP directory. He has an LDIF file named `devgroup.ldif` and wants to use simple authentication to perform the addition. Which of the following commands will successfully add the group using simple authentication?",
   "choices": [
     "`ldapadd -s -f devgroup.ldif`",

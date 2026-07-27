@@ -1,6 +1,7 @@
 {
   "id": "apache2-u020",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "Which Apache directive enables support for the HTTPS protocol?",
   "choices": [
     "`SSLEnable`",

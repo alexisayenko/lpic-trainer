@@ -1,6 +1,7 @@
 {
   "id": "apache2-u011",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "What program adds users to an authorized-user database when Apache is configured to require authentication?",
   "choices": [
     "`htpasswd`",

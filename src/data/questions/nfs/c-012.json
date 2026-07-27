@@ -1,6 +1,7 @@
 {
   "id": "nfs-c012",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "An NFS client wants to mount a remote share but wants to ensure that if the share becomes inaccessible or the server fails, the operations will return an error immediately rather than hanging. Which of the following mount options should be used?",
   "choices": [
     "`hard`",

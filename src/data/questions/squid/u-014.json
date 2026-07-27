@@ -2,6 +2,7 @@
   "id": "squid-u014",
   "tool": "squid",
   "type": "multi",
+  "objective": "208.3",
   "prompt": "Given `cache_dir ufs /var/spool/squid3/ 1024 16 256`, which directories will exist directly within `/var/spool/squid3/`? (Choose two.)",
   "choices": [
     "`0`",

@@ -1,6 +1,7 @@
 {
   "id": "apache2-b024",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "You have installed the PHP module on your Apache server, but PHP pages are not being rendered and are instead being displayed as plain text. Which directive should you verify in the Apache configuration to ensure PHP pages are processed by the PHP module?",
   "choices": [
     "`AddHandler text/html .php`",

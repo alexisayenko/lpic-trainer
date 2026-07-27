@@ -1,6 +1,7 @@
 {
   "id": "samba-c012",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "Carol, another system administrator, needs to mount a CIFS share from a remote server but wants to ensure the credentials (username and password) are kept secure and not visible in the process list. What is the recommended method for Carol to provide these credentials when mounting the share?",
   "choices": [
     "Pass the password directly with `-o password=` on the command line",

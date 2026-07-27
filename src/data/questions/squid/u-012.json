@@ -1,6 +1,7 @@
 {
   "id": "squid-u012",
   "tool": "squid",
+  "objective": "208.3",
   "prompt": "What is a valid option for Squid to define a listening port?",
   "choices": [
     "`http_port 3128`",

@@ -1,6 +1,7 @@
 {
   "id": "samba-c017",
   "tool": "samba",
+  "objective": "209.1",
   "prompt": "The Samba configuration file contains the following lines:\n`host allow = 192.168.1.100 192.168.2.0/255.255.255.0 localhost`\n`host deny = 192.168.2.31`\n`interfaces = 192.168.1.0/255.255.255.0 192.168.2.0/255.255.255.0`\nA workstation on the wired network with IP `192.168.1.177` cannot access the Samba server, but a wireless laptop with IP `192.168.2.93` can. Which corrected `host allow` line would let the wired workstation connect?",
   "choices": [
     "`host allow = 192.168.1.100 localhost`",

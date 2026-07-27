@@ -2,6 +2,7 @@
   "id": "apache2-u001",
   "tool": "apache2",
   "type": "multi",
+  "objective": "208.1",
   "prompt": "Select the two correct statements about this `httpd.conf` excerpt: `<Directory /var/web/dir1> <Files private.html> Order allow,deny; Deny from all </Files> </Directory>`",
   "choices": [
     "It denies access to `private.html` in `/var/web/dir1` and any of its subdirectories",

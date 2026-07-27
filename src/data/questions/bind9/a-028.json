@@ -1,6 +1,7 @@
 {
   "id": "bind9-a028",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "Which entry in a zone mapping identifies the email server for the domain in question?",
   "choices": [
     "`NS`",

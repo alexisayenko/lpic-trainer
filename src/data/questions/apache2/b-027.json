@@ -1,6 +1,7 @@
 {
   "id": "apache2-b027",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "When setting up a new Apache 2.4 configuration, which file is the primary configuration file by default?",
   "choices": [
     "`apache2.conf`",

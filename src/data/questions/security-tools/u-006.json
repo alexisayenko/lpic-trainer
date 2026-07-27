@@ -2,6 +2,7 @@
   "id": "security-tools-u006",
   "tool": "nc",
   "type": "multi",
+  "objective": "212.4",
   "prompt": "Which tools can be used to connect to and interact with remote TCP network services? (Choose two.)",
   "choices": [
     "`telnet`",

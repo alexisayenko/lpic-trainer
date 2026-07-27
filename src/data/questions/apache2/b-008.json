@@ -1,6 +1,7 @@
 {
   "id": "apache2-b008",
   "tool": "apache2",
+  "objective": "208.2",
   "prompt": "While attending a workshop on Apache SSL configurations, Liam, a system administrator, learns about the challenges associated with using SSL in virtual hosting environments. Which of the following statements accurately describes a primary issue when using traditional SSL with name-based virtual hosting?",
   "choices": [
     "SSL requires a separate IP address for each virtual host, making it incompatible with name-based virtual hosting.",

@@ -1,6 +1,7 @@
 {
   "id": "ldap-u003",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Which set of entries does the following command return? `ldapsearch -x \"(|(cn=marie)(!(telephoneNumber=9*)))\"`",
   "choices": [
     "Entries that don't have a cn of marie or don't have a telephoneNumber that begins with 9",

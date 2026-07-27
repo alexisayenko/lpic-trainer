@@ -1,6 +1,7 @@
 {
   "id": "pam-sss-d009",
   "tool": "pam-sss",
+  "objective": "210.2",
   "prompt": "A system administrator is working on a custom PAM module configuration. They create a file named `myapp` in the `/etc/pam.d/` directory. What is the significance of the `myapp` file in the context of PAM?",
   "choices": [
     "It is a backup of the global PAM configuration",

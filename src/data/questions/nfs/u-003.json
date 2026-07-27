@@ -1,6 +1,7 @@
 {
   "id": "nfs-u003",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "Which statement is true regarding the NFSv4 pseudo file system on the NFS server?",
   "choices": [
     "It must be called `/exports`",

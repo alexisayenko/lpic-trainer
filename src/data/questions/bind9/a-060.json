@@ -1,6 +1,7 @@
 {
   "id": "bind9-a060",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "Hannah is setting up a secondary (slave) DNS server for redundancy. In the BIND 9 configuration, which type designation should she use for the zone on this secondary server?",
   "choices": [
     "`master`",

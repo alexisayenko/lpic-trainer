@@ -2,6 +2,7 @@
   "id": "apache2-u003",
   "tool": "apache2",
   "type": "multi",
+  "objective": "208.1",
   "prompt": "A `/srv/www/default/html/restricted/.htaccess` contains `AuthType Basic`, `AuthUserFile /srv/www/security/site-passwd`, `AuthName Restricted`, `Require valid-user`, `Order deny,allow`, `Deny from all`, `Allow from 10.1.2.0/24`, `Satisfy any`; `DocumentRoot` is `/srv/www/default/html`. Select the two true statements.",
   "choices": [
     "Clients on the `10.1.2.0/24` network will not need to authenticate to access `http://server/restricted/`",

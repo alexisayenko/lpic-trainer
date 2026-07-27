@@ -1,6 +1,7 @@
 {
   "id": "bind9-u003",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "Where should the line `$TTL 86400` be placed in a BIND zone file?",
   "choices": [
     "Just before any A records are defined",

@@ -1,6 +1,7 @@
 {
   "id": "ldap-d010",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "A junior system administrator named Lucy is tasked with changing the password of an LDAP user with the distinguished name \"`uid=jdoe,ou=people,dc=example,dc=com`\". She wants to use the `ldappasswd` command for this purpose and ensure she is prompted to provide the new password interactively. Which of the following commands should Lucy use?",
   "choices": [
     "`ldappasswd -A \"uid=jdoe,ou=people,dc=example,dc=com\"`",

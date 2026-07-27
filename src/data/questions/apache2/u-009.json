@@ -1,6 +1,7 @@
 {
   "id": "apache2-u009",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "Which Apache configuration section defines a virtual domain?",
   "choices": [
     "`RootServer`",

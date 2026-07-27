@@ -1,6 +1,7 @@
 {
   "id": "apache2-u014",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "Which Apache directive specifies the authentication method, for example None or Basic?",
   "choices": [
     "`AllowedAuthUser`",

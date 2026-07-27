@@ -1,6 +1,7 @@
 {
   "id": "nfs-c008",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "An administrator is troubleshooting performance issues with an NFS server. To gather detailed statistics about the NFS operations, which command should the administrator use?",
   "choices": [
     "`nfsstat -s`",

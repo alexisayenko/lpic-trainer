@@ -1,6 +1,7 @@
 {
   "id": "apache2-b015",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "During a security audit, it's suggested that your Apache server should hide its version number and other detailed server information from clients. Which directive in the `httpd.conf` file would you modify to achieve this?",
   "choices": [
     "`ServerSignature`",

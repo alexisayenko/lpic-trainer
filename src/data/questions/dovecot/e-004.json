@@ -1,6 +1,7 @@
 {
   "id": "dovecot-e004",
   "tool": "dovecot",
+  "objective": "211.3",
   "prompt": "You suspect that one of the users in your organization has a mailbox that's growing exceptionally large. You'd like to obtain a list of all mailboxes sorted by their size. Which doveadm command would allow you to do this?",
   "choices": [
     "`doveadm mailbox status \"messages vsize\" \"*\" -A`",

@@ -1,6 +1,7 @@
 {
   "id": "nslookup-u001",
   "tool": "nslookup",
+  "objective": "207.2",
   "prompt": "John, a system administrator, wants to determine the mail exchange (MX) servers for the domain example.org using `nslookup`. Which of the following commands should he use to get this specific information?",
   "choices": [
     "`nslookup -query=NS example.org`",

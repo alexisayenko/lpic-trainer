@@ -1,6 +1,7 @@
 {
   "id": "bind9-a003",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "A DNS Jail (chroot) or DNS Cage is the model in which:",
   "choices": [
     "The DNS server only answers recursive queries.",

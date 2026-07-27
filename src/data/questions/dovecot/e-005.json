@@ -1,6 +1,7 @@
 {
   "id": "dovecot-e005",
   "tool": "dovecot",
+  "objective": "211.3",
   "prompt": "As a system administrator for a mid-sized company, you are requested to enforce logging for authentication failures in the Dovecot email server. Which directive in the `dovecot.conf` file allows you to log these authentication attempts?",
   "choices": [
     "`auth_debug = yes`",

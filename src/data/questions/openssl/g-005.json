@@ -1,6 +1,7 @@
 {
   "id": "openssl-g005",
   "tool": "openssl",
+  "objective": "208.2",
   "prompt": "Jennifer, a system administrator, wants to generate a self-signed certificate for her company's internal web applications. She wants the certificate to be valid for 365 days. Which of the following `openssl` commands should she use to generate this certificate?",
   "choices": [
     "`openssl req -new -newkey rsa:2048 -days 365 -nodes -keyout server.key -out server.csr`",

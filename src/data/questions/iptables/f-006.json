@@ -1,6 +1,7 @@
 {
   "id": "iptables-f006",
   "tool": "iptables",
+  "objective": "212.1",
   "prompt": "Kyle, a security consultant, advises XYZ Corp to block all outgoing HTTPS traffic (port `443`) to the IP address `10.0.0.5`. Which of the following iptables rules should be implemented?",
   "choices": [
     "`iptables -A OUTPUT -p tcp --dport 443 -d 10.0.0.5 -j DROP`",

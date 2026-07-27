@@ -1,6 +1,7 @@
 {
   "id": "security-tools-u004",
   "tool": "fail2ban",
+  "objective": "212.4",
   "prompt": "With `fail2ban`, what is a 'jail'?",
   "choices": [
     "The chroot environment in which `fail2ban` runs",

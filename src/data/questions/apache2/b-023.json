@@ -1,6 +1,7 @@
 {
   "id": "apache2-b023",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "Your Apache server has been receiving a large number of requests from a particular IP address that seems suspicious. You want to verify this by checking the number of requests from this IP in the access log. Which default log file should you inspect?",
   "choices": [
     "`error_log`",

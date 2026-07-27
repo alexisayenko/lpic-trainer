@@ -1,6 +1,7 @@
 {
   "id": "bind9-a030",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Which of the following is a problem that a caching DNS server can only help solve?",
   "choices": [
     "Your ISP's DNS server is reliable, but slow.",

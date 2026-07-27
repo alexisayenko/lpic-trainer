@@ -1,6 +1,7 @@
 {
   "id": "nginx-u002",
   "tool": "nginx",
+  "objective": "208.4",
   "prompt": "When reverse-proxying through Nginx, which keyword passes the `Host` header from the original request to the proxied server? `{ ____ Host $host; }`",
   "choices": [
     "`proxy_set_header`",

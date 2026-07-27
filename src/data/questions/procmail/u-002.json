@@ -1,6 +1,7 @@
 {
   "id": "procmail-u002",
   "tool": "procmail",
+  "objective": "211.2",
   "prompt": "Alex, an IT engineer, is asked to create a `procmail` rule that sends all emails with the subject \"Report\" to a folder named \"Reports\" within the user's home directory. Which of the following `procmail` rules achieves this?",
   "choices": [
     "`0: ^Subject.*Report ~/Reports/`",

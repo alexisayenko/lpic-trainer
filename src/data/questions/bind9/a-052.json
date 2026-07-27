@@ -1,6 +1,7 @@
 {
   "id": "bind9-a052",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Kevin notices the entry \"`recursion no;`\" in the BIND 9 configuration file. What does this directive achieve?",
   "choices": [
     "It disables zone transfers to all secondary servers.",

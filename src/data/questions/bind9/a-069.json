@@ -1,6 +1,7 @@
 {
   "id": "bind9-a069",
   "tool": "bind9",
+  "objective": "207.1",
   "prompt": "Lillian wants to specify the working directory for the named process in the BIND configuration. In which file and with which directive can she define this?",
   "choices": [
     "In `/var/named` using the \"`workdir`\" directive",

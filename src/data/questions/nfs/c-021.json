@@ -1,6 +1,7 @@
 {
   "id": "nfs-c021",
   "tool": "nfs",
+  "objective": "209.2",
   "prompt": "A Linux administrator is setting up an NFS server to support older client machines that only understand NFS version 3. Which configuration file should the administrator modify to define NFS version 3 exports?",
   "choices": [
     "`/etc/fstab`",

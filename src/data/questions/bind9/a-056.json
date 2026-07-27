@@ -1,6 +1,7 @@
 {
   "id": "bind9-a056",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "Sarah wants to change the zone file format from the default text format to a binary format for performance. Which `named.conf` directive should she use to specify that the zone's master file should be read in a binary format?",
   "choices": [
     "`masterfile-format text;`",

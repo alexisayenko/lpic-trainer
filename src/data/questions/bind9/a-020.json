@@ -1,6 +1,7 @@
 {
   "id": "bind9-a020",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "Which of the following are types of legal records in a DNS zone file? (Choose 2 that apply.)",
   "choices": [
     "`CNAME` and `MX`",

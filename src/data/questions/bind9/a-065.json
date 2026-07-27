@@ -1,6 +1,7 @@
 {
   "id": "bind9-a065",
   "tool": "bind9",
+  "objective": "207.2",
   "prompt": "Which utility is used with BIND 9.x to check the syntax and integrity of zone files without actually loading them?",
   "choices": [
     "`named-checkconf`",

@@ -1,6 +1,7 @@
 {
   "id": "sieve-e005",
   "tool": "sieve",
+  "objective": "211.2",
   "prompt": "Sarah, a Linux administrator, wants to set up an email filtering rule that processes messages only if the subject contains the word \"Alert\" and the email is from the domain \"example.com\". Which of the following conditions would successfully match these criteria?",
   "choices": [
     "`* ^Subject:.*Alert || * ^From:.*@example.com`",

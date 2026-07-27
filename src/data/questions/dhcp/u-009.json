@@ -2,6 +2,7 @@
   "id": "dhcp-u009",
   "tool": "dhcp",
   "type": "multi",
+  "objective": "210.1",
   "prompt": "Which types of IPv6 address assignments does DHCPv6 support? (Choose three.)",
   "choices": [
     "Temporary IPv6 addresses that cannot be renewed",

@@ -1,6 +1,7 @@
 {
   "id": "bind9-a053",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "Liam decides to configure BIND to run within a chroot jail. Which of the following directories would typically be duplicated within the chroot environment?",
   "choices": [
     "`/etc/skel`",

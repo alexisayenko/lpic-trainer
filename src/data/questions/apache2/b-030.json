@@ -1,6 +1,7 @@
 {
   "id": "apache2-b030",
   "tool": "apache2",
+  "objective": "208.1",
   "prompt": "As an administrator, you noticed that the log entries in your Apache server are not providing enough information for troubleshooting purposes. Which directive should you modify to adjust the format of the log entries for better clarity?",
   "choices": [
     "`CustomLog`",

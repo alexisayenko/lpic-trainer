@@ -1,6 +1,7 @@
 {
   "id": "bind9-a019",
   "tool": "bind9",
+  "objective": "207.3",
   "prompt": "What is the most secure account to use to run BIND?",
   "choices": [
     "`root`",

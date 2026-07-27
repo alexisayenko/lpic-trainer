@@ -1,6 +1,7 @@
 {
   "id": "dovecot-e008",
   "tool": "dovecot",
+  "objective": "211.3",
   "prompt": "During the security audit of your organization's email infrastructure, the auditor recommends ensuring that the Dovecot server should not allow SSLv3 due to its vulnerabilities. Which of the following configuration options should you set to disable SSLv3 in Dovecot?",
   "choices": [
     "`ssl_protocols = !SSLv3`",

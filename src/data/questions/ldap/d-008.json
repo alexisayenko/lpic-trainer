@@ -1,6 +1,7 @@
 {
   "id": "ldap-d008",
   "tool": "ldap",
+  "objective": "210.3",
   "prompt": "Mike, an experienced system administrator, is updating an LDAP user's password. He wants to use `ldappasswd` and also wants to ensure that he's prompted for the old password before setting a new one. Which command should he execute to achieve this?",
   "choices": [
     "`ldappasswd -S \"uid=msmith,ou=users,dc=corp,dc=net\"`",
